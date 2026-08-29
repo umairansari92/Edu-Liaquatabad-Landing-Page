@@ -1,0 +1,53 @@
+/**
+ * Official Conferences, HM Summits & Faculty Workshops Calendar
+ */
+export const dynamicEventsData = [
+  {
+    id: 'evt-1',
+    title: 'Quarterly Head Masters & School Leadership Coordination Summit',
+    type: 'ADMINISTRATIVE SUMMIT',
+    date: { day: '12', month: 'SEP', year: '2026' },
+    time: '10:00 AM – 01:30 PM',
+    venue: 'Town Education Directorate Main Auditorium, Liaquatabad No. 4',
+    chairperson: 'Muhammad Asif Khan (DDO / Town Education Officer)',
+    agenda: 'Review of digital attendance system, syllabus pacing, teacher deputation audits, and infrastructure winter fund allocation.',
+    participants: 'All 45+ Head Masters (Male & Female Wings)',
+    status: 'UPCOMING',
+  },
+  {
+    id: 'evt-2',
+    title: 'Faculty Training Workshop: Modern Pedagogy & STEM Teaching Aids',
+    type: 'TEACHER TRAINING',
+    date: { day: '18', month: 'SEP', year: '2026' },
+    time: '09:00 AM – 03:00 PM',
+    venue: 'Govt. Comprehensive Higher Secondary School Auditorium',
+    chairperson: 'Supervisory Training Cell & Master Trainers',
+    agenda: 'Interactive lesson planning, smart classroom integration, continuous formative assessment, and student mental wellness support.',
+    participants: 'Science, Math & English Subject Teachers',
+    status: 'REGISTRATION_OPEN',
+  },
+  {
+    id: 'evt-3',
+    title: 'Pre-Examination Invigilation Squad Briefing & Integrity Protocol',
+    type: 'EXAMINATION BOARD',
+    date: { day: '28', month: 'SEP', year: '2026' },
+    time: '11:00 AM – 01:00 PM',
+    venue: 'Central Examination Control Centre, Liaquatabad',
+    chairperson: 'Rashid Minhas Siddiqui (Chief Controller of Exams)',
+    agenda: 'Tamper-proof digital question paper delivery, QR code student ID verification at exam halls, and vigilance squad assignments.',
+    participants: 'Senior Teachers & Nominated Examination Invigilators',
+    status: 'MANDATORY_ATTENDANCE',
+  },
+  {
+    id: 'evt-4',
+    title: 'Town-Wide Parent-Teacher Civic Engagement Day (PTM)',
+    type: 'COMMUNITY & PARENTS',
+    date: { day: '04', month: 'OCT', year: '2026' },
+    time: '08:30 AM – 01:00 PM',
+    venue: 'Simultaneously Across All 45+ Liaquatabad Government Schools',
+    chairperson: 'Respective School Head Masters (HMs)',
+    agenda: 'Mid-term academic report card review, attendance verification, parent portal smartphone app walkthrough, and student progress feedback.',
+    participants: 'Parents, Guardians, Class Teachers & HMs',
+    status: 'PUBLIC_EVENT',
+  },
+];

@@ -1,0 +1,53 @@
+/**
+ * Educational Programs, Town Competitions & Academic Initiatives
+ */
+export const dynamicProgramsData = [
+  {
+    id: 'prog-1',
+    title: 'Liaquatabad Town Annual Science & Robotics Expo 2026',
+    category: 'STEM & INNOVATION',
+    badge: 'Flagship Event',
+    targetGrades: 'Class 6 to 10 (Secondary)',
+    hostSchool: 'Molana Muhammad Hussain Azad Govt. Boys Secondary School',
+    date: 'October 15–17, 2026',
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80',
+    description: 'Over 45 government schools showcase science models, renewable energy inventions, robotics, and environmental science projects judged by Karachi university professors.',
+    awards: 'Trophies, Merit Certificates & STEM Lab Kits for Winning Schools',
+  },
+  {
+    id: 'prog-2',
+    title: 'Inter-School All-Karachi Urdu & English Declamation Contest',
+    category: 'LITERARY & ORATORY',
+    badge: 'Annual Championship',
+    targetGrades: 'Class 8 to 10',
+    hostSchool: 'Govt. Girls Secondary School Sharifabad',
+    date: 'September 24, 2026',
+    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&auto=format&fit=crop&q=80',
+    description: 'Promoting oratory excellence, critical debate on national development, and confidence building among public school students.',
+    awards: 'Quaid-e-Azam Oratory Cup & Scholarships',
+  },
+  {
+    id: 'prog-3',
+    title: 'DMC Liaquatabad Inter-School Sports Gala & Athletics Championship',
+    category: 'SPORTS & HEALTH',
+    badge: 'Town-Wide Gala',
+    targetGrades: 'All Classes (Primary & Secondary Wings)',
+    hostSchool: 'Liaquatabad Sports Complex / Govt. Stadium',
+    date: 'November 05–08, 2026',
+    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=80',
+    description: 'Cricket tournament, football championship, table tennis, badminton, and 100m sprint races fostering teamwork, sportsmanship, and physical fitness.',
+    awards: 'Champions Trophy, Gold/Silver/Bronze Medals & Sports Gear',
+  },
+  {
+    id: 'prog-4',
+    title: 'Sindh Literacy & Young Bookworms Reading Campaign',
+    category: 'ACADEMIC LITERACY',
+    badge: 'Ongoing Drive',
+    targetGrades: 'Class 1 to 5 (Primary)',
+    hostSchool: 'All 24 Primary Schools in Liaquatabad',
+    date: 'August – December 2026',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=80',
+    description: 'Free storybooks distribution, Urdu storytelling hours, library reading challenges, and vocabulary enrichment program for young learners.',
+    awards: 'Junior Star Reader Badges & Book Hampers',
+  },
+];

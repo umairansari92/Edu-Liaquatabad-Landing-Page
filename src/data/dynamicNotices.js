@@ -1,0 +1,53 @@
+/**
+ * Public Notices, Official Circulars & Government Gazettes
+ */
+export const dynamicNoticesData = [
+  {
+    id: 'not-1',
+    title: 'Gazette Order: Mid-Term Examination Schedule & Datesheet 2026',
+    category: 'EXAMINATION',
+    issueDate: 'August 28, 2026',
+    dispatchNo: 'DMC/EDU/EXAM/2026/892',
+    urgency: 'HIGH',
+    audience: 'All Schools, Teachers, Students & Parents',
+    summary: 'Official notification regarding standardized mid-term assessments for Class 1 to 10 across all Liaquatabad Town government schools commencing September 20, 2026.',
+    pdfUrl: '#',
+    fileSize: '1.4 MB PDF',
+  },
+  {
+    id: 'not-2',
+    title: 'Advisory: School Timings & Hydration Directives During Heatwave',
+    category: 'ADMINISTRATIVE',
+    issueDate: 'August 24, 2026',
+    dispatchNo: 'DMC/EDU/ADM/2026/745',
+    urgency: 'IMPORTANT',
+    audience: 'All Head Masters & Teaching Faculty',
+    summary: 'Mandatory morning shift schedule adjustment (07:30 AM to 12:30 PM), continuous provision of filtered chilled water, and postponement of outdoor sports during peak heat hours.',
+    pdfUrl: '#',
+    fileSize: '850 KB PDF',
+  },
+  {
+    id: 'not-3',
+    title: 'Notification: Digital Student ID Card & Biometric Roster Enrollment',
+    category: 'CIRCULAR',
+    issueDate: 'August 18, 2026',
+    dispatchNo: 'DMC/EDU/IT/2026/610',
+    urgency: 'STANDARD',
+    audience: 'Head Masters & School IT Coordinators',
+    summary: 'Directives for issuing dual-layer Student ID cards (GR No & Global MMHA ID with encrypted QR codes) to all enrolled students before mid-term exams.',
+    pdfUrl: '#',
+    fileSize: '2.1 MB PDF',
+  },
+  {
+    id: 'not-4',
+    title: 'Distribution Schedule: Free Sindh Textbook Board Books (Session 2026–27)',
+    category: 'ACADEMIC_RESOURCES',
+    issueDate: 'August 10, 2026',
+    dispatchNo: 'DMC/EDU/ACAD/2026/504',
+    urgency: 'STANDARD',
+    audience: 'All Primary & Secondary Students',
+    summary: 'Detailed distribution timetable for complete textbook sets and notebooks at respective school premises under the Sindh Universal Education Initiative.',
+    pdfUrl: '#',
+    fileSize: '1.8 MB PDF',
+  },
+];
