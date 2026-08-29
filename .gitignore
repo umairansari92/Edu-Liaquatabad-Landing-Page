@@ -1,0 +1,9 @@
+# Liaquatabad SMC - Landing Page
+
+node_modules/
+.next/
+.env.local
+.env.production
+out/
+npm-debug.log*
+.DS_Store
