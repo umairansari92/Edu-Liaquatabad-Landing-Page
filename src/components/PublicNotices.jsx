@@ -1,74 +1,165 @@
+'use client';
+
 import React from 'react';
-import { FileText, Download, Calendar, ShieldCheck, ArrowRight, ExternalLink } from 'lucide-react';
-import { dynamicNoticesData } from '../data/dynamicNotices.js';
+import { Bell, FileText, ClipboardCheck, ArrowRight } from 'lucide-react';
+
+const notices = [
+  {
+    id: 1,
+    type: 'CIRCULAR',
+    title: 'School Timing Notification — Winter Schedule 2026',
+    date: '30 August 2026',
+    audience: 'Town Wide',
+    dot: 'blue',
+  },
+  {
+    id: 2,
+    type: 'MEETING',
+    title: 'Monthly HM & Teachers Coordination Meeting',
+    date: '29 August 2026',
+    audience: 'Teachers',
+    dot: 'green',
+  },
+  {
+    id: 3,
+    type: 'CIRCULAR',
+    title: 'Academic Circular — Mid-Term Examination Schedule',
+    date: '28 August 2026',
+    audience: 'All Schools',
+    dot: 'blue',
+  },
+  {
+    id: 4,
+    type: 'NOTICE',
+    title: 'Attendance Verification Deadline — September 2026',
+    date: '27 August 2026',
+    audience: 'HMs & Supervisors',
+    dot: 'amber',
+  },
+  {
+    id: 5,
+    type: 'CIRCULAR',
+    title: 'Official Gazette: Defence Day Holiday — 6 September 2026',
+    date: '25 August 2026',
+    audience: 'All Schools',
+    dot: 'blue',
+  },
+];
+
+const dotColors = {
+  blue:  '#006AC7',
+  green: '#4B7F3A',
+  amber: '#D97706',
+};
+
+const typeIcons = {
+  CIRCULAR: FileText,
+  MEETING:  ClipboardCheck,
+  NOTICE:   Bell,
+};
 
 export default function PublicNotices() {
   return (
-    <section id="notices" className="py-20 bg-slate-900/40 border-t border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="notices"
+      className="py-16 px-4 sm:px-6 lg:px-8"
+      style={{ backgroundColor: '#F0F8FF' }}
+    >
+      <div className="section-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div>
-            <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest flex items-center gap-1.5">
-              <FileText className="w-4 h-4" />
-              Government Gazette & Notifications
+            <span className="section-label">
+              <span
+                className="w-1.5 h-1.5 rounded-full inline-block"
+                style={{ backgroundColor: '#006AC7' }}
+              />
+              Official Communications
             </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">
-              Official Circulars & Public Orders
+            <h2
+              className="text-2xl sm:text-3xl font-bold"
+              style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+            >
+              Latest Notices & Circulars
             </h2>
-            <p className="text-slate-400 text-sm mt-2 max-w-2xl">
-              Verified administrative circulars, examination orders, and directives issued by the Education Department Liaquatabad Town Centre.
-            </p>
           </div>
+          <a
+            href="#all-notices"
+            className="btn-accent text-sm px-4 py-2.5 flex-shrink-0"
+          >
+            View All Notices
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
-        {/* Notices Table / Grid */}
-        <div className="space-y-4">
-          {dynamicNoticesData.map((not) => (
-            <div
-              key={not.id}
-              className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/40 transition-all hover:bg-slate-800/60 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl shadow-black/30 group"
-            >
-              <div className="flex-1">
-                {/* Meta Badges */}
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono">
-                    {not.dispatchNo}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">
-                    {not.category}
-                  </span>
-                  <span className="text-xs text-slate-500 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {not.issueDate}
-                  </span>
-                </div>
+        {/* Notice List */}
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{
+            background: 'rgba(255,255,255,0.60)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            border: '1px solid rgba(0,106,199,0.10)',
+            boxShadow: '0 8px 30px rgba(0,33,61,0.08)',
+          }}
+        >
+          {notices.map((notice, idx) => {
+            const Icon = typeIcons[notice.type] || Bell;
+            const dotColor = dotColors[notice.dot];
+            const isLast = idx === notices.length - 1;
 
-                <h3 className="text-base font-extrabold text-white group-hover:text-emerald-300 transition-colors">
-                  {not.title}
-                </h3>
-
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed max-w-3xl">
-                  {not.summary}
-                </p>
-
-                <div className="mt-2 text-[11px] text-slate-500 font-medium">
-                  <strong>Target Audience:</strong> {not.audience}
-                </div>
-              </div>
-
-              {/* PDF Action */}
-              <div className="shrink-0 flex items-center gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
-                <a
-                  href={not.pdfUrl}
-                  className="px-4 py-2.5 rounded-xl font-bold text-xs bg-slate-800 hover:bg-emerald-600 text-white transition-all flex items-center gap-2 shadow-md"
+            return (
+              <a
+                key={notice.id}
+                href="#notice-detail"
+                className="flex items-center gap-4 px-5 py-4 transition-all duration-200 group no-underline"
+                style={{
+                  borderBottom: isLast ? 'none' : '1px solid rgba(0,106,199,0.07)',
+                  textDecoration: 'none',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.03)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+              >
+                {/* Type Icon */}
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: 'rgba(0,106,199,0.07)' }}
                 >
-                  <Download className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Download ({not.fileSize})</span>
-                </a>
-              </div>
-            </div>
-          ))}
+                  <Icon className="w-4 h-4" style={{ color: '#006AC7' }} />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    {/* Color dot indicator */}
+                    <span
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: dotColor }}
+                    />
+                    <p
+                      className="font-semibold text-sm truncate"
+                      style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+                    >
+                      {notice.title}
+                    </p>
+                  </div>
+                  <p className="text-xs" style={{ color: '#8094A8' }}>
+                    {notice.date} · {notice.audience}
+                  </p>
+                </div>
+
+                {/* Arrow */}
+                <ArrowRight
+                  className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-1"
+                  style={{ color: '#006AC7', opacity: 0.6 }}
+                />
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

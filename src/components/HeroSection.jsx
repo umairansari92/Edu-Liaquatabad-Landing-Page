@@ -7,9 +7,8 @@ import {
   School,
   Users,
   GraduationCap,
-  Sparkles,
-  BookOpen,
   Award,
+  BookOpen,
 } from 'lucide-react';
 
 export default function HeroSection() {
@@ -24,155 +23,204 @@ export default function HeroSection() {
     digitalAttendanceRate: '100%',
   });
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     let isMounted = true;
-
     async function fetchStats() {
       try {
         const res = await fetch(`${apiUrl}/api/v1/public/stats`);
         if (res.ok) {
           const json = await res.json();
-          if (json.success && json.data && isMounted) {
-            setStats(json.data);
-          }
+          if (json.success && json.data && isMounted) setStats(json.data);
         }
-      } catch (err) {
-        // Graceful fallback to default baseline numbers
-      } finally {
-        if (isMounted) setIsLoading(false);
+      } catch {
+        // Graceful fallback to baseline numbers
       }
     }
-
     fetchStats();
-
-    return () => {
-      isMounted = false;
-    };
+    return () => { isMounted = false; };
   }, [apiUrl]);
 
+  const statCards = [
+    {
+      value: stats.totalSchools,
+      label: 'Government Schools',
+      sub: 'Primary & Secondary',
+      icon: School,
+      color: '#006AC7',
+      bgColor: 'rgba(0,106,199,0.06)',
+    },
+    {
+      value: stats.enrolledStudents,
+      label: 'Enrolled Students',
+      sub: 'Dual GR & Global IDs',
+      icon: GraduationCap,
+      color: '#4B7F3A',
+      bgColor: 'rgba(75,127,58,0.06)',
+    },
+    {
+      value: stats.totalTeachers,
+      label: 'Dedicated Teachers',
+      sub: 'Qualified Faculty',
+      icon: Users,
+      color: '#006AC7',
+      bgColor: 'rgba(0,106,199,0.06)',
+    },
+    {
+      value: stats.passedOutGraduates || '50,000+',
+      label: 'Passed Out Alumni',
+      sub: 'Matric & Higher Sec',
+      icon: Award,
+      color: '#4B7F3A',
+      bgColor: 'rgba(75,127,58,0.06)',
+    },
+    {
+      value: stats.digitalAttendanceRate || '100%',
+      label: 'Digital Attendance',
+      sub: 'Zero Ghost Policy',
+      icon: ShieldCheck,
+      color: '#006AC7',
+      bgColor: 'rgba(0,106,199,0.06)',
+    },
+  ];
+
   return (
-    <section className="relative pt-16 pb-20 sm:pt-24 sm:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-      {/* Background Decorative Radial Gradient */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-emerald-500/15 via-teal-500/5 to-transparent blur-3xl pointer-events-none -z-10" />
+    <section
+      className="relative pt-16 pb-20 sm:pt-24 sm:pb-28 px-4 sm:px-6 lg:px-8"
+      style={{ backgroundColor: '#F0F8FF', overflow: 'hidden' }}
+    >
+      {/* Ambient Background Glows — subtle, not neon */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: '-80px',
+          left: '-80px',
+          width: '480px',
+          height: '480px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0,106,199,0.07) 0%, transparent 70%)',
+        }}
+      />
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: '-60px',
+          right: '-60px',
+          width: '360px',
+          height: '360px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(75,127,58,0.05) 0%, transparent 70%)',
+        }}
+      />
 
-      {/* Official Government Badge */}
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-8 shadow-inner animate-pulse">
-        <ShieldCheck className="w-4 h-4 text-emerald-400" />
-        Official Government Municipal Education Platform • Session 2026–27
-      </div>
-
-      {/* Hero Headline */}
-      <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-white tracking-tight leading-[1.1] max-w-5xl mx-auto">
-        Education for Every Child. <br />
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-          A Stronger Future for Liaquatabad.
-        </span>
-      </h1>
-
-      {/* Sub-headline */}
-      <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
-        The official digital gateway connecting 45+ public schools, dedicated faculty, students, parents, and supervisory leadership under District Municipal Corporation (DMC) Liaquatabad Town.
-      </p>
-
-      {/* Primary Call to Actions */}
-      <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a
-          href={`${portalUrl}/login`}
-          className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white transition-all shadow-xl shadow-emerald-950/60 flex items-center justify-center gap-2 group"
+      <div className="section-container relative z-10 text-center">
+        {/* Official Government Badge — NO animate-pulse */}
+        <div
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8"
+          style={{
+            background: 'rgba(0,106,199,0.08)',
+            border: '1px solid rgba(0,106,199,0.20)',
+            color: '#006AC7',
+            fontSize: '0.6875rem',
+            fontWeight: 600,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+          }}
         >
-          <span>Access Education Portal (Login)</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </a>
+          <ShieldCheck className="w-3.5 h-3.5" />
+          Official Government Education Platform • Session 2026–27
+        </div>
 
-        <a
-          href="#schools"
-          className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-sm bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white transition-all flex items-center justify-center gap-2"
+        {/* Hero Headline */}
+        <h1
+          className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight max-w-4xl mx-auto"
+          style={{
+            color: '#102033',
+            lineHeight: 1.1,
+            fontFamily: 'var(--font-inter)',
+          }}
         >
-          <School className="w-4 h-4 text-emerald-400" />
-          <span>Explore Town Schools Directory</span>
-        </a>
+          Education for Every Child.{' '}
+          <span style={{ color: '#006AC7' }}>
+            A Stronger Future for Liaquatabad.
+          </span>
+        </h1>
 
-        <a
-          href="#resources"
-          className="w-full sm:w-auto px-6 py-4 rounded-xl font-semibold text-sm bg-slate-900/50 hover:bg-slate-800/80 border border-slate-800 text-slate-300 hover:text-white transition-all flex items-center justify-center gap-2"
+        {/* Sub-headline */}
+        <p
+          className="mt-6 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
+          style={{ color: '#526477', fontFamily: 'var(--font-inter)' }}
         >
-          <BookOpen className="w-4 h-4 text-teal-400" />
-          <span>Free Sindh Textbooks</span>
-        </a>
-      </div>
+          The official digital gateway connecting 45+ public schools, dedicated faculty,
+          students, parents, and supervisory leadership under District Municipal
+          Corporation (DMC) Liaquatabad Town.
+        </p>
 
-      {/* Live Verified Network Facts Grid (Dynamic + Hardcoded Passed Out) */}
-      <div className="mt-16 grid grid-cols-2 md:grid-cols-5 gap-3.5 max-w-6xl mx-auto pt-10 border-t border-slate-800/80">
-        {/* Total Schools */}
-        <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/90 text-left">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl sm:text-3xl font-extrabold text-white font-display">
-              {stats.totalSchools}
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-              <School className="w-4 h-4" />
-            </div>
-          </div>
-          <p className="text-xs font-semibold text-slate-300 mt-2">Government Schools</p>
-          <p className="text-[10px] text-slate-500 mt-0.5">Primary & Secondary</p>
+        {/* Call to Actions */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <a
+            href={`${portalUrl}/login`}
+            className="btn-primary w-full sm:w-auto px-8 py-3.5 text-sm group"
+          >
+            <span>Access Education Portal</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </a>
+
+          <a
+            href="#schools"
+            className="btn-secondary w-full sm:w-auto px-7 py-3.5 text-sm"
+          >
+            <School className="w-4 h-4" />
+            <span>Explore Town Schools</span>
+          </a>
+
+          <a
+            href="#resources"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-medium inline-flex items-center justify-center gap-2 transition-all"
+            style={{ color: '#526477' }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = '#006AC7'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = '#526477'; }}
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Free Sindh Textbooks</span>
+          </a>
         </div>
 
-        {/* Enrolled Students */}
-        <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/90 text-left">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-display">
-              {stats.enrolledStudents}
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400">
-              <GraduationCap className="w-4 h-4" />
-            </div>
-          </div>
-          <p className="text-xs font-semibold text-slate-300 mt-2">Enrolled Students</p>
-          <p className="text-[10px] text-slate-500 mt-0.5">Dual GR & Global IDs</p>
-        </div>
-
-        {/* Dedicated Teachers */}
-        <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/90 text-left">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl sm:text-3xl font-extrabold text-teal-300 font-display">
-              {stats.totalTeachers}
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400">
-              <Users className="w-4 h-4" />
-            </div>
-          </div>
-          <p className="text-xs font-semibold text-slate-300 mt-2">Dedicated Teachers</p>
-          <p className="text-[10px] text-slate-500 mt-0.5">Qualified Faculty</p>
-        </div>
-
-        {/* Passed Out Alumni (Hardcoded 50,000+) */}
-        <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/90 text-left">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl sm:text-3xl font-extrabold text-purple-400 font-display">
-              {stats.passedOutGraduates || '50,000+'}
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
-              <Award className="w-4 h-4" />
-            </div>
-          </div>
-          <p className="text-xs font-semibold text-slate-300 mt-2">Passed Out Alumni</p>
-          <p className="text-[10px] text-slate-500 mt-0.5">Metric & Higher Sec</p>
-        </div>
-
-        {/* Digital Attendance Compliance */}
-        <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/90 text-left col-span-2 md:col-span-1">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl sm:text-3xl font-extrabold text-amber-400 font-display">
-              {stats.digitalAttendanceRate || '100%'}
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-          </div>
-          <p className="text-xs font-semibold text-slate-300 mt-2">Digital Attendance</p>
-          <p className="text-[10px] text-slate-500 mt-0.5">Zero Ghost Policy</p>
+        {/* Stats Grid */}
+        <div
+          className="mt-16 pt-10 grid grid-cols-2 md:grid-cols-5 gap-3"
+          style={{ borderTop: '1px solid rgba(0,106,199,0.12)' }}
+        >
+          {statCards.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={stat.label}
+                className="glass-card p-4 text-left transition-all duration-250"
+                style={{ borderRadius: '14px' }}
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <span
+                    className="text-2xl sm:text-3xl font-extrabold"
+                    style={{ color: stat.color, fontFamily: 'var(--font-inter)', lineHeight: 1 }}
+                  >
+                    {stat.value}
+                  </span>
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: stat.bgColor }}
+                  >
+                    <Icon className="w-4 h-4" style={{ color: stat.color }} />
+                  </div>
+                </div>
+                <p className="text-xs font-semibold" style={{ color: '#102033' }}>
+                  {stat.label}
+                </p>
+                <p className="text-[10px] mt-0.5" style={{ color: '#8094A8' }}>
+                  {stat.sub}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

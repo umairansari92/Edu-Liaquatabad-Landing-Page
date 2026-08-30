@@ -2,60 +2,277 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   DESIGN SYSTEM v2.0 — Education Department Liaquatabad DMC
+   FROZEN: Light Theme, Blue Primary, Green Accent
+   ============================================================ */
+
 :root {
-  --navy-950: #020617;
-  --navy-900: #0f172a;
-  --navy-800: #1e293b;
-  --navy-700: #334155;
-  --emerald-500: #10b981;
-  --emerald-600: #059669;
-  --emerald-700: #047857;
-  --teal-400: #2dd4bf;
-  --cyan-400: #22d3ee;
+  /* Primary Blue Scale */
+  --blue-50:  #F0F8FF;
+  --blue-100: #DCEFFF;
+  --blue-200: #B9DEFF;
+  --blue-300: #82C4F5;
+  --blue-400: #3FA4E8;
+  --blue-500: #006AC7;  /* PRIMARY BRAND BLUE */
+  --blue-600: #005299;  /* Hover */
+  --blue-700: #003F75;
+  --blue-800: #00213D;  /* Footer / Deep Navy */
+
+  /* Government Green Scale (Accent Only) */
+  --green-50:  #F2F8EF;
+  --green-100: #E3F0DC;
+  --green-200: #C9DFBC;
+  --green-300: #A7C895;
+  --green-400: #7FAE6A;
+  --green-500: #4B7F3A;  /* PRIMARY GREEN */
+  --green-600: #38662D;
+  --green-700: #294D22;
+
+  /* Neutral */
+  --surface:      #F8FBFD;
+  --white:        #FFFFFF;
+  --hero-bg:      #F0F8FF;
+  --text-primary: #102033;
+  --text-body:    #526477;
+  --text-muted:   #8094A8;
+  --border:       rgba(16, 32, 51, 0.10);
+
+  /* Status */
+  --status-active:  #4B7F3A;
+  --status-pending: #D97706;
+  --status-danger:  #DC2626;
+  --status-info:    #006AC7;
+  --status-muted:   #6B7280;
+
+  /* Font */
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Base Reset ──────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--navy-950);
-  color: #f8fafc;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-inter);
+  background-color: var(--surface);
+  color: var(--text-primary);
   overflow-x: hidden;
-  selection-background-color: #059669;
-  selection-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
-/* Custom Glassmorphism Utilities */
-.glass-card {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.6);
+/* ── Typography ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-inter);
 }
 
-.glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+p {
+  color: var(--text-body);
+  line-height: 1.7;
 }
 
-.glass-card-hover:hover {
-  background: rgba(30, 41, 59, 0.85);
-  border-color: rgba(16, 185, 129, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 25px -5px rgba(5, 150, 105, 0.15);
+/* ── Selection ───────────────────────────────────────────── */
+::selection {
+  background-color: var(--blue-500);
+  color: #ffffff;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #020617;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
+/* ── Focus Accessibility (WCAG 2.2) ─────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--blue-500);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--blue-50);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--blue-200);
+  border-radius: 4px;
+}
 ::-webkit-scrollbar-thumb:hover {
-  background: #059669;
+  background: var(--blue-500);
+}
+
+/* ── Glass Card (Standard) ───────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(0, 106, 199, 0.10);
+  box-shadow: 0 8px 30px rgba(0, 33, 61, 0.08);
+  border-radius: 16px;
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 106, 199, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 33, 61, 0.12);
+  transform: translateY(-3px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Glass Navbar ────────────────────────────────────────── */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 106, 199, 0.08);
+  box-shadow: 0 1px 20px rgba(0, 33, 61, 0.06);
+}
+
+/* ── Primary Button ──────────────────────────────────────── */
+.btn-primary {
+  background-color: var(--blue-500);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: var(--font-inter);
+  box-shadow: 0 4px 14px rgba(0, 106, 199, 0.30);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: var(--blue-600);
+  box-shadow: 0 6px 20px rgba(0, 106, 199, 0.40);
+  transform: translateY(-1px);
+}
+
+/* ── Secondary Button ────────────────────────────────────── */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.60);
+  border: 1.5px solid rgba(0, 106, 199, 0.20);
+  color: var(--blue-500);
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: var(--font-inter);
+  backdrop-filter: blur(8px);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  border-color: var(--blue-500);
+  background: rgba(0, 106, 199, 0.04);
+}
+
+/* ── Accent Button (Green) ───────────────────────────────── */
+.btn-accent {
+  background-color: var(--green-500);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: var(--font-inter);
+  transition: background-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-accent:hover {
+  background-color: var(--green-600);
+}
+
+/* ── Section Container ───────────────────────────────────── */
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ── Section Label (eyebrow text) ────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  margin-bottom: 12px;
+}
+
+/* ── Scroll Fade-in Animation ────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* ── Status Dot ──────────────────────────────────────────── */
+.status-dot-active {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--green-500);
+  display: inline-block;
+}
+.status-dot-pending {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--status-pending);
+  display: inline-block;
+}
+
+/* ── Badge Pills ─────────────────────────────────────────── */
+.badge-blue {
+  background-color: rgba(0, 106, 199, 0.08);
+  color: var(--blue-500);
+  border: 1px solid rgba(0, 106, 199, 0.18);
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.badge-green {
+  background-color: rgba(75, 127, 58, 0.08);
+  color: var(--green-500);
+  border: 1px solid rgba(75, 127, 58, 0.18);
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
 }

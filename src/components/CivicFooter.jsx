@@ -1,107 +1,214 @@
+'use client';
+
 import React from 'react';
-import { School, ShieldCheck, MapPin, Phone, Mail, ExternalLink, Heart } from 'lucide-react';
+import { ArrowRight, Building2, Phone, Mail, MapPin } from 'lucide-react';
 
 export default function CivicFooter() {
   const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
 
+  const quickLinks = [
+    { label: 'School Directory', href: '#schools' },
+    { label: 'Latest Notices', href: '#notices' },
+    { label: 'Official Circulars', href: '#circulars' },
+    { label: 'Free Textbooks', href: '#resources' },
+    { label: 'Academic Calendar', href: '#calendar' },
+    { label: 'Governance Structure', href: '#governance' },
+  ];
+
+  const portalLinks = [
+    { label: 'Staff & Teacher Login', href: `${portalUrl}/login` },
+    { label: 'Student Self-Registration', href: `${portalUrl}/register/student` },
+    { label: 'Teacher Registration', href: `${portalUrl}/register/teacher` },
+    { label: 'Report Card Access', href: `${portalUrl}/results` },
+  ];
+
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs">
-      {/* Top Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          {/* Brand & Mandate (Col 1 & 2) */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-lg">
-                <School className="w-5 h-5" />
+    <footer style={{ backgroundColor: '#00213D', color: '#FFFFFF' }}>
+      {/* CTA Strip */}
+      <div
+        className="px-4 sm:px-6 lg:px-8 py-12 border-b"
+        style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+      >
+        <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h2
+              className="text-xl sm:text-2xl font-bold"
+              style={{ color: '#FFFFFF', fontFamily: 'var(--font-inter)' }}
+            >
+              Ready to Access the Official Portal?
+            </h2>
+            <p className="mt-1.5 text-sm" style={{ color: 'rgba(255,255,255,0.60)' }}>
+              Students, teachers, and school leadership can sign in with verified credentials.
+            </p>
+          </div>
+          <div className="flex gap-3 flex-shrink-0">
+            <a
+              href={`${portalUrl}/login`}
+              className="btn-primary px-6 py-3 text-sm"
+            >
+              Access Secure Portal
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href={`${portalUrl}/register/student`}
+              className="btn-secondary px-5 py-3 text-sm"
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                borderColor: 'rgba(255,255,255,0.15)',
+                color: 'rgba(255,255,255,0.80)',
+              }}
+            >
+              Student Admission
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <div className="px-4 sm:px-6 lg:px-8 py-14">
+        <div className="section-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ backgroundColor: '#006AC7' }}
+              >
+                <Building2 className="w-5 h-5 text-white" />
               </div>
               <div>
-                <span className="text-white font-extrabold text-base tracking-tight">
+                <div
+                  className="font-bold text-sm leading-snug"
+                  style={{ color: '#FFFFFF', fontFamily: 'var(--font-inter)' }}
+                >
                   Education Department
-                </span>
-                <p className="text-[11px] text-emerald-400 font-bold">
-                  District Municipal Corporation (DMC) Liaquatabad
-                </p>
+                </div>
+                <div
+                  className="text-xs"
+                  style={{ color: 'rgba(255,255,255,0.50)' }}
+                >
+                  Liaquatabad Town Centre (DMC)
+                </div>
               </div>
             </div>
-
-            <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              The official centralized public municipal education portal connecting government schools, dedicated faculty, students, parents, and supervisory leadership across Liaquatabad Town Centre, Karachi.
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              Official public education portal of District Municipal Corporation Liaquatabad,
+              providing centralized governance, verified academic records, and digital
+              transparency across 45+ government schools.
             </p>
 
-            <div className="space-y-2 pt-2 text-xs">
-              <div className="flex items-center gap-2 text-slate-300">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Town Directorate of Education, Liaquatabad No. 4, Karachi</span>
+            {/* Contact */}
+            <div className="mt-6 space-y-2.5">
+              <div className="flex items-start gap-2.5 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" style={{ color: '#3FA4E8' }} />
+                <span>Town Office, Liaquatabad, Karachi, Sindh, Pakistan</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-300">
-                <Phone className="w-4 h-4 text-teal-400 shrink-0" />
-                <span>Helpline: 021-34981100 (Mon–Fri, 08:00 AM – 02:00 PM)</span>
+              <div className="flex items-center gap-2.5 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <Phone className="w-3.5 h-3.5" style={{ color: '#3FA4E8' }} />
+                <span>+92-21-XXXX-XXXX</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-300">
-                <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Email: education@liaquatabad-schools.gov.pk</span>
+              <div className="flex items-center gap-2.5 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <Mail className="w-3.5 h-3.5" style={{ color: '#3FA4E8' }} />
+                <span>education@liaquatabad-dmc.gov.pk</span>
               </div>
             </div>
           </div>
 
-          {/* Quick Navigation (Col 3) */}
+          {/* Quick Links */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-4">
-              Public Portal
+            <h4
+              className="font-semibold text-sm mb-4"
+              style={{ color: '#FFFFFF', fontFamily: 'var(--font-inter)' }}
+            >
+              Quick Access
             </h4>
             <ul className="space-y-2.5">
-              <li><a href="#schools" className="hover:text-emerald-400 transition-colors">School Directory</a></li>
-              <li><a href="#programs" className="hover:text-emerald-400 transition-colors">Educational Programs</a></li>
-              <li><a href="#events" className="hover:text-emerald-400 transition-colors">Conferences & Summits</a></li>
-              <li><a href="#team" className="hover:text-emerald-400 transition-colors">Supervisory Squad</a></li>
-              <li><a href="#notices" className="hover:text-emerald-400 transition-colors">Gazette Circulars</a></li>
-              <li><a href="#resources" className="hover:text-emerald-400 transition-colors">Sindh Textbooks (PDF)</a></li>
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-sm transition-colors duration-150"
+                    style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Stakeholder Login (Col 4) */}
+          {/* Portal Links */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-4">
-              Authenticated Access
+            <h4
+              className="font-semibold text-sm mb-4"
+              style={{ color: '#FFFFFF', fontFamily: 'var(--font-inter)' }}
+            >
+              Staff & Student Portal
             </h4>
             <ul className="space-y-2.5">
-              <li><a href={`${portalUrl}/login`} className="hover:text-emerald-400 transition-colors">DDO & Town Directorate</a></li>
-              <li><a href={`${portalUrl}/login`} className="hover:text-emerald-400 transition-colors">School Supervisors (Male/Female)</a></li>
-              <li><a href={`${portalUrl}/login`} className="hover:text-emerald-400 transition-colors">Head Masters (HM) Portal</a></li>
-              <li><a href={`${portalUrl}/login`} className="hover:text-emerald-400 transition-colors">Teacher Attendance & Marks</a></li>
-              <li><a href={`${portalUrl}/login`} className="hover:text-emerald-400 transition-colors">Student & Parent Portal</a></li>
-              <li><a href={`${portalUrl}/login`} className="hover:text-emerald-400 transition-colors">Examination Board</a></li>
+              {portalLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-sm transition-colors duration-150"
+                    style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Civic Governance & Legal (Col 5) */}
+          {/* Legal */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-4">
-              Governance & Policies
+            <h4
+              className="font-semibold text-sm mb-4"
+              style={{ color: '#FFFFFF', fontFamily: 'var(--font-inter)' }}
+            >
+              Legal & Governance
             </h4>
             <ul className="space-y-2.5">
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Digital Attendance Policy</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Zero Ghost Teachers Mandate</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Sindh Education Act 2013</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Child Protection & Safeguarding</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Public Grievance Redressal</a></li>
+              {[
+                'Privacy Policy',
+                'Accessibility Statement',
+                'Terms of Use',
+                'RTI / Public Records',
+                'Sitemap',
+              ].map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-sm transition-colors duration-150"
+                    style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Bottom Legal Bar */}
-      <div className="border-t border-slate-800/80 py-6 bg-slate-950/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <p className="text-[11px] text-slate-500">
-            © 2026 Education Department Liaquatabad Town Centre (DMC), Government of Sindh. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4 text-[11px] text-slate-500">
-            <span>Powered by Municipal Digital Infrastructure</span>
-            <span>•</span>
-            <span className="text-emerald-400 font-semibold">Active Session 2026–27</span>
-          </div>
+      {/* Bottom Bar */}
+      <div
+        className="px-4 sm:px-6 lg:px-8 py-5 border-t"
+        style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+      >
+        <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
+          <span>
+            © {new Date().getFullYear()} Education Department Liaquatabad Town Centre (DMC). All rights reserved.
+          </span>
+          <span>
+            Government of Sindh | District Municipal Corporation Karachi
+          </span>
         </div>
       </div>
     </footer>

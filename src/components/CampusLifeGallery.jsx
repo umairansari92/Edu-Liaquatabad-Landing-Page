@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Camera, Sparkles, ShieldCheck } from 'lucide-react';
+import { Camera } from 'lucide-react';
 
 export default function CampusLifeGallery() {
   const galleryItems = [
@@ -42,18 +44,21 @@ export default function CampusLifeGallery() {
   ];
 
   return (
-    <section className="py-20 bg-slate-900/40 border-t border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F8FBFD' }}>
+      <div className="section-container">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-1.5">
-            <Camera className="w-4 h-4" />
+          <span className="section-label justify-center">
+            <Camera className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
             Campus Life & Learning Across Liaquatabad
           </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">
+          <h2
+            className="text-2xl sm:text-3xl font-bold mt-2"
+            style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+          >
             Inside Our Public Schools & Laboratories
           </h2>
-          <p className="text-slate-400 text-sm mt-2">
+          <p className="text-sm mt-2" style={{ color: '#526477' }}>
             A glimpse into classroom activities, STEM experiments, sports tournaments, and co-curricular creativity across our government schools.
           </p>
         </div>
@@ -63,23 +68,33 @@ export default function CampusLifeGallery() {
           {galleryItems.map((item, idx) => (
             <div
               key={idx}
-              className="group relative h-64 rounded-3xl overflow-hidden border border-slate-800 shadow-xl shadow-black/40"
+              className="glass-card group relative h-64 overflow-hidden shadow-sm"
+              style={{
+                borderRadius: '24px',
+                border: '1px solid rgba(0,106,199,0.12)',
+              }}
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
 
-              <div className="absolute bottom-4 left-4 right-4">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white shadow">
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span
+                  className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
+                  style={{ backgroundColor: '#006AC7' }}
+                >
                   {item.category}
                 </span>
-                <h3 className="text-sm font-extrabold text-white mt-1 group-hover:text-emerald-300 transition-colors">
+                <h3
+                  className="text-sm font-bold text-white mt-1 leading-snug"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
                   {item.title}
                 </h3>
-                <p className="text-[11px] text-slate-400 font-medium">
+                <p className="text-[11px] text-slate-200 mt-0.5 font-medium">
                   {item.school}
                 </p>
               </div>

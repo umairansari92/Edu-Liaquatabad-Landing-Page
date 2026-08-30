@@ -1,131 +1,153 @@
+'use client';
+
 import React from 'react';
 import {
   School,
+  Bell,
   FileText,
   BookOpen,
+  BarChart2,
   Calendar,
-  Award,
-  Users,
-  ShieldCheck,
-  Bell,
-  Clock,
-  ArrowUpRight,
+  ClipboardList,
+  LogIn,
 } from 'lucide-react';
 
+const tiles = [
+  {
+    icon: School,
+    title: 'School Directory',
+    description: 'Find local government schools',
+    href: '#schools',
+    accent: 'blue',
+  },
+  {
+    icon: Bell,
+    title: 'Latest Notices',
+    description: 'Public announcements',
+    href: '#notices',
+    accent: 'blue',
+  },
+  {
+    icon: FileText,
+    title: 'Official Circulars',
+    description: 'Verified government orders',
+    href: '#circulars',
+    accent: 'blue',
+  },
+  {
+    icon: BookOpen,
+    title: 'Textbooks & Syllabus',
+    description: 'Free Sindh Textboard PDFs',
+    href: '#resources',
+    accent: 'green',
+  },
+  {
+    icon: BarChart2,
+    title: 'Exam Results',
+    description: 'Student report card portal',
+    href: '#results',
+    accent: 'green',
+  },
+  {
+    icon: Calendar,
+    title: 'Academic Calendar',
+    description: 'Class schedules & timetables',
+    href: '#timetable',
+    accent: 'blue',
+  },
+  {
+    icon: ClipboardList,
+    title: 'Student Admission',
+    description: 'Registration & HM portal info',
+    href: '#admission',
+    accent: 'green',
+  },
+  {
+    icon: LogIn,
+    title: 'Teacher & Staff Login',
+    description: 'Faculty sign-in portal',
+    href: process.env.NEXT_PUBLIC_APP_PORTAL_URL
+      ? `${process.env.NEXT_PUBLIC_APP_PORTAL_URL}/login`
+      : 'http://localhost:5173/login',
+    accent: 'blue',
+  },
+];
+
 export default function QuickAccessTiles() {
-  const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
-
-  const tiles = [
-    {
-      icon: <School className="w-6 h-6 text-emerald-400" />,
-      title: 'Find Your School',
-      desc: 'Directory of 45+ schools, areas, and HM contacts.',
-      link: '#schools',
-      badge: 'Public Directory',
-      border: 'border-emerald-500/20 hover:border-emerald-500/50',
-    },
-    {
-      icon: <FileText className="w-6 h-6 text-teal-400" />,
-      title: 'Official Circulars',
-      desc: 'Verified gazette notifications & orders.',
-      link: '#notices',
-      badge: 'Government Gazette',
-      border: 'border-teal-500/20 hover:border-teal-500/50',
-    },
-    {
-      icon: <BookOpen className="w-6 h-6 text-cyan-400" />,
-      title: 'Sindh Textbooks',
-      desc: 'Free PDF books & syllabus for Class 1–10.',
-      link: '#resources',
-      badge: 'Free Downloads',
-      border: 'border-cyan-500/20 hover:border-cyan-500/50',
-    },
-    {
-      icon: <Calendar className="w-6 h-6 text-indigo-400" />,
-      title: 'Events & Galas',
-      desc: 'Town science fairs, sports & declamation.',
-      link: '#programs',
-      badge: 'Competitions',
-      border: 'border-indigo-500/20 hover:border-indigo-500/50',
-    },
-    {
-      icon: <Users className="w-6 h-6 text-amber-400" />,
-      title: 'Leadership & Team',
-      desc: 'DDO, Supervisors, HMs & Invigilators.',
-      link: '#team',
-      badge: 'Supervisory Squad',
-      border: 'border-amber-500/20 hover:border-amber-500/50',
-    },
-    {
-      icon: <Clock className="w-6 h-6 text-rose-400" />,
-      title: 'Timetable Monitor',
-      desc: 'Class schedules & live periods across town.',
-      link: `${portalUrl}/login`,
-      badge: 'Portal Access',
-      border: 'border-rose-500/20 hover:border-rose-500/50',
-    },
-    {
-      icon: <Award className="w-6 h-6 text-purple-400" />,
-      title: 'Exam Results',
-      desc: 'Student digital report cards & marksheet verify.',
-      link: `${portalUrl}/login`,
-      badge: 'Portal Access',
-      border: 'border-purple-500/20 hover:border-purple-500/50',
-    },
-    {
-      icon: <ShieldCheck className="w-6 h-6 text-emerald-400" />,
-      title: 'Teacher & HM Portal',
-      desc: 'Attendance, marks entry & faculty login.',
-      link: `${portalUrl}/login`,
-      badge: 'Staff Sign-In',
-      border: 'border-emerald-500/20 hover:border-emerald-500/50',
-    },
-  ];
-
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="text-center max-w-3xl mx-auto mb-10">
-        <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest">
-          Rapid Civic Access
-        </span>
-        <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white mt-1">
-          Quick Services & Information Gateway
-        </h2>
-        <p className="text-slate-400 text-xs sm:text-sm mt-2">
-          Direct 1-click access to public municipal education services, learning materials, and authenticated portals.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {tiles.map((tile, idx) => (
-          <a
-            key={idx}
-            href={tile.link}
-            className={`group p-5 rounded-2xl bg-slate-900/80 border ${tile.border} hover:bg-slate-800/80 transition-all transform hover:-translate-y-1 shadow-lg shadow-black/40 flex flex-col justify-between`}
+    <section
+      id="quick-access"
+      className="py-16 px-4 sm:px-6 lg:px-8"
+      style={{ backgroundColor: '#F8FBFD' }}
+    >
+      <div className="section-container">
+        {/* Section Header */}
+        <div className="mb-10 text-center">
+          <span className="section-label">
+            <span
+              className="w-1.5 h-1.5 rounded-full inline-block"
+              style={{ backgroundColor: '#006AC7' }}
+            />
+            Quick Services
+          </span>
+          <h2
+            className="text-2xl sm:text-3xl font-bold"
+            style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
           >
-            <div>
-              <div className="flex items-center justify-between mb-3.5">
-                <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-                  {tile.icon}
-                </div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                  {tile.badge}
-                </span>
-              </div>
-              <h3 className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
-                {tile.title}
-              </h3>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                {tile.desc}
-              </p>
-            </div>
+            Frequently Accessed Services
+          </h2>
+          <p className="mt-2 text-sm" style={{ color: '#526477' }}>
+            Fast access to essential civic education resources
+          </p>
+        </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] font-semibold text-emerald-400 group-hover:text-emerald-300">
-              <span>Access Service</span>
-              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </div>
-          </a>
-        ))}
+        {/* Tiles Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+          {tiles.map((tile) => {
+            const Icon = tile.icon;
+            const isBlue = tile.accent === 'blue';
+            const iconColor = isBlue ? '#006AC7' : '#4B7F3A';
+            const iconBg = isBlue ? 'rgba(0,106,199,0.07)' : 'rgba(75,127,58,0.07)';
+            const hoverBorder = isBlue ? 'rgba(0,106,199,0.25)' : 'rgba(75,127,58,0.25)';
+
+            return (
+              <a
+                key={tile.title}
+                href={tile.href}
+                className="glass-card p-5 flex flex-col gap-3 transition-all duration-250 group no-underline"
+                style={{ textDecoration: 'none' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = hoverBorder;
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style={{ backgroundColor: iconBg }}
+                >
+                  <Icon className="w-5 h-5" style={{ color: iconColor }} />
+                </div>
+                <div>
+                  <h3
+                    className="font-semibold text-sm leading-snug"
+                    style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+                  >
+                    {tile.title}
+                  </h3>
+                  <p className="text-xs mt-0.5" style={{ color: '#8094A8' }}>
+                    {tile.description}
+                  </p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

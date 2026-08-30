@@ -1,9 +1,10 @@
 import React from 'react';
-import { AlertCircle, Calendar, Sparkles, ChevronRight } from 'lucide-react';
+import { AlertCircle, Calendar, Info, ChevronRight } from 'lucide-react';
 
 /**
  * Top Dynamic Announcement Bar
- * Displays live urgent public closures, rain alerts, or gazetted holidays
+ * Displays live urgent closures, gazetted holidays, or academic info.
+ * ONLY uses animate-pulse for CRITICAL emergency alerts.
  */
 export default function AnnouncementBar({
   type = 'HOLIDAY', // 'CRITICAL' | 'HOLIDAY' | 'INFO'
@@ -13,44 +14,82 @@ export default function AnnouncementBar({
 }) {
   const styles = {
     CRITICAL: {
-      bg: 'bg-gradient-to-r from-rose-950 via-red-900 to-rose-950 border-rose-700/60 text-rose-100',
-      badge: 'bg-rose-600 text-white animate-pulse',
-      icon: <AlertCircle className="w-4 h-4 text-rose-300 animate-bounce" />,
-      tag: 'EMERGENCY CLOSURE ALERT',
+      bg: '#DC2626',          // Solid red — emergency
+      textColor: '#FFFFFF',
+      tagBg: 'rgba(0,0,0,0.25)',
+      tagText: '#FFFFFF',
+      actionColor: '#FCA5A5',
+      icon: <AlertCircle className="w-3.5 h-3.5" />,
+      tag: 'EMERGENCY ALERT',
+      pulse: true,            // animate-pulse ONLY for critical
     },
     HOLIDAY: {
-      bg: 'bg-gradient-to-r from-emerald-950 via-teal-900 to-emerald-950 border-emerald-700/60 text-emerald-100',
-      badge: 'bg-emerald-600 text-white',
-      icon: <Calendar className="w-4 h-4 text-emerald-300" />,
+      bg: '#006AC7',          // Brand blue — official holiday
+      textColor: 'rgba(255,255,255,0.90)',
+      tagBg: 'rgba(255,255,255,0.15)',
+      tagText: '#FFFFFF',
+      actionColor: '#DCEFFF',
+      icon: <Calendar className="w-3.5 h-3.5" />,
       tag: 'OFFICIAL PUBLIC HOLIDAY',
+      pulse: false,
     },
     INFO: {
-      bg: 'bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border-blue-800/60 text-blue-100',
-      badge: 'bg-blue-600 text-white',
-      icon: <Sparkles className="w-4 h-4 text-blue-300" />,
+      bg: '#4B7F3A',          // Green — informational/academic
+      textColor: 'rgba(255,255,255,0.90)',
+      tagBg: 'rgba(255,255,255,0.15)',
+      tagText: '#FFFFFF',
+      actionColor: '#E3F0DC',
+      icon: <Info className="w-3.5 h-3.5" />,
       tag: 'ACADEMIC ANNOUNCEMENT',
+      pulse: false,
     },
   };
 
   const current = styles[type] || styles.INFO;
 
   return (
-    <aside aria-label="Official Public Announcements" className={`relative z-50 border-b py-2.5 px-4 text-xs font-medium ${current.bg} shadow-md transition-all`}>
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5 flex-1 min-w-[280px]">
-          <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm ${current.badge}`}>
+    <aside
+      aria-label="Official Public Announcement"
+      style={{
+        backgroundColor: current.bg,
+        position: 'relative',
+        zIndex: 60,
+      }}
+    >
+      <div
+        className="section-container py-2.5 flex flex-wrap items-center justify-between gap-3"
+        style={{ fontSize: '0.6875rem' }}
+      >
+        <div className="flex items-center gap-2.5 flex-1 min-w-0">
+          {/* Tag badge */}
+          <span
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold tracking-widest uppercase whitespace-nowrap flex-shrink-0 ${current.pulse ? 'animate-pulse' : ''}`}
+            style={{
+              backgroundColor: current.tagBg,
+              color: current.tagText,
+              fontSize: '0.6rem',
+              letterSpacing: '0.1em',
+            }}
+          >
             {current.icon}
             {current.tag}
           </span>
-          <p className="line-clamp-1 text-slate-200 font-normal sm:text-xs text-[11px]">
+
+          {/* Message */}
+          <p
+            className="truncate font-medium"
+            style={{ color: current.textColor }}
+          >
             {message}
           </p>
         </div>
 
+        {/* Action Link */}
         {actionText && (
           <a
             href={actionLink}
-            className="inline-flex items-center gap-1 font-semibold text-emerald-300 hover:text-white transition-colors underline-offset-4 hover:underline text-[11px] whitespace-nowrap"
+            className="inline-flex items-center gap-1 font-semibold whitespace-nowrap flex-shrink-0 transition-opacity hover:opacity-80"
+            style={{ color: current.actionColor, textDecoration: 'none' }}
           >
             <span>{actionText}</span>
             <ChevronRight className="w-3.5 h-3.5" />

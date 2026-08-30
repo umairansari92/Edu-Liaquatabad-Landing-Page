@@ -1,84 +1,214 @@
+'use client';
+
 import React from 'react';
-import { BookOpen, Download, ShieldCheck, CheckCircle2, Sparkles } from 'lucide-react';
-import { dynamicBooksData } from '../data/dynamicBooks.js';
+import { BookOpen, FileText, GraduationCap, Download, ArrowRight } from 'lucide-react';
+
+const resourceCategories = [
+  {
+    icon: BookOpen,
+    title: 'Textbooks',
+    count: '120+ Books',
+    description: 'Official Sindh Textboard PDFs',
+    href: '/ebooks',
+    accent: 'blue',
+  },
+  {
+    icon: FileText,
+    title: 'Circulars & Orders',
+    count: '85+ Documents',
+    description: 'Government official notices',
+    href: '#circulars',
+    accent: 'blue',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Syllabus & Curriculum',
+    count: 'All Classes',
+    description: 'Class 1 to 10 frameworks',
+    href: '#syllabus',
+    accent: 'green',
+  },
+];
+
+const featuredBooks = [
+  { title: 'Mathematics Class 9', subject: 'Mathematics', class: 'Class 9', size: '8.2 MB' },
+  { title: 'English Grammar Class 7', subject: 'English', class: 'Class 7', size: '5.4 MB' },
+  { title: 'Urdu Qaida Class 1', subject: 'Urdu', class: 'Class 1', size: '3.1 MB' },
+  { title: 'Science Class 8', subject: 'Science', class: 'Class 8', size: '9.7 MB' },
+];
 
 export default function ResourceLibrary() {
   return (
-    <section id="resources" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-1.5">
-          <BookOpen className="w-4 h-4" />
-          Sindh Universal Education Resource Hub
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white mt-2">
-          Free Digital Textbooks & Curriculum Syllabi
-        </h2>
-        <p className="text-slate-400 text-sm mt-2">
-          Download complete official Sindh Textbook Board (Jamshoro) e-books, model papers, and curriculum guides for Primary, Middle, and Secondary classes free of cost.
-        </p>
-      </div>
-
-      {/* Grade Accordion / Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {dynamicBooksData.map((gradeGroup, idx) => (
-          <div
-            key={idx}
-            className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl flex flex-col justify-between"
-          >
-            <div>
-              {/* Grade Title */}
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-emerald-950 border border-emerald-800 text-emerald-400">
-                    <BookOpen className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-extrabold text-white">{gradeGroup.grade}</h3>
-                    <p className="text-[11px] text-slate-400">Official Sindh Curriculum</p>
-                  </div>
-                </div>
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  {gradeGroup.subjects.length} Textbooks
-                </span>
-              </div>
-
-              {/* Subjects List */}
-              <div className="space-y-2.5">
-                {gradeGroup.subjects.map((sub, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 hover:border-emerald-500/30 transition-all flex items-center justify-between gap-3 group"
-                  >
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-200 group-hover:text-emerald-300 transition-colors">
-                        {sub.name}
-                      </h4>
-                      <p className="text-[10px] text-slate-500 font-medium">
-                        {sub.board} • {sub.fileSize}
-                      </p>
-                    </div>
-
-                    <a
-                      href={sub.downloadUrl}
-                      className="p-2 rounded-lg bg-slate-900 hover:bg-emerald-600 text-slate-400 hover:text-white transition-colors shrink-0"
-                      title="Download PDF"
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-medium text-slate-400">
-              <span className="flex items-center gap-1 text-emerald-400">
-                <CheckCircle2 className="w-3.5 h-3.5" /> 100% Free Government Resource
-              </span>
-              <span>PDF Format</span>
-            </div>
+    <section
+      id="resources"
+      className="py-16 px-4 sm:px-6 lg:px-8"
+      style={{ backgroundColor: '#FFFFFF' }}
+    >
+      <div className="section-container">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+          <div>
+            <span className="section-label">
+              <span
+                className="w-1.5 h-1.5 rounded-full inline-block"
+                style={{ backgroundColor: '#4B7F3A' }}
+              />
+              Public Resource Library
+            </span>
+            <h2
+              className="text-2xl sm:text-3xl font-bold"
+              style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+            >
+              Sindh Education Resource Hub
+            </h2>
+            <p className="mt-1.5 text-sm" style={{ color: '#526477' }}>
+              Free digital textbooks, syllabi & official documents for all students
+            </p>
           </div>
-        ))}
+          <a
+            href="/ebooks"
+            className="btn-primary text-sm px-5 py-2.5 flex-shrink-0"
+          >
+            Browse Full Library
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        {/* Resource Category Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+          {resourceCategories.map((cat) => {
+            const Icon = cat.icon;
+            const isBlue = cat.accent === 'blue';
+            const iconColor = isBlue ? '#006AC7' : '#4B7F3A';
+            const iconBg = isBlue ? 'rgba(0,106,199,0.08)' : 'rgba(75,127,58,0.08)';
+            const hoverBorder = isBlue ? 'rgba(0,106,199,0.28)' : 'rgba(75,127,58,0.28)';
+            const countColor = isBlue ? '#006AC7' : '#4B7F3A';
+
+            return (
+              <a
+                key={cat.title}
+                href={cat.href}
+                className="glass-card p-6 flex flex-col gap-3 transition-all duration-250 no-underline"
+                style={{ textDecoration: 'none' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = hoverBorder;
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
+                }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+                  style={{ backgroundColor: iconBg }}
+                >
+                  <Icon className="w-6 h-6" style={{ color: iconColor }} />
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <h3
+                      className="font-semibold text-sm"
+                      style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+                    >
+                      {cat.title}
+                    </h3>
+                    <span
+                      className="text-xs font-semibold"
+                      style={{ color: countColor }}
+                    >
+                      {cat.count}
+                    </span>
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: '#8094A8' }}>
+                    {cat.description}
+                  </p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Featured Books Rows */}
+        <div>
+          <h3
+            className="text-sm font-semibold mb-4"
+            style={{ color: '#526477' }}
+          >
+            Recently Added
+          </h3>
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              background: 'rgba(255,255,255,0.60)',
+              backdropFilter: 'blur(18px)',
+              WebkitBackdropFilter: 'blur(18px)',
+              border: '1px solid rgba(0,106,199,0.10)',
+              boxShadow: '0 8px 30px rgba(0,33,61,0.08)',
+            }}
+          >
+            {featuredBooks.map((book, idx) => {
+              const isLast = idx === featuredBooks.length - 1;
+              return (
+                <div
+                  key={book.title}
+                  className="flex items-center gap-4 px-5 py-3.5 transition-all duration-200"
+                  style={{
+                    borderBottom: isLast ? 'none' : '1px solid rgba(0,106,199,0.07)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.02)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  {/* Book icon */}
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: 'rgba(75,127,58,0.08)' }}
+                  >
+                    <BookOpen className="w-4 h-4" style={{ color: '#4B7F3A' }} />
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className="font-semibold text-sm"
+                      style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
+                    >
+                      {book.title}
+                    </p>
+                    <p className="text-xs mt-0.5" style={{ color: '#8094A8' }}>
+                      {book.class} · {book.size}
+                    </p>
+                  </div>
+
+                  {/* Download Button */}
+                  <button
+                    className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                    style={{
+                      color: '#006AC7',
+                      backgroundColor: 'rgba(0,106,199,0.07)',
+                      border: '1px solid rgba(0,106,199,0.12)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.14)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.07)';
+                    }}
+                  >
+                    <Download className="w-3 h-3" />
+                    Download
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
