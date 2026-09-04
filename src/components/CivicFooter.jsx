@@ -206,8 +206,30 @@ export default function CivicFooter() {
           <span>
             © {new Date().getFullYear()} Education Department Liaquatabad Town Centre (DMC). All rights reserved.
           </span>
-          <span>
-            Government of Sindh | District Municipal Corporation Karachi
+          <span className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center">
+            Powered by{' '}
+            <a
+              href="https://dataversetechnologies.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#3FA4E8', textDecoration: 'none', fontWeight: 600 }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#6DC0FF'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
+            >
+              DataVerse Technologies
+            </a>
+            {' '}|{' '}
+            Designed &amp; Developed by{' '}
+            <a
+              href="https://app-cvifypro.vercel.app/p/umairansari92"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#F59E0B', textDecoration: 'none', fontWeight: 600 }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#FCD34D'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#F59E0B'; }}
+            >
+              Umair Ahmed
+            </a>
           </span>
         </div>
       </div>
