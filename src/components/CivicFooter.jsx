@@ -123,16 +123,16 @@ export default function CivicFooter() {
               Quick Access
             </h4>
             <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
+              {quickLinks.map((quickLink) => (
+                <li key={quickLink.label}>
                   <a
-                    href={link.href}
+                    href={quickLink.href}
                     className="text-sm transition-colors duration-150"
                     style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
                   >
-                    {link.label}
+                    {quickLink.label}
                   </a>
                 </li>
               ))}
@@ -148,16 +148,16 @@ export default function CivicFooter() {
               Staff & Student Portal
             </h4>
             <ul className="space-y-2.5">
-              {portalLinks.map((link) => (
-                <li key={link.label}>
+              {portalLinks.map((portalLink) => (
+                <li key={portalLink.label}>
                   <a
-                    href={link.href}
+                    href={portalLink.href}
                     className="text-sm transition-colors duration-150"
                     style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
                   >
-                    {link.label}
+                    {portalLink.label}
                   </a>
                 </li>
               ))}
@@ -179,16 +179,16 @@ export default function CivicFooter() {
                 'Terms of Use',
                 'RTI / Public Records',
                 'Sitemap',
-              ].map((item) => (
-                <li key={item}>
+              ].map((legalItem) => (
+                <li key={legalItem}>
                   <a
                     href="#"
                     className="text-sm transition-colors duration-150"
                     style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
+                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
                   >
-                    {item}
+                    {legalItem}
                   </a>
                 </li>
               ))}
@@ -213,8 +213,8 @@ export default function CivicFooter() {
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: '#3FA4E8', textDecoration: 'none', fontWeight: 600 }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#6DC0FF'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#3FA4E8'; }}
+              onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#6DC0FF'; }}
+              onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
             >
               DataVerse Technologies
             </a>
@@ -225,8 +225,8 @@ export default function CivicFooter() {
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: '#F59E0B', textDecoration: 'none', fontWeight: 600 }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#FCD34D'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#F59E0B'; }}
+              onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#FCD34D'; }}
+              onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#F59E0B'; }}
             >
               Umair Ahmed
             </a>

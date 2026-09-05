@@ -27,10 +27,10 @@ export default function HeroSection() {
     let isMounted = true;
     async function fetchStats() {
       try {
-        const res = await fetch(`${apiUrl}/api/v1/public/stats`);
-        if (res.ok) {
-          const json = await res.json();
-          if (json.success && json.data && isMounted) setStats(json.data);
+        const statsResponse = await fetch(`${apiUrl}/api/v1/public/stats`);
+        if (statsResponse.ok) {
+          const statsJson = await statsResponse.json();
+          if (statsJson.success && statsJson.data && isMounted) setStats(statsJson.data);
         }
       } catch {
         // Graceful fallback to baseline numbers
@@ -177,8 +177,8 @@ export default function HeroSection() {
             href="#resources"
             className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-medium inline-flex items-center justify-center gap-2 transition-all"
             style={{ color: '#526477' }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = '#006AC7'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = '#526477'; }}
+            onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#006AC7'; }}
+            onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#526477'; }}
           >
             <BookOpen className="w-4 h-4" />
             <span>Free Sindh Textbooks</span>
@@ -190,33 +190,33 @@ export default function HeroSection() {
           className="mt-16 pt-10 grid grid-cols-2 md:grid-cols-5 gap-3"
           style={{ borderTop: '1px solid rgba(0,106,199,0.12)' }}
         >
-          {statCards.map((stat) => {
-            const Icon = stat.icon;
+          {statCards.map((statCard) => {
+            const Icon = statCard.icon;
             return (
               <div
-                key={stat.label}
+                key={statCard.label}
                 className="glass-card p-4 text-left transition-all duration-250"
                 style={{ borderRadius: '14px' }}
               >
                 <div className="flex items-start justify-between mb-2">
                   <span
                     className="text-2xl sm:text-3xl font-extrabold"
-                    style={{ color: stat.color, fontFamily: 'var(--font-inter)', lineHeight: 1 }}
+                    style={{ color: statCard.color, fontFamily: 'var(--font-inter)', lineHeight: 1 }}
                   >
-                    {stat.value}
+                    {statCard.value}
                   </span>
                   <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: stat.bgColor }}
+                    style={{ backgroundColor: statCard.bgColor }}
                   >
-                    <Icon className="w-4 h-4" style={{ color: stat.color }} />
+                    <Icon className="w-4 h-4" style={{ color: statCard.color }} />
                   </div>
                 </div>
                 <p className="text-xs font-semibold" style={{ color: '#102033' }}>
-                  {stat.label}
+                  {statCard.label}
                 </p>
                 <p className="text-[10px] mt-0.5" style={{ color: '#8094A8' }}>
-                  {stat.sub}
+                  {statCard.sub}
                 </p>
               </div>
             );

@@ -29,9 +29,9 @@ export default function EventsAndConferences() {
 
         {/* Events List */}
         <div className="space-y-4">
-          {dynamicEventsData.map((evt) => (
+          {dynamicEventsData.map((eventItem) => (
             <div
-              key={evt.id}
+              key={eventItem.id}
               className="glass-card p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 group"
               style={{
                 borderRadius: '20px',
@@ -53,16 +53,16 @@ export default function EventsAndConferences() {
                     className="text-xs font-bold uppercase tracking-wider"
                     style={{ color: '#006AC7' }}
                   >
-                    {evt.date.month}
+                    {eventItem.date.month}
                   </span>
                   <span
                     className="text-2xl font-black leading-none"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
-                    {evt.date.day}
+                    {eventItem.date.day}
                   </span>
                   <span className="text-[10px]" style={{ color: '#8094A8' }}>
-                    {evt.date.year}
+                    {eventItem.date.year}
                   </span>
                 </div>
 
@@ -76,7 +76,7 @@ export default function EventsAndConferences() {
                         border: '1px solid rgba(0,106,199,0.18)',
                       }}
                     >
-                      {evt.type}
+                      {eventItem.type}
                     </span>
                     <span
                       className="px-2 py-0.5 rounded text-[10px] font-bold"
@@ -86,7 +86,7 @@ export default function EventsAndConferences() {
                         border: '1px solid rgba(75,127,58,0.18)',
                       }}
                     >
-                      {evt.status.replace('_', ' ')}
+                      {eventItem.status.replace('_', ' ')}
                     </span>
                   </div>
 
@@ -94,11 +94,11 @@ export default function EventsAndConferences() {
                     className="text-base sm:text-lg font-bold transition-colors group-hover:text-blue-600"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
-                    {evt.title}
+                    {eventItem.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed" style={{ color: '#526477' }}>
-                    {evt.agenda}
+                    {eventItem.agenda}
                   </p>
                 </div>
               </div>
@@ -113,15 +113,15 @@ export default function EventsAndConferences() {
               >
                 <div className="flex items-center gap-1.5 font-medium" style={{ color: '#102033' }}>
                   <Clock className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
-                  <span>{evt.time}</span>
+                  <span>{eventItem.time}</span>
                 </div>
                 <div className="flex items-center gap-1.5" style={{ color: '#526477' }}>
                   <MapPin className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
-                  <span className="line-clamp-1">{evt.venue}</span>
+                  <span className="line-clamp-1">{eventItem.venue}</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px]" style={{ color: '#8094A8' }}>
                   <UserCheck className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
-                  <span>Chair: {evt.chairperson}</span>
+                  <span>Chair: {eventItem.chairperson}</span>
                 </div>
               </div>
             </div>

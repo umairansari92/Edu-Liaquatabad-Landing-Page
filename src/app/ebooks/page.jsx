@@ -33,9 +33,9 @@ export default function EbooksLibraryPage() {
   });
 
   // Recently added books
-  const recentBooks = STBB_EBOOKS.filter((b) => b.isRecent);
+  const recentBooks = STBB_EBOOKS.filter((bookItem) => bookItem.isRecent);
 
-  const selectedClassObj = STBB_CLASSES.find((c) => c.id === selectedClassId);
+  const selectedClassObj = STBB_CLASSES.find((classItem) => classItem.id === selectedClassId);
 
   const mediumBadges = {
     URDU: { bg: '#4B7F3A', label: 'Urdu' },
@@ -100,7 +100,7 @@ export default function EbooksLibraryPage() {
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(inputChangeEvent) => setSearchQuery(inputChangeEvent.target.value)}
             placeholder="Search textbook by title, subject (e.g. Physics, Math, Riazi), or class..."
             className="w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm focus:outline-none transition-all"
             style={{
@@ -108,13 +108,13 @@ export default function EbooksLibraryPage() {
               border: '1.5px solid rgba(0, 106, 199, 0.15)',
               color: '#102033',
             }}
-            onFocus={(e) => {
-              e.target.style.borderColor = '#006AC7';
-              e.target.style.boxShadow = '0 0 0 4px rgba(0, 106, 199, 0.08)';
+            onFocus={(focusEvent) => {
+              focusEvent.target.style.borderColor = '#006AC7';
+              focusEvent.target.style.boxShadow = '0 0 0 4px rgba(0, 106, 199, 0.08)';
             }}
-            onBlur={(e) => {
-              e.target.style.borderColor = 'rgba(0, 106, 199, 0.15)';
-              e.target.style.boxShadow = 'none';
+            onBlur={(blurEvent) => {
+              blurEvent.target.style.borderColor = 'rgba(0, 106, 199, 0.15)';
+              blurEvent.target.style.boxShadow = 'none';
             }}
           />
         </div>
@@ -184,13 +184,13 @@ export default function EbooksLibraryPage() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
-          {STBB_CLASSES.map((cls) => {
-            const isSelected = selectedClassId === cls.id;
+          {STBB_CLASSES.map((classOption) => {
+            const isSelected = selectedClassId === classOption.id;
             return (
               <button
-                key={cls.id}
+                key={classOption.id}
                 onClick={() => {
-                  setSelectedClassId(cls.id);
+                  setSelectedClassId(classOption.id);
                   setSearchQuery('');
                 }}
                 className="p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-between group cursor-pointer"
@@ -201,16 +201,16 @@ export default function EbooksLibraryPage() {
                 }}
               >
                 <span className="text-2xl mb-1 group-hover:scale-110 transition-transform">
-                  {cls.icon}
+                  {classOption.icon}
                 </span>
                 <span
                   className="text-xs font-bold block transition-colors"
                   style={{ color: isSelected ? '#006AC7' : '#102033' }}
                 >
-                  {cls.name}
+                  {classOption.name}
                 </span>
                 <span className="text-[10px] mt-1 block" style={{ color: '#8094A8' }}>
-                  {cls.bookCount} books
+                  {classOption.bookCount} books
                 </span>
               </button>
             );
@@ -431,7 +431,7 @@ export default function EbooksLibraryPage() {
               backgroundColor: '#FFFFFF',
               border: '1px solid rgba(0,106,199,0.15)',
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(modalClickEvent) => modalClickEvent.stopPropagation()}
           >
             <div
               className="p-5 flex items-center justify-between"

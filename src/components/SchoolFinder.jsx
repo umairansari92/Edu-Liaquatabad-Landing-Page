@@ -55,16 +55,16 @@ export default function SchoolFinder() {
     { id: 'HIGHER_SECONDARY', label: 'Higher Sec (6–12)' },
   ];
 
-  const filtered = dynamicSchoolsData.filter((sch) => {
+  const filteredSchools = dynamicSchoolsData.filter((schoolItem) => {
     const matchesQuery =
-      sch.name.toLowerCase().includes(query.toLowerCase()) ||
-      sch.schoolCode.toLowerCase().includes(query.toLowerCase()) ||
-      sch.emisCode.toLowerCase().includes(query.toLowerCase()) ||
-      sch.address.toLowerCase().includes(query.toLowerCase());
+      schoolItem.name.toLowerCase().includes(query.toLowerCase()) ||
+      schoolItem.schoolCode.toLowerCase().includes(query.toLowerCase()) ||
+      schoolItem.emisCode.toLowerCase().includes(query.toLowerCase()) ||
+      schoolItem.address.toLowerCase().includes(query.toLowerCase());
 
-    const matchesArea = selectedArea === 'ALL' || sch.area === selectedArea;
-    const matchesGender = selectedGender === 'ALL' || sch.gender === selectedGender;
-    const matchesLevel = selectedLevel === 'ALL' || sch.level === selectedLevel;
+    const matchesArea = selectedArea === 'ALL' || schoolItem.area === selectedArea;
+    const matchesGender = selectedGender === 'ALL' || schoolItem.gender === selectedGender;
+    const matchesLevel = selectedLevel === 'ALL' || schoolItem.level === selectedLevel;
 
     return matchesQuery && matchesArea && matchesGender && matchesLevel;
   });
@@ -120,7 +120,7 @@ export default function SchoolFinder() {
             <input
               type="text"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(inputChangeEvent) => setQuery(inputChangeEvent.target.value)}
               placeholder="Search by School Name, School Code (e.g. MMHA), EMIS Code, or Area..."
               className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm focus:outline-none transition-all"
               style={{
@@ -128,13 +128,13 @@ export default function SchoolFinder() {
                 border: '1.5px solid rgba(0,106,199,0.15)',
                 color: '#102033',
               }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#006AC7';
-                e.target.style.boxShadow = '0 0 0 4px rgba(0,106,199,0.08)';
+              onFocus={(focusEvent) => {
+                focusEvent.target.style.borderColor = '#006AC7';
+                focusEvent.target.style.boxShadow = '0 0 0 4px rgba(0,106,199,0.08)';
               }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(0,106,199,0.15)';
-                e.target.style.boxShadow = 'none';
+              onBlur={(blurEvent) => {
+                blurEvent.target.style.borderColor = 'rgba(0,106,199,0.15)';
+                blurEvent.target.style.boxShadow = 'none';
               }}
             />
           </div>
@@ -147,7 +147,7 @@ export default function SchoolFinder() {
               </label>
               <select
                 value={selectedArea}
-                onChange={(e) => setSelectedArea(e.target.value)}
+                onChange={(selectionChangeEvent) => setSelectedArea(selectionChangeEvent.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl text-xs focus:outline-none"
                 style={{
                   background: '#FFFFFF',
@@ -155,8 +155,8 @@ export default function SchoolFinder() {
                   color: '#102033',
                 }}
               >
-                {areas.map((ar) => (
-                  <option key={ar} value={ar}>{ar === 'ALL' ? 'All Liaquatabad Areas' : ar}</option>
+                {areas.map((areaItem) => (
+                  <option key={areaItem} value={areaItem}>{areaItem === 'ALL' ? 'All Liaquatabad Areas' : areaItem}</option>
                 ))}
               </select>
             </div>
@@ -167,7 +167,7 @@ export default function SchoolFinder() {
               </label>
               <select
                 value={selectedGender}
-                onChange={(e) => setSelectedGender(e.target.value)}
+                onChange={(selectionChangeEvent) => setSelectedGender(selectionChangeEvent.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl text-xs focus:outline-none"
                 style={{
                   background: '#FFFFFF',
@@ -175,8 +175,8 @@ export default function SchoolFinder() {
                   color: '#102033',
                 }}
               >
-                {genders.map((g) => (
-                  <option key={g.id} value={g.id}>{g.label}</option>
+                {genders.map((genderOption) => (
+                  <option key={genderOption.id} value={genderOption.id}>{genderOption.label}</option>
                 ))}
               </select>
             </div>
@@ -187,7 +187,7 @@ export default function SchoolFinder() {
               </label>
               <select
                 value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)}
+                onChange={(selectionChangeEvent) => setSelectedLevel(selectionChangeEvent.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl text-xs focus:outline-none"
                 style={{
                   background: '#FFFFFF',
@@ -195,8 +195,8 @@ export default function SchoolFinder() {
                   color: '#102033',
                 }}
               >
-                {levels.map((l) => (
-                  <option key={l.id} value={l.id}>{l.label}</option>
+                {levels.map((levelOption) => (
+                  <option key={levelOption.id} value={levelOption.id}>{levelOption.label}</option>
                 ))}
               </select>
             </div>
@@ -207,7 +207,7 @@ export default function SchoolFinder() {
             className="flex items-center justify-between text-xs pt-2"
             style={{ borderTop: '1px solid rgba(0,106,199,0.08)', color: '#526477' }}
           >
-            <span>Showing <strong style={{ color: '#102033' }}>{filtered.length}</strong> verified government school(s)</span>
+            <span>Showing <strong style={{ color: '#102033' }}>{filteredSchools.length}</strong> verified government school(s)</span>
             {(query || selectedArea !== 'ALL' || selectedGender !== 'ALL' || selectedLevel !== 'ALL') && (
               <button
                 onClick={() => { setQuery(''); setSelectedArea('ALL'); setSelectedGender('ALL'); setSelectedLevel('ALL'); }}
@@ -221,11 +221,12 @@ export default function SchoolFinder() {
         </div>
 
         {/* Schools Cards Grid */}
+        {/* Schools Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((sch) => (
+          {filteredSchools.map((schoolItem) => (
             <div
-              key={sch.id}
-              onClick={() => setSelectedSchool(sch)}
+              key={schoolItem.id}
+              onClick={() => setSelectedSchool(schoolItem)}
               className="glass-card cursor-pointer p-6 flex flex-col justify-between group"
               style={{
                 borderRadius: '20px',
@@ -237,8 +238,8 @@ export default function SchoolFinder() {
                 {/* Image Preview Banner */}
                 <div className="relative h-44 -mx-6 -mt-6 mb-5 rounded-t-2xl overflow-hidden">
                   <img
-                    src={sch.image}
-                    alt={sch.name}
+                    src={schoolItem.image}
+                    alt={schoolItem.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
@@ -247,12 +248,12 @@ export default function SchoolFinder() {
                       className="px-2.5 py-0.5 rounded-md text-[10px] font-black text-white tracking-widest font-mono shadow-sm"
                       style={{ backgroundColor: '#006AC7' }}
                     >
-                      {sch.schoolCode}
+                      {schoolItem.schoolCode}
                     </span>
                     <span
                       className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-slate-800 backdrop-blur-sm border border-slate-200"
                     >
-                      {sch.levelLabel}
+                      {schoolItem.levelLabel}
                     </span>
                   </div>
                 </div>
@@ -262,22 +263,22 @@ export default function SchoolFinder() {
                   className="text-base font-bold transition-colors group-hover:text-blue-600 leading-snug"
                   style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                 >
-                  {sch.name}
+                  {schoolItem.name}
                 </h3>
 
                 {/* Location & Details */}
                 <div className="mt-4 space-y-2 text-xs" style={{ color: '#526477' }}>
                   <div className="flex items-start gap-2">
                     <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: '#4B7F3A' }} />
-                    <span className="line-clamp-2">{sch.address}</span>
+                    <span className="line-clamp-2">{schoolItem.address}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <GraduationCap className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
-                    <span><strong>HM:</strong> {sch.headMaster}</span>
+                    <span><strong>HM:</strong> {schoolItem.headMaster}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
-                    <span>{sch.phone}</span>
+                    <span>{schoolItem.phone}</span>
                   </div>
                 </div>
 
@@ -293,7 +294,7 @@ export default function SchoolFinder() {
                       border: '1px solid rgba(0,106,199,0.08)',
                     }}
                   >
-                    <span className="text-sm font-bold" style={{ color: '#102033' }}>{sch.totalStudents}</span>
+                    <span className="text-sm font-bold" style={{ color: '#102033' }}>{schoolItem.totalStudents}</span>
                     <p className="text-[10px]" style={{ color: '#8094A8' }}>Students</p>
                   </div>
                   <div
@@ -303,14 +304,14 @@ export default function SchoolFinder() {
                       border: '1px solid rgba(75,127,58,0.12)',
                     }}
                   >
-                    <span className="text-sm font-bold" style={{ color: '#4B7F3A' }}>{sch.totalTeachers}</span>
+                    <span className="text-sm font-bold" style={{ color: '#4B7F3A' }}>{schoolItem.totalTeachers}</span>
                     <p className="text-[10px]" style={{ color: '#8094A8' }}>Teachers</p>
                   </div>
                 </div>
 
                 {/* Facilities Active Tags */}
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  {sch.facilities?.physicsLab && (
+                  {schoolItem.facilities?.physicsLab && (
                     <span
                       className="px-2 py-0.5 rounded text-[10px]"
                       style={{
@@ -322,7 +323,7 @@ export default function SchoolFinder() {
                       Physics Lab
                     </span>
                   )}
-                  {sch.facilities?.computerLab && (
+                  {schoolItem.facilities?.computerLab && (
                     <span
                       className="px-2 py-0.5 rounded text-[10px]"
                       style={{
@@ -334,7 +335,7 @@ export default function SchoolFinder() {
                       Computer Lab
                     </span>
                   )}
-                  {sch.facilities?.playground && (
+                  {schoolItem.facilities?.playground && (
                     <span
                       className="px-2 py-0.5 rounded text-[10px]"
                       style={{
@@ -376,7 +377,7 @@ export default function SchoolFinder() {
                 backgroundColor: '#FFFFFF',
                 border: '1px solid rgba(0,106,199,0.15)',
               }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(modalClickEvent) => modalClickEvent.stopPropagation()}
             >
               {/* Modal Header */}
               <div
@@ -577,11 +578,11 @@ export default function SchoolFinder() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                      {facilityLabels.map((fac) => {
-                        const isAvailable = selectedSchool.facilities?.[fac.key] === true;
+                      {facilityLabels.map((facilityItem) => {
+                        const isAvailable = selectedSchool.facilities?.[facilityItem.key] === true;
                         return (
                           <div
-                            key={fac.key}
+                            key={facilityItem.key}
                             className="p-2.5 rounded-xl border flex items-center justify-between gap-2 text-xs transition-colors"
                             style={{
                               backgroundColor: isAvailable ? 'rgba(75,127,58,0.06)' : '#FFFFFF',
@@ -589,14 +590,14 @@ export default function SchoolFinder() {
                             }}
                           >
                             <div className="flex items-center gap-2">
-                              {fac.icon}
+                              {facilityItem.icon}
                               <span
                                 style={{
                                   fontWeight: isAvailable ? 600 : 400,
                                   color: isAvailable ? '#102033' : '#8094A8',
                                 }}
                               >
-                                {fac.label}
+                                {facilityItem.label}
                               </span>
                             </div>
 

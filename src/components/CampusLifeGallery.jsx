@@ -65,9 +65,9 @@ export default function CampusLifeGallery() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryItems.map((item, idx) => (
+          {galleryItems.map((galleryItem, galleryIndex) => (
             <div
-              key={idx}
+              key={galleryIndex}
               className="glass-card group relative h-64 overflow-hidden shadow-sm"
               style={{
                 borderRadius: '24px',
@@ -75,8 +75,8 @@ export default function CampusLifeGallery() {
               }}
             >
               <img
-                src={item.image}
-                alt={item.title}
+                src={galleryItem.image}
+                alt={galleryItem.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
@@ -86,16 +86,16 @@ export default function CampusLifeGallery() {
                   className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
                   style={{ backgroundColor: '#006AC7' }}
                 >
-                  {item.category}
+                  {galleryItem.category}
                 </span>
                 <h3
                   className="text-sm font-bold text-white mt-1 leading-snug"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  {item.title}
+                  {galleryItem.title}
                 </h3>
                 <p className="text-[11px] text-slate-200 mt-0.5 font-medium">
-                  {item.school}
+                  {galleryItem.school}
                 </p>
               </div>
             </div>

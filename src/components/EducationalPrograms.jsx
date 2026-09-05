@@ -27,9 +27,9 @@ export default function EducationalPrograms() {
 
         {/* Programs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {dynamicProgramsData.map((prog) => (
+          {dynamicProgramsData.map((programItem) => (
             <div
-              key={prog.id}
+              key={programItem.id}
               className="glass-card overflow-hidden flex flex-col justify-between group"
               style={{
                 borderRadius: '24px',
@@ -41,8 +41,8 @@ export default function EducationalPrograms() {
                 {/* Cover Image */}
                 <div className="relative h-52 w-full overflow-hidden">
                   <img
-                    src={prog.image}
-                    alt={prog.title}
+                    src={programItem.image}
+                    alt={programItem.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
@@ -51,12 +51,12 @@ export default function EducationalPrograms() {
                       className="px-3 py-1 rounded-full text-[11px] font-bold text-white shadow-sm"
                       style={{ backgroundColor: '#006AC7' }}
                     >
-                      {prog.badge}
+                      {programItem.badge}
                     </span>
                     <span
                       className="px-3 py-1 rounded-full text-[11px] font-bold text-slate-800 bg-white/90 backdrop-blur-sm border border-slate-200"
                     >
-                      {prog.category}
+                      {programItem.category}
                     </span>
                   </div>
                 </div>
@@ -67,10 +67,10 @@ export default function EducationalPrograms() {
                     className="text-lg sm:text-xl font-bold transition-colors group-hover:text-blue-600"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
-                    {prog.title}
+                    {programItem.title}
                   </h3>
                   <p className="text-xs sm:text-sm mt-2 leading-relaxed" style={{ color: '#526477' }}>
-                    {prog.description}
+                    {programItem.description}
                   </p>
 
                   {/* Metadata */}
@@ -80,15 +80,15 @@ export default function EducationalPrograms() {
                   >
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 shrink-0" style={{ color: '#006AC7' }} />
-                      <span><strong>Date:</strong> {prog.date}</span>
+                      <span><strong>Date:</strong> {programItem.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 shrink-0" style={{ color: '#4B7F3A' }} />
-                      <span className="line-clamp-1"><strong>Host:</strong> {prog.hostSchool}</span>
+                      <span className="line-clamp-1"><strong>Host:</strong> {programItem.hostSchool}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 shrink-0" style={{ color: '#006AC7' }} />
-                      <span><strong>Eligibility:</strong> {prog.targetGrades}</span>
+                      <span><strong>Eligibility:</strong> {programItem.targetGrades}</span>
                     </div>
                   </div>
 
@@ -102,7 +102,7 @@ export default function EducationalPrograms() {
                     }}
                   >
                     <Award className="w-4 h-4 shrink-0" style={{ color: '#4B7F3A' }} />
-                    <span><strong>Recognition:</strong> {prog.awards}</span>
+                    <span><strong>Recognition:</strong> {programItem.awards}</span>
                   </div>
                 </div>
               </div>

@@ -76,9 +76,9 @@ export default function ResourceLibrary() {
 
         {/* Resource Category Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-          {resourceCategories.map((cat) => {
-            const Icon = cat.icon;
-            const isBlue = cat.accent === 'blue';
+          {resourceCategories.map((categoryItem) => {
+            const Icon = categoryItem.icon;
+            const isBlue = categoryItem.accent === 'blue';
             const iconColor = isBlue ? '#006AC7' : '#4B7F3A';
             const iconBg = isBlue ? 'rgba(0,106,199,0.08)' : 'rgba(75,127,58,0.08)';
             const hoverBorder = isBlue ? 'rgba(0,106,199,0.28)' : 'rgba(75,127,58,0.28)';
@@ -86,19 +86,19 @@ export default function ResourceLibrary() {
 
             return (
               <a
-                key={cat.title}
-                href={cat.href}
+                key={categoryItem.title}
+                href={categoryItem.href}
                 className="glass-card p-6 flex flex-col gap-3 transition-all duration-250 no-underline"
                 style={{ textDecoration: 'none' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = hoverBorder;
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
+                onMouseEnter={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.borderColor = hoverBorder;
+                  mouseEvent.currentTarget.style.transform = 'translateY(-3px)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
+                onMouseLeave={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
+                  mouseEvent.currentTarget.style.transform = 'translateY(0)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
                 }}
               >
                 <div
@@ -113,17 +113,17 @@ export default function ResourceLibrary() {
                       className="font-semibold text-sm"
                       style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                     >
-                      {cat.title}
+                      {categoryItem.title}
                     </h3>
                     <span
                       className="text-xs font-semibold"
                       style={{ color: countColor }}
                     >
-                      {cat.count}
+                      {categoryItem.count}
                     </span>
                   </div>
                   <p className="text-xs mt-1" style={{ color: '#8094A8' }}>
-                    {cat.description}
+                    {categoryItem.description}
                   </p>
                 </div>
               </a>
@@ -149,20 +149,20 @@ export default function ResourceLibrary() {
               boxShadow: '0 8px 30px rgba(0,33,61,0.08)',
             }}
           >
-            {featuredBooks.map((book, idx) => {
-              const isLast = idx === featuredBooks.length - 1;
+            {featuredBooks.map((featuredBook, bookIndex) => {
+              const isLast = bookIndex === featuredBooks.length - 1;
               return (
                 <div
-                  key={book.title}
+                  key={featuredBook.title}
                   className="flex items-center gap-4 px-5 py-3.5 transition-all duration-200"
                   style={{
                     borderBottom: isLast ? 'none' : '1px solid rgba(0,106,199,0.07)',
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.02)';
+                  onMouseEnter={(mouseEvent) => {
+                    mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.02)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
+                  onMouseLeave={(mouseEvent) => {
+                    mouseEvent.currentTarget.style.backgroundColor = 'transparent';
                   }}
                 >
                   {/* Book icon */}
@@ -179,10 +179,10 @@ export default function ResourceLibrary() {
                       className="font-semibold text-sm"
                       style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                     >
-                      {book.title}
+                      {featuredBook.title}
                     </p>
                     <p className="text-xs mt-0.5" style={{ color: '#8094A8' }}>
-                      {book.class} · {book.size}
+                      {featuredBook.class} · {featuredBook.size}
                     </p>
                   </div>
 
@@ -194,11 +194,11 @@ export default function ResourceLibrary() {
                       backgroundColor: 'rgba(0,106,199,0.07)',
                       border: '1px solid rgba(0,106,199,0.12)',
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.14)';
+                    onMouseEnter={(mouseEvent) => {
+                      mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.14)';
                     }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.07)';
+                    onMouseLeave={(mouseEvent) => {
+                      mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.07)';
                     }}
                   >
                     <Download className="w-3 h-3" />

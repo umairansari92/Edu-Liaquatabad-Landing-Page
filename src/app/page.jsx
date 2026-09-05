@@ -63,10 +63,10 @@ export default function HomePage() {
                   '100% Free Textbooks & Stationery',
                   'Solar-Powered Classrooms & Labs',
                   'Digital Attendance Monitoring',
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-2.5">
+                ].map((complianceItem) => (
+                  <div key={complianceItem} className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#4B7F3A' }} />
-                    <span className="text-sm" style={{ color: '#526477' }}>{item}</span>
+                    <span className="text-sm" style={{ color: '#526477' }}>{complianceItem}</span>
                   </div>
                 ))}
               </div>
@@ -101,17 +101,17 @@ export default function HomePage() {
                     value: 'Male & Female Sectors Active',
                     valueColor: '#4B7F3A',
                   },
-                ].map((row) => (
+                ].map((infoRow) => (
                   <div
-                    key={row.label}
+                    key={infoRow.label}
                     className="flex items-center justify-between px-4 py-3 rounded-xl text-xs"
                     style={{
                       backgroundColor: 'rgba(0,106,199,0.04)',
                       border: '1px solid rgba(0,106,199,0.08)',
                     }}
                   >
-                    <span style={{ color: '#526477' }}>{row.label}</span>
-                    <strong style={{ color: row.valueColor }}>{row.value}</strong>
+                    <span style={{ color: '#526477' }}>{infoRow.label}</span>
+                    <strong style={{ color: infoRow.valueColor }}>{infoRow.value}</strong>
                   </div>
                 ))}
               </div>

@@ -103,28 +103,28 @@ export default function QuickAccessTiles() {
 
         {/* Tiles Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-          {tiles.map((tile) => {
-            const Icon = tile.icon;
-            const isBlue = tile.accent === 'blue';
+          {tiles.map((tileItem) => {
+            const Icon = tileItem.icon;
+            const isBlue = tileItem.accent === 'blue';
             const iconColor = isBlue ? '#006AC7' : '#4B7F3A';
             const iconBg = isBlue ? 'rgba(0,106,199,0.07)' : 'rgba(75,127,58,0.07)';
             const hoverBorder = isBlue ? 'rgba(0,106,199,0.25)' : 'rgba(75,127,58,0.25)';
 
             return (
               <a
-                key={tile.title}
-                href={tile.href}
+                key={tileItem.title}
+                href={tileItem.href}
                 className="glass-card p-5 flex flex-col gap-3 transition-all duration-250 group no-underline"
                 style={{ textDecoration: 'none' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = hoverBorder;
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
+                onMouseEnter={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.borderColor = hoverBorder;
+                  mouseEvent.currentTarget.style.transform = 'translateY(-3px)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
+                onMouseLeave={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
+                  mouseEvent.currentTarget.style.transform = 'translateY(0)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
                 }}
               >
                 <div
@@ -138,10 +138,10 @@ export default function QuickAccessTiles() {
                     className="font-semibold text-sm leading-snug"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
-                    {tile.title}
+                    {tileItem.title}
                   </h3>
                   <p className="text-xs mt-0.5" style={{ color: '#8094A8' }}>
-                    {tile.description}
+                    {tileItem.description}
                   </p>
                 </div>
               </a>

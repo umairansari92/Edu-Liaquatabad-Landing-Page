@@ -103,25 +103,25 @@ export default function PublicNotices() {
             boxShadow: '0 8px 30px rgba(0,33,61,0.08)',
           }}
         >
-          {notices.map((notice, idx) => {
-            const Icon = typeIcons[notice.type] || Bell;
-            const dotColor = dotColors[notice.dot];
-            const isLast = idx === notices.length - 1;
+          {notices.map((noticeItem, noticeIndex) => {
+            const Icon = typeIcons[noticeItem.type] || Bell;
+            const dotColor = dotColors[noticeItem.dot];
+            const isLast = noticeIndex === notices.length - 1;
 
             return (
               <a
-                key={notice.id}
+                key={noticeItem.id}
                 href="#notice-detail"
                 className="flex items-center gap-4 px-5 py-4 transition-all duration-200 group no-underline"
                 style={{
                   borderBottom: isLast ? 'none' : '1px solid rgba(0,106,199,0.07)',
                   textDecoration: 'none',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.03)';
+                onMouseEnter={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.03)';
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                onMouseLeave={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
                 {/* Type Icon */}
@@ -144,11 +144,11 @@ export default function PublicNotices() {
                       className="font-semibold text-sm truncate"
                       style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                     >
-                      {notice.title}
+                      {noticeItem.title}
                     </p>
                   </div>
                   <p className="text-xs" style={{ color: '#8094A8' }}>
-                    {notice.date} · {notice.audience}
+                    {noticeItem.date} · {noticeItem.audience}
                   </p>
                 </div>
 

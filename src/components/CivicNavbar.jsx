@@ -66,22 +66,22 @@ export default function CivicNavbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
+          {navLinks.map((navLink) => (
             <a
-              key={link.label}
-              href={link.href}
+              key={navLink.label}
+              href={navLink.href}
               className="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150"
               style={{ color: '#526477', fontFamily: 'var(--font-inter)' }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#006AC7';
-                e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.05)';
+              onMouseEnter={(mouseEvent) => {
+                mouseEvent.currentTarget.style.color = '#006AC7';
+                mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.05)';
               }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#526477';
-                e.currentTarget.style.backgroundColor = 'transparent';
+              onMouseLeave={(mouseEvent) => {
+                mouseEvent.currentTarget.style.color = '#526477';
+                mouseEvent.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
-              {link.label}
+              {navLink.label}
             </a>
           ))}
         </div>
@@ -93,13 +93,13 @@ export default function CivicNavbar() {
             aria-label="Search"
             className="w-9 h-9 rounded-lg hidden md:flex items-center justify-center transition-all"
             style={{ color: '#526477' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.06)';
-              e.currentTarget.style.color = '#006AC7';
+            onMouseEnter={(mouseEvent) => {
+              mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.06)';
+              mouseEvent.currentTarget.style.color = '#006AC7';
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = '#526477';
+            onMouseLeave={(mouseEvent) => {
+              mouseEvent.currentTarget.style.backgroundColor = 'transparent';
+              mouseEvent.currentTarget.style.color = '#526477';
             }}
           >
             <Search className="w-4 h-4" />
@@ -138,23 +138,23 @@ export default function CivicNavbar() {
           }}
         >
           <div className="section-container flex flex-col gap-1">
-            {navLinks.map((link) => (
+            {navLinks.map((navLink) => (
               <a
-                key={link.label}
-                href={link.href}
+                key={navLink.label}
+                href={navLink.href}
                 className="px-4 py-3 rounded-xl text-sm font-medium transition-all"
                 style={{ color: '#526477' }}
                 onClick={() => setIsMenuOpen(false)}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#006AC7';
-                  e.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.05)';
+                onMouseEnter={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.color = '#006AC7';
+                  mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.05)';
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#526477';
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                onMouseLeave={(mouseEvent) => {
+                  mouseEvent.currentTarget.style.color = '#526477';
+                  mouseEvent.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
-                {link.label}
+                {navLink.label}
               </a>
             ))}
             {/* Login CTA in mobile */}

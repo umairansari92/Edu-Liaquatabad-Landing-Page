@@ -16,7 +16,7 @@ export default function LeadershipTeam() {
 
   const filtered = activeTab === 'ALL'
     ? dynamicTeamData
-    : dynamicTeamData.filter((item) => item.category === activeTab);
+    : dynamicTeamData.filter((teamMember) => teamMember.category === activeTab);
 
   return (
     <section id="team" className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F8FBFD' }}>
@@ -67,31 +67,31 @@ export default function LeadershipTeam() {
 
         {/* Filter Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar">
-          {tabs.map((tab) => (
+          {tabs.map((tabOption) => (
             <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              key={tabOption.id}
+              onClick={() => setActiveTab(tabOption.id)}
               className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === tab.id
+                activeTab === tabOption.id
                   ? 'text-white shadow-md'
                   : 'hover:bg-slate-100'
               }`}
               style={{
-                backgroundColor: activeTab === tab.id ? '#006AC7' : 'rgba(255,255,255,0.70)',
-                color: activeTab === tab.id ? '#FFFFFF' : '#526477',
-                border: activeTab === tab.id ? '1px solid #006AC7' : '1px solid rgba(0,106,199,0.10)',
+                backgroundColor: activeTab === tabOption.id ? '#006AC7' : 'rgba(255,255,255,0.70)',
+                color: activeTab === tabOption.id ? '#FFFFFF' : '#526477',
+                border: activeTab === tabOption.id ? '1px solid #006AC7' : '1px solid rgba(0,106,199,0.10)',
               }}
             >
-              {tab.label}
+              {tabOption.label}
             </button>
           ))}
         </div>
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((member) => (
+          {filtered.map((teamMember) => (
             <div
-              key={member.id}
+              key={teamMember.id}
               className="glass-card p-6 flex flex-col justify-between group"
               style={{
                 borderRadius: '20px',
@@ -104,8 +104,8 @@ export default function LeadershipTeam() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative">
                     <img
-                      src={member.avatar}
-                      alt={member.name}
+                      src={teamMember.avatar}
+                      alt={teamMember.name}
                       className="w-16 h-16 rounded-2xl object-cover border-2 transition-colors shadow-sm"
                       style={{ borderColor: 'rgba(0,106,199,0.15)' }}
                     />
@@ -125,16 +125,16 @@ export default function LeadershipTeam() {
                         border: '1px solid rgba(0,106,199,0.18)',
                       }}
                     >
-                      {member.wing || member.category}
+                      {teamMember.wing || teamMember.category}
                     </span>
                     <h3
                       className="text-base font-bold mt-1 transition-colors group-hover:text-blue-600"
                       style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                     >
-                      {member.name}
+                      {teamMember.name}
                     </h3>
                     <p className="text-xs font-medium" style={{ color: '#526477' }}>
-                      {member.designation}
+                      {teamMember.designation}
                     </p>
                   </div>
                 </div>
@@ -144,27 +144,27 @@ export default function LeadershipTeam() {
                   className="space-y-1.5 pt-3 text-xs"
                   style={{ borderTop: '1px solid rgba(0,106,199,0.08)', color: '#526477' }}
                 >
-                  {member.area && (
+                  {teamMember.area && (
                     <div className="flex items-center gap-2">
                       <MapPin className="w-3.5 h-3.5 shrink-0" style={{ color: '#4B7F3A' }} />
-                      <span>{member.area}</span>
+                      <span>{teamMember.area}</span>
                     </div>
                   )}
-                  {member.schoolName && (
+                  {teamMember.schoolName && (
                     <div className="flex items-center gap-2">
                       <Briefcase className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
-                      <span className="line-clamp-1">{member.schoolName}</span>
+                      <span className="line-clamp-1">{teamMember.schoolName}</span>
                     </div>
                   )}
-                  {member.experience && (
+                  {teamMember.experience && (
                     <div className="flex items-center gap-2">
                       <Award className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
-                      <span>{member.experience}</span>
+                      <span>{teamMember.experience}</span>
                     </div>
                   )}
                 </div>
 
-                {member.quote && (
+                {teamMember.quote && (
                   <p
                     className="mt-4 p-3 rounded-xl text-xs italic leading-relaxed"
                     style={{
@@ -173,7 +173,7 @@ export default function LeadershipTeam() {
                       color: '#526477',
                     }}
                   >
-                    "{member.quote}"
+                    "{teamMember.quote}"
                   </p>
                 )}
               </div>
