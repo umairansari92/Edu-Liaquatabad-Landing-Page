@@ -1,57 +1,124 @@
-import React from 'react';
-import { AlertCircle, Calendar, Info, ChevronRight } from 'lucide-react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { AlertCircle, Calendar, Info, ChevronRight, Bell } from 'lucide-react';
 
 /**
  * Top Dynamic Announcement Bar
- * Displays live urgent closures, gazetted holidays, or academic info.
- * ONLY uses animate-pulse for CRITICAL emergency alerts.
+ * In strict compliance with docs/LANDING_PAGE.md (Section 01) and docs/DESIGN.md (Section 2.6):
+ * - CRITICAL: Solid Red (#DC2626) with emergency pulse (animate-pulse strictly for emergencies)
+ * - HOLIDAY: Government Emerald Green (#4B7F3A / #059669) (Gazetted holidays, vacations)
+ * - INFO: Brand Blue (#006AC7) (Registration deadlines, examination schedules)
+ * - EVENT: // TBD: Institutional color token for EVENT type; defaulting to INFO (#006AC7) pending formal specification.
  */
 export default function AnnouncementBar({
-  type = 'HOLIDAY', // 'CRITICAL' | 'HOLIDAY' | 'INFO'
-  message = 'Official Gazette Notice: All Government Schools across Liaquatabad Town will observe Defence Day Holiday on Sept 06, 2026.',
-  actionText = 'View Gazette Order',
-  actionLink = '#notices',
+  initialAnnouncement = null,
+  initialHoliday = null,
 }) {
+  const [activeAnnouncement, setActiveAnnouncement] = useState(initialAnnouncement);
+  const [upcomingHoliday, setUpcomingHoliday] = useState(initialHoliday);
+
+  useEffect(() => {
+    let isComponentMounted = true;
+
+    async function syncLatestAnnouncement() {
+      try {
+        const statsResponse = await fetch('/api/v1/public/town-stats');
+        if (statsResponse.ok) {
+          const statsJsonPayload = await statsResponse.json();
+          if (statsJsonPayload.success && statsJsonPayload.data && isComponentMounted) {
+            setActiveAnnouncement(statsJsonPayload.data.activeAnnouncement || null);
+            setUpcomingHoliday(statsJsonPayload.data.upcomingHoliday || null);
+          }
+        }
+      } catch (synchronizationError) {
+        // Retain initial server-rendered properties
+      }
+    }
+
+    syncLatestAnnouncement();
+    return () => {
+      isComponentMounted = false;
+    };
+  }, []);
+
   const styles = {
     CRITICAL: {
-      bg: '#DC2626',          // Solid red — emergency
+      backgroundColor: '#DC2626',
       textColor: '#FFFFFF',
-      tagBg: 'rgba(0,0,0,0.25)',
-      tagText: '#FFFFFF',
-      actionColor: '#FCA5A5',
-      icon: <AlertCircle className="w-3.5 h-3.5" />,
-      tag: 'EMERGENCY ALERT',
-      pulse: true,            // animate-pulse ONLY for critical
+      tagBackground: 'rgba(0,0,0,0.25)',
+      tagTextColor: '#FFFFFF',
+      actionTextColor: '#FCA5A5',
+      iconElement: <AlertCircle className="w-3.5 h-3.5" />,
+      tagLabel: 'EMERGENCY ALERT',
+      shouldPulse: true,
     },
     HOLIDAY: {
-      bg: '#006AC7',          // Brand blue — official holiday
-      textColor: 'rgba(255,255,255,0.90)',
-      tagBg: 'rgba(255,255,255,0.15)',
-      tagText: '#FFFFFF',
-      actionColor: '#DCEFFF',
-      icon: <Calendar className="w-3.5 h-3.5" />,
-      tag: 'OFFICIAL PUBLIC HOLIDAY',
-      pulse: false,
+      backgroundColor: '#4B7F3A', // Government Emerald Green per LANDING_PAGE.md & DESIGN.md
+      textColor: 'rgba(255,255,255,0.95)',
+      tagBackground: 'rgba(255,255,255,0.18)',
+      tagTextColor: '#FFFFFF',
+      actionTextColor: '#E3F0DC',
+      iconElement: <Calendar className="w-3.5 h-3.5" />,
+      tagLabel: 'OFFICIAL PUBLIC HOLIDAY',
+      shouldPulse: false,
     },
     INFO: {
-      bg: '#4B7F3A',          // Green — informational/academic
-      textColor: 'rgba(255,255,255,0.90)',
-      tagBg: 'rgba(255,255,255,0.15)',
-      tagText: '#FFFFFF',
-      actionColor: '#E3F0DC',
-      icon: <Info className="w-3.5 h-3.5" />,
-      tag: 'ACADEMIC ANNOUNCEMENT',
-      pulse: false,
+      backgroundColor: '#006AC7', // Brand Blue per LANDING_PAGE.md & DESIGN.md
+      textColor: 'rgba(255,255,255,0.95)',
+      tagBackground: 'rgba(255,255,255,0.18)',
+      tagTextColor: '#FFFFFF',
+      actionTextColor: '#DCEFFF',
+      iconElement: <Info className="w-3.5 h-3.5" />,
+      tagLabel: 'ACADEMIC ANNOUNCEMENT',
+      shouldPulse: false,
+    },
+    // TBD: Institutional color token for EVENT type; defaulting to INFO (Brand Blue #006AC7) pending formal institutional gazette specification
+    EVENT: {
+      backgroundColor: '#006AC7',
+      textColor: 'rgba(255,255,255,0.95)',
+      tagBackground: 'rgba(255,255,255,0.18)',
+      tagTextColor: '#FFFFFF',
+      actionTextColor: '#DCEFFF',
+      iconElement: <Bell className="w-3.5 h-3.5" />,
+      tagLabel: 'OFFICIAL TOWN EVENT',
+      shouldPulse: false,
     },
   };
 
-  const current = styles[type] || styles.INFO;
+  let displayType = 'INFO';
+  let displayMessage =
+    'Official Notice: Admission verification and digital attendance active for Academic Session 2026–27.';
+  let displayActionText = 'View Gazette Notices';
+  let displayActionLink = '#notices';
+
+  if (activeAnnouncement) {
+    displayType = styles[activeAnnouncement.type] ? activeAnnouncement.type : 'INFO';
+    displayMessage = activeAnnouncement.title
+      ? `${activeAnnouncement.title}: ${activeAnnouncement.message}`
+      : activeAnnouncement.message;
+    displayActionText = activeAnnouncement.eventDate
+      ? `Gazette Date: ${activeAnnouncement.eventDate}`
+      : 'View Directorate Order';
+    displayActionLink = '#announcement';
+  } else if (upcomingHoliday) {
+    displayType = 'HOLIDAY';
+    const dateText =
+      upcomingHoliday.startDate === upcomingHoliday.endDate
+        ? upcomingHoliday.startDate
+        : `${upcomingHoliday.startDate} to ${upcomingHoliday.endDate}`;
+    displayMessage = `Official Gazette Notice: All Government Schools across Liaquatabad Town will observe ${upcomingHoliday.title} Holiday on ${dateText}.`;
+    displayActionText = 'View Academic Calendar';
+    displayActionLink = '#events';
+  }
+
+  const currentTheme = styles[displayType] || styles.INFO;
 
   return (
     <aside
       aria-label="Official Public Announcement"
       style={{
-        backgroundColor: current.bg,
+        backgroundColor: currentTheme.backgroundColor,
         position: 'relative',
         zIndex: 60,
       }}
@@ -63,35 +130,37 @@ export default function AnnouncementBar({
         <div className="flex items-center gap-2.5 flex-1 min-w-0">
           {/* Tag badge */}
           <span
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold tracking-widest uppercase whitespace-nowrap flex-shrink-0 ${current.pulse ? 'animate-pulse' : ''}`}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold tracking-widest uppercase whitespace-nowrap flex-shrink-0 ${
+              currentTheme.shouldPulse ? 'animate-pulse' : ''
+            }`}
             style={{
-              backgroundColor: current.tagBg,
-              color: current.tagText,
+              backgroundColor: currentTheme.tagBackground,
+              color: currentTheme.tagTextColor,
               fontSize: '0.6rem',
               letterSpacing: '0.1em',
             }}
           >
-            {current.icon}
-            {current.tag}
+            {currentTheme.iconElement}
+            {currentTheme.tagLabel}
           </span>
 
-          {/* Message */}
+          {/* Message text */}
           <p
             className="truncate font-medium"
-            style={{ color: current.textColor }}
+            style={{ color: currentTheme.textColor }}
           >
-            {message}
+            {displayMessage}
           </p>
         </div>
 
         {/* Action Link */}
-        {actionText && (
+        {displayActionText && (
           <a
-            href={actionLink}
+            href={displayActionLink}
             className="inline-flex items-center gap-1 font-semibold whitespace-nowrap flex-shrink-0 transition-opacity hover:opacity-80"
-            style={{ color: current.actionColor, textDecoration: 'none' }}
+            style={{ color: currentTheme.actionTextColor, textDecoration: 'none' }}
           >
-            <span>{actionText}</span>
+            <span>{displayActionText}</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </a>
         )}

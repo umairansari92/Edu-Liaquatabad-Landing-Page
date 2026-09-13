@@ -11,38 +11,79 @@ import {
   BookOpen,
 } from 'lucide-react';
 
-export default function HeroSection() {
+export default function HeroSection({ initialMetrics = null }) {
   const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-  const [stats, setStats] = useState({
-    totalSchools: '45+',
-    enrolledStudents: '18,500+',
-    totalTeachers: '650+',
-    passedOutGraduates: '50,000+',
-    digitalAttendanceRate: '100%',
+  const [metrics, setMetrics] = useState({
+    totalSchools: initialMetrics?.totalSchools
+      ? `${initialMetrics.totalSchools}+`
+      : '45+',
+    enrolledStudents: initialMetrics?.enrolledStudents
+      ? typeof initialMetrics.enrolledStudents === 'number'
+        ? `${initialMetrics.enrolledStudents.toLocaleString()}+`
+        : initialMetrics.enrolledStudents
+      : '18,500+',
+    totalTeachers: initialMetrics?.totalTeachers
+      ? `${initialMetrics.totalTeachers}+`
+      : '650+',
+    passedOutGraduates: initialMetrics?.passedOutGraduates
+      ? typeof initialMetrics.passedOutGraduates === 'number'
+        ? `${initialMetrics.passedOutGraduates.toLocaleString()}+`
+        : initialMetrics.passedOutGraduates
+      : '50,000+',
+    digitalAttendanceRate:
+      initialMetrics?.overallAttendanceRate || '96.4%',
   });
 
   useEffect(() => {
-    let isMounted = true;
-    async function fetchStats() {
+    let isComponentMounted = true;
+
+    async function synchronizePublicMetrics() {
       try {
-        const statsResponse = await fetch(`${apiUrl}/api/v1/public/stats`);
+        const statsResponse = await fetch('/api/v1/public/town-stats');
         if (statsResponse.ok) {
-          const statsJson = await statsResponse.json();
-          if (statsJson.success && statsJson.data && isMounted) setStats(statsJson.data);
+          const statsJsonPayload = await statsResponse.json();
+          if (statsJsonPayload.success && statsJsonPayload.data && isComponentMounted) {
+            const receivedData = statsJsonPayload.data;
+            const liveMetrics = receivedData.metrics || {};
+            setMetrics({
+              totalSchools: liveMetrics.totalSchools
+                ? `${liveMetrics.totalSchools}+`
+                : receivedData.totalSchools || '45+',
+              enrolledStudents: liveMetrics.enrolledStudents
+                ? typeof liveMetrics.enrolledStudents === 'number'
+                  ? `${liveMetrics.enrolledStudents.toLocaleString()}+`
+                  : liveMetrics.enrolledStudents
+                : receivedData.enrolledStudents || '18,500+',
+              totalTeachers: liveMetrics.totalTeachers
+                ? `${liveMetrics.totalTeachers}+`
+                : receivedData.totalTeachers || '650+',
+              passedOutGraduates: liveMetrics.passedOutGraduates
+                ? typeof liveMetrics.passedOutGraduates === 'number'
+                  ? `${liveMetrics.passedOutGraduates.toLocaleString()}+`
+                  : liveMetrics.passedOutGraduates
+                : receivedData.passedOutGraduates || '50,000+',
+              digitalAttendanceRate:
+                liveMetrics.overallAttendanceRate ||
+                receivedData.digitalAttendanceRate ||
+                '96.4%',
+            });
+          }
         }
-      } catch {
-        // Graceful fallback to baseline numbers
+      } catch (metricsFetchError) {
+        // Retain initial metrics
       }
     }
-    fetchStats();
-    return () => { isMounted = false; };
-  }, [apiUrl]);
+
+    synchronizePublicMetrics();
+    return () => {
+      isComponentMounted = false;
+    };
+  }, []);
 
   const statCards = [
     {
-      value: stats.totalSchools,
+      value: metrics.totalSchools,
       label: 'Government Schools',
       sub: 'Primary & Secondary',
       icon: School,
@@ -50,7 +91,7 @@ export default function HeroSection() {
       bgColor: 'rgba(0,106,199,0.06)',
     },
     {
-      value: stats.enrolledStudents,
+      value: metrics.enrolledStudents,
       label: 'Enrolled Students',
       sub: 'Dual GR & Global IDs',
       icon: GraduationCap,
@@ -58,7 +99,7 @@ export default function HeroSection() {
       bgColor: 'rgba(75,127,58,0.06)',
     },
     {
-      value: stats.totalTeachers,
+      value: metrics.totalTeachers,
       label: 'Dedicated Teachers',
       sub: 'Qualified Faculty',
       icon: Users,
@@ -66,7 +107,7 @@ export default function HeroSection() {
       bgColor: 'rgba(0,106,199,0.06)',
     },
     {
-      value: stats.passedOutGraduates || '50,000+',
+      value: metrics.passedOutGraduates || '50,000+',
       label: 'Passed Out Alumni',
       sub: 'Matric & Higher Sec',
       icon: Award,
@@ -74,7 +115,7 @@ export default function HeroSection() {
       bgColor: 'rgba(75,127,58,0.06)',
     },
     {
-      value: stats.digitalAttendanceRate || '100%',
+      value: metrics.digitalAttendanceRate || '96.4%',
       label: 'Digital Attendance',
       sub: 'Zero Ghost Policy',
       icon: ShieldCheck,

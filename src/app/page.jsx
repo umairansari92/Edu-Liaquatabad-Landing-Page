@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroSection from '../components/HeroSection.jsx';
+import ExecutiveAnnouncementCard from '../components/ExecutiveAnnouncementCard.jsx';
 import QuickAccessTiles from '../components/QuickAccessTiles.jsx';
 import SchoolFinder from '../components/SchoolFinder.jsx';
 import EducationalPrograms from '../components/EducationalPrograms.jsx';
@@ -8,26 +9,40 @@ import LeadershipTeam from '../components/LeadershipTeam.jsx';
 import PublicNotices from '../components/PublicNotices.jsx';
 import ResourceLibrary from '../components/ResourceLibrary.jsx';
 import CampusLifeGallery from '../components/CampusLifeGallery.jsx';
+import { fetchTownStats } from '../lib/fetchTownStats.js';
 import {
   ShieldCheck,
   School,
-  Users,
   ArrowRight,
   CheckCircle2,
 } from 'lucide-react';
 
-export default function HomePage() {
+export default async function HomePage() {
   const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
+  const townStats = await fetchTownStats();
+
+  const enrolledStudentsFormatted =
+    typeof townStats.metrics.enrolledStudents === 'number'
+      ? townStats.metrics.enrolledStudents.toLocaleString()
+      : townStats.metrics.enrolledStudents;
+
+  const currentDdoName =
+    townStats.activeAnnouncement?.announcerDesignation?.includes('DDO')
+      ? townStats.activeAnnouncement.announcerName
+      : 'Muhammad Asif Khan';
 
   return (
     <div>
-      {/* 1. Hero Section — #F0F8FF */}
-      <HeroSection />
+      {/* 1. Hero Section with Live Initial Metrics — #F0F8FF */}
+      <HeroSection initialMetrics={townStats.metrics} />
 
-      {/* 2. Quick Access Tiles — #F8FBFD */}
+      {/* 2. DDO Executive Announcement Bulletin (Conditionally Rendered) — #F8FBFD */}
+      <ExecutiveAnnouncementCard initialAnnouncement={townStats.activeAnnouncement} />
+
+      {/* 3. Quick Access Tiles — #F8FBFD */}
       <QuickAccessTiles />
 
-      {/* 3. About the Department — #FFFFFF */}
+      {/* 4. About the Department — #FFFFFF */}
       <section
         id="about"
         className="py-16 px-4 sm:px-6 lg:px-8"
@@ -52,9 +67,9 @@ export default function HomePage() {
               </h2>
               <p className="text-sm sm:text-base mt-4 leading-relaxed" style={{ color: '#526477' }}>
                 Operating under the District Municipal Corporation (DMC), the Education
-                Directorate oversees 45+ public schools, providing universal free education,
+                Directorate oversees {townStats.metrics.totalSchools}+ public schools, providing universal free education,
                 standardized science curriculum, continuous teacher professional development,
-                and rigorous examination integrity for over 18,500 students.
+                and rigorous examination integrity for over {enrolledStudentsFormatted} students.
               </p>
 
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -73,9 +88,7 @@ export default function HomePage() {
             </div>
 
             {/* Right: Info Card */}
-            <div
-              className="glass-card p-7"
-            >
+            <div className="glass-card p-7">
               <h3
                 className="font-bold text-base flex items-center gap-2 mb-4"
                 style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
@@ -93,7 +106,7 @@ export default function HomePage() {
                 {[
                   {
                     label: 'Town Education Officer (DDO):',
-                    value: 'Muhammad Asif Khan',
+                    value: currentDdoName,
                     valueColor: '#102033',
                   },
                   {
@@ -120,7 +133,7 @@ export default function HomePage() {
                 href="#schools"
                 className="btn-primary w-full justify-center mt-6 text-sm py-3"
               >
-                Browse All 45+ Schools
+                Browse All {townStats.metrics.totalSchools}+ Schools
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -128,28 +141,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. School Finder — #F0F8FF (rendered inside component) */}
+      {/* 5. School Finder — #F0F8FF (rendered inside component) */}
       <SchoolFinder />
 
-      {/* 5. Educational Programs — #F8FBFD */}
+      {/* 6. Educational Programs — #F8FBFD */}
       <EducationalPrograms />
 
-      {/* 6. Conferences & Events — #FFFFFF */}
+      {/* 7. Conferences & Events — #FFFFFF */}
       <EventsAndConferences />
 
-      {/* 7. Leadership Team — #F8FBFD */}
+      {/* 8. Leadership Team — #F8FBFD */}
       <LeadershipTeam />
 
-      {/* 8. Public Notices — #F0F8FF */}
+      {/* 9. Public Notices — #F0F8FF */}
       <PublicNotices />
 
-      {/* 9. Resource Library — #FFFFFF */}
+      {/* 10. Resource Library — #FFFFFF */}
       <ResourceLibrary />
 
-      {/* 10. Campus Life Gallery — #F8FBFD */}
+      {/* 11. Campus Life Gallery — #F8FBFD */}
       <CampusLifeGallery />
 
-      {/* 11. Final CTA Banner */}
+      {/* 12. Final CTA Banner */}
       <section
         className="py-16 px-4 sm:px-6 lg:px-8"
         style={{ backgroundColor: '#F0F8FF' }}

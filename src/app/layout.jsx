@@ -2,6 +2,7 @@ import './globals.css';
 import AnnouncementBar from '../components/AnnouncementBar.jsx';
 import CivicNavbar from '../components/CivicNavbar.jsx';
 import CivicFooter from '../components/CivicFooter.jsx';
+import { fetchTownStats } from '../lib/fetchTownStats.js';
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://liaquatabad-schools.gov.pk'),
@@ -83,7 +84,9 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const townStats = await fetchTownStats();
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
@@ -98,10 +101,8 @@ export default function RootLayout({ children }) {
       <body className="font-sans antialiased flex flex-col min-h-screen" style={{ backgroundColor: '#F8FBFD', color: '#102033' }}>
         {/* Dynamic Announcement Bar (Top) */}
         <AnnouncementBar
-          type="HOLIDAY"
-          message="Official Gazette Notice: All Government Schools across Liaquatabad Town will observe Defence Day Holiday on Sept 06, 2026."
-          actionText="View Gazette Order"
-          actionLink="#notices"
+          initialAnnouncement={townStats.activeAnnouncement}
+          initialHoliday={townStats.upcomingHoliday}
         />
 
         {/* Civic Sticky Navbar */}
