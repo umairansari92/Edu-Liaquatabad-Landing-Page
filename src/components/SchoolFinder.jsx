@@ -49,10 +49,10 @@ export default function SchoolFinder() {
   ];
   const levels = [
     { id: 'ALL', label: 'All Levels' },
+    { id: 'ECE', label: 'ECE (Nursery - KG-2)' },
     { id: 'PRIMARY', label: 'Primary (1–5)' },
     { id: 'ELEMENTARY', label: 'Elementary (1–8)' },
     { id: 'SECONDARY', label: 'Secondary (6–10)' },
-    { id: 'HIGHER_SECONDARY', label: 'Higher Sec (6–12)' },
   ];
 
   const filteredSchools = dynamicSchoolsData.filter((schoolItem) => {
