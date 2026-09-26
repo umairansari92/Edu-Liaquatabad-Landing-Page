@@ -22,7 +22,7 @@ import {
 export const RolesCatalogueSection = () => (
   <div>
     <DocHeader
-      title="The 8 Authoritative RBAC Roles"
+      title="The 9 Authoritative RBAC Roles"
       badge="3. Identity, Roles & Scopes"
       subtitle="Complete specification of software roles, role levels, scope boundaries, and municipal authority definitions."
     />
@@ -36,27 +36,31 @@ export const RolesCatalogueSection = () => (
       rows={[
         {
           left: 'ROOT_ADMIN',
-          right: 'Level 100 • GLOBAL • Platform maintainer, emergency killswitch, global disaster recovery, TOTP MFA enforced.',
+          right: 'Level 100 • GLOBAL • Platform maintainer, emergency killswitch, global disaster recovery, mandatory TOTP MFA.',
         },
         {
           left: 'SUPER_ADMIN',
-          right: 'Level 80 • TOWN • Town Education Directorate, DDO, Chairman DMC Education Committee. Final transfer approval.',
+          right: 'Level 90 • GLOBAL • Operational executive directorate, Town Education Officer, DDO, Chairman DMC. Final transfer approval.',
         },
         {
           left: 'ADMIN',
-          right: 'Level 60 • TOWN • Municipal Education Officers, staff profile approvals, official circular publishing, town audits.',
+          right: 'Level 80 • TOWN • Municipal education officers, staff profile approvals, official circular publishing, town audits.',
         },
         {
           left: 'SUPERVISOR',
-          right: 'Level 50 • ASSIGNED_SCHOOLS • Field cluster inspection officers, biometric verification, surprise visits, transfer initiation.',
+          right: 'Level 60 • ASSIGNED_SCHOOLS • Field cluster inspection officers, biometric verification, surprise visits, transfer proposals.',
         },
         {
           left: 'HM (Head Master)',
-          right: 'Level 40 • SCHOOL • School building head, teacher relieving/joining certifications, student enrollment, parent verification.',
+          right: 'Level 50 • SCHOOL • School building head, teacher relieving/joining certifications, student enrollment, parent verification.',
         },
         {
           left: 'TEACHER',
-          right: 'Level 20 • CLASS_SECTION • Classroom instructor, daily attendance entry, 700-mark exam score entry, homework assignment.',
+          right: 'Level 30 • CLASS_SECTION • Classroom instructional faculty, daily attendance entry, 700-mark exam score entry, homework assignment.',
+        },
+        {
+          left: 'PEON',
+          right: 'Level 20 • SCHOOL • Institutional operational support staff, official notice and circular view access.',
         },
         {
           left: 'STUDENT',
@@ -74,9 +78,9 @@ export const RolesCatalogueSection = () => (
 export const CapabilityMatrixSection = () => (
   <div>
     <DocHeader
-      title="20-Capability Fine-Grained Authorization Matrix"
+      title="31-Granular Permission Master Matrix"
       badge="3. Identity, Roles & Scopes"
-      subtitle="Exhaustive capability permissions across all 8 roles enforced by server-side authorization middleware."
+      subtitle="Exhaustive capability permissions across all 9 roles enforced by server-side authorization middleware."
     />
 
     <ComparisonTable
@@ -99,8 +103,9 @@ export const CapabilityMatrixSection = () => (
         { left: 'Marksheet PDF Generation', right: 'TEACHER, HM, STUDENT, PARENT' },
         { left: 'Student Profile Read', right: 'TEACHER (Section), HM, STUDENT, PARENT' },
         { left: 'Ward Academic & Attendance Read', right: 'PARENT (Verified Link Only)' },
+        { left: 'School Circulars View', right: 'PEON, TEACHER, HM, ADMIN, SUPER_ADMIN, ROOT_ADMIN' },
         { left: 'Free Sindh Textbook Download', right: 'PUBLIC (Unauthenticated / All)' },
-        { left: 'Password Reset via Admin', right: 'ADMIN (Target Level < 60), ROOT_ADMIN' },
+        { left: 'Password Reset via Admin', right: 'ADMIN (Target Level < 80), ROOT_ADMIN' },
         { left: 'Audit Trail Inspection', right: 'ADMIN, SUPER_ADMIN, ROOT_ADMIN' },
       ]}
     />

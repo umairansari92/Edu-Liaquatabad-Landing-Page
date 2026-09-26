@@ -143,7 +143,7 @@ export default function DocumentationPage() {
       category: '2. Technology & Architecture',
       items: [
         { id: 'tech-stack-why', label: 'Tech Stack & The "WHY"', icon: Database },
-        { id: 'hierarchy', label: '7-Tier Municipal Hierarchy', icon: Layers },
+        { id: 'hierarchy', label: '5-Tier Organizational Hierarchy', icon: Layers },
         { id: 'decoupled-identity', label: 'Decoupled Identity Model', icon: KeyRound },
         { id: 'tech-topology', label: 'Dual-App Architecture', icon: Cpu },
         { id: 'bff-flow', label: 'BFF Pattern & Data Flow', icon: ArrowRightLeft },
@@ -153,8 +153,8 @@ export default function DocumentationPage() {
     {
       category: '3. Identity, Roles & Scopes',
       items: [
-        { id: 'roles-catalogue', label: 'The 8 Authoritative Roles', icon: Users },
-        { id: 'capability-matrix', label: '20-Capability Matrix', icon: Award },
+        { id: 'roles-catalogue', label: 'The 9 Authoritative Roles', icon: Users },
+        { id: 'capability-matrix', label: '31-Granular Permission Matrix', icon: Award },
         { id: 'subordination', label: 'Subordination Rules & Immunity', icon: Shield },
         { id: 'data-scopes', label: 'The 7 Geographic Scopes', icon: Layers },
         { id: 'account-lifecycle', label: 'Account Lifecycle Machine', icon: Clock },
@@ -398,9 +398,9 @@ export default function DocumentationPage() {
                   <div className="text-xs text-[#526477]">Karachi Central, Sindh</div>
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                  <div className="text-[10px] font-extrabold uppercase text-[#526477]">GOVERNANCE TIER</div>
-                  <div className="text-sm font-black text-[#006AC7]">7-Tier Decoupled</div>
-                  <div className="text-xs text-[#526477]">Root to Parent</div>
+                  <div className="text-[10px] font-extrabold uppercase text-[#526477]">ENTITY HIERARCHY</div>
+                  <div className="text-sm font-black text-[#006AC7]">5-Tier Entity Hierarchy</div>
+                  <div className="text-xs text-[#526477]">Org to Section (7 Scopes)</div>
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
                   <div className="text-[10px] font-extrabold uppercase text-[#526477]">SECURITY STANDARD</div>

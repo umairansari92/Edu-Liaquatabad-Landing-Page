@@ -22,66 +22,55 @@ import {
 export const HierarchySection = () => (
   <div>
     <DocHeader
-      title="The 7-Tier Municipal Governance Hierarchy"
+      title="The 5-Tier Organizational Hierarchy"
       badge="2. Technology & Architecture"
-      subtitle="The authoritative chain of command, subordination ceilings, and data visibility quarantines across Liaquatabad Town."
+      subtitle="The authoritative entity structure of public schools, subordination ceilings, and data visibility quarantines across Liaquatabad Town."
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      Institutional authority flows downward through seven strictly defined operational tiers. Data queries and mutation routes enforce strict mathematical boundaries based on the calling actor&apos;s <code>roleLevel</code> ($10 \le \text{level} \le 100$) and geographic <code>scope</code>:
+      Institutional education is structured across a <strong>5-tier organizational entity hierarchy</strong>. Do NOT confuse this physical hierarchy with the <strong>7 data scopes</strong> (GLOBAL, TOWN, ASSIGNED_SCHOOLS, SCHOOL, CLASS_SECTION, SELF, CHILD) which govern multi-tenant query isolation:
     </p>
 
-    <TerminalBlock title="7-TIER MUNICIPAL GOVERNANCE TOPOLOGY">
+    <TerminalBlock title="5-TIER ORGANIZATIONAL ENTITY HIERARCHY">
 {`┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 1: SUPREME PLATFORM GOVERNANCE                                         │
-│ Role: ROOT_ADMIN • Scope: GLOBAL • Level: 100                               │
-│ Technical maintenance, killswitches, global outages, and system audit       │
+│ TIER 1: ORGANIZATION                                                        │
+│ Entity: Organization (e.g., DMC Liaquatabad Town Centre)                    │
+│ Level: Supreme municipal education governance & legal entity                │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 2: MUNICIPAL EXECUTIVE DIRECTORATE                                     │
-│ Role: SUPER_ADMIN • Scope: TOWN • Level: 80                                 │
-│ Town Education Directorate, DDO, Chairman Education DMC                     │
+│ TIER 2: TOWN                                                                │
+│ Entity: Town (e.g., Liaquatabad Town Centre, Karachi Central)               │
+│ Level: Municipal geographic and administrative district boundary            │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 3: TOWN ADMINISTRATIVE GOVERNANCE                                      │
-│ Role: ADMIN • Scope: TOWN • Level: 60                                       │
-│ Municipal education officers, staff approval authorities, circular dispatch │
+│ TIER 3: SCHOOL                                                              │
+│ Entity: School (e.g., Government Boys Secondary School, SEMIS Code)         │
+│ Level: Individual physical school building & institutional cost center       │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 4: CLUSTER FIELD SUPERVISION                                           │
-│ Role: SUPERVISOR • Scope: ASSIGNED_SCHOOLS • Level: 50                      │
-│ Field inspection officers, biometric auditors, transfer initiators          │
+│ TIER 4: CLASS                                                               │
+│ Entity: Class (e.g., Grade 6, Grade 7, Grade 8 Elementary Board)            │
+│ Level: Academic grade level within the school curriculum                    │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 5: INSTITUTIONAL SCHOOL AUTHORITY                                      │
-│ Role: HM (Head Master) • Scope: SCHOOL • Level: 40                          │
-│ School building head, enrollment verification, faculty leave, exam submit   │
-└──────────────────────────────────────┬──────────────────────────────────────┘
-                                       ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 6: CLASSROOM INSTRUCTIONAL FACULTY                                     │
-│ Role: TEACHER • Scope: CLASS_SECTION • Level: 20                            │
-│ Class teachers, subject teachers, daily attendance entry, marks entry       │
-└──────────────────────────────────────┬──────────────────────────────────────┘
-                                       ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ TIER 7: PRIMARY CONSTITUENTS & BENEFICIARIES                                │
-│ Roles: STUDENT (Level 10, Scope: SELF) • PARENT (Level 10, Scope: CHILD)    │
-│ Academic progress tracking, verified marksheet downloads, homework review   │
+│ TIER 5: SECTION                                                             │
+│ Entity: Section (e.g., Section A, Section B, Section C)                     │
+│ Level: Specific class cohort / classroom group                              │
 └─────────────────────────────────────────────────────────────────────────────┘`}
     </TerminalBlock>
 
     <SectionTitle>Hierarchy Subordination Laws</SectionTitle>
     <Callout type="security" title="THE SUBORDINATION AXIOM (authorizeHierarchy.js)">
-      Any administrative mutation route (create user, change status, assign scope) strictly enforces:
+      Any administrative mutation route (create user, change status, assign role) strictly enforces:
       <br />
       <code>actor.roleLevel &gt; target.roleLevel</code>
       <br />
-      An Admin (Level 60) can manage HMs (40) and Teachers (20), but can NEVER manage or touch another Admin (60), Super Admin (80), or Root Admin (100). Equal-level and higher-level mutations throw an immediate <code>403 Forbidden</code>.
+      Authority levels: ROOT_ADMIN (100) &gt; SUPER_ADMIN (90) &gt; ADMIN (80) &gt; SUPERVISOR (60) &gt; HM (50) &gt; TEACHER (30) &gt; PEON (20) &gt; STUDENT (10) | PARENT (10).
+      <br />
     </Callout>
   </div>
 );
