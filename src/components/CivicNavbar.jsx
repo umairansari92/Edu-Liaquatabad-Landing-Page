@@ -5,12 +5,13 @@ import { Menu, X, Search, Shield, ChevronDown } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '#about' },
-  { label: 'Schools', href: '#schools' },
-  { label: 'Academics', href: '#academics' },
-  { label: 'Resources', href: '#resources' },
-  { label: 'Notices', href: '#notices' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Schools', href: '/#schools' },
+  { label: 'Academics', href: '/#academics' },
+  { label: 'E-Books', href: '/ebooks' },
+  { label: 'Docs', href: '/documentation' },
+  { label: 'Notices', href: '/#notices' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function CivicNavbar() {

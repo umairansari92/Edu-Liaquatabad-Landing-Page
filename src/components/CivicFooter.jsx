@@ -7,12 +7,12 @@ export default function CivicFooter() {
   const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
 
   const quickLinks = [
-    { label: 'School Directory', href: '#schools' },
-    { label: 'Latest Notices', href: '#notices' },
-    { label: 'Official Circulars', href: '#circulars' },
-    { label: 'Free Textbooks', href: '#resources' },
-    { label: 'Academic Calendar', href: '#calendar' },
-    { label: 'Governance Structure', href: '#governance' },
+    { label: 'School Directory', href: '/#schools' },
+    { label: 'Latest Notices', href: '/#notices' },
+    { label: 'Free Textbooks', href: '/ebooks' },
+    { label: 'System Documentation', href: '/documentation' },
+    { label: 'Academic Calendar', href: '/#calendar' },
+    { label: 'Governance Structure', href: '/#governance' },
   ];
 
   const portalLinks = [
