@@ -36,7 +36,90 @@ import {
   AlertCircle,
   HelpCircle,
   Hash,
+  Star,
+  Zap,
+  Globe,
+  Bot,
+  Brain,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
+
+import {
+  DocHeader,
+  SectionTitle,
+  InfoCard,
+  Steps,
+  ComparisonTable,
+  TerminalBlock,
+  Callout,
+  FaqItem,
+} from './components/DocPrimitives';
+
+// Specialized Domain Category Section Components
+import {
+  ProblemStatementSection,
+  IsVsNotSection,
+  QuickAccessSection,
+} from './sections/FoundationsSections';
+
+import {
+  HierarchySection,
+  DecoupledIdentitySection,
+  TechTopologySection,
+  BffFlowSection,
+  ProjectStructureSection,
+} from './sections/ArchitectureSections';
+
+import {
+  RolesCatalogueSection,
+  CapabilityMatrixSection,
+  SubordinationSection,
+  DataScopesSection,
+  AccountLifecycleSection,
+} from './sections/IdentitySections';
+
+import {
+  SecurityScorecardSection,
+  TripleLockSection,
+  Argon2idSecuritySection,
+  CaptchaEngineSection,
+  MfaTotpSection,
+  SecurityInvariantsSection,
+  ThreatMatrixSection,
+} from './sections/SecuritySections';
+
+import {
+  SchoolInspectionsSection,
+  TeacherRostersSection,
+  StudentManagementSection,
+  ParentPortalSection,
+  AttendanceEngineSection,
+  MarksheetsTabulationSection,
+  DocumentsLibrarySection,
+  NotificationsOutboxSection,
+} from './sections/OperationalSections';
+
+import {
+  AuditContractSection,
+  DatabaseModelsSection,
+  ApiCatalogueSection,
+} from './sections/AuditDataSections';
+
+import {
+  DesignConstitutionSection,
+  ClientArchitectureSection,
+  PwaCachingSection,
+} from './sections/UiPerfSections';
+
+import {
+  TestVerificationSection,
+  DeploymentTopologySection,
+  StatusRoadmapSection,
+  GlossarySection,
+} from './sections/VerificationSections';
+
+// ─── MAIN DOCUMENTATION COMPONENT ─────────────────────────────────────────────
 
 export default function DocumentationPage() {
   const [activeSection, setActiveSection] = useState('overview');
@@ -45,79 +128,34 @@ export default function DocumentationPage() {
 
   const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
 
-  // Smooth scroll handler with URL hash sync
-  const handleSelect = (id) => {
-    setActiveSection(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (typeof window !== 'undefined') {
-        window.history.replaceState(null, '', `#${id}`);
-      }
-    }
-    setMobileMenuOpen(false);
-  };
-
-  // IntersectionObserver to sync active section on scroll
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      const initialId = window.location.hash.replace('#', '');
-      if (initialId) {
-        setTimeout(() => {
-          const el = document.getElementById(initialId);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            setActiveSection(initialId);
-          }
-        }, 150);
-      }
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-15% 0px -70% 0px' }
-    );
-
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Navigation Group Structure (Modeled on CVify Pro Information Architecture)
+  // Navigation Items Catalog (44 Authoritative Domain Sections)
   const navGroups = [
     {
-      category: '1. System Foundations',
+      category: '1. Getting Started & Context',
       items: [
-        { id: 'overview', label: 'Platform Overview', icon: Building2 },
+        { id: 'overview', label: 'Platform Mission & Context', icon: Building2 },
         { id: 'problem-statement', label: 'Municipal Problem Statement', icon: AlertCircle },
         { id: 'is-vs-not', label: 'What System IS vs NOT', icon: CheckCircle2 },
-        { id: 'quick-access', label: 'System at a Glance (HUD)', icon: Sparkles },
+        { id: 'quick-access', label: 'System at a Glance (4-Metric HUD)', icon: Sparkles },
       ],
     },
     {
-      category: '2. Architecture & Hierarchy',
+      category: '2. Technology & Architecture',
       items: [
+        { id: 'tech-stack-why', label: 'Tech Stack & The "WHY"', icon: Database },
         { id: 'hierarchy', label: '7-Tier Municipal Hierarchy', icon: Layers },
         { id: 'decoupled-identity', label: 'Decoupled Identity Model', icon: KeyRound },
-        { id: 'tech-topology', label: 'Dual-App System Topology', icon: Cpu },
-        { id: 'tech-stack', label: 'Technology Stack Inventory', icon: Database },
-        { id: 'bff-architecture', label: 'BFF & Request Lifecycle', icon: ArrowRightLeft },
-        { id: 'directory-structure', label: 'Repository Directory Layout', icon: Terminal },
+        { id: 'tech-topology', label: 'Dual-App Architecture', icon: Cpu },
+        { id: 'bff-flow', label: 'BFF Pattern & Data Flow', icon: ArrowRightLeft },
+        { id: 'project-structure', label: 'Directory Layout & Roles', icon: Terminal },
       ],
     },
     {
-      category: '3. Identity & Governance',
+      category: '3. Identity, Roles & Scopes',
       items: [
         { id: 'roles-catalogue', label: 'The 8 Authoritative Roles', icon: Users },
-        { id: 'capability-matrix', label: 'Role Capability Matrix', icon: Award },
-        { id: 'subordination', label: 'Subordination & Hierarchy Rules', icon: Shield },
+        { id: 'capability-matrix', label: '20-Capability Matrix', icon: Award },
+        { id: 'subordination', label: 'Subordination Rules & Immunity', icon: Shield },
         { id: 'data-scopes', label: 'The 7 Geographic Scopes', icon: Layers },
         { id: 'account-lifecycle', label: 'Account Lifecycle Machine', icon: Clock },
       ],
@@ -125,974 +163,796 @@ export default function DocumentationPage() {
     {
       category: '4. Defense-in-Depth Security',
       items: [
-        { id: 'security-scorecard', label: '55-Control ASVS Scorecard', icon: Shield },
+        { id: 'why-high-security', label: 'Why Enterprise-Grade Security?', icon: Shield },
+        { id: 'security-scorecard', label: '55-Control ASVS Scorecard', icon: Award },
         { id: 'triple-lock', label: 'Triple-Lock Rate Limiting', icon: Lock },
         { id: 'argon2id-security', label: 'Argon2id + Pepper Hashing', icon: KeyRound },
         { id: 'captcha-engine', label: 'Custom Math CAPTCHA Nonce', icon: Hash },
         { id: 'mfa-totp', label: 'Root Admin TOTP MFA Engine', icon: Lock },
-        { id: 'security-invariants', label: 'Non-Negotiable Invariants', icon: AlertTriangle },
-        { id: 'threat-mitigation', label: 'Adversarial Threat Matrix', icon: Shield },
+        { id: 'security-invariants', label: '5 Non-Negotiable Invariants', icon: AlertTriangle },
+        { id: 'threat-matrix', label: 'Adversarial Threat Matrix', icon: Shield },
       ],
     },
     {
-      category: '5. Operational Modules',
+      category: '5. Core Operational Engines',
       items: [
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
-        { id: 'atomic-transfers', label: 'Atomic Teacher Transfers', icon: ArrowRightLeft },
-        { id: 'student-management', label: 'Students, GR & Digital ID', icon: GraduationCap },
+        { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
+        { id: 'student-management', label: 'Students, GR & Digital ID Card', icon: GraduationCap },
         { id: 'parent-portal', label: 'Parent Portal (Waves 1, 2, 3)', icon: Users },
         { id: 'attendance-engine', label: 'Smart Attendance & Timing', icon: ClipboardCheck },
         { id: 'examination-engine', label: 'Elementary Board Exam Engine', icon: Award },
         { id: 'marksheets-tabulation', label: 'Marksheet PDF & Tabulation', icon: FileText },
-        { id: 'documents-library', label: 'Circulars & Digital Library', icon: BookOpen },
+        { id: 'documents-library', label: 'Circulars & Free Textbooks', icon: BookOpen },
         { id: 'notifications-outbox', label: 'Notifications & Alert Outbox', icon: Send },
       ],
     },
     {
-      category: '6. Immutable Audit & Data',
+      category: '6. Immutable Audit & Data Vault',
       items: [
-        { id: 'audit-contract', label: '10-Point Immutable Audit', icon: Shield },
-        { id: 'audit-triggers', label: 'Mandatory Audit Triggers', icon: Activity },
-        { id: 'database-models', label: '30 Mongoose Models Catalogue', icon: Database },
-        { id: 'compound-indexes', label: 'Compound Partial Indexes', icon: Layers },
+        { id: 'audit-contract', label: '10-Point Immutable Audit Contract', icon: Shield },
+        { id: 'database-models', label: 'Complete 30-Model Catalogue', icon: Database },
         { id: 'api-catalogue', label: 'RESTful API Endpoint Index', icon: Terminal },
       ],
     },
     {
-      category: '7. UI & Client Architecture',
+      category: '7. UI Constitution & Performance',
       items: [
-        { id: 'design-constitution', label: 'Frozen Design Constitution v2', icon: Sparkles },
-        { id: 'client-architecture', label: 'Redux Toolkit & Token Mutex', icon: Cpu },
-        { id: 'pwa-caching', label: 'PWA Offline App-Shell', icon: Layers },
+        { id: 'design-constitution', label: 'Frozen Design Constitution v2.0', icon: Sparkles },
+        { id: 'client-architecture', label: 'Redux Toolkit & Token Refresh Mutex', icon: Cpu },
+        { id: 'pwa-caching', label: 'PWA Offline App-Shell Caching', icon: Layers },
       ],
     },
     {
       category: '8. Verification & Deployment',
       items: [
-        { id: 'test-verification', label: '40 Test Suites (1,116 PASS)', icon: CheckCircle2 },
-        { id: 'deployment-topology', label: 'Multi-Zone Vercel Deployment', icon: Building2 },
-        { id: 'environment-config', label: 'Environment Config & Secrets', icon: Lock },
+        { id: 'test-verification', label: '40 Test Suites Dynamic Baseline', icon: CheckCircle2 },
+        { id: 'deployment-topology', label: 'Multi-Zone Vercel Topology', icon: Building2 },
         { id: 'status-roadmap', label: 'Honest Status & Roadmap', icon: Activity },
-        { id: 'glossary', label: 'Institutional Glossary', icon: HelpCircle },
+        { id: 'glossary', label: 'Institutional & Technical Glossary', icon: BookOpen },
       ],
+    },
+    {
+      category: '9. Resources & Knowledge Base',
+      items: [{ id: 'faq', label: 'Frequently Asked Questions (FAQ)', icon: HelpCircle }],
     },
   ];
 
-  // Search filter across navigation items
+  const allTopics = navGroups.flatMap((g) => g.items);
+
+  // Sync hash routing on load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace('#', '');
+      if (allTopics.some((t) => t.id === hash)) {
+        setActiveSection(hash);
+      }
+    }
+  }, []);
+
+  const handleSelect = (id) => {
+    setActiveSection(id);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${id}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setMobileMenuOpen(false);
+  };
+
   const filteredNavGroups = navGroups
     .map((group) => ({
       ...group,
-      items: group.items.filter(
-        (item) =>
-          item.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          group.category.toLowerCase().includes(searchQuery.toLowerCase())
+      items: group.items.filter((item) =>
+        item.label.toLowerCase().includes(searchQuery.toLowerCase())
       ),
     }))
     .filter((group) => group.items.length > 0);
 
+  // Determine current active item index for Prev/Next buttons
+  const currentIndex = allTopics.findIndex((t) => t.id === activeSection);
+  const prevTopic = currentIndex > 0 ? allTopics[currentIndex - 1] : null;
+  const nextTopic = currentIndex < allTopics.length - 1 ? allTopics[currentIndex + 1] : null;
+
   return (
-    <div className="min-h-screen bg-[#F8FBFD] text-[#102033] flex flex-col font-sans">
-      {/* ── Fixed Top Header (CVify Pro Visual Standard) ── */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-          {/* Left Brand Identity & Back Button */}
+    <div className="min-h-screen bg-[#F8FAFC]">
+      {/* ── Sub-Header Top Bar ── */}
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#526477] hover:text-[#006AC7] hover:bg-[#F0F8FF] transition-colors border border-slate-200/60"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#526477] hover:text-[#006AC7] transition-colors py-1.5 px-3 rounded-lg border border-slate-200 hover:border-blue-300"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Portal</span>
+              <span>Civic Home</span>
             </Link>
-
-            <div className="h-5 w-px bg-slate-200 hidden sm:block" />
-
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#006AC7] flex items-center justify-center text-white shadow-xs">
-                <Shield className="w-4 h-4" />
-              </div>
-              <div className="leading-tight">
-                <div className="font-bold text-sm text-[#102033] flex items-center gap-2">
-                  <span>DMC Liaquatabad</span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-blue-50 text-[#006AC7] border border-blue-200">
-                    System Docs
-                  </span>
-                </div>
-                <div className="text-[11px] text-[#526477] hidden md:block">
-                  Education Department Municipal Knowledge Base
-                </div>
-              </div>
+            <div className="h-4 w-px bg-slate-200 hidden sm:block" />
+            <div className="hidden sm:flex items-center gap-2 text-xs font-extrabold text-[#102033]">
+              <span className="w-5 h-5 rounded-md bg-[#006AC7] text-white flex items-center justify-center font-mono text-[10px]">
+                D
+              </span>
+              <span>DMC Liaquatabad</span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-[#006AC7] border border-blue-200 uppercase tracking-wider">
+                MASTER KNOWLEDGE BASE
+              </span>
             </div>
           </div>
 
-          {/* Center Search Input */}
-          <div className="hidden md:flex items-center flex-1 max-w-md relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
+          {/* Quick Search Input */}
+          <div className="relative flex-1 max-w-xs hidden md:block">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
+              placeholder="Search topics (e.g. why Argon2id, attendance timing, transfer state)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search topics (e.g., transfers, Argon2id, attendance, exams)..."
-              className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#006AC7] focus:bg-white transition-all text-[#102033]"
+              className="w-full text-xs pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[#102033] focus:outline-none focus:border-[#006AC7] focus:bg-white transition-all placeholder:text-slate-400"
             />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 text-xs text-slate-400 hover:text-slate-600 font-bold"
-              >
-                ✕
-              </button>
-            )}
           </div>
 
-          {/* Right Status & Action Controls */}
-          <div className="flex items-center gap-2.5">
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#4B7F3A] text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-[#4B7F3A] animate-pulse" />
+          <div className="flex items-center gap-2">
+            <span className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-[#4B7F3A] border border-emerald-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4B7F3A] animate-pulse" />
               <span>Staging Verified (1,116 Tests PASS)</span>
-            </div>
+            </span>
 
             <a
-              href={`${portalUrl}/login`}
+              href={portalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-[#006AC7] hover:bg-[#005299] text-white shadow-xs transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#006AC7] hover:bg-[#005299] text-white shadow-xs transition-colors"
             >
-              <span>Access App</span>
-              <ExternalLink className="w-3 h-3" />
+              <span>Access Portal</span>
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
+            {/* Mobile menu trigger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 lg:hidden"
-              aria-label="Toggle Navigation Menu"
+              className="p-1.5 rounded-lg border border-slate-200 text-[#102033] hover:bg-slate-50 lg:hidden"
+              aria-label="Toggle navigation"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* ── Main Dual-Pane Body Layout ── */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex gap-8 py-8">
-        {/* ── Left Sticky Sidebar (w-72 / w-80) ── */}
+      {/* ── Main Layout (Sidebar + Content Area) ── */}
+      <div className="max-w-7xl mx-auto flex">
+        {/* ── Left Navigation Sidebar (CVify Pro Desktop Sticky Layout) ── */}
         <aside
-          className={`fixed inset-y-0 left-0 z-40 w-80 bg-white border-r border-slate-200 p-5 overflow-y-auto transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:h-[calc(100vh-6rem)] lg:sticky lg:top-20 lg:rounded-2xl lg:shadow-xs ${
-            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          className={`fixed inset-y-0 left-0 z-30 w-72 bg-white border-r border-slate-200/80 p-5 overflow-y-auto transition-transform duration-200 lg:static lg:block lg:translate-x-0 ${
+            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
+          style={{ maxHeight: 'calc(100vh - 57px)', top: '57px' }}
         >
           {/* Mobile search bar */}
-          <div className="md:hidden mb-4 relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <div className="relative mb-4 md:hidden">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
+              placeholder="Search topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search topics..."
-              className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#006AC7]"
+              className="w-full text-xs pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[#102033] focus:outline-none focus:border-[#006AC7]"
             />
           </div>
 
-          <div className="space-y-6 select-none">
-            {filteredNavGroups.map((group) => (
-              <div key={group.category} className="space-y-1">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
+          <nav className="space-y-6">
+            {filteredNavGroups.map((group, groupIndex) => (
+              <div key={groupIndex} className="space-y-1.5">
+                <div className="text-[10px] font-black uppercase tracking-wider text-[#526477] px-2.5 py-1">
                   {group.category}
                 </div>
-                {group.items.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = activeSection === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => handleSelect(item.id)}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium text-left transition-all ${
-                        isActive
-                          ? 'bg-[#F0F8FF] text-[#006AC7] border border-[#B9DEFF] font-bold shadow-xs'
-                          : 'text-[#526477] hover:bg-slate-50 hover:text-[#102033]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5 truncate">
-                        <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#006AC7]' : 'text-slate-400'}`} />
-                        <span className="truncate">{item.label}</span>
-                      </div>
-                      {isActive && <ChevronRight className="w-3.5 h-3.5 text-[#006AC7] flex-shrink-0" />}
-                    </button>
-                  );
-                })}
+                <div className="space-y-0.5">
+                  {group.items.map((item) => {
+                    const IconComponent = item.icon;
+                    const isActive = activeSection === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => handleSelect(item.id)}
+                        className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all text-left ${
+                          isActive
+                            ? 'bg-blue-50 text-[#006AC7] font-bold border border-blue-200 shadow-2xs'
+                            : 'text-[#526477] hover:bg-slate-50 hover:text-[#102033]'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 truncate">
+                          <IconComponent
+                            className={`w-3.5 h-3.5 flex-shrink-0 ${
+                              isActive ? 'text-[#006AC7]' : 'text-slate-400'
+                            }`}
+                          />
+                          <span className="truncate">{item.label}</span>
+                        </div>
+                        {isActive && <ChevronRight className="w-3 h-3 text-[#006AC7] flex-shrink-0" />}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             ))}
-          </div>
+          </nav>
         </aside>
 
-        {/* ── Main Reading Pane ── */}
-        <main className="flex-1 min-w-0 max-w-4xl space-y-16 pb-24">
-          {/* Hero Section */}
-          <div className="space-y-4 border-b border-slate-200 pb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-50 text-[#006AC7] border border-blue-200">
-              <Shield className="w-3.5 h-3.5" />
-              <span>Official System Knowledge Base &amp; Engineering Constitution</span>
-            </div>
+        {/* ── Main Dynamic Content Area ── */}
+        <main className="flex-1 min-w-0 p-6 sm:p-10 lg:p-12 space-y-10">
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 1: GETTING STARTED & CONTEXT
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'overview' && (
+            <div>
+              <DocHeader
+                title="Municipal Platform Mission & Institutional Identity"
+                badge="1. System Foundations"
+                subtitle="The official digital governance backbone for public primary, elementary, and secondary schools operating under the District Municipal Corporation (DMC) Liaquatabad Town Centre, Karachi Central."
+              />
 
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#102033] font-display">
-              Education Department Liaquatabad Town Centre (DMC)
-            </h1>
-
-            <p className="text-base text-[#526477] leading-relaxed max-w-3xl">
-              Authoritative, single-source-of-truth technical and operational specification for the centralized public
-              school management platform of Liaquatabad Town, Karachi Central. Designed for software engineers, security
-              auditors, municipal education officers, and future platform maintainers.
-            </p>
-
-            {/* 4-Metric System HUD (CVify Pro Standard) */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-4">
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Architecture</div>
-                <div className="text-lg font-extrabold text-[#006AC7] mt-1">Dual-App + BFF</div>
-                <div className="text-[11px] text-[#526477] mt-0.5">Next.js 15 + React 18</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Test Baseline</div>
-                <div className="text-lg font-extrabold text-[#4B7F3A] mt-1">1,116 PASS</div>
-                <div className="text-[11px] text-[#526477] mt-0.5">40 Test Suites (100%)</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Security Score</div>
-                <div className="text-lg font-extrabold text-[#102033] mt-1">96.4% ASVS</div>
-                <div className="text-[11px] text-[#526477] mt-0.5">55 Verified Controls</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Data Models</div>
-                <div className="text-lg font-extrabold text-purple-700 mt-1">30 Schemas</div>
-                <div className="text-[11px] text-[#526477] mt-0.5">Zero Hard Deletions</div>
-              </div>
-            </div>
-          </div>
-
-          {/* ─────────────────────────────────────────────────────────────
-              SECTION 1: SYSTEM FOUNDATIONS
-          ───────────────────────────────────────────────────────────── */}
-          <section id="overview" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">System Foundations</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Building2 className="w-6 h-6 text-[#006AC7]" />
-                1.1 Institutional Identity &amp; Platform Mission
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              The platform serves as the municipal governance backbone for public primary, elementary, and secondary
-              schools operating within the jurisdiction of the <strong>District Municipal Corporation (DMC) Liaquatabad Town Centre, Karachi Central</strong>. It transitions paper-based government schooling records into an authenticated, cryptographic, and verifiable digital workflow.
-            </p>
-
-            <div className="p-4 rounded-xl bg-blue-50/60 border-l-4 border-[#006AC7] text-xs text-[#102033] space-y-1">
-              <div className="font-bold">Constitutional Municipal Context</div>
-              <div>Operating under the Sindh Civil Servants Act, DMC Local Government Ordinance, and the Sindh Elementary Board Examination Regulations. All software actions represent official civic records.</div>
-            </div>
-          </section>
-
-          <section id="problem-statement" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">System Foundations</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <AlertCircle className="w-6 h-6 text-amber-600" />
-                1.2 The Real-World Municipal Problem
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Before this platform, public education administration across Liaquatabad Town was crippled by five systemic failure points:
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="font-bold text-xs text-[#102033] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500" />
-                  Ghost Faculty &amp; Proxy Teachers
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+                  <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTION</div>
+                  <div className="text-sm font-black text-[#102033]">Liaquatabad Town</div>
+                  <div className="text-xs text-[#526477]">Karachi Central, Sindh</div>
                 </div>
-                <p className="text-xs text-[#526477]">
-                  Unmonitored paper registers allowed unauthorized proxy teachers and unchecked staff absenteeism without supervisor audit visibility.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="font-bold text-xs text-[#102033] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500" />
-                  Orphan Classrooms via Lost Transfers
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+                  <div className="text-[10px] font-extrabold uppercase text-[#526477]">GOVERNANCE TIER</div>
+                  <div className="text-sm font-black text-[#006AC7]">7-Tier Decoupled</div>
+                  <div className="text-xs text-[#526477]">Root to Parent</div>
                 </div>
-                <p className="text-xs text-[#526477]">
-                  Informal teacher transfers left classrooms with no designated instructor for months while physical relieving chits were lost in transit.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="font-bold text-xs text-[#102033] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500" />
-                  Elementary Tabulation Inaccuracies
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+                  <div className="text-[10px] font-extrabold uppercase text-[#526477]">SECURITY STANDARD</div>
+                  <div className="text-sm font-black text-[#4B7F3A]">OWASP ASVS 5.0</div>
+                  <div className="text-xs text-[#526477]">Level 2/3 Compliance</div>
                 </div>
-                <p className="text-xs text-[#526477]">
-                  Manual calculation of 700-mark aggregates, Drawing letter grades, and Islamiat Nazra 20/80 splits led to frequent mathematical discrepancies.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="font-bold text-xs text-[#102033] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500" />
-                  Zero Parent Transparency
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+                  <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUTOMATED TESTS</div>
+                  <div className="text-sm font-black text-purple-600">1,116 PASS</div>
+                  <div className="text-xs text-[#526477]">40 Production Suites</div>
                 </div>
-                <p className="text-xs text-[#526477]">
-                  Working-class parents had no secure mechanism to monitor attendance, homework, or verified academic results without visiting schools in person.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section id="is-vs-not" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">System Foundations</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <CheckCircle2 className="w-6 h-6 text-[#4B7F3A]" />
-                1.3 What This System IS vs What This System IS NOT
-              </h2>
-            </div>
-
-            <div className="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 font-bold text-[#102033]">
-                  <tr>
-                    <th className="p-3.5">WHAT THIS SYSTEM IS</th>
-                    <th className="p-3.5">WHAT THIS SYSTEM IS NOT</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-[#526477]">
-                  <tr>
-                    <td className="p-3.5 font-medium text-[#102033] flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4B7F3A]" />
-                      A centralized municipal education governance portal
-                    </td>
-                    <td className="p-3.5 text-slate-500">NOT a commercial private-school billing SaaS</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3.5 font-medium text-[#102033] flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4B7F3A]" />
-                      An authoritative staff deployment &amp; transfer engine
-                    </td>
-                    <td className="p-3.5 text-slate-500">NOT an unmonitored open-registration message board</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3.5 font-medium text-[#102033] flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4B7F3A]" />
-                      A Sindh Elementary Board examination tabulator
-                    </td>
-                    <td className="p-3.5 text-slate-500">NOT a generic, unconstrained spreadsheet tool</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3.5 font-medium text-[#102033] flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#4B7F3A]" />
-                      A verified parent-student oversight conduit
-                    </td>
-                    <td className="p-3.5 text-slate-500">NOT an ad-supported or social networking app</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* ─────────────────────────────────────────────────────────────
-              SECTION 2: ARCHITECTURE & HIERARCHY
-          ───────────────────────────────────────────────────────────── */}
-          <section id="hierarchy" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Architecture &amp; Hierarchy</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Layers className="w-6 h-6 text-[#006AC7]" />
-                2.1 The 7-Tier Municipal Governance Hierarchy
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Institutional authority operates in a downward cascade across 7 strictly quarantined tiers. Every actor’s visibility is determined by their assigned geographic boundary:
-            </p>
-
-            {/* ASCII Terminal Box Diagram (CVify Pro Signature Style) */}
-            <div className="bg-slate-950 font-mono text-emerald-400 p-5 rounded-2xl border border-slate-800 shadow-xl overflow-x-auto text-xs leading-relaxed">
-              <div className="text-slate-400 mb-2">// 7-TIER AUTHORITATIVE MUNICIPAL GOVERNANCE HIERARCHY</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 1: SUPREME PLATFORM GOVERNANCE (Role: ROOT_ADMIN • Level: 100)      │</div>
-              <div>│ Scope: GLOBAL • Technical Architecture, Stealth Outage, Master Audit    │</div>
-              <div>└────────────────────────────────────┬────────────────────────────────────┘</div>
-              <div>                                     ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 2: MUNICIPAL EXECUTIVE DIRECTORATE (Role: SUPER_ADMIN • Level: 80) │</div>
-              <div>│ Scope: TOWN • Town Education Officer, DDO, Chairman Education DMC       │</div>
-              <div>└────────────────────────────────────┬────────────────────────────────────┘</div>
-              <div>                                     ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 3: TOWN ADMINISTRATIVE MANAGEMENT (Role: ADMIN • Level: 60)         │</div>
-              <div>│ Scope: TOWN • Municipal Education Officers, Faculty Onboarding Queues    │</div>
-              <div>└────────────────────────────────────┬────────────────────────────────────┘</div>
-              <div>                                     ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 4: CLUSTER FIELD SUPERVISION (Role: SUPERVISOR • Level: 50)         │</div>
-              <div>│ Scope: ASSIGNED_SCHOOLS • Unannounced Biometric Audits, Transfer Orders │</div>
-              <div>└────────────────────────────────────┬────────────────────────────────────┘</div>
-              <div>                                     ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 5: INSTITUTIONAL SCHOOL AUTHORITY (Role: HM • Level: 40)             │</div>
-              <div>│ Scope: SCHOOL • Head Master, Teacher Attendance, Result Verification     │</div>
-              <div>└────────────────────────────────────┬────────────────────────────────────┘</div>
-              <div>                                     ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 6: CLASSROOM INSTRUCTIONAL FACULTY (Role: TEACHER • Level: 20)      │</div>
-              <div>│ Scope: CLASS_SECTION • Student Attendance, Subject Marks Entry, Homework │</div>
-              <div>└────────────────────────────────────┬────────────────────────────────────┘</div>
-              <div>                                     ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ TIER 7: PRIMARY CONSTITUENTS (Roles: STUDENT, PARENT • Level: 10)       │</div>
-              <div>│ Scope: SELF / CHILD • Verified Wards, Published Results, Circulars      │</div>
-              <div>└─────────────────────────────────────────────────────────────────────────┘</div>
-            </div>
-          </section>
-
-          <section id="decoupled-identity" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Architecture &amp; Hierarchy</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <KeyRound className="w-6 h-6 text-[#006AC7]" />
-                2.2 Decoupled Identity Model: Designation ≠ Role ≠ Scope ≠ Authority
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              In government administration, officials frequently possess prestigious job titles (designations) that do not map directly to technical software capabilities. The system enforces a strict 4-way decoupling:
-            </p>
-
-            <div className="p-4 rounded-xl bg-slate-900 text-white font-mono text-xs space-y-2 border border-slate-800">
-              <div className="text-amber-400 font-bold">// THE CONSTITUTIONAL IDENTITY AXIOM</div>
-              <div className="text-slate-300">
-                CIVIL DESIGNATION (&quot;DDO Education&quot;) ≠ RBAC ROLE (SUPER_ADMIN) ≠ SCOPE (TOWN) ≠ RUNTIME AUTHORITY (TRANSFER_APPROVE)
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1.5">
-                <div className="font-bold text-[#102033]">Civil Designation (Descriptive Metadata)</div>
-                <p className="text-[#526477]">
-                  Represents the official government post (e.g. <em>Senior Head Master, Drawing &amp; Disbursing Officer</em>). Possesses <strong>zero cryptographic authority</strong> in backend middleware.
-                </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1.5">
-                <div className="font-bold text-[#102033]">RBAC Role &amp; Level (Functional Power)</div>
-                <p className="text-[#526477]">
-                  Determines technical capabilities and subordination level. Prevents actors from promoting anyone to an equal or higher level.
-                </p>
-              </div>
-            </div>
-          </section>
+              <SectionTitle>Why This System Exists: The Municipal Civic Mandate</SectionTitle>
+              <p className="text-xs text-[#526477] leading-relaxed mb-6">
+                Public school education in urban municipal towns of Sindh requires a level of accountability and auditability that off-the-shelf commercial school software cannot satisfy. In municipal government schools:
+              </p>
 
-          <section id="tech-topology" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Architecture &amp; Hierarchy</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Cpu className="w-6 h-6 text-[#006AC7]" />
-                2.3 Dual-App System Topology &amp; End-to-End Pipeline
-              </h2>
-            </div>
-
-            {/* ASCII Architecture Flow Box */}
-            <div className="bg-slate-950 font-mono text-cyan-400 p-5 rounded-2xl border border-slate-800 shadow-xl overflow-x-auto text-xs leading-relaxed">
-              <div className="text-slate-400 mb-2">// DUAL-APP ECOSYSTEM &amp; BACKEND-FOR-FRONTEND (BFF) TOPOLOGY</div>
-              <div>┌──────────────────────────────┐        ┌──────────────────────────────┐</div>
-              <div>│   PUBLIC CIVIC PORTAL        │        │   AUTHENTICATED WORKSPACE    │</div>
-              <div>│   Next.js 15.1.7 (React 19)  │        │   React 18.3.1 (Vite 6.1.0)  │</div>
-              <div>│   Free E-Books, Civic SEO    │        │   8 Dashboards, PWA App-Shell│</div>
-              <div>└──────────────┬───────────────┘        └──────────────┬───────────────┘</div>
-              <div>               │                                       │</div>
-              <div>               │ REST Requests                         │ REST + HttpOnly Cookie</div>
-              <div>               └───────────────────┬───────────────────┘</div>
-              <div>                                   ▼</div>
-              <div>┌─────────────────────────────────────────────────────────────────────────┐</div>
-              <div>│ CORE BACKEND-FOR-FRONTEND (BFF) &amp; REST API LAYER (server/)              │</div>
-              <div>│ Node.js 20+ (Pure ES Modules) • Express 4.21.2                          │</div>
-              <div>│ • Reverse Proxy Trust (trust proxy = 1) • Helmet CSP &amp; HSTS             │</div>
-              <div>│ • Deep Sanitize Pipeline • NoSQL Mongo Sanitizer • HPP Parameter Guard   │</div>
-              <div>│ • Triple-Lock Rate Limiter (IP + Account + Composite Fingerprint)       │</div>
-              <div>│ • Argon2id Native Hashing + Server Pepper • Dual-Token RTR Engine        │</div>
-              <div>└───────────────────────────────────┬─────────────────────────────────────┘</div>
-              <div>                                   │</div>
-              <div>                 ┌─────────────────┴─────────────────┐</div>
-              <div>                 ▼                                   ▼</div>
-              <div>┌─────────────────────────────────┐ ┌─────────────────────────────────┐</div>
-              <div>│ MongoDB Atlas 7.0 Cluster        │ │ External Integrated Services     │</div>
-              <div>│ 30 Mongoose Models, Zero Deletes │ │ • Cloudinary (Encrypted Media)   │</div>
-              <div>│ Compound Partial Unique Indexes │ │ • Nodemailer (Municipal SMTP)    │</div>
-              <div>│ Immutable Append-Only Audit Vault│ │ • PDFKit (Vector Board Sheets)   │</div>
-              <div>└─────────────────────────────────┘ └─────────────────────────────────┘</div>
-            </div>
-          </section>
-
-          {/* ─────────────────────────────────────────────────────────────
-              SECTION 3: IDENTITY & GOVERNANCE
-          ───────────────────────────────────────────────────────────── */}
-          <section id="roles-catalogue" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Identity &amp; Governance</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Users className="w-6 h-6 text-[#006AC7]" />
-                3.1 The 8 Authoritative Roles Catalogue
-              </h2>
-            </div>
-
-            <div className="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 font-bold text-[#102033]">
-                  <tr>
-                    <th className="p-3">ROLE</th>
-                    <th className="p-3">LEVEL</th>
-                    <th className="p-3">DEFAULT SCOPE</th>
-                    <th className="p-3">PRIMARY RESPONSIBILITY</th>
-                    <th className="p-3">CRITICAL BOUNDARY</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-[#526477]">
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">ROOT_ADMIN</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">GLOBAL</td>
-                    <td className="p-3 text-[#102033]">Supreme Technical Architect</td>
-                    <td className="p-3 text-red-600">Zero self-demotion via web API</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">SUPER_ADMIN</td>
-                    <td className="p-3 font-mono">80</td>
-                    <td className="p-3 font-mono">TOWN</td>
-                    <td className="p-3 text-[#102033]">Town Directorate / DDO</td>
-                    <td className="p-3">Cannot modify another Super Admin</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">ADMIN</td>
-                    <td className="p-3 font-mono">60</td>
-                    <td className="p-3 font-mono">TOWN</td>
-                    <td className="p-3 text-[#102033]">Town Operations Officer</td>
-                    <td className="p-3">Cannot grant Level 60+ permissions</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">SUPERVISOR</td>
-                    <td className="p-3 font-mono">50</td>
-                    <td className="p-3 font-mono">ASSIGNED_SCHOOLS</td>
-                    <td className="p-3 text-[#102033]">Cluster Field Inspector</td>
-                    <td className="p-3">Quarantined to assigned schools array</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">HM</td>
-                    <td className="p-3 font-mono">40</td>
-                    <td className="p-3 font-mono">SCHOOL</td>
-                    <td className="p-3 text-[#102033]">Head Master (School Head)</td>
-                    <td className="p-3">Locked to own school ID exclusively</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">TEACHER</td>
-                    <td className="p-3 font-mono">20</td>
-                    <td className="p-3 font-mono">CLASS_SECTION</td>
-                    <td className="p-3 text-[#102033]">Classroom Faculty</td>
-                    <td className="p-3">Only assigned subjects &amp; sections</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">STUDENT</td>
-                    <td className="p-3 font-mono">10</td>
-                    <td className="p-3 font-mono">SELF</td>
-                    <td className="p-3 text-[#102033]">Enrolled Pupil</td>
-                    <td className="p-3 text-red-600">Blocked from cohort tabulation gazettes</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-mono font-bold text-[#006AC7]">PARENT</td>
-                    <td className="p-3 font-mono">10</td>
-                    <td className="p-3 font-mono">CHILD</td>
-                    <td className="p-3 text-[#102033]">Verified Child Guardian</td>
-                    <td className="p-3 text-red-600">Requires VERIFIED ParentStudentLink</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* ─────────────────────────────────────────────────────────────
-              SECTION 4: DEFENSE-IN-DEPTH SECURITY
-          ───────────────────────────────────────────────────────────── */}
-          <section id="security-scorecard" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Defense-in-Depth Security</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Shield className="w-6 h-6 text-[#006AC7]" />
-                4.1 55-Control ASVS 5.0 Security Scorecard (96.4% Compliance)
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Every critical security boundary is verified through direct execution path tracing against OWASP ASVS 5.0 Level 2/3 criteria:
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 text-xs">
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                <div className="font-bold text-[#102033]">Root Governance</div>
-                <div className="text-base font-extrabold text-[#006AC7]">87.5% PASS</div>
-                <div className="text-slate-400">3 Pass / 1 Partial</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <InfoCard
+                  icon={<Building2 className="w-5 h-5" />}
+                  color="blue"
+                  title="Civil Service Accountability"
+                  desc="Staff deployment is governed by the Sindh Civil Servants Act. Teacher transfers, relieving orders, and joining confirmations represent legal civil service administrative actions that require non-repudiable audit logs."
+                />
+                <InfoCard
+                  icon={<Award className="w-5 h-5" />}
+                  color="emerald"
+                  title="Elementary Board Examination Integrity"
+                  desc="Official Grade 4 to 8 examinations follow strict Sindh Board standards: 700-mark aggregate, compulsory 20-mark Nazra Quran recitation split, Drawing letter-grade exclusion, and class ranking algorithms."
+                />
+                <InfoCard
+                  icon={<Shield className="w-5 h-5" />}
+                  color="purple"
+                  title="Zero-Trust Parent Ward Verification"
+                  desc="In working-class urban areas, parents lack enterprise credentials. The platform introduces a 3-step ward linkage flow: Anti-Enumeration GR Lookup + Official Guardian Mobile OTP + Head Master Physical Approval."
+                />
+                <InfoCard
+                  icon={<Layers className="w-5 h-5" />}
+                  color="amber"
+                  title="Cluster Field Supervision"
+                  desc="Cluster Supervisors conduct unannounced physical inspections, logging biometric headcounts, drinking water safety, and electricity conditions directly into immutable audit records."
+                />
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                <div className="font-bold text-[#102033]">Administrative Hierarchy</div>
-                <div className="text-base font-extrabold text-[#4B7F3A]">100% PASS</div>
-                <div className="text-slate-400">5 Pass / 0 Fail</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                <div className="font-bold text-[#102033]">Parameter Guards &amp; HPP</div>
-                <div className="text-base font-extrabold text-[#4B7F3A]">100% PASS</div>
-                <div className="text-slate-400">4 Pass / 0 Fail</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                <div className="font-bold text-[#102033]">JWT &amp; Multi-Device RTR</div>
-                <div className="text-base font-extrabold text-[#006AC7]">91.7% PASS</div>
-                <div className="text-slate-400">5 Pass / 1 Partial</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                <div className="font-bold text-[#102033]">Argon2id + Pepper</div>
-                <div className="text-base font-extrabold text-[#006AC7]">91.7% PASS</div>
-                <div className="text-slate-400">5 Pass / 1 Partial</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-                <div className="font-bold text-[#102033]">Role &amp; Jurisdiction Scoping</div>
-                <div className="text-base font-extrabold text-[#4B7F3A]">100% PASS</div>
-                <div className="text-slate-400">8 Pass / 0 Fail</div>
-              </div>
+              <TerminalBlock title="HIGH-LEVEL SYSTEM TOPOLOGY">
+{`┌──────────────────────────────┐        ┌──────────────────────────────┐
+│   PUBLIC CIVIC PORTAL        │        │   AUTHENTICATED WORKSPACE    │
+│   Next.js 15.1.7 (React 19)  │        │   React 18.3.1 (Vite 6.1.0)  │
+│   Free E-Books, Civic SEO    │        │   8 Dashboards, PWA App-Shell│
+└──────────────┬───────────────┘        └──────────────┬───────────────┘
+               │                                       │
+               │ REST Requests                         │ REST + HttpOnly Cookie
+               └───────────────────┬───────────────────┘
+                                   ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│ CORE BACKEND-FOR-FRONTEND (BFF) & REST API LAYER (server/)              │
+│ Node.js 20+ (Pure ES Modules) • Express 4.21.2                          │
+│ • Reverse Proxy Trust (trust proxy = 1) • Helmet CSP & HSTS             │
+│ • Deep Sanitize Pipeline • NoSQL Mongo Sanitizer • HPP Parameter Guard   │
+│ • Triple-Lock Rate Limiter (IP + Account + Composite Fingerprint)       │
+│ • Argon2id Native Hashing + Server Pepper • Dual-Token RTR Engine        │
+└───────────────────────────────────┬─────────────────────────────────────┘
+                                   │
+                 ┌─────────────────┴─────────────────┐
+                 ▼                                   ▼
+┌─────────────────────────────────┐ ┌─────────────────────────────────┐
+│ MongoDB Atlas 7.0 Cluster        │ │ External Integrated Services     │
+│ 30 Mongoose Models, Zero Deletes │ │ • Cloudinary (Encrypted Media)   │
+│ Compound Partial Unique Indexes │ │ • Nodemailer (Municipal SMTP)    │
+│ Immutable Append-Only Audit Vault│ │ • PDFKit (Vector Board Sheets)   │
+└─────────────────────────────────┘ └─────────────────────────────────┘`}
+              </TerminalBlock>
             </div>
-          </section>
+          )}
 
-          <section id="security-invariants" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Defense-in-Depth Security</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <AlertTriangle className="w-6 h-6 text-red-600" />
-                4.2 Non-Negotiable Security Invariants
-              </h2>
+          {activeSection === 'problem-statement' && <ProblemStatementSection />}
+          {activeSection === 'is-vs-not' && <IsVsNotSection />}
+          {activeSection === 'quick-access' && <QuickAccessSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 2: TECHNOLOGY & ARCHITECTURE
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'tech-stack-why' && (
+            <div>
+              <DocHeader
+                title={'Complete Technology Stack & Architectural "WHY"'}
+                badge="2. Technology Decisions"
+                subtitle="Exhaustive rationale behind every framework, library, and dependency chosen across the backend, frontend, database, and build infrastructure."
+              />
+
+              <p className="text-xs text-[#526477] leading-relaxed mb-6">
+                Technology choices on this project were made strictly on empirical engineering merits—speed, security, operational resilience under low-bandwidth municipal network environments, and alignment with modern JavaScript ES Module standards.
+              </p>
+
+              <SectionTitle>Backend Architecture &amp; Rationale</SectionTitle>
+              <ComparisonTable
+                headers={['Backend Library / Module', 'Why It Was Chosen & Alternatives Rejected']}
+                rows={[
+                  {
+                    left: 'Node.js 20+ Pure ESM ("type": "module")',
+                    right:
+                      'Strict 100% ECMAScript Modules across all source files, scripts, and configs. Eliminates CommonJS require() ambiguity, improves static tree-shaking, and aligns with modern V8 execution engines. Rejects legacy CJS tooling.',
+                  },
+                  {
+                    left: 'Express 4.21.2 REST API',
+                    right:
+                      'Minimalist, battle-tested HTTP middleware pipeline. We rejected heavy enterprise frameworks like NestJS to eliminate excessive boilerplate, decorators, and runtime reflection overhead while retaining total control over interceptors.',
+                  },
+                  {
+                    left: 'MongoDB Atlas + Mongoose 8.10.1',
+                    right:
+                      'Municipal school administration involves polymorphic, hierarchical document trees (classes with variable section counts, flexible subjects, inspection questionnaires, dynamic attendance arrays). Relational SQL schemas require complex multi-table joins for what is naturally a nested document. Mongoose enforces strict validation, schema hooks, and compound partial unique indexes.',
+                  },
+                  {
+                    left: '@node-rs/argon2 Native Rust Engine',
+                    right:
+                      'Winner of the Password Hashing Competition (PHC) and recommended by OWASP ASVS 5.0. Unlike bcrypt (vulnerable to GPU-based parallel dictionary attacks and truncated at 72 bytes), Argon2id provides memory-hard protection (19,456 KiB) against ASIC/GPU attacks.',
+                  },
+                  {
+                    left: 'Triple-Lock Rate Limiter',
+                    right:
+                      'Standard IP rate limiters fail in municipal environments where an entire school or directorate shares a single public NAT IP address. The Triple-Lock tracks (1) Global IP, (2) Target Account ID, and (3) Composite Device Fingerprint simultaneously.',
+                  },
+                  {
+                    left: 'PDFKit 0.16.0 (Vector Rendering)',
+                    right:
+                      'Generates pixel-perfect, watermarked Government of Sindh Official Marksheets and Tabulation Sheets directly on the server stream without needing a heavy headless browser like Puppeteer. Fast, low memory footprint, and mathematically exact vector layout.',
+                  },
+                ]}
+              />
+
+              <SectionTitle>Frontend Architecture &amp; Rationale</SectionTitle>
+              <ComparisonTable
+                headers={['Frontend Library / Module', 'Why It Was Chosen & Alternatives Rejected']}
+                rows={[
+                  {
+                    left: 'React 18.3.1 (SPA) + Vite 6.1.0',
+                    right:
+                      'The authenticated workspace requires instantaneous client-side navigation between classrooms, attendance rosters, and student marks without page reloads. Vite provides sub-second HMR and instant Rollup bundling (28.98s clean build).',
+                  },
+                  {
+                    left: 'Next.js 15.1.7 (Landing Portal)',
+                    right:
+                      'Dedicated strictly to the public civic portal (landing-page/) to provide Server-Side Rendering (SSR), perfect SEO indexation, OpenGraph social sharing cards, and instant public access to free Sindh textbooks.',
+                  },
+                  {
+                    left: 'Redux Toolkit 2.5.1 + React-Redux 9.2.0',
+                    right:
+                      'Centralized, predictable state across 9 normalized domain slices. Handles complex asynchronous operations (e.g. concurrent token refresh mutex queue) that lightweight alternatives like Zustand or Context API cannot handle reliably without custom plumbing.',
+                  },
+                  {
+                    left: 'TailwindCSS v4.0.6 (@tailwindcss/vite)',
+                    right:
+                      'Next-generation engine compiling CSS directly inside the Vite compiler. Enforces the Frozen Design Constitution v2.0 with custom theme tokens (Brand Blue 55%, White 25%, Neutral 12%, Green <= 8%). Zero runtime CSS-in-JS overhead.',
+                  },
+                  {
+                    left: 'Vite Plugin PWA (Workbox)',
+                    right:
+                      'Municipal teachers frequently work in government school buildings with weak cellular reception. The PWA caches the entire application shell, logos, and stylesheets into the browser cache, allowing the workspace to load instantly offline.',
+                  },
+                ]}
+              />
             </div>
+          )}
 
-            <div className="space-y-3 font-mono text-xs">
-              <div className="p-4 rounded-xl bg-slate-950 text-emerald-400 border border-slate-800 space-y-1">
-                <div className="text-amber-400 font-bold">// INVARIANT 1: PARENT WARD ACCESS</div>
-                <div>Authenticated Parent ──► VERIFIED ParentStudentLink ──► exact studentProfileId ──► 200 OK</div>
-                <div className="text-red-400">// ANY OTHER STATE ──► 403 Forbidden + PARENT_CROSS_WARD_ACCESS_BLOCKED</div>
+          {activeSection === 'hierarchy' && <HierarchySection />}
+          {activeSection === 'decoupled-identity' && <DecoupledIdentitySection />}
+          {activeSection === 'tech-topology' && <TechTopologySection />}
+          {activeSection === 'bff-flow' && <BffFlowSection />}
+          {activeSection === 'project-structure' && <ProjectStructureSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 3: IDENTITY, ROLES & SCOPES
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'roles-catalogue' && <RolesCatalogueSection />}
+          {activeSection === 'capability-matrix' && <CapabilityMatrixSection />}
+          {activeSection === 'subordination' && <SubordinationSection />}
+          {activeSection === 'data-scopes' && <DataScopesSection />}
+          {activeSection === 'account-lifecycle' && <AccountLifecycleSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 4: DEFENSE-IN-DEPTH SECURITY
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'why-high-security' && (
+            <div>
+              <DocHeader
+                title="Why Does an Educational System Need Enterprise Banking-Grade Security?"
+                badge="4. Defense-in-Depth Security"
+                subtitle="The critical rationale behind implementing 55 ASVS controls, Argon2id, and Triple-Lock rate limiters on public school records."
+              />
+
+              <p className="text-xs text-[#526477] leading-relaxed mb-6">
+                A common misconception in educational software is: <em>&ldquo;It&apos;s just a school app, why do you need banking-level security?&rdquo;</em> In public municipal governance, a school platform holds the most sensitive legal, demographic, and academic records of thousands of vulnerable children and civil servants.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <InfoCard
+                  icon={<Shield className="w-5 h-5" />}
+                  color="red"
+                  title="Protection of Vulnerable Minors"
+                  desc="Students in public schools have rights to identity privacy. Weak security would expose home addresses, emergency contact phone numbers, B-Form identity numbers, and guardian details to child traffickers or stalkers."
+                />
+                <InfoCard
+                  icon={<Award className="w-5 h-5" />}
+                  color="blue"
+                  title="Official Examination Fraud Prevention"
+                  desc="Sindh Elementary Board results dictate class standing and eligibility for secondary school. In manual or insecure systems, grade tampering and mark inflation were rampant. Our engine ensures calculation integrity."
+                />
+                <InfoCard
+                  icon={<Briefcase className="w-5 h-5" />}
+                  color="purple"
+                  title="Civil Service Legal Liability"
+                  desc="Teacher transfers and disciplinary suspensions carry severe legal and financial implications under the Sindh Civil Servants Act. Administrative mutations require non-repudiable audit logs admissible in court."
+                />
+                <InfoCard
+                  icon={<KeyRound className="w-5 h-5" />}
+                  color="emerald"
+                  title="Municipal Network Threat Model"
+                  desc="Schools operate on shared public NAT connections with minimal perimeter security. Without strict Triple-Lock rate limiting and memory-hard Argon2id, accounts would be vulnerable to botnet credential stuffing."
+                />
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950 text-emerald-400 border border-slate-800 space-y-1">
-                <div className="text-amber-400 font-bold">// INVARIANT 2: STUDENT MARKSHEET ACCESS</div>
-                <div>Authenticated Student ──► _id === studentId ──► status === &apos;PUBLISHED&apos; ──► 200 OK</div>
-                <div className="text-red-400">// DRAFT, SUBMITTED, or VERIFIED_BY_HM ──► 403 Forbidden</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950 text-emerald-400 border border-slate-800 space-y-1">
-                <div className="text-amber-400 font-bold">// INVARIANT 3: COHORT GAZETTE TABULATION SHIELD</div>
-                <div>GET /tabulation-sheet ──► Role NOT IN [&apos;STUDENT&apos;, &apos;PARENT&apos;] ──► 200 OK</div>
-                <div className="text-red-400">// STUDENT or PARENT ──► 403 Forbidden + COHORT_RESULTS_ACCESS_BLOCKED</div>
-              </div>
+              <SectionTitle>The 55-Control ASVS Security Strategy</SectionTitle>
+              <p className="text-xs text-[#526477] leading-relaxed mb-6">
+                Rather than relying on vague security assurances, the platform was audited against the <strong>OWASP Application Security Verification Standard (ASVS 5.0)</strong>, scoring <strong>96.4% compliance</strong> across 55 discrete controls.
+              </p>
             </div>
-          </section>
+          )}
 
-          {/* ─────────────────────────────────────────────────────────────
-              SECTION 5: OPERATIONAL ENGINES
-          ───────────────────────────────────────────────────────────── */}
-          <section id="atomic-transfers" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Operational Modules</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <ArrowRightLeft className="w-6 h-6 text-[#006AC7]" />
-                5.1 The 5-Stage Atomic Teacher Transfer Engine
-              </h2>
+          {activeSection === 'security-scorecard' && <SecurityScorecardSection />}
+          {activeSection === 'triple-lock' && <TripleLockSection />}
+          {activeSection === 'argon2id-security' && <Argon2idSecuritySection />}
+          {activeSection === 'captcha-engine' && <CaptchaEngineSection />}
+          {activeSection === 'mfa-totp' && <MfaTotpSection />}
+          {activeSection === 'security-invariants' && <SecurityInvariantsSection />}
+          {activeSection === 'threat-matrix' && <ThreatMatrixSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 5: CORE OPERATIONAL ENGINES
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
+          {activeSection === 'teacher-rosters' && <TeacherRostersSection />}
+
+          {activeSection === 'atomic-transfers' && (
+            <div>
+              <DocHeader
+                title="5-Stage Atomic Teacher Transfer State Machine"
+                badge="5. Operational State Machines"
+                subtitle="Eliminating orphan classrooms and unverified teacher transfers through a sequential, non-repudiable administrative workflow."
+              />
+
+              <p className="text-xs text-[#526477] leading-relaxed mb-6">
+                In traditional public education bureaucracy, teacher transfers often lead to severe operational chaos: teachers leave their current school without official duty relief, and destination schools are unaware of incoming staff. Our system enforces an <strong>atomic 5-stage finite state machine</strong>:
+              </p>
+
+              <Steps
+                items={[
+                  {
+                    step: '1',
+                    title: 'INITIATED (Transfer Proposal)',
+                    desc: 'A transfer request is created by a Cluster Supervisor, Head Master, or Admin specifying the Teacher, Source School, and Destination School with official transfer orders.',
+                  },
+                  {
+                    step: '2',
+                    title: 'APPROVED_BY_DIRECTORATE',
+                    desc: 'The Town Education Officer / Super Admin approves the transfer. The teacher remains officially attached to the source school and teaching duties are not interrupted.',
+                  },
+                  {
+                    step: '3',
+                    title: 'RELIEVED (Source HM Certification)',
+                    desc: 'The Source School Head Master formally signs the relieving certificate on the platform, confirming all records, keys, and teaching assets have been returned. Class teacher assignments at source school are revoked.',
+                  },
+                  {
+                    step: '4',
+                    title: 'AWAITING_JOINING (In Transit)',
+                    desc: 'The teacher travels to the destination school. The system tracks transit time. No new class assignments can be created during this transition period.',
+                  },
+                  {
+                    step: '5',
+                    title: 'COMPLETED (Destination HM Confirmation)',
+                    desc: 'The Destination School Head Master confirms physical arrival and verifies paperwork. The database atomically updates the teacher’s schoolId. The teacher is now deployable to new sections.',
+                  },
+                ]}
+              />
+
+              <SectionTitle>State Machine Flowchart</SectionTitle>
+              <TerminalBlock title="TEACHER TRANSFER STATE TRANSITION LIFECYCLE">
+{`    ┌─────────────────┐
+    │    INITIATED    │
+    └────────┬────────┘
+             │ Directorate / Super Admin Approves
+             ▼
+    ┌─────────────────┐
+    │ APPROVED_BY_DIR │
+    └────────┬────────┘
+             │ Source HM Signs Relieving Certificate
+             ▼
+    ┌─────────────────┐
+    │     RELIEVED    │ (Teaching assignments released at source)
+    └────────┬────────┘
+             │ Transit Period
+             ▼
+    ┌─────────────────┐
+    │AWAITING_JOINING │
+    └────────┬────────┘
+             │
+             ├─────────────────────────────┐
+             │ Destination HM Confirms     │ Destination HM Rejects
+             ▼                             ▼
+    ┌─────────────────┐           ┌─────────────────┐
+    │    COMPLETED    │           │ REJECTED_BY_HM  │
+    └─────────────────┘           └────────┬────────┘
+    (School ID updated)                    │
+                                 ┌─────────┴─────────┐
+                                 ▼                   ▼
+                        ┌─────────────────┐ ┌─────────────────┐
+                        │ ADMIN_CANCELLED │ │ ADMIN_OVERRIDE  │
+                        └─────────────────┘ └─────────────────┘`}
+              </TerminalBlock>
             </div>
+          )}
 
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Teacher reassignments across municipal schools are executed through an atomic state machine, preventing ghost transfers and orphan classrooms:
-            </p>
+          {activeSection === 'student-management' && <StudentManagementSection />}
+          {activeSection === 'parent-portal' && <ParentPortalSection />}
+          {activeSection === 'attendance-engine' && <AttendanceEngineSection />}
 
-            <div className="bg-slate-950 font-mono text-amber-400 p-5 rounded-2xl border border-slate-800 shadow-xl overflow-x-auto text-xs leading-relaxed">
-              <div className="text-slate-400 mb-2">// 5-STAGE ATOMIC TRANSFER WORKFLOW</div>
-              <div>[1. INITIATED] ──► Supervisor / DDO issues formal Transfer Order with Official Order No.</div>
-              <div>      │</div>
-              <div>      ▼</div>
-              <div>[2. RELIEVED]  ──► Source HM certifies clearance, relieves duties, frees teaching assignments.</div>
-              <div>      │</div>
-              <div>      ▼</div>
-              <div>[3. AWAITING_JOINING] ──► Faculty in transit to destination school.</div>
-              <div>      │</div>
-              <div>      ├────────────────────────────────────────┐</div>
-              <div>      │ Destination HM Confirms Arrival        │ Destination HM Rejects (With Reason)</div>
-              <div>      ▼                                        ▼</div>
-              <div>[4. COMPLETED]                            [5. REJECTED_BY_HM]</div>
-              <div>    School ID updated on User &amp; Profile        │</div>
-              <div>    New teaching assignments unlocked          ├──────────────────┐</div>
-              <div>                                               ▼                  ▼</div>
-              <div>                                        [ADMIN_CANCELLED]   [ADMIN_REAPPROVED]</div>
-            </div>
-          </section>
+          {activeSection === 'examination-engine' && (
+            <div>
+              <DocHeader
+                title="Elementary Board Examination & Tabulation Engine (700 Marks)"
+                badge="5. Academic Engine"
+                subtitle="The exact mathematical formulas, Nazra Quran splits, Drawing grade exclusions, and ranking algorithms enforcing Sindh Elementary Board regulations."
+              />
 
-          <section id="examination-engine" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Operational Modules</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Award className="w-6 h-6 text-[#006AC7]" />
-                5.2 Elementary Board Examination &amp; Tabulation Engine (700 Aggregate)
-              </h2>
-            </div>
+              <p className="text-xs text-[#526477] leading-relaxed mb-6">
+                Grades 4 through 8 in Liaquatabad Town public schools are governed by the <strong>Sindh Elementary Board examination framework</strong>. Manual grading often led to arbitrary calculations; our engine enforces these rules mathematically:
+              </p>
 
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Implements the authoritative examination formulas of the <strong>DMC Liaquatabad Elementary Board (Grades IV to VIII)</strong>:
-            </p>
-
-            <div className="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 font-bold text-[#102033]">
-                  <tr>
-                    <th className="p-3">SUBJECT</th>
-                    <th className="p-3">WRITTEN MAX</th>
-                    <th className="p-3">NAZRA MAX</th>
-                    <th className="p-3">TOTAL MARKS</th>
-                    <th className="p-3">SPECIAL EVALUATION RULE</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-[#526477]">
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">Islamiat / Ethics</td>
-                    <td className="p-3 font-mono">80</td>
-                    <td className="p-3 font-mono text-[#006AC7] font-bold">20</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">Compulsory oral Nazra Quran recitation split</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">English</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">Standard written examination</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">Mathematics</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">Standard written examination</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">General Science</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">Standard written examination</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">Social Studies (S.St)</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">Standard written examination</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">Sindhi</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">Provincial language curriculum</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 font-bold text-[#102033]">Urdu</td>
-                    <td className="p-3 font-mono">100</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold">100</td>
-                    <td className="p-3">National language curriculum</td>
-                  </tr>
-                  <tr className="bg-amber-50/50">
-                    <td className="p-3 font-bold text-amber-900">Drawing (Art)</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3 font-mono font-bold text-amber-800">Grade Only</td>
-                    <td className="p-3 font-bold text-amber-900">EXCLUDED FROM 700 TOTAL AGGREGATE (A, B, C, D)</td>
-                  </tr>
-                  <tr className="bg-slate-100 font-bold text-[#102033]">
-                    <td className="p-3">TOTAL MAXIMUM MARKS</td>
-                    <td colSpan={2} className="p-3 text-right">MAX NUMERIC AGGREGATE:</td>
-                    <td className="p-3 font-mono text-[#006AC7] text-sm">700 MARKS</td>
-                    <td className="p-3">Min Passing: 33% in each subject &amp; overall</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="parent-portal" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Operational Modules</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Users className="w-6 h-6 text-[#006AC7]" />
-                5.3 Parent Portal: 3-Step Ward Verification Wizard
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Parents cannot view any pupil’s academic or attendance data merely by knowing their Student ID. Access requires passing the <strong>3-Step Cryptographic Verification Wizard</strong>:
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="w-7 h-7 rounded-lg bg-blue-100 text-[#006AC7] font-bold flex items-center justify-center">1</div>
-                <div className="font-bold text-[#102033]">Anti-Enumeration Lookup</div>
-                <p className="text-[#526477]">
-                  Parent supplies School, Class, and GR Number. API returns masked particulars (<code>M**** A***</code>) with zero PII leaks.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="w-7 h-7 rounded-lg bg-amber-100 text-amber-700 font-bold flex items-center justify-center">2</div>
-                <div className="font-bold text-[#102033]">Official Guardian OTP</div>
-                <p className="text-[#526477]">
-                  6-digit cryptographic OTP dispatched to official guardian mobile on school record. 3 failed attempts locks claim.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                <div className="w-7 h-7 rounded-lg bg-emerald-100 text-[#4B7F3A] font-bold flex items-center justify-center">3</div>
-                <div className="font-bold text-[#102033]">HM Verification Queue</div>
-                <p className="text-[#526477]">
-                  Head Master physically verifies CNIC and relationship papers, clicking Approve to transition link to <code>VERIFIED</code>.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* ─────────────────────────────────────────────────────────────
-              SECTION 6: AUDIT & DATA ARCHITECTURE
-          ───────────────────────────────────────────────────────────── */}
-          <section id="database-models" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Audit &amp; Data Architecture</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <Database className="w-6 h-6 text-[#006AC7]" />
-                6.1 Complete 30 Mongoose Models Catalogue
-              </h2>
-            </div>
-
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Audited directly from <code>server/src/models/</code>. All collections adhere to the zero-hard-deletion policy:
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-mono text-xs">
-              {[
-                'Announcement', 'Attendance', 'AttendanceSummary', 'AuditLog',
-                'CaptchaNonce', 'Class', 'Document', 'Exam',
-                'HolidayCalendar', 'Homework', 'Notification', 'NotificationOutbox',
-                'Organization', 'OtpVerification', 'ParentStudentLink', 'ProfileAccessRequest',
-                'Result', 'School', 'SchoolInspection', 'Section',
-                'SecurityLockout', 'StudentProfile', 'Subject', 'SystemControl',
-                'TeacherProfile', 'TeachingAssignment', 'Town', 'TransferRequest',
-                'User', 'WeeklyOffPattern'
-              ].map((modelName, index) => (
-                <div key={modelName} className="p-2.5 rounded-lg bg-white border border-slate-200/80 flex items-center justify-between shadow-2xs">
-                  <span className="text-[#102033] font-semibold">{modelName}.js</span>
-                  <span className="text-[10px] text-slate-400 font-bold">#{index + 1}</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
+                  <div className="text-2xl font-black text-[#006AC7]">700</div>
+                  <div className="text-xs font-bold text-[#102033]">Maximum Numeric Aggregate</div>
+                  <div className="text-[11px] text-[#526477]">7 standard subjects × 100 marks</div>
                 </div>
-              ))}
-            </div>
-          </section>
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
+                  <div className="text-2xl font-black text-amber-600">20 / 80</div>
+                  <div className="text-xs font-bold text-[#102033]">Islamiat Split</div>
+                  <div className="text-[11px] text-[#526477]">20 Nazra Quran + 80 Written</div>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
+                  <div className="text-2xl font-black text-[#4B7F3A]">33%</div>
+                  <div className="text-xs font-bold text-[#102033]">Passing Gate</div>
+                  <div className="text-[11px] text-[#526477]">Required in each subject &amp; overall</div>
+                </div>
+              </div>
 
-          <section id="test-verification" className="space-y-6 scroll-mt-24">
-            <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#006AC7]">Verification &amp; Deployment</span>
-              <h2 className="text-2xl font-bold text-[#102033] flex items-center gap-2">
-                <CheckCircle2 className="w-6 h-6 text-[#4B7F3A]" />
-                6.2 Dynamic Test Verification Baseline (1,116 / 1,116 PASS)
-              </h2>
-            </div>
+              <SectionTitle>The Drawing (Art) Exclusion Rule</SectionTitle>
+              <Callout type="warning" title="LEGAL SINDH BOARD DRAWING CLAUSE">
+                In Sindh Elementary Board Tabulation, <strong>Drawing is evaluated solely by Letter Grade (A, B, C, D)</strong>. It carries <strong>0 numeric marks</strong> and is <strong>strictly excluded from the 700-mark grand total aggregate</strong>. Calculating percentages out of 800 is a violation of Sindh Board rules; our engine locks the denominator to exactly 700.
+              </Callout>
 
-            <p className="text-sm text-[#526477] leading-relaxed">
-              Every production release is verified by <code>node scripts/verifyTestBannerIntegrity.js</code> across all 40 test suites on disk:
-            </p>
-
-            <div className="bg-slate-950 font-mono text-emerald-400 p-5 rounded-2xl border border-slate-800 shadow-xl overflow-x-auto text-xs leading-relaxed max-h-80 overflow-y-auto">
-              <div className="text-slate-400 mb-2">// DYNAMIC TEST SUITE VERIFICATION LOG (40 SUITES DISCOVERED)</div>
-              <div>✓ tests/announcement_and_public_stats.test.js                  Banner: 32/32 (Pass lines: 32)</div>
-              <div>✓ tests/argon2_migration_suite.test.js                         Banner: 53/53 (Pass lines: 53)</div>
-              <div>✓ tests/attendance_analytics_suite.test.js                     Banner: 32/32 (Pass lines: 32)</div>
-              <div>✓ tests/auth_hierarchy_suite.test.js                           Banner: 42/42 (Pass lines: 42)</div>
-              <div>✓ tests/auth_suite.test.js                                     Banner: 35/35 (Pass lines: 35)</div>
-              <div>✓ tests/authority_model_suite.test.js                          Banner: 43/43 (Pass lines: 43)</div>
-              <div>✓ tests/authority_negative_security_suite.test.js              Banner: 37/37 (Pass lines: 37)</div>
-              <div>✓ tests/authority_transition_matrix.test.js                    Banner: 45/45 (Pass lines: 45)</div>
-              <div>✓ tests/hm_examination_and_results.test.js                     Banner: 23/23 (Pass lines: 23)</div>
-              <div>✓ tests/hm_faculty_and_teacher_attendance.test.js              Banner: 14/14 (Pass lines: 14)</div>
-              <div>✓ tests/hm_official_marksheet_and_tabulation.test.js           Banner: 14/14 (Pass lines: 14)</div>
-              <div>✓ tests/hm_operational_authority_and_security.test.js          Banner: 30/30 (Pass lines: 30)</div>
-              <div>✓ tests/hm_school_circulars_and_notices.test.js                Banner: 30/30 (Pass lines: 30)</div>
-              <div>✓ tests/hm_student_directory_and_enrollment.test.js            Banner: 14/14 (Pass lines: 14)</div>
-              <div>✓ tests/hm_transfer_lifecycle_and_security.test.js             Banner: 25/25 (Pass lines: 25)</div>
-              <div>✓ tests/parent_adversarial_security.test.js                    Banner: 10/10 (Pass lines: 10)</div>
-              <div>✓ tests/parent_bff_security.test.js                            Banner: 16/16 (Pass lines: 16)</div>
-              <div>✓ tests/parent_registration_and_linking_flow.test.js           Banner: 16/16 (Pass lines: 16)</div>
-              <div>✓ tests/parent_student_link_model.test.js                      Banner: 15/15 (Pass lines: 15)</div>
-              <div>✓ tests/privacy_and_notifications.test.js                      Banner: 16/16 (Pass lines: 16)</div>
-              <div>✓ tests/refresh_token_rotation_suite.test.js                   Banner: 46/46 (Pass lines: 46)</div>
-              <div>✓ tests/root_admin_mfa_suite.test.js                           Banner: 61/61 (Pass lines: 61)</div>
-              <div>✓ tests/root_admin_module_suite.test.js                        Banner: 16/16 (Pass lines: 16)</div>
-              <div>✓ tests/root_admin_privacy_and_dashboard_authority.test.js     Banner:  9/9  (Pass lines: 9)</div>
-              <div>✓ tests/school_inspection_suite.test.js                        Banner:  6/6  (Pass lines: 6)</div>
-              <div>✓ tests/security_and_regression_verification.test.js           Banner: 25/25 (Pass lines: 25)</div>
-              <div>✓ tests/security_remediation_wave1.test.js                     Banner: 49/49 (Pass lines: 49)</div>
-              <div>✓ tests/security_remediation_wave2_core.test.js                Banner: 28/28 (Pass lines: 28)</div>
-              <div>✓ tests/security_suite.test.js                                 Banner: 24/24 (Pass lines: 24)</div>
-              <div>✓ tests/seed_data_validation.test.js                           Banner: 17/17 (Pass lines: 17)</div>
-              <div>✓ tests/smart_attendance_system.test.js                        Banner: 22/22 (Pass lines: 22)</div>
-              <div>✓ tests/staff_profile_and_approval_workflow.test.js            Banner: 33/33 (Pass lines: 33)</div>
-              <div>✓ tests/staff_profile_controller_integration.test.js           Banner: 63/63 (Pass lines: 63)</div>
-              <div>✓ tests/stealth_killswitch_suite.test.js                       Banner: 15/15 (Pass lines: 15)</div>
-              <div>✓ tests/student_onboarding_flows.test.js                       Banner: 21/21 (Pass lines: 21)</div>
-              <div>✓ tests/student_workspace_suite.test.js                        Banner: 25/25 (Pass lines: 25)</div>
-              <div>✓ tests/supervisor_bola_security_remediation.test.js           Banner: 12/12 (Pass lines: 12)</div>
-              <div>✓ tests/teacher_attendance_security.test.js                    Banner: 25/25 (Pass lines: 25)</div>
-              <div>✓ tests/teacher_operational_workspace_suite.test.js            Banner: 29/29 (Pass lines: 29)</div>
-              <div>✓ tests/town_holiday_and_timing_policy.test.js                 Banner: 48/48 (Pass lines: 48)</div>
-              <div className="pt-2 text-cyan-400 font-bold">===========================================================================</div>
-              <div className="text-white font-bold">TOTAL BANNER SUM: 1116 / 1116 | TOTAL PASS LINES: 1116 | RESULT: 100% PASS</div>
-              <div className="text-cyan-400 font-bold">===========================================================================</div>
+              <SectionTitle>Sindh Board Grade Thresholds</SectionTitle>
+              <div className="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white mb-6">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-50 border-b border-slate-200 font-bold text-[#102033]">
+                    <tr>
+                      <th className="p-3">GRADE</th>
+                      <th className="p-3">PERCENTAGE RANGE</th>
+                      <th className="p-3">OFFICIAL INSTITUTIONAL LABEL</th>
+                      <th className="p-3">CLASS RANK ELIGIBILITY</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-[#526477]">
+                    <tr>
+                      <td className="p-3 font-bold text-[#006AC7]">A-1</td>
+                      <td className="p-3 font-mono">≥ 80.00%</td>
+                      <td className="p-3 font-medium text-[#102033]">Outstanding / Exceptional</td>
+                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible for 1st, 2nd, 3rd Rank</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-[#006AC7]">A</td>
+                      <td className="p-3 font-mono">70.00% – 79.99%</td>
+                      <td className="p-3 font-medium text-[#102033]">Excellent</td>
+                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-[#006AC7]">B</td>
+                      <td className="p-3 font-mono">60.00% – 69.99%</td>
+                      <td className="p-3 font-medium text-[#102033]">Very Good</td>
+                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-[#006AC7]">C</td>
+                      <td className="p-3 font-mono">50.00% – 59.99%</td>
+                      <td className="p-3 font-medium text-[#102033]">Good</td>
+                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-[#006AC7]">D</td>
+                      <td className="p-3 font-mono">40.00% – 49.99%</td>
+                      <td className="p-3 font-medium text-[#102033]">Fair</td>
+                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-bold text-[#006AC7]">E</td>
+                      <td className="p-3 font-mono">33.00% – 39.99%</td>
+                      <td className="p-3 font-medium text-[#102033]">Pass</td>
+                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
+                    </tr>
+                    <tr className="bg-red-50/50">
+                      <td className="p-3 font-bold text-red-600">FAIL</td>
+                      <td className="p-3 font-mono">&lt; 33.00% (or failed any subject)</td>
+                      <td className="p-3 font-bold text-red-600">Needs Improvement / Detained</td>
+                      <td className="p-3 text-red-600 font-bold">Disqualified from Ranking (-)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </section>
+          )}
 
-          {/* Footer Navigation Bar */}
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs text-[#526477]">
-              Education Department, Liaquatabad Town Centre (DMC) • Sealed Master Documentation v1.0.0
+          {activeSection === 'marksheets-tabulation' && <MarksheetsTabulationSection />}
+          {activeSection === 'documents-library' && <DocumentsLibrarySection />}
+          {activeSection === 'notifications-outbox' && <NotificationsOutboxSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 6: IMMUTABLE AUDIT & DATA VAULT
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'audit-contract' && <AuditContractSection />}
+          {activeSection === 'database-models' && <DatabaseModelsSection />}
+          {activeSection === 'api-catalogue' && <ApiCatalogueSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 7: UI CONSTITUTION & PERFORMANCE
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'design-constitution' && <DesignConstitutionSection />}
+          {activeSection === 'client-architecture' && <ClientArchitectureSection />}
+          {activeSection === 'pwa-caching' && <PwaCachingSection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 8: VERIFICATION & DEPLOYMENT
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'test-verification' && <TestVerificationSection />}
+          {activeSection === 'deployment-topology' && <DeploymentTopologySection />}
+          {activeSection === 'status-roadmap' && <StatusRoadmapSection />}
+          {activeSection === 'glossary' && <GlossarySection />}
+
+          {/* ══════════════════════════════════════════════════════════════
+              GROUP 9: RESOURCES & KNOWLEDGE BASE (FAQS)
+          ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'faq' && (
+            <div>
+              <DocHeader
+                title="Frequently Asked Questions (FAQ) & Deep System Mechanics"
+                badge="9. Resources & Knowledge Base"
+                subtitle="Comprehensive answers to 15+ architectural, security, operational, and institutional questions asked by technical leads, school authorities, and auditors."
+              />
+
+              <div className="space-y-3">
+                <FaqItem
+                  category="Security"
+                  question="Why did we choose native Argon2id over bcrypt for password hashing?"
+                  answer="While bcrypt was the historical standard, modern consumer GPUs and cloud clusters can compute billions of bcrypt hashes per second due to its low memory consumption. Argon2id (the winner of the Password Hashing Competition) is memory-hard (configured to 19,456 KiB ~ 19MB per hash with 2 iterations). This completely thwarts GPU/ASIC dictionary attacks. Furthermore, our implementation supports dual-path backward compatibility, silently upgrading legacy bcrypt accounts to Argon2id upon their next successful login."
+                />
+
+                <FaqItem
+                  category="Security"
+                  question="Why is Civil Service Designation separated from RBAC Role and Geographic Scope?"
+                  answer="In municipal administration, a government official might hold the civil title 'Drawing and Disbursing Officer (DDO)' or 'Town Education Officer'. In legacy systems, treating this title as a software role caused catastrophic privilege escalation. In our decoupled architecture: Civil Designation is merely descriptive text; RBAC Role defines technical capability (e.g. SUPER_ADMIN); Role Level defines hierarchy subordination (e.g. 80); and Geographic Scope restricts database visibility (e.g. TOWN). Changing a designation gives zero extra software privileges."
+                />
+
+                <FaqItem
+                  category="Academic"
+                  question="Why is Drawing excluded from the 700-mark aggregate in Elementary Board examinations?"
+                  answer="In accordance with the official DMC Liaquatabad Town Centre Elementary Board Tabulation Framework (Grades IV through VIII), Drawing is an aesthetic assessment evaluated exclusively by letter grade (A, B, C, D). It carries 0 numeric marks and must NOT be added to the grand total. The academic aggregate is strictly 700 marks (7 subjects × 100). Adding Drawing to the aggregate would distort student percentages and violate provincial board tabulation regulations."
+                />
+
+                <FaqItem
+                  category="Security"
+                  question="Can a parent or unauthorized user steal student data by guessing a GR Number?"
+                  answer="No. The platform enforces a 3-layer anti-enumeration defense: (1) The lookup endpoint (/parent/lookup-ward) masks student names (e.g., 'M**** A***') and returns zero contact particulars or CNIC digits; (2) The lookup route is heavily rate-limited per IP and Parent User ID; (3) Claiming a ward dispatches a 6-digit cryptographic OTP to the official guardian mobile number on school record, and even after OTP confirmation, the Head Master must physically verify CNIC papers before any academic or attendance data is unlocked."
+                />
+
+                <FaqItem
+                  category="Operational"
+                  question="How does the 5-stage atomic teacher transfer prevent orphan classrooms?"
+                  answer="In traditional paper transfers, a teacher leaves without the receiving school having prepared, leaving a class teacherless. In our atomic state machine: When a transfer is initiated, the teacher remains officially on the books of the source school. Only when the source HM formally certifies duty handover does the status become RELIEVED, unassigning classroom locks. The teacher then travels (AWAITING_JOINING). Only when the destination HM confirms physical presence does the transfer become COMPLETED, updating the teacher's school ID and permitting new class assignments."
+                />
+
+                <FaqItem
+                  category="Attendance"
+                  question="How does the Karachi municipal attendance timing policy work in code?"
+                  answer="The system operates in Pakistan Standard Time (Asia/Karachi, UTC+5). Standard municipal school gates open at 07:30 AM. Teachers and students arriving after 08:15 AM are automatically flagged as 'LATE'. On Fridays, school dismisses early at 12:00 PM for Jummah congregational prayers. The system integrates with the HolidayCalendar model to recognize gazetted provincial holidays, summer vacations, and municipal rain/heatwave emergency closures."
+                />
+
+                <FaqItem
+                  category="Architecture"
+                  question="What is the purpose of the 3-second grace window in Refresh Token Rotation (RTR)?"
+                  answer="When a user opens multiple browser tabs or experiences high network latency on mobile devices, multiple HTTP requests may reach the server simultaneously with an expired access token. If refresh token rotation were strictly instantaneous, the first tab would rotate the token and the second tab would present the now-invalidated token, falsely triggering a token theft alert and logging the user out. The 3-second grace window allows concurrent requests within 3,000ms to receive the new session without triggering a theft response."
+                />
+
+                <FaqItem
+                  category="Security"
+                  question="What happens if someone attempts to modify or demote a Root Admin via the API?"
+                  answer="All administrative mutation routes flow through authorizeHierarchy.js. The middleware asserts that the calling actor's roleLevel must be strictly greater than the target's roleLevel (actorRoleLevel > targetRoleLevel). Since ROOT_ADMIN has roleLevel 100, no other user can modify them. Furthermore, Root Admin self-demotion or self-suspension via web APIs is explicitly rejected with 403 Forbidden to prevent accidental municipal platform decapitation."
+                />
+
+                <FaqItem
+                  category="Operations"
+                  question="What happens if the internet goes down in a remote school?"
+                  answer="The authenticated client is built as a Progressive Web App (PWA) with Google Workbox. The application shell, stylesheets, icons, and layout scripts are precached into the browser's persistent CacheStorage. If a teacher loses cellular connectivity, the app still launches instantly offline rather than showing a browser error. While live writes require connection, cached profiles and rosters remain accessible."
+                />
+
+                <FaqItem
+                  category="Data"
+                  question="Why does the platform enforce a Zero-Hard-Deletion policy?"
+                  answer="In government school administration, permanently deleting database records violates public service record-keeping laws. If an entity is deleted, historical audit trails become broken (referencing nonexistent IDs), and legal accountability is destroyed. In our database, every model includes a lifecycleStatus field ('ACTIVE', 'SUSPENDED', 'INACTIVE') or isArchived flag. Accounts are deactivated, never deleted, preserving full historical referential integrity."
+                />
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/"
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-[#526477] hover:bg-slate-100 transition-colors"
+          )}
+
+          {/* ── Topic Footer Navigation (Previous / Next Buttons) ── */}
+          <div className="pt-8 border-t border-slate-200/80 flex items-center justify-between gap-4">
+            {prevTopic ? (
+              <button
+                onClick={() => handleSelect(prevTopic.id)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-[#102033] transition-colors"
               >
-                Civic Home
-              </Link>
-              <a
-                href={`${portalUrl}/login`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-[#006AC7] text-white hover:bg-[#005299] transition-colors"
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <div className="text-left">
+                  <div className="text-[10px] text-slate-400 font-normal">Previous Topic</div>
+                  <div>{prevTopic.label}</div>
+                </div>
+              </button>
+            ) : (
+              <div />
+            )}
+
+            {nextTopic && (
+              <button
+                onClick={() => handleSelect(nextTopic.id)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#006AC7] hover:bg-[#005299] text-xs font-bold text-white transition-colors ml-auto shadow-xs"
               >
-                Staff Portal
-              </a>
-            </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-blue-200 font-normal">Next Topic</div>
+                  <div>{nextTopic.label}</div>
+                </div>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </main>
       </div>
