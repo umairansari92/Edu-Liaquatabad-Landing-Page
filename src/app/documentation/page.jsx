@@ -92,9 +92,11 @@ import {
 import {
   SchoolInspectionsSection,
   TeacherRostersSection,
+  AtomicTransfersSection,
   StudentManagementSection,
   ParentPortalSection,
   AttendanceEngineSection,
+  ExaminationEngineSection,
   MarksheetsTabulationSection,
   DocumentsLibrarySection,
   NotificationsOutboxSection,
@@ -645,183 +647,13 @@ export default function DocumentationPage() {
           {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
           {activeSection === 'teacher-rosters' && <TeacherRostersSection />}
 
-          {activeSection === 'atomic-transfers' && (
-            <div>
-              <DocHeader
-                title="5-Stage Atomic Teacher Transfer State Machine"
-                badge="5. Operational State Machines"
-                subtitle="Eliminating orphan classrooms and unverified teacher transfers through a sequential, non-repudiable administrative workflow."
-              />
-
-              <p className="text-xs text-[#526477] leading-relaxed mb-6">
-                In traditional public education bureaucracy, teacher transfers often lead to severe operational chaos: teachers leave their current school without official duty relief, and destination schools are unaware of incoming staff. Our system enforces an <strong>atomic 5-stage finite state machine</strong>:
-              </p>
-
-              <Steps
-                items={[
-                  {
-                    step: '1',
-                    title: 'INITIATED (Transfer Proposal)',
-                    desc: 'A transfer request is created by a Cluster Supervisor, Head Master, or Admin specifying the Teacher, Source School, and Destination School with official transfer orders.',
-                  },
-                  {
-                    step: '2',
-                    title: 'APPROVED_BY_DIRECTORATE',
-                    desc: 'The Town Education Officer / Super Admin approves the transfer. The teacher remains officially attached to the source school and teaching duties are not interrupted.',
-                  },
-                  {
-                    step: '3',
-                    title: 'RELIEVED (Source HM Certification)',
-                    desc: 'The Source School Head Master formally signs the relieving certificate on the platform, confirming all records, keys, and teaching assets have been returned. Class teacher assignments at source school are revoked.',
-                  },
-                  {
-                    step: '4',
-                    title: 'AWAITING_JOINING (In Transit)',
-                    desc: 'The teacher travels to the destination school. The system tracks transit time. No new class assignments can be created during this transition period.',
-                  },
-                  {
-                    step: '5',
-                    title: 'COMPLETED (Destination HM Confirmation)',
-                    desc: 'The Destination School Head Master confirms physical arrival and verifies paperwork. The database atomically updates the teacher’s schoolId. The teacher is now deployable to new sections.',
-                  },
-                ]}
-              />
-
-              <SectionTitle>State Machine Flowchart</SectionTitle>
-              <TerminalBlock title="TEACHER TRANSFER STATE TRANSITION LIFECYCLE">
-{`    ┌─────────────────┐
-    │    INITIATED    │
-    └────────┬────────┘
-             │ Directorate / Super Admin Approves
-             ▼
-    ┌─────────────────┐
-    │ APPROVED_BY_DIR │
-    └────────┬────────┘
-             │ Source HM Signs Relieving Certificate
-             ▼
-    ┌─────────────────┐
-    │     RELIEVED    │ (Teaching assignments released at source)
-    └────────┬────────┘
-             │ Transit Period
-             ▼
-    ┌─────────────────┐
-    │AWAITING_JOINING │
-    └────────┬────────┘
-             │
-             ├─────────────────────────────┐
-             │ Destination HM Confirms     │ Destination HM Rejects
-             ▼                             ▼
-    ┌─────────────────┐           ┌─────────────────┐
-    │    COMPLETED    │           │ REJECTED_BY_HM  │
-    └─────────────────┘           └────────┬────────┘
-    (School ID updated)                    │
-                                 ┌─────────┴─────────┐
-                                 ▼                   ▼
-                        ┌─────────────────┐ ┌─────────────────┐
-                        │ ADMIN_CANCELLED │ │ ADMIN_OVERRIDE  │
-                        └─────────────────┘ └─────────────────┘`}
-              </TerminalBlock>
-            </div>
-          )}
+          {activeSection === 'atomic-transfers' && <AtomicTransfersSection />}
 
           {activeSection === 'student-management' && <StudentManagementSection />}
           {activeSection === 'parent-portal' && <ParentPortalSection />}
           {activeSection === 'attendance-engine' && <AttendanceEngineSection />}
 
-          {activeSection === 'examination-engine' && (
-            <div>
-              <DocHeader
-                title="Elementary Board Examination & Tabulation Engine (700 Marks)"
-                badge="5. Academic Engine"
-                subtitle="The exact mathematical formulas, Nazra Quran splits, Drawing grade exclusions, and ranking algorithms enforcing Sindh Elementary Board regulations."
-              />
-
-              <p className="text-xs text-[#526477] leading-relaxed mb-6">
-                Grades 4 through 8 in Liaquatabad Town public schools are governed by the <strong>Sindh Elementary Board examination framework</strong>. Manual grading often led to arbitrary calculations; our engine enforces these rules mathematically:
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
-                  <div className="text-2xl font-black text-[#006AC7]">700</div>
-                  <div className="text-xs font-bold text-[#102033]">Maximum Numeric Aggregate</div>
-                  <div className="text-[11px] text-[#526477]">7 standard subjects × 100 marks</div>
-                </div>
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
-                  <div className="text-2xl font-black text-amber-600">20 / 80</div>
-                  <div className="text-xs font-bold text-[#102033]">Islamiat Split</div>
-                  <div className="text-[11px] text-[#526477]">20 Nazra Quran + 80 Written</div>
-                </div>
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
-                  <div className="text-2xl font-black text-[#4B7F3A]">33%</div>
-                  <div className="text-xs font-bold text-[#102033]">Passing Gate</div>
-                  <div className="text-[11px] text-[#526477]">Required in each subject &amp; overall</div>
-                </div>
-              </div>
-
-              <SectionTitle>The Drawing (Art) Exclusion Rule</SectionTitle>
-              <Callout type="warning" title="LEGAL SINDH BOARD DRAWING CLAUSE">
-                In Sindh Elementary Board Tabulation, <strong>Drawing is evaluated solely by Letter Grade (A, B, C, D)</strong>. It carries <strong>0 numeric marks</strong> and is <strong>strictly excluded from the 700-mark grand total aggregate</strong>. Calculating percentages out of 800 is a violation of Sindh Board rules; our engine locks the denominator to exactly 700.
-              </Callout>
-
-              <SectionTitle>Sindh Board Grade Thresholds</SectionTitle>
-              <div className="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white mb-6">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 border-b border-slate-200 font-bold text-[#102033]">
-                    <tr>
-                      <th className="p-3">GRADE</th>
-                      <th className="p-3">PERCENTAGE RANGE</th>
-                      <th className="p-3">OFFICIAL INSTITUTIONAL LABEL</th>
-                      <th className="p-3">CLASS RANK ELIGIBILITY</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 text-[#526477]">
-                    <tr>
-                      <td className="p-3 font-bold text-[#006AC7]">A-1</td>
-                      <td className="p-3 font-mono">≥ 80.00%</td>
-                      <td className="p-3 font-medium text-[#102033]">Outstanding / Exceptional</td>
-                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible for 1st, 2nd, 3rd Rank</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3 font-bold text-[#006AC7]">A</td>
-                      <td className="p-3 font-mono">70.00% – 79.99%</td>
-                      <td className="p-3 font-medium text-[#102033]">Excellent</td>
-                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3 font-bold text-[#006AC7]">B</td>
-                      <td className="p-3 font-mono">60.00% – 69.99%</td>
-                      <td className="p-3 font-medium text-[#102033]">Very Good</td>
-                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3 font-bold text-[#006AC7]">C</td>
-                      <td className="p-3 font-mono">50.00% – 59.99%</td>
-                      <td className="p-3 font-medium text-[#102033]">Good</td>
-                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3 font-bold text-[#006AC7]">D</td>
-                      <td className="p-3 font-mono">40.00% – 49.99%</td>
-                      <td className="p-3 font-medium text-[#102033]">Fair</td>
-                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3 font-bold text-[#006AC7]">E</td>
-                      <td className="p-3 font-mono">33.00% – 39.99%</td>
-                      <td className="p-3 font-medium text-[#102033]">Pass</td>
-                      <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
-                    </tr>
-                    <tr className="bg-red-50/50">
-                      <td className="p-3 font-bold text-red-600">FAIL</td>
-                      <td className="p-3 font-mono">&lt; 33.00% (or failed any subject)</td>
-                      <td className="p-3 font-bold text-red-600">Needs Improvement / Detained</td>
-                      <td className="p-3 text-red-600 font-bold">Disqualified from Ranking (-)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          {activeSection === 'examination-engine' && <ExaminationEngineSection />}
 
           {activeSection === 'marksheets-tabulation' && <MarksheetsTabulationSection />}
           {activeSection === 'documents-library' && <DocumentsLibrarySection />}
