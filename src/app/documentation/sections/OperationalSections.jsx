@@ -1471,8 +1471,8 @@ export const HeadMasterWorkflowsSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUTOMATED TESTING</div>
-        <div className="text-sm font-black text-[#4B7F3A]">120 Dedicated Tests</div>
-        <div className="text-xs text-[#526477]">100% Pass Rate in Suites</div>
+        <div className="text-sm font-black text-[#4B7F3A]">184 Verified Tests</div>
+        <div className="text-xs text-[#526477]">10 Files (184 Passed, 8 in npm test)</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">SIGN-OFF GATE</div>
@@ -1495,7 +1495,7 @@ export const HeadMasterWorkflowsSection = () => (
       rows={[
         {
           left: '1. Student Admission & Enrolment',
-          right: 'POST /api/v1/students/admit • Enrols student into municipal register. Enforces unique compound index { schoolId, grNumber }. Generates unique student profile.',
+          right: 'POST /api/v1/students/enroll • Enrols student into municipal register. Enforces unique compound index { schoolId, grNumber }. Generates unique student profile and ACTIVE lifecycle state.',
         },
         {
           left: '2. Non-Destructive Strike-Off',
@@ -1503,15 +1503,15 @@ export const HeadMasterWorkflowsSection = () => (
         },
         {
           left: '3. Single-Cohort Staff Allocation',
-          right: 'POST /api/v1/assignments • Binds teacher to class and subject. sectionId is nullable (null indicates Whole Class allocation for Liaquatabad schools). Enforces one primary Class Teacher rule.',
+          right: 'POST /api/v1/assignments • Binds teacher to class and subject. sectionId accepts null, empty string "", or omitted (evaluates as Whole Class allocation in single-cohort primary/middle schools per Zod schema). Enforces one primary Class Teacher rule.',
         },
         {
           left: '4. Legal/A4 Gazette & Marksheets',
-          right: 'GET /api/v1/exams/:id/results/tabulation-sheet • Generates official Sindh Elementary Board gazette matrix with 20-mark Nazra Quran split and Drawing letter grade. Marksheets gated by PUBLISHED status.',
+          right: 'GET /api/v1/exams/:id/tabulation-sheet (Legal Landscape PDF) & GET /api/v1/exams/:id/tabulation-data (JSON spreadsheet grid) • Generates official Sindh Elementary Board gazette matrix with 20-mark Nazra Quran split and Drawing letter grade. Individual marksheet streamed via GET /api/v1/exams/:id/results/:studentId/marksheet (A4 Portrait PDF). Marksheets strictly gated by PUBLISHED status.',
         },
         {
           left: '5. Emergency Rain Closures',
-          right: 'POST /api/v1/holidays/emergency-closure • Declares emergency local closure. Times evaluated in Asia/Karachi (PKT). Automatically emits notification outbox alerts.',
+          right: "POST /api/v1/holidays • Declares emergency local closure (body: { title, reason, startDate, endDate, holidayType: 'EMERGENCY_CLOSURE', scopeType: 'SCHOOL', schoolId }). Times evaluated in Asia/Karachi (PKT). Automatically emits notification outbox alerts.",
         },
         {
           left: '6. School Circulars & Notices',
@@ -1519,13 +1519,13 @@ export const HeadMasterWorkflowsSection = () => (
         },
         {
           left: '7. Teacher Transfer Joining Confirmation',
-          right: 'POST /api/v1/transfers/:id/joining • Destination HM verifies incoming teacher arrival and service book. Note: HM CANNOT initiate inter-school transfers (Town Admin authority only).',
+          right: 'PATCH /api/v1/transfers/:id/approve-joining • Destination HM verifies incoming teacher arrival and service book (body: { joiningDate, remarks }). Note: HM CANNOT initiate inter-school transfers (Town Admin authority only via POST /api/v1/transfers).',
         },
       ]}
     />
 
     <Callout type="warning" title="OPERATIONAL SIGN-OFF GATE NOTICE">
-      While all 7 Head Master workflows are fully coded and pass 120 automated test assertions, <strong>Owner Operational Sign-Off remains PENDING</strong>. Automated tests certify code correctness but do not constitute municipal owner operational clearance.
+      While all 7 Head Master workflows are fully coded and pass 184 verified automated test assertions across all 10 HM test files (115 passing tests across 6 core operational suites), <strong>Owner Operational Sign-Off remains explicitly PENDING</strong>. Automated tests certify technical behavior but do not constitute municipal owner operational clearance.
     </Callout>
   </div>
 );

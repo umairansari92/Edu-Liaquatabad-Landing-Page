@@ -162,7 +162,7 @@ export const ApiCatalogueSection = () => (
         { left: '/api/v1/holidays', right: 'Policy • holidayRoutes.js • Gazetted town holidays & emergency rain closures.' },
         { left: '/api/v1/announcements', right: 'Broadcast • announcementRoutes.js • Executive alerts & landing page bulletins.' },
         { left: '/api/v1/notifications', right: 'Communications • notificationRoutes.js • In-app alerts, consent actions, receipts.' },
-        { left: '/api/v1/exams', right: 'Assessment • examRoutes.js • Exam schedules, marks entry, legal A4 gazettes.' },
+        { left: '/api/v1/exams', right: 'Assessment • examRoutes.js • Exam schedules, marks entry, Legal Landscape tabulation PDF & JSON grid.' },
         { left: '/api/v1/documents', right: 'Archives • documentRoutes.js • Official circulars, textbooks, text-only notices.' },
         { left: '/api/v1/inspections', right: 'Surveillance • schoolInspectionRoutes.js • Supervisor cluster monitoring visits.' },
         { left: '/api/v1/parent', right: 'Parent Portal • parentRoutes.js • Zero-trust ward discovery, OTP, marks monitoring.' },

@@ -161,7 +161,7 @@ export const CaptchaEngineSection = () => (
         {
           step: '2',
           title: 'HMAC-SHA256 Token Signature',
-          desc: 'Server creates challengeToken = HMAC(answer + salt + timestamp, CAPTCHA_SECRET). Token is sent to client; server stores 0 state.',
+          desc: 'Server creates a cryptographic HMAC-SHA256 challenge token incorporating the solution and timestamp. Token is sent to client; server stores zero session state.',
         },
         {
           step: '3',
@@ -307,19 +307,19 @@ export const CanonicalFindingRegisterSection = () => (
       rows={[
         {
           left: 'CF-01 (SEC-HIGH-01)',
-          right: 'Export audit failure permitted data streaming without audit trail • HIGH • RESOLVED & VERIFIED (Fail-closed audit write verified in phase2_red_team_verification.test.js)',
+          right: 'Export audit failure permitted data streaming without audit trail • HIGH • RESOLVED & VERIFIED (Fail-closed audit write verified via automated export fault-injection suite)',
         },
         {
           left: 'CF-02 (SEC-MED-01)',
-          right: 'Export endpoints lacked account-level rate limiting • MEDIUM • RESOLVED & VERIFIED (tripleLockRateLimiter.js enforces 5 req/15 min)',
+          right: 'Export endpoints lacked account-level rate limiting • MEDIUM • RESOLVED & VERIFIED (Triple-Lock rate limiter enforces 5 req/15 min limit)',
         },
         {
           left: 'CF-03 (SEC-HIGH-02)',
-          right: 'Token invalidation bypass on account state change • HIGH • RESOLVED & VERIFIED (tokenVersion increment verified in auth_session_lifecycle_and_persistence.test.js)',
+          right: 'Token invalidation bypass on account state change • HIGH • RESOLVED & VERIFIED (tokenVersion increment verified via auth session lifecycle suite)',
         },
         {
           left: 'CF-04 (BUG-OUTBOX-01)',
-          right: 'Outbox dispatch referenced undefined error variable • MEDIUM • RESOLVED & COMMITTED (Fixed in commit 9b55bd0 with notificationDispatchError.message)',
+          right: 'Outbox dispatch referenced undefined error variable • MEDIUM • RESOLVED & COMMITTED (Resolved with proper error property capture; regression test verified)',
         },
         {
           left: 'CF-05 (ARCH-01)',
@@ -327,23 +327,23 @@ export const CanonicalFindingRegisterSection = () => (
         },
         {
           left: 'CF-06 (OPS-01)',
-          right: 'Reverse proxy IP spoofing risk without trusted proxy configuration • MEDIUM • DOCUMENTED (trust proxy: 1 prerequisite in deployment docs)',
+          right: 'Reverse proxy IP spoofing risk without trusted proxy configuration • MEDIUM • DOCUMENTED (trust proxy: 1 prerequisite in deployment topology)',
         },
         {
           left: 'CF-07 (BOLA-01)',
-          right: 'Supervisor cross-cluster school inspection bypass • HIGH • RESOLVED & VERIFIED (Assigned school check verified in supervisor_bola_security_remediation.test.js)',
+          right: 'Supervisor cross-cluster school inspection bypass • HIGH • RESOLVED & VERIFIED (Cluster assigned school check verified via supervisor BOLA remediation suite)',
         },
         {
           left: 'CF-08 (IDOR-01)',
-          right: 'Student cross-user marksheet download • HIGH • RESOLVED & VERIFIED (Token match verified in student_workspace_suite.test.js)',
+          right: 'Student cross-user marksheet download • HIGH • RESOLVED & VERIFIED (Token-to-student ownership match verified via student security suite)',
         },
         {
           left: 'CF-09 (PRIV-01)',
-          right: 'Body injection of role: ROOT_ADMIN • CRITICAL • RESOLVED & VERIFIED (blockRootAdminCreation.js verified in authority_negative_security_suite.test.js)',
+          right: 'Body injection of role: ROOT_ADMIN • CRITICAL • RESOLVED & VERIFIED (Root admin creation guard verified via authority negative security suite)',
         },
         {
           left: 'CF-10 (PRIV-02)',
-          right: 'Super Admin self-disable or last-admin lockout • HIGH • RESOLVED & VERIFIED (Safe disable safeguards verified in authority_model_suite.test.js)',
+          right: 'Super Admin self-disable or last-admin lockout • HIGH • RESOLVED & VERIFIED (Last-standing administrator lockouts verified via authority model suite)',
         },
       ]}
     />

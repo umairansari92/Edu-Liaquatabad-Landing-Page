@@ -227,7 +227,7 @@ export const DiscrepancyRegisterSection = () => (
         },
         {
           left: 'DISC-02: HM Module Operational Sign-Off',
-          right: 'Historical: "Approved and operational" • Reality: Automated tests pass, but owner operational sign-off remains pending • Resolution: Marked as IMPLEMENTED & TESTED (Owner Approval PENDING).',
+          right: 'Historical: "Approved and operational" • Reality: 184 automated assertions pass across all 10 HM test files on disk (115 in 6 core suites; 8 in npm test), but owner operational sign-off remains pending • Resolution: Marked as IMPLEMENTED & TESTED (Owner Approval PENDING).',
         },
         {
           left: 'DISC-03: Role Levels & Permission Scopes',
