@@ -87,6 +87,8 @@ import {
   MfaTotpSection,
   SecurityInvariantsSection,
   ThreatMatrixSection,
+  CanonicalFindingRegisterSection,
+  ScreenCaptureProtectionSection,
 } from './sections/SecuritySections';
 
 import {
@@ -100,6 +102,7 @@ import {
   MarksheetsTabulationSection,
   DocumentsLibrarySection,
   NotificationsOutboxSection,
+  HeadMasterWorkflowsSection,
 } from './sections/OperationalSections';
 
 import {
@@ -119,6 +122,7 @@ import {
   DeploymentTopologySection,
   StatusRoadmapSection,
   GlossarySection,
+  DiscrepancyRegisterSection,
 } from './sections/VerificationSections';
 
 // ─── MAIN DOCUMENTATION COMPONENT ─────────────────────────────────────────────
@@ -173,11 +177,14 @@ export default function DocumentationPage() {
         { id: 'mfa-totp', label: 'Root Admin TOTP MFA Engine', icon: Lock },
         { id: 'security-invariants', label: '5 Non-Negotiable Invariants', icon: AlertTriangle },
         { id: 'threat-matrix', label: 'Adversarial Threat Matrix', icon: Shield },
+        { id: 'canonical-findings', label: 'Canonical Finding Register (CF-01 to CF-10)', icon: Award },
+        { id: 'screen-protection', label: 'Screen Protection (Deterrence vs Attribution)', icon: Eye },
       ],
     },
     {
       category: '5. Core Operational Engines',
       items: [
+        { id: 'hm-workflows', label: 'Head Master 7 Core Workflows', icon: Briefcase },
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
@@ -194,8 +201,8 @@ export default function DocumentationPage() {
       category: '6. Immutable Audit & Data Vault',
       items: [
         { id: 'audit-contract', label: '10-Point Immutable Audit Contract', icon: Shield },
-        { id: 'database-models', label: 'Complete 30-Model Catalogue', icon: Database },
-        { id: 'api-catalogue', label: 'RESTful API Endpoint Index', icon: Terminal },
+        { id: 'database-models', label: 'Complete 32-Model Catalogue', icon: Database },
+        { id: 'api-catalogue', label: 'Complete 27-Route API Index', icon: Terminal },
       ],
     },
     {
@@ -209,7 +216,8 @@ export default function DocumentationPage() {
     {
       category: '8. Verification & Deployment',
       items: [
-        { id: 'test-verification', label: '40 Test Suites Dynamic Baseline', icon: CheckCircle2 },
+        { id: 'discrepancy-register', label: 'Discrepancy Register (DISC-01 to DISC-09)', icon: AlertCircle },
+        { id: 'test-verification', label: '55 Test Suites Automated Reference', icon: CheckCircle2 },
         { id: 'deployment-topology', label: 'Multi-Zone Vercel Topology', icon: Building2 },
         { id: 'status-roadmap', label: 'Honest Status & Roadmap', icon: Activity },
         { id: 'glossary', label: 'Institutional & Technical Glossary', icon: BookOpen },
@@ -640,10 +648,13 @@ export default function DocumentationPage() {
           {activeSection === 'mfa-totp' && <MfaTotpSection />}
           {activeSection === 'security-invariants' && <SecurityInvariantsSection />}
           {activeSection === 'threat-matrix' && <ThreatMatrixSection />}
+          {activeSection === 'canonical-findings' && <CanonicalFindingRegisterSection />}
+          {activeSection === 'screen-protection' && <ScreenCaptureProtectionSection />}
 
           {/* ══════════════════════════════════════════════════════════════
               GROUP 5: CORE OPERATIONAL ENGINES
           ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'hm-workflows' && <HeadMasterWorkflowsSection />}
           {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
           {activeSection === 'teacher-rosters' && <TeacherRostersSection />}
 
@@ -676,6 +687,7 @@ export default function DocumentationPage() {
           {/* ══════════════════════════════════════════════════════════════
               GROUP 8: VERIFICATION & DEPLOYMENT
           ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'discrepancy-register' && <DiscrepancyRegisterSection />}
           {activeSection === 'test-verification' && <TestVerificationSection />}
           {activeSection === 'deployment-topology' && <DeploymentTopologySection />}
           {activeSection === 'status-roadmap' && <StatusRoadmapSection />}

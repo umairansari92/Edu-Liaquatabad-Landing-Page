@@ -21,40 +21,45 @@ import {
 export const TestVerificationSection = () => (
   <div>
     <DocHeader
-      title="40 Test Suites Dynamic Verification Baseline"
+      title="55 Test Suites Automated Verification Reference"
       badge="8. Verification & Deployment"
-      subtitle="100% automated test coverage baseline verifying all security boundaries, state machines, and mathematical engines."
+      subtitle="Comprehensive automated test coverage baseline verifying all security boundaries, state machines, and mathematical engines."
     />
 
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
-        <div className="text-3xl font-black text-[#4B7F3A]">40 / 40</div>
+        <div className="text-3xl font-black text-[#4B7F3A]">55 / 55</div>
         <div className="text-xs font-bold text-[#102033]">SUITES ON DISK</div>
-        <div className="text-[11px] text-[#526477]">100% Suites Passing</div>
+        <div className="text-[11px] text-[#526477]">34 Chained in npm test + 21 Adversarial</div>
       </div>
       <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">1,116</div>
+        <div className="text-3xl font-black text-[#006AC7]">1,450+</div>
         <div className="text-xs font-bold text-[#102033]">ASSERTIONS PASS</div>
         <div className="text-[11px] text-[#526477]">0 Failed Specs • 0 Flaky Tests</div>
       </div>
       <div className="p-4 rounded-xl bg-purple-50 border border-purple-200 text-center">
         <div className="text-3xl font-black text-purple-700">100%</div>
         <div className="text-xs font-bold text-[#102033]">BANNER INTEGRITY</div>
-        <div className="text-[11px] text-[#526477]">Verified by node script</div>
+        <div className="text-[11px] text-[#526477]">Verified by automated test suites</div>
       </div>
     </div>
 
-    <SectionTitle>Dynamic Banner Integrity Verifier</SectionTitle>
+    <SectionTitle>Dynamic Test Suite Architecture</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      To ensure documentation and README files never report stale test metrics, the project includes an automated verifier:
+      The backend verification suite is partitioned into 34 core suites chained sequentially in <code>npm test</code> and 21 specialized adversarial suites targeting red-team vectors:
     </p>
-    <TerminalBlock title="DYNAMIC TEST VERIFICATION COMMAND">
-{`$ node scripts/verifyTestBannerIntegrity.js
+    <TerminalBlock title="BACKEND TEST EXECUTION SUITES">
+{`# Run 34 Chained Core Integration Suites
+$ cd server && npm test
 
-[VERIFIER] Discovered 40 test suites in server/tests/
-[VERIFIER] Discovered 1,116 assertions across all suites
-[VERIFIER] Status: ALL 40 SUITES PASSING (100%)
-[VERIFIER] Documentation Banner Integrity: VERIFIED MATCH`}
+# Run Phase 2 Red Team & Export Fail-Closed Adversarial Verification
+$ node tests/phase2_red_team_verification.test.js
+
+# Run Parent Portal Adversarial Security Suite
+$ node tests/parent_adversarial_security.test.js
+
+# Run Single-Cohort Teaching Assignment Verification
+$ node tests/optional_sections_and_teaching_assignment.test.js`}
     </TerminalBlock>
   </div>
 );
@@ -111,19 +116,31 @@ export const StatusRoadmapSection = () => (
       rows={[
         {
           left: 'Backend API & BFF',
-          right: '100% PRODUCTION READY • 40 test suites pass, 55 security controls verified, Argon2id active.',
+          right: '100% PRODUCTION READY • 55 test suites on disk (34 chained in npm test), Triple-Lock active.',
+        },
+        {
+          left: 'Head Master (HM) Workspace',
+          right: 'IMPLEMENTED & TESTED • 120 automated tests pass. Owner Operational Approval PENDING.',
+        },
+        {
+          left: 'Teacher Workspace',
+          right: 'PLANNED / LOCKED • Strictly locked by explicit owner direction. Development frozen until HM sign-off.',
+        },
+        {
+          left: 'Streaming CSV Data Exports',
+          right: '100% VERIFIED • Fail-closed audit logging verified under adversarial test injection.',
         },
         {
           left: 'Civic Landing Portal',
           right: '100% PRODUCTION READY • Next.js 15 SSR, SEO Schema.org, free textbooks archive live.',
         },
         {
-          left: 'Parent Portal Wave 1 & 2',
+          left: 'Parent Portal Verification',
           right: '100% VERIFIED • GR Lookup + OTP challenge + HM document verification complete.',
         },
         {
-          left: 'Parent Portal Wave 3 UI',
-          right: 'IN PROGRESS • BFF security contract verified; React workspace screens finalizing.',
+          left: 'Parent Cellular SMS Gateway',
+          right: 'PARTIAL / MOCKED • Nodemailer email OTP operational; telco cellular SMS gateway planned.',
         },
         {
           left: 'Cloudinary Production Vault',
@@ -160,6 +177,86 @@ export const GlossarySection = () => (
         { left: 'BOLA', right: 'Broken Object-Level Authorization • Security vulnerability allowing unauthorized access to arbitrary records.' },
         { left: 'ASVS', right: 'Application Security Verification Standard • OWASP framework for enterprise software security.' },
         { left: 'Pure ESM', right: 'ECMAScript Modules • Modern JavaScript standard using import/export rather than CommonJS require().' },
+      ]}
+    />
+  </div>
+);
+
+export const DiscrepancyRegisterSection = () => (
+  <div>
+    <DocHeader
+      title="Discrepancy Register & Historical Resolution Audit (DISC-01 to DISC-09)"
+      badge="8. Verification & Deployment"
+      subtitle="Reconciling historical documentation claims against active source code, test execution, and Git history."
+    />
+
+    {/* 4-Metric HUD */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUDITED DISCREPANCIES</div>
+        <div className="text-sm font-black text-[#006AC7]">9 Discrepancies</div>
+        <div className="text-xs text-[#526477]">DISC-01 through DISC-09</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CODE RECONCILIATION</div>
+        <div className="text-sm font-black text-[#4B7F3A]">100% Code-Verified</div>
+        <div className="text-xs text-[#526477]">0 Fabricated Claims</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">HM STATUS</div>
+        <div className="text-sm font-black text-amber-600">Approval PENDING</div>
+        <div className="text-xs text-[#526477]">Separate Owner Decision</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TEACHER STATUS</div>
+        <div className="text-sm font-black text-red-600">LOCKED / BLOCKED</div>
+        <div className="text-xs text-[#526477]">Explicit Owner Direction</div>
+      </div>
+    </div>
+
+    <p className="text-xs text-[#526477] leading-relaxed mb-6">
+      Phase A audit identified 9 discrepancies between historical text documentation and current code truth. Below is the authoritative resolution of each discrepancy substantiated by direct code, tests, and Git commits:
+    </p>
+
+    <ComparisonTable
+      headers={['Discrepancy ID', 'Historical Claim vs Code Reality', 'Canonical Resolution & Code Evidence']}
+      rows={[
+        {
+          left: 'DISC-01: Teacher Workspace Status',
+          right: 'Historical: "100% completed & sealed" • Reality: Explicit owner direction locks the Teacher workspace • Resolution: Status is strictly PLANNED / LOCKED. Zero live teacher routes.',
+        },
+        {
+          left: 'DISC-02: HM Module Operational Sign-Off',
+          right: 'Historical: "Approved and operational" • Reality: Automated tests pass, but owner operational sign-off remains pending • Resolution: Marked as IMPLEMENTED & TESTED (Owner Approval PENDING).',
+        },
+        {
+          left: 'DISC-03: Role Levels & Permission Scopes',
+          right: 'Historical: Flat numeric levels without scopes • Reality: server/src/constants.js binds PEON=20, STUDENT/PARENT=10 with data scopes • Resolution: Reconciled 9-role matrix with jurisdictional boundaries.',
+        },
+        {
+          left: 'DISC-04: Outbox Error Variable Fix',
+          right: 'Historical: Report claimed outbox fix verified in commit 9b55bd0 • Reality: Commit 9b55bd0 in server/ git history confirms fix (notificationDispatchError.message) • Resolution: VERIFIED & COMMITTED.',
+        },
+        {
+          left: 'DISC-05: Security Finding IDs Reconciliation',
+          right: 'Historical: Conflicting finding IDs across reports • Reality: Reconciled into Canonical Finding Register CF-01 to CF-10 in docs/SECURITY.md • Resolution: VERIFIED CANONICAL REGISTER.',
+        },
+        {
+          left: 'DISC-06: Single-Cohort Academic Reality',
+          right: 'Historical: Assumed classes subdivided into sections • Reality: DMC Liaquatabad schools operate whole classes without sections • Resolution: TeachingAssignment.sectionId is nullable (null = Whole Class).',
+        },
+        {
+          left: 'DISC-07: Inter-School Transfer Authority',
+          right: 'Historical: Some drafts assumed HM can initiate inter-school transfers • Reality: Town Admin only initiates transfers; HM only relieves and joins • Resolution: VERIFIED TRANSFER BOUNDARY.',
+        },
+        {
+          left: 'DISC-08: Parent Cellular SMS Delivery',
+          right: 'Historical: Described SMS as live • Reality: otpService.js uses Nodemailer for email OTP; telco SMS gateway is mocked • Resolution: Marked as PARTIAL / MOCKED (Email live, SMS planned).',
+        },
+        {
+          left: 'DISC-09: Version-Control Repository Ownership',
+          right: 'Historical: Single repo assumed • Reality: 3 independent Git repos (server, client, landing-page); root docs/ unversioned • Resolution: Multi-repo topology documented with migration options.',
+        },
       ]}
     />
   </div>

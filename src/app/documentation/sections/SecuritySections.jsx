@@ -293,3 +293,88 @@ export const ThreatMatrixSection = () => (
     />
   </div>
 );
+
+export const CanonicalFindingRegisterSection = () => (
+  <div>
+    <DocHeader
+      title="Canonical Security Finding Register (CF-01 through CF-10)"
+      badge="4. Defense-in-Depth Security"
+      subtitle="Complete register reconciling historical security audit reports, verified fixes, and test evidence."
+    />
+
+    <ComparisonTable
+      headers={['Finding ID', 'Vulnerability Description', 'Severity', 'Remediation Status & Test Evidence']}
+      rows={[
+        {
+          left: 'CF-01 (SEC-HIGH-01)',
+          right: 'Export audit failure permitted data streaming without audit trail • HIGH • RESOLVED & VERIFIED (Fail-closed audit write verified in phase2_red_team_verification.test.js)',
+        },
+        {
+          left: 'CF-02 (SEC-MED-01)',
+          right: 'Export endpoints lacked account-level rate limiting • MEDIUM • RESOLVED & VERIFIED (tripleLockRateLimiter.js enforces 5 req/15 min)',
+        },
+        {
+          left: 'CF-03 (SEC-HIGH-02)',
+          right: 'Token invalidation bypass on account state change • HIGH • RESOLVED & VERIFIED (tokenVersion increment verified in auth_session_lifecycle_and_persistence.test.js)',
+        },
+        {
+          left: 'CF-04 (BUG-OUTBOX-01)',
+          right: 'Outbox dispatch referenced undefined error variable • MEDIUM • RESOLVED & COMMITTED (Fixed in commit 9b55bd0 with notificationDispatchError.message)',
+        },
+        {
+          left: 'CF-05 (ARCH-01)',
+          right: 'Subdivided sections assumed in single-cohort schools • LOW • DOCUMENTED & VERIFIED (TeachingAssignment.sectionId nullable for whole-cohort assignment)',
+        },
+        {
+          left: 'CF-06 (OPS-01)',
+          right: 'Reverse proxy IP spoofing risk without trusted proxy configuration • MEDIUM • DOCUMENTED (trust proxy: 1 prerequisite in deployment docs)',
+        },
+        {
+          left: 'CF-07 (BOLA-01)',
+          right: 'Supervisor cross-cluster school inspection bypass • HIGH • RESOLVED & VERIFIED (Assigned school check verified in supervisor_bola_security_remediation.test.js)',
+        },
+        {
+          left: 'CF-08 (IDOR-01)',
+          right: 'Student cross-user marksheet download • HIGH • RESOLVED & VERIFIED (Token match verified in student_workspace_suite.test.js)',
+        },
+        {
+          left: 'CF-09 (PRIV-01)',
+          right: 'Body injection of role: ROOT_ADMIN • CRITICAL • RESOLVED & VERIFIED (blockRootAdminCreation.js verified in authority_negative_security_suite.test.js)',
+        },
+        {
+          left: 'CF-10 (PRIV-02)',
+          right: 'Super Admin self-disable or last-admin lockout • HIGH • RESOLVED & VERIFIED (Safe disable safeguards verified in authority_model_suite.test.js)',
+        },
+      ]}
+    />
+  </div>
+);
+
+export const ScreenCaptureProtectionSection = () => (
+  <div>
+    <DocHeader
+      title="Client Screen Protection: Deterrence vs Forensic Attribution"
+      badge="4. Defense-in-Depth Security"
+      subtitle="Understanding the real-world boundary between browser-level heuristic deterrence and undeniable forensic watermarking."
+    />
+
+    <Callout type="warning" title="CORE ARCHITECTURAL LAW: ZERO BACKEND RELIANCE ON CLIENT CONTROLS">
+      Web browsers run in client-controlled sandbox environments. No web application running inside Chromium, Gecko, or WebKit can physically intercept OS kernel-level screen composition (Win + Shift + S), hardware video capture, or physical smartphone photography. Primary security is enforced strictly by backend RBAC, scoped queries, and audit logging.
+    </Callout>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+      <InfoCard
+        icon={<Shield className="w-5 h-5" />}
+        color="purple"
+        title="Forensic Attribution Watermark"
+        desc="Renders dynamic user identity, role, school, and timestamp diagonally across the viewport. Provides undeniable forensic traceability even if photographed with an external smartphone."
+      />
+      <InfoCard
+        icon={<Lock className="w-5 h-5" />}
+        color="blue"
+        title="Heuristic Screen Deterrence"
+        desc="Hotkey interception (PrintScreen, Ctrl+Shift+S) and window blur handlers provide heuristic deterrence against casual capture, flushing the clipboard on trigger."
+      />
+    </div>
+  </div>
+);

@@ -249,46 +249,57 @@ export const BffFlowSection = () => (
 export const ProjectStructureSection = () => (
   <div>
     <DocHeader
-      title="Multi-Repo Directory Layout & Codebase Structure"
+      title="Multi-Repo Directory Layout & Version-Control Topology"
       badge="2. Technology & Architecture"
       subtitle="Physical directory organization across the backend, frontend workspace, landing page, and documentation."
     />
 
     <TerminalBlock title="DIRECTORY TREE SPECIFICATION">
 {`school-management-system/
-├── server/                        # Express 4.21.2 Backend API (Pure ESM)
+├── server/                        # Git Repo #1: Express 4.21.2 Backend BFF (Pure ESM)
 │   ├── src/
-│   │   ├── controllers/          # 25+ Domain Controllers (Attendance, Exam, Transfer)
-│   │   ├── middlewares/          # Security: authenticate, authorize, scope, rateLimit
-│   │   ├── models/               # 30 Mongoose Schemas (User, Student, School, Audit)
-│   │   ├── routes/               # Modular Express Route Declarations
-│   │   ├── services/             # PDFKit Vector Generator, Cloudinary, Mailer
-│   │   └── validations/          # Express-validator / Joi Request Schemas
-│   └── tests/                    # 40 Production Jest Test Suites (1,116 Passing Specs)
+│   │   ├── controllers/          # 26 Domain Controllers (Attendance, Exam, Transfer, Export)
+│   │   ├── middlewares/          # 21 Security Filters: authenticate, authorize, scope, rateLimit
+│   │   ├── models/               # 32 Mongoose Schemas (User, Student, School, Audit, Outbox)
+│   │   ├── routes/               # 27 Mounted Express Route Declarations (v1/index.js)
+│   │   ├── services/             # 9 Domain Services (OTP, Timetable, Outbox, Cleanup)
+│   │   └── validations/          # Zod Request Validation Schemas
+│   └── tests/                    # 55 Production Test Suites (34 in npm test + 21 Adversarial)
 │
-├── client/                        # React 18.3.1 + Vite 6.1.0 Authenticated SPA
+├── client/                        # Git Repo #2: React 18.3.1 + Vite 6.1.0 Authenticated SPA
 │   ├── src/
 │   │   ├── components/           # Reusable UI Primitives (Design Constitution v2.0)
-│   │   ├── pages/                # Role-Quarantined Dashboards (Admin, HM, Teacher, Parent)
-│   │   ├── services/             # Axios API Interceptors + Token Refresh Mutex Queue
-│   │   └── store/                # Redux Toolkit Slices (auth, attendance, exam, etc.)
+│   │   ├── pages/                # 14 Role-Quarantined Workspaces (Admin, HM, Parent, Student)
+│   │   ├── services/             # Axios API Client + Token Refresh Mutex Queue
+│   │   └── store/                # 10 Redux Toolkit Slices (auth, attendance, exam, etc.)
 │   └── public/                   # PWA Manifest, Service Worker (Workbox), Logos
 │
-├── landing-page/                  # Next.js 15.1.7 Civic Public Portal (SSR)
+├── landing-page/                  # Git Repo #3: Next.js 15.1.7 Civic Public Portal (SSR)
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── documentation/    # Comprehensive Engineering Documentation Portal
+│   │   │   ├── documentation/    # Comprehensive Engineering Documentation Portal (46 Sections)
 │   │   │   ├── layout.jsx        # Civic Metadata, Favicons, JSON-LD Schema.org
 │   │   │   └── page.jsx          # Public Civic Landing Page
 │   │   └── components/           # CivicNavbar, CivicFooter, Textbook Downloader
 │   └── public/                   # Free Sindh Textbooks Archive (PDFs)
 │
-└── docs/                          # Authoritative System Knowledge Base (Markdown)
-    ├── EDUCATION_PLATFORM_DOCUMENTATION.md  # Master 1,565-line Sealed Knowledge Base
-    ├── AI_RULES.md                         # Operating Guidelines for AI Agents
-    ├── DATABASE.md                         # Schema Schemas & Zero-Hard-Delete Laws
-    ├── SECURITY.md                         # 55-Control ASVS Security Specification
-    └── RBAC.md                             # 7-Tier Hierarchy & 20-Capability Matrix`}
+└── docs/                          # Shared Technical Reference & Canonical Specifications
+    ├── README.md                 # Master Navigation Index & Stakeholder Sitemap
+    ├── PROJECT_OVERVIEW.md       # Municipal Charter & Civic Mission
+    ├── DOCUMENTATION_STANDARDS.md# Evidence Labels & Maintenance Definition of Done
+    ├── STATUS.md                 # Discrepancy Register (DISC-01 to DISC-09) & Gates
+    ├── COVERAGE_MATRIX.md        # Source-to-Documentation Traceability Matrix
+    ├── ARCHITECTURE.md           # 3-Tier Topology & Request Flow Lifecycle
+    ├── RBAC.md                   # Definitive 9-Authority Hierarchy Matrix
+    ├── HM_WORKFLOWS.md           # Operational Head Master Manual (7 Workflows)
+    ├── DATABASE.md               # Complete 32-Model Schema Inventory & Indexes
+    ├── API.md                    # 27 Mounted Routes & Streaming CSV Contracts
+    ├── SECURITY.md               # Canonical Finding Register CF-01 to CF-10
+    └── TESTING.md                # Complete 55-Test Suite Inventory & Commands`}
     </TerminalBlock>
+
+    <Callout type="security" title="VERSION-CONTROL TOPOLOGY & REPOSITORY BOUNDARIES">
+      The application codebase is structured across <strong>three independent Git repositories</strong> (<code>server/</code>, <code>client/</code>, <code>landing-page/</code>), each with its own remote origin and main branch. The root <code>docs/</code> directory serves as the cross-cutting specification vault and is maintained with absolute consistency across all application tiers.
+    </Callout>
   </div>
 );

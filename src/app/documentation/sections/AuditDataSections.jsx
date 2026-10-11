@@ -54,13 +54,13 @@ export const AuditContractSection = () => (
 export const DatabaseModelsSection = () => (
   <div>
     <DocHeader
-      title="Complete 30-Model Mongoose Schema Catalogue"
+      title="Complete 32-Model Mongoose Schema Catalogue"
       badge="6. Immutable Audit & Data Vault"
-      subtitle="Comprehensive inventory of all 30 production data models in server/src/models/."
+      subtitle="Comprehensive inventory of all 32 production data models in server/src/models/."
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      The backend is powered by 30 purpose-built Mongoose models organized by institutional domain. All models strictly adhere to the <strong>Zero-Hard-Deletion</strong> policy:
+      The backend is powered by 32 purpose-built Mongoose models organized by institutional domain. All models strictly adhere to the <strong>Zero-Hard-Deletion</strong> policy:
     </p>
 
     <ComparisonTable
@@ -75,23 +75,25 @@ export const DatabaseModelsSection = () => (
         { left: 'Document', right: 'Documents • Official circulars, gazette orders, syllabi, and free STBB digital textbooks (PDF_BOOK).' },
         { left: 'Exam', right: 'Exams • Mid-Term, Annual, and Sindh Elementary Board examination terms and schedules.' },
         { left: 'HolidayCalendar', right: 'Operations • Gazetted provincial holidays and emergency weather closures with YYYY-MM-DD format.' },
-        { left: 'Homework', right: 'Academics • Daily teacher homework assignments, subject diary notes, and submission deadlines.' },
+        { left: 'Homework', right: 'Academics • Daily teacher homework assignments, subject diary notes, and 7-day expiring attachments.' },
+        { left: 'IdempotencyRecord', right: 'Reliability • Mutation replay protection and key-reuse defense with SHA-256 fingerprinting (24h TTL).' },
         { left: 'Notification', right: 'Communications • In-app user notifications and alerts with read/unread tracking.' },
-        { left: 'NotificationOutbox', right: 'Communications • Asynchronous email/SMS dispatch queue with retry backoff metadata.' },
+        { left: 'NotificationOutbox', right: 'Communications • Asynchronous email/SMS dispatch queue with retry backoff and error recovery.' },
         { left: 'Organization', right: 'Civic • Top-level municipal authority (DMC Liaquatabad Town Centre) entity.' },
-        { left: 'OtpVerification', right: 'Security • 6-digit phone verification OTP nonces for parent ward linking with 10m TTL.' },
+        { left: 'OtpVerification', right: 'Security • Cryptographic OTP nonces for parent ward linking with 10m TTL.' },
         { left: 'ParentStudentLink', right: 'Security • Zero-trust parent-ward bridge (PENDING_OTP, PENDING_HM_APPROVAL, VERIFIED).' },
         { left: 'ProfileAccessRequest', right: 'Governance • Formal audit trail for elevated profile access requests across boundaries.' },
         { left: 'Result', right: 'Exams • 700-mark student examination results, 20-mark Nazra Quran split, letter grade, and rank.' },
         { left: 'School', right: 'Institutions • Municipal school particulars, SEMIS census code, capacity, and GPS coordinates.' },
         { left: 'SchoolInspection', right: 'Surveillance • Cluster Supervisor field inspection audit logs with infrastructure hygiene scores.' },
-        { left: 'Section', right: 'Academics • Section sub-divisions within grades (Section A, B, C). Scoped by classId.' },
+        { left: 'Section', right: 'Academics • Section sub-divisions within grades (Optional in single-cohort primary/middle schools).' },
         { left: 'SecurityLockout', right: 'Security • Triple-Lock temporary account lockouts triggered by consecutive failed attempts.' },
-        { left: 'StudentProfile', right: 'Students • Enrolled student records, unique GR numbers, B-Form identity, and guardian details.' },
+        { left: 'StudentProfile', right: 'Students • Enrolled student records, unique GR numbers, non-destructive STRUCK_OFF lifecycle.' },
         { left: 'Subject', right: 'Academics • Curriculum course subjects (English, Sindhi, Urdu, Math, Science, Islamiat, Drawing).' },
-        { left: 'SystemControl', right: 'Governance • Platform emergency maintenance flags and global system killswitches.' },
+        { left: 'SystemControl', right: 'Governance • Platform emergency maintenance flags and global stealth 503 outage killswitch.' },
         { left: 'TeacherProfile', right: 'Faculty • Civil service cadre (PST/JEST/HST), service book history, seniority, qualification.' },
-        { left: 'TeachingAssignment', right: 'Faculty • Active teacher subject-to-classroom-section mapping bindings.' },
+        { left: 'TeachingAssignment', right: 'Faculty • Teacher subject-to-classroom mapping (sectionId is nullable for whole-cohort assignment).' },
+        { left: 'Timetable', right: 'Scheduling • Weekly institutional timetable grids, period schedules, and teacher conflict checks.' },
         { left: 'Town', right: 'Institutions • Liaquatabad Town Centre administrative boundary and census metadata.' },
         { left: 'TransferRequest', right: 'Faculty • 5-stage atomic faculty transfer lifecycle (INITIATED, RELIEVED, JOINED).' },
         { left: 'User', right: 'Identity • Decoupled core account credentials, Argon2id hash, role, scope, and tokenVersion.' },
@@ -106,7 +108,7 @@ export const ApiCatalogueSection = () => (
     <DocHeader
       title="RESTful API Architecture & Standard Envelope"
       badge="6. Immutable Audit & Data Vault"
-      subtitle="Standardized JSON response envelope, HTTP status code semantics, and endpoint catalogue."
+      subtitle="Standardized JSON response envelope, HTTP status code semantics, and 27-route mounted endpoint catalogue."
     />
 
     <TerminalBlock title="STANDARD API JSON RESPONSE ENVELOPE">
@@ -130,25 +132,47 @@ export const ApiCatalogueSection = () => (
   "success": false,
   "statusCode": 403,
   "error": "ForbiddenError",
-  "message": "Actor roleLevel (40) is insufficient to mutate target user (roleLevel 60)",
-  "timestamp": "2026-09-27T02:45:00.000Z"
+  "message": "Actor roleLevel (50) is insufficient to mutate target user (roleLevel 80)",
+  "timestamp": "2026-10-11T19:35:00.000Z"
 }`}
     </TerminalBlock>
 
-    <SectionTitle>Primary Route Groups</SectionTitle>
+    <SectionTitle>Complete 27-Route Mounted Suites Catalogue</SectionTitle>
     <ComparisonTable
-      headers={['Route Prefix', 'Domain / Controller', 'Guards & Middleware Pipeline']}
+      headers={['Mounted Base Route', 'Domain / Route File', 'Guards & Middleware Pipeline']}
       rows={[
-        { left: '/api/v1/auth', right: 'Authentication • Rate-limited, CAPTCHA verified, Argon2id, RTR cookies.' },
-        { left: '/api/v1/schools', right: 'School Management • Scoped by townId / schoolId, HM & Admin.' },
-        { left: '/api/v1/teachers', right: 'Faculty & Rosters • Scoped by schoolId, HM & Supervisor.' },
-        { left: '/api/v1/transfers', right: 'Teacher Transfers • 5-stage atomic state machine, HM & Super Admin.' },
-        { left: '/api/v1/students', right: 'Student Management • GR uniqueness, Class & Section scoped.' },
-        { left: '/api/v1/attendance', right: 'Smart Attendance • PST timing rules, Teacher & HM.' },
-        { left: '/api/v1/exams', right: 'Examinations & Tabulation • 700-mark rules, Nazra split, PDF exports.' },
-        { left: '/api/v1/parent', right: 'Parent BFF • Anti-enumeration GR lookup, OTP, verified ward link.' },
-        { left: '/api/v1/supervision', right: 'School Inspections • Supervisor cluster audits, infrastructure scores.' },
+        { left: '/api/v1/health', right: 'System • healthRoutes.js • Public monitoring probes & DB health check.' },
+        { left: '/api/v1/system-control', right: 'Emergency • systemControlRoutes.js • ROOT_ADMIN only stealth 503 outage mode.' },
+        { left: '/api/v1/auth', right: 'Authentication • authRoutes.js • Triple-Lock rate limit, Argon2id, RTR cookies, OTP.' },
+        { left: '/api/v1/auth/mfa', right: 'Security • mfaRoutes.js • Root Admin RFC 6238 TOTP verification & recovery.' },
+        { left: '/api/v1/users', right: 'Governance • userRoutes.js • Central municipal account lifecycle & approvals.' },
+        { left: '/api/v1/approvals', right: 'Verification • approvalRoutes.js • HM & Admin staff registration verification.' },
+        { left: '/api/v1/staff', right: 'Faculty • staffProfileRoutes.js • Official service books & PDF dossier download consent.' },
+        { left: '/api/v1/assignments', right: 'Academic • teachingAssignmentRoutes.js • Whole-class & subject teaching allocations.' },
+        { left: '/api/v1/schools', right: 'Infrastructure • schoolRoutes.js • Municipal schools, SEMIS codes, facilities.' },
+        { left: '/api/v1/students', right: 'Students • studentRoutes.js • Admissions, GR allocation, non-destructive strike-off.' },
+        { left: '/api/v1/public', right: 'Gateway • publicRoutes.js • Public statistics & executive announcement banners.' },
+        { left: '/api/v1/admin/super-admins', right: 'Governance • superAdminRoutes.js • Super Admin provisioning & safe disable.' },
+        { left: '/api/v1/admin/users', right: 'Governance • adminUserRoutes.js • Explicit administrative authority elevation.' },
+        { left: '/api/v1/academic', right: 'Academics • academicRoutes.js • Central class grades, sections, curriculum subjects.' },
+        { left: '/api/v1/attendance', right: 'Operations • attendanceRoutes.js • Daily student/staff attendance & late overrides.' },
+        { left: '/api/v1/transfers', right: 'Transfers • transferRoutes.js • Town Admin transfer orders, HM relieving & joining.' },
+        { left: '/api/v1/exports', right: 'Data Exports • exportRoutes.js • Streaming CSV with fail-closed audit log handling.' },
+        { left: '/api/v1/homework', right: 'Pedagogical • homeworkRoutes.js • Daily homework diary & 7-day expiring attachments.' },
+        { left: '/api/v1/holidays', right: 'Policy • holidayRoutes.js • Gazetted town holidays & emergency rain closures.' },
+        { left: '/api/v1/announcements', right: 'Broadcast • announcementRoutes.js • Executive alerts & landing page bulletins.' },
+        { left: '/api/v1/notifications', right: 'Communications • notificationRoutes.js • In-app alerts, consent actions, receipts.' },
+        { left: '/api/v1/exams', right: 'Assessment • examRoutes.js • Exam schedules, marks entry, legal A4 gazettes.' },
+        { left: '/api/v1/documents', right: 'Archives • documentRoutes.js • Official circulars, textbooks, text-only notices.' },
+        { left: '/api/v1/inspections', right: 'Surveillance • schoolInspectionRoutes.js • Supervisor cluster monitoring visits.' },
+        { left: '/api/v1/parent', right: 'Parent Portal • parentRoutes.js • Zero-trust ward discovery, OTP, marks monitoring.' },
+        { left: '/api/v1/hm/parent-links', right: 'Verification • hmParentLinkRoutes.js • Head Master physical register verification.' },
+        { left: '/api/v1/timetables', right: 'Timetable • timetableRoutes.js • Institutional timetable engine & live room monitor.' },
       ]}
     />
+
+    <Callout type="security" title="EXPORT FAIL-CLOSED AUDIT GUARANTEE">
+      All data export endpoints on <code>/api/v1/exports/*</code> stream CSV data directly to the client. The server attempts to persist an immutable <code>AuditLog</code> record <strong>prior</strong> to opening the response stream. If audit persistence fails, the request fails closed immediately with <code>500 Internal Server Error</code> and streams zero records.
+    </Callout>
   </div>
 );

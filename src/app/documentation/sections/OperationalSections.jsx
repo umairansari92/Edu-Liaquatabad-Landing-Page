@@ -1450,3 +1450,82 @@ Response: 201 { success: true, recipientsCount: 1420 }`}
     </TerminalBlock>
   </div>
 );
+
+// ══════════════════════════════════════════════════════════════════════════════
+// 11. HEAD MASTER (HM) OPERATIONAL MANUAL & 7 CORE WORKFLOWS
+// ══════════════════════════════════════════════════════════════════════════════
+export const HeadMasterWorkflowsSection = () => (
+  <div>
+    <DocHeader
+      title="Head Master (HM) Operational Manual & 7 Core Institutional Workflows"
+      badge="5. Core Operational Engines"
+      subtitle="Complete operational guide for school building administrators governing enrolment, marksheets, single-cohort assignments, and transfers."
+    />
+
+    {/* 4-Metric HUD */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CORE WORKFLOWS</div>
+        <div className="text-sm font-black text-[#006AC7]">7 Operational Areas</div>
+        <div className="text-xs text-[#526477]">Admissions to Marksheets</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUTOMATED TESTING</div>
+        <div className="text-sm font-black text-[#4B7F3A]">120 Dedicated Tests</div>
+        <div className="text-xs text-[#526477]">100% Pass Rate in Suites</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">SIGN-OFF GATE</div>
+        <div className="text-sm font-black text-amber-600">Approval PENDING</div>
+        <div className="text-xs text-[#526477]">Awaiting Owner Sign-Off</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TENANT ISOLATION</div>
+        <div className="text-sm font-black text-purple-600">Single School Scope</div>
+        <div className="text-xs text-[#526477]">BOLA-Hardened Filter</div>
+      </div>
+    </div>
+
+    <p className="text-xs text-[#526477] leading-relaxed mb-6">
+      The Head Master (HM) possesses full administrative authority over their assigned municipal school building. Below are the 7 core operational workflows implemented in the application and verified by automated tests:
+    </p>
+
+    <ComparisonTable
+      headers={['Operational Workflow', 'Route & Method', 'Institutional Reality & Security Invariant']}
+      rows={[
+        {
+          left: '1. Student Admission & Enrolment',
+          right: 'POST /api/v1/students/admit • Enrols student into municipal register. Enforces unique compound index { schoolId, grNumber }. Generates unique student profile.',
+        },
+        {
+          left: '2. Non-Destructive Strike-Off',
+          right: 'PATCH /api/v1/students/:id/strike-off • Permanent departure transition (status: STRUCK_OFF). Requires mandatory reason. Invalidates auth session and revokes parent access.',
+        },
+        {
+          left: '3. Single-Cohort Staff Allocation',
+          right: 'POST /api/v1/assignments • Binds teacher to class and subject. sectionId is nullable (null indicates Whole Class allocation for Liaquatabad schools). Enforces one primary Class Teacher rule.',
+        },
+        {
+          left: '4. Legal/A4 Gazette & Marksheets',
+          right: 'GET /api/v1/exams/:id/results/tabulation-sheet • Generates official Sindh Elementary Board gazette matrix with 20-mark Nazra Quran split and Drawing letter grade. Marksheets gated by PUBLISHED status.',
+        },
+        {
+          left: '5. Emergency Rain Closures',
+          right: 'POST /api/v1/holidays/emergency-closure • Declares emergency local closure. Times evaluated in Asia/Karachi (PKT). Automatically emits notification outbox alerts.',
+        },
+        {
+          left: '6. School Circulars & Notices',
+          right: 'POST /api/v1/documents • Publishes official school notices. Attachments are 100% optional; text-only circulars execute safely without requiring PDF upload.',
+        },
+        {
+          left: '7. Teacher Transfer Joining Confirmation',
+          right: 'POST /api/v1/transfers/:id/joining • Destination HM verifies incoming teacher arrival and service book. Note: HM CANNOT initiate inter-school transfers (Town Admin authority only).',
+        },
+      ]}
+    />
+
+    <Callout type="warning" title="OPERATIONAL SIGN-OFF GATE NOTICE">
+      While all 7 Head Master workflows are fully coded and pass 120 automated test assertions, <strong>Owner Operational Sign-Off remains PENDING</strong>. Automated tests certify code correctness but do not constitute municipal owner operational clearance.
+    </Callout>
+  </div>
+);

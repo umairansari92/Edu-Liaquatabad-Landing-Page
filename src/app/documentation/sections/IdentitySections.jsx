@@ -52,11 +52,11 @@ export const RolesCatalogueSection = () => (
         },
         {
           left: 'HM (Head Master)',
-          right: 'Level 50 • SCHOOL • School building head, teacher relieving/joining certifications, student enrollment, parent verification.',
+          right: 'Level 50 • SCHOOL • School building head, teacher relieving/joining certifications, student enrollment, parent verification. Operational Status: IMPLEMENTED & TESTED (Owner Approval PENDING).',
         },
         {
           left: 'TEACHER',
-          right: 'Level 30 • CLASS_SECTION • Classroom instructional faculty, daily attendance entry, 700-mark exam score entry, homework assignment.',
+          right: 'Level 30 • CLASS_SECTION • Classroom instructional faculty. Operational Status: PLANNED / LOCKED (Explicit Owner Direction).',
         },
         {
           left: 'PEON',
@@ -92,16 +92,16 @@ export const CapabilityMatrixSection = () => (
         { left: 'Town-Wide Gazetted Circulars', right: 'ROOT_ADMIN, SUPER_ADMIN, ADMIN' },
         { left: 'Staff Creation (Below Own Level)', right: 'ROOT_ADMIN, SUPER_ADMIN, ADMIN' },
         { left: 'School Inspection Audit Submission', right: 'SUPERVISOR, ADMIN, SUPER_ADMIN' },
-        { left: 'Teacher Transfer Initiation', right: 'SUPERVISOR, HM, ADMIN, SUPER_ADMIN' },
+        { left: 'Inter-School Transfer Initiation', right: 'SUPERVISOR, ADMIN, SUPER_ADMIN (HM cannot initiate inter-school transfers)' },
         { left: 'Teacher Relieving Certification', right: 'HM (Source School), SUPER_ADMIN' },
         { left: 'Teacher Joining Confirmation', right: 'HM (Destination School), SUPER_ADMIN' },
         { left: 'Student Enrollment & GR Assignment', right: 'HM, ADMIN' },
         { left: 'Parent Ward Link Verification', right: 'HM (Physical CNIC Check), ADMIN' },
-        { left: 'Daily Student Attendance Marking', right: 'TEACHER (Assigned Section), HM' },
-        { left: 'Exam Marks Entry (Subject)', right: 'TEACHER (Assigned Subject), HM' },
+        { left: 'Daily Student Attendance Marking', right: 'TEACHER (Assigned Section - LOCKED), HM' },
+        { left: 'Exam Marks Entry (Subject)', right: 'TEACHER (Assigned Subject - LOCKED), HM' },
         { left: 'Official Tabulation Sheet Lock', right: 'HM, ADMIN, SUPER_ADMIN' },
-        { left: 'Marksheet PDF Generation', right: 'TEACHER, HM, STUDENT, PARENT' },
-        { left: 'Student Profile Read', right: 'TEACHER (Section), HM, STUDENT, PARENT' },
+        { left: 'Marksheet PDF Generation', right: 'HM, STUDENT (Published Only), PARENT (Verified Link)' },
+        { left: 'Student Profile Read', right: 'HM, STUDENT (Self Only), PARENT (Verified Ward Only)' },
         { left: 'Ward Academic & Attendance Read', right: 'PARENT (Verified Link Only)' },
         { left: 'School Circulars View', right: 'PEON, TEACHER, HM, ADMIN, SUPER_ADMIN, ROOT_ADMIN' },
         { left: 'Free Sindh Textbook Download', right: 'PUBLIC (Unauthenticated / All)' },
@@ -109,6 +109,11 @@ export const CapabilityMatrixSection = () => (
         { left: 'Audit Trail Inspection', right: 'ADMIN, SUPER_ADMIN, ROOT_ADMIN' },
       ]}
     />
+
+    <Callout type="security" title="OPERATIONAL DIRECTORY VS CENTRAL ACCOUNT GOVERNANCE">
+      <strong>/directory</strong> (School-Scoped Operational Workspace): Head Masters and teachers manage student rosters and daily attendance.<br />
+      <strong>/users</strong> (Central Municipal Governance): Central Town Administration (Admin/Super Admin) manages credentials and platform lifecycle.
+    </Callout>
   </div>
 );
 
