@@ -9,7 +9,7 @@ export const metadata = {
     template: '%s | DMC Liaquatabad Education Documentation',
   },
   description:
-    'Authoritative technical documentation for the Education Department Liaquatabad Town Centre (DMC) School Management System: 7-tier municipal hierarchy, decoupled identity, 30 Mongoose models, Argon2id security, and 40 verified test suites.',
+    'Authoritative technical documentation for the Education Department Liaquatabad Town Centre (DMC) School Management System: 7-tier municipal hierarchy, decoupled identity, 32 Mongoose models, Argon2id security, and 55 verified test suites.',
   keywords: [
     'Education Department Liaquatabad Town Centre',
     'DMC Karachi Education Documentation',
@@ -31,7 +31,7 @@ export const metadata = {
     siteName: 'Education Department Liaquatabad Town Centre (DMC)',
     title: 'System Documentation & Engineering Architecture | DMC Liaquatabad',
     description:
-      'Complete engineering specification and municipal system knowledge base: 30 models, 55 security controls, 1,116 passing tests, and decentralized institutional governance.',
+      'Complete engineering specification and municipal system knowledge base: 32 models, 55 security controls, 55 passing test suites, and decentralized institutional governance.',
     images: [
       {
         url: `${SITE_URL}/og-liaquatabad-dmc.jpg`,
@@ -54,7 +54,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'System Documentation | Education Department Liaquatabad (DMC)',
     description:
-      'Official technical guide: 7-tier municipal hierarchy, 30 models, 55 security controls, and Elementary Board tabulation engine.',
+      'Official technical guide: 7-tier municipal hierarchy, 32 models, 55 security controls, and Elementary Board tabulation engine.',
     images: [`${SITE_URL}/og-liaquatabad-dmc.jpg`],
   },
   robots: {

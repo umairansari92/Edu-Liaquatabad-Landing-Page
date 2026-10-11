@@ -69,6 +69,7 @@ import {
   TechTopologySection,
   BffFlowSection,
   ProjectStructureSection,
+  ArchitecturalDecisionsSection,
 } from './sections/ArchitectureSections';
 
 import {
@@ -154,6 +155,7 @@ export default function DocumentationPage() {
         { id: 'tech-topology', label: 'Dual-App Architecture', icon: Cpu },
         { id: 'bff-flow', label: 'BFF Pattern & Data Flow', icon: ArrowRightLeft },
         { id: 'project-structure', label: 'Directory Layout & Roles', icon: Terminal },
+        { id: 'adr-registry', label: 'Architectural Decision Records (ADR-01 to ADR-08)', icon: FileText },
       ],
     },
     {
@@ -479,7 +481,7 @@ export default function DocumentationPage() {
                  ▼                                   ▼
 ┌─────────────────────────────────┐ ┌─────────────────────────────────┐
 │ MongoDB Atlas 7.0 Cluster        │ │ External Integrated Services     │
-│ 30 Mongoose Models, Zero Deletes │ │ • Cloudinary (Encrypted Media)   │
+│ 32 Mongoose Models, Zero Deletes │ │ • Cloudinary (Encrypted Media)   │
 │ Compound Partial Unique Indexes │ │ • Nodemailer (Municipal SMTP)    │
 │ Immutable Append-Only Audit Vault│ │ • PDFKit (Vector Board Sheets)   │
 └─────────────────────────────────┘ └─────────────────────────────────┘`}
@@ -582,6 +584,7 @@ export default function DocumentationPage() {
           {activeSection === 'tech-topology' && <TechTopologySection />}
           {activeSection === 'bff-flow' && <BffFlowSection />}
           {activeSection === 'project-structure' && <ProjectStructureSection />}
+          {activeSection === 'adr-registry' && <ArchitecturalDecisionsSection />}
 
           {/* ══════════════════════════════════════════════════════════════
               GROUP 3: IDENTITY, ROLES & SCOPES

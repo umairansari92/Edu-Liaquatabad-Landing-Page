@@ -303,3 +303,82 @@ export const ProjectStructureSection = () => (
     </Callout>
   </div>
 );
+
+// ══════════════════════════════════════════════════════════════════════════════
+// 6. ARCHITECTURAL DECISION RECORDS (ADR-01 TO ADR-08)
+// ══════════════════════════════════════════════════════════════════════════════
+export const ArchitecturalDecisionsSection = () => (
+  <div>
+    <DocHeader
+      title="Architectural Decision Records (ADR-01 to ADR-08)"
+      badge="2. Technology & Architecture"
+      subtitle="Formal decision logs, technical trade-offs, and institutional rationales governing platform architecture."
+    />
+
+    {/* 4-Metric HUD */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CANONICAL ADRS</div>
+        <div className="text-sm font-black text-[#006AC7]">8 Formal Records</div>
+        <div className="text-xs text-[#526477]">ADR-01 through ADR-08</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">SECURITY HARDENING</div>
+        <div className="text-sm font-black text-[#4B7F3A]">Argon2id + Pepper</div>
+        <div className="text-xs text-[#526477]">19 MB RAM per Hash</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CIVIL CADRES</div>
+        <div className="text-sm font-black text-purple-600">Decoupled Identity</div>
+        <div className="text-xs text-[#526477]">Designation ≠ Role</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">MUNICIPAL AUDIT</div>
+        <div className="text-sm font-black text-amber-600">Fail-Closed Exports</div>
+        <div className="text-xs text-[#526477]">Zero Unaudited Streams</div>
+      </div>
+    </div>
+
+    <p className="text-xs text-[#526477] leading-relaxed mb-6">
+      Every core architectural mechanism in the municipal platform was forged through an explicit engineering trade-off. Below is the canonical register of Architectural Decision Records:
+    </p>
+
+    <ComparisonTable
+      headers={['ADR Identifier & Subject', 'Decision & Context', 'Institutional Rationale & Outcome']}
+      rows={[
+        {
+          left: 'ADR-01: Decoupling Civil Designation from RBAC',
+          right: 'Decision: Civil Service Designation (e.g. DDO, TEO) is stored as descriptive metadata; authorization is driven strictly by immutable backend roleLevel (10–100) and geographic scope.',
+        },
+        {
+          left: 'ADR-02: Single-Cohort Class Model in Primary Schools',
+          right: 'Decision: sectionId in TeachingAssignment and StudentProfile is nullable (null represents Whole Class cohort). Accommodates Liaquatabad schools where grades are not divided into sections.',
+        },
+        {
+          left: 'ADR-03: In-Memory File Processing Buffer',
+          right: 'Decision: File uploads use multer.memoryStorage(). PDFs and marksheets are processed in RAM and streamed directly to Cloudinary or the client, leaving zero unencrypted files on disk.',
+        },
+        {
+          left: 'ADR-04: Fail-Closed Streaming CSV Data Export Audit',
+          right: 'Decision: Data exports stream directly to the client. If the audit logging engine fails to record the export, the connection is immediately aborted (fail-closed), preventing unmonitored mass data extraction.',
+        },
+        {
+          left: 'ADR-05: Native Argon2id + Pepper Hashing Architecture',
+          right: 'Decision: Upgraded from legacy bcrypt to native @node-rs/argon2 with 19,456 KiB RAM cost and a server-side pepper key. Thwarts GPU/ASIC dictionary attacks while silently upgrading legacy hashes.',
+        },
+        {
+          left: 'ADR-06: Asynchronous Outbox Pattern for Durable Alerts',
+          right: 'Decision: NotificationOutbox decouples HTTP request-response cycles from external communication delays. Background worker dispatches notifications with exponential backoff and deduplication.',
+        },
+        {
+          left: 'ADR-07: Karachi Hardware Window Attendance Policy',
+          right: 'Decision: Hard-coded timing gates enforce Asia/Karachi (PKT) time: gates open at 07:30 AM, late threshold at 08:15 AM, and hard lock at 09:00 AM, eliminating retroactive paper proxy attendance.',
+        },
+        {
+          left: 'ADR-08: Forensic Attribution Watermark vs Screen Blur',
+          right: 'Decision: Browser heuristic deterrence (blur on blur, hotkey blocking) is combined with dynamic server-stamped SVG/Canvas watermarks (Username, IP, Timestamp) to ensure non-repudiable leak attribution.',
+        },
+      ]}
+    />
+  </div>
+);

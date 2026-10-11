@@ -185,9 +185,9 @@ export const QuickAccessSection = () => (
           <span className="text-[11px] font-extrabold text-[#4B7F3A] uppercase tracking-wider">TEST SUITES</span>
           <CheckCircle2 className="w-4 h-4 text-[#4B7F3A]" />
         </div>
-        <div className="text-2xl font-black text-[#102033]">1,116 PASS</div>
+        <div className="text-2xl font-black text-[#102033]">55 SUITES</div>
         <p className="text-[11px] text-[#526477] leading-relaxed">
-          40 test suites on disk. 100% assertions passing with zero failed specs.
+          55 test suites on disk (34 chained core suites in npm test + 21 specialized adversarial suites).
         </p>
       </div>
 
@@ -222,7 +222,7 @@ export const QuickAccessSection = () => (
 │ Express Backend Port                 │ :5000 (Hardened REST API + BFF)      │
 │ Vite React SPA Port                  │ :5173 (Authenticated Workspace)     │
 │ Next.js SSR Portal Port              │ :3000 (Public Civic Landing Page)    │
-│ Mongoose Schemas Count               │ 30 Production Models in server/src/  │
+│ Mongoose Schemas Count               │ 32 Production Models in server/src/  │
 │ Argon2id Memory Hardness             │ 19,456 KiB (~19 MB) RAM per Hash     │
 │ Refresh Token Rotation Window        │ 3,000ms Grace Period for Concurrency │
 │ Karachi Municipal Late Gate Cutoff   │ 08:15 AM PST (Asia/Karachi, UTC+5)   │
