@@ -137,7 +137,10 @@ export const ApiCatalogueSection = () => (
 }`}
     </TerminalBlock>
 
-    <SectionTitle>Complete 27-Route Mounted Suites Catalogue</SectionTitle>
+    <SectionTitle>Complete 27-Router Architecture &amp; Mounted Endpoint Index</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      The backend exposes 27 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 26 route modules are imported and mounted directly via <code>router.use()</code>. The 27th router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 70 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
+    </p>
     <ComparisonTable
       headers={['Mounted Base Route', 'Domain / Route File', 'Guards & Middleware Pipeline']}
       rows={[

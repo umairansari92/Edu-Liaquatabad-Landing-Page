@@ -33,9 +33,9 @@ export const TestVerificationSection = () => (
         <div className="text-[11px] text-[#526477]">34 Chained in npm test + 21 Adversarial</div>
       </div>
       <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">1,450+</div>
+        <div className="text-3xl font-black text-[#006AC7]">1,436</div>
         <div className="text-xs font-bold text-[#102033]">ASSERTIONS PASS</div>
-        <div className="text-[11px] text-[#526477]">0 Failed Specs • 0 Flaky Tests</div>
+        <div className="text-[11px] text-[#526477]">1,436 / 1,436 (100%) • 0 Failed Specs • 0 Flaky Tests</div>
       </div>
       <div className="p-4 rounded-xl bg-purple-50 border border-purple-200 text-center">
         <div className="text-3xl font-black text-purple-700">100%</div>
@@ -74,27 +74,27 @@ export const DeploymentTopologySection = () => (
 
     <TerminalBlock title="PRODUCTION NETWORK TOPOLOGY">
 {`                        INTERNET TRAFFIC
-                               │ (TLS 1.3 / HTTPS)
-                               ▼
+                                │ (TLS 1.3 / HTTPS)
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ VERCEL MULTI-ZONE EDGE NETWORK                              │
 │ • liaquatabad-schools.gov.pk (landing-page / Next.js SSR)   │
 │ • app.liaquatabad-schools.gov.pk (client / Vite React SPA)  │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ X-Forwarded-For, X-Forwarded-Proto
-                               ▼
+                                │ X-Forwarded-For, X-Forwarded-Proto
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ HARDENED REVERSE PROXY GATEWAY (NGINX / TRAEFIK)            │
 │ app.set('trust proxy', 1); (Single-hop header trust)        │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ Internal Secure VPC
-                               ▼
+                                │ Internal Secure VPC
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ NODE.JS 20+ API CLUSTER (DOCKER / PM2)                     │
 │ port: 5000 • Helmet • Argon2id Native Rust Engine          │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ TLS Encrypted Connection
-                               ▼
+                                │ TLS Encrypted Connection
+                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ MONGODB ATLAS 7.0 (M10+ REPLICA SET)                        │
 │ W: majority, J: true, Automated Daily Snapshots             │
@@ -120,7 +120,7 @@ export const StatusRoadmapSection = () => (
         },
         {
           left: 'Head Master (HM) Workspace',
-          right: 'IMPLEMENTED & TESTED • 120 automated tests pass. Owner Operational Approval PENDING.',
+          right: 'IMPLEMENTED & TESTED • 173 automated tests pass across 10 files (180 with single-cohort). Owner Operational Approval PENDING.',
         },
         {
           left: 'Teacher Workspace',
@@ -185,7 +185,7 @@ export const GlossarySection = () => (
 export const DiscrepancyRegisterSection = () => (
   <div>
     <DocHeader
-      title="Discrepancy Register & Historical Resolution Audit (DISC-01 to DISC-09)"
+      title="Discrepancy Register & Historical Resolution Audit (DISC-01 to DISC-10)"
       badge="8. Verification & Deployment"
       subtitle="Reconciling historical documentation claims against active source code, test execution, and Git history."
     />
@@ -194,8 +194,8 @@ export const DiscrepancyRegisterSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUDITED DISCREPANCIES</div>
-        <div className="text-sm font-black text-[#006AC7]">9 Discrepancies</div>
-        <div className="text-xs text-[#526477]">DISC-01 through DISC-09</div>
+        <div className="text-sm font-black text-[#006AC7]">10 Discrepancies</div>
+        <div className="text-xs text-[#526477]">DISC-01 through DISC-10</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">CODE RECONCILIATION</div>
@@ -215,7 +215,7 @@ export const DiscrepancyRegisterSection = () => (
     </div>
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      Phase A audit identified 9 discrepancies between historical text documentation and current code truth. Below is the authoritative resolution of each discrepancy substantiated by direct code, tests, and Git commits:
+      Phase A audit identified 10 discrepancies between historical text documentation and current code truth. Below is the authoritative resolution of each discrepancy substantiated by direct code, tests, and Git commits:
     </p>
 
     <ComparisonTable
@@ -227,7 +227,7 @@ export const DiscrepancyRegisterSection = () => (
         },
         {
           left: 'DISC-02: HM Module Operational Sign-Off',
-          right: 'Historical: "Approved and operational" • Reality: 184 automated assertions pass across all 10 HM test files on disk (115 in 6 core suites; 8 in npm test), but owner operational sign-off remains pending • Resolution: Marked as IMPLEMENTED & TESTED (Owner Approval PENDING).',
+          right: 'Historical: "Approved and operational" • Reality: 173 automated assertions pass across all 10 HM test files on disk (180 including optional sections); dynamic audit confirms 1,436/1,436 total assertions pass platform-wide, but owner operational sign-off remains pending • Resolution: Marked as IMPLEMENTED & TESTED (Owner Approval PENDING).',
         },
         {
           left: 'DISC-03: Role Levels & Permission Scopes',
@@ -257,7 +257,12 @@ export const DiscrepancyRegisterSection = () => (
           left: 'DISC-09: Version-Control Repository Ownership',
           right: 'Historical: Single repo assumed • Reality: 3 independent Git repos (server, client, landing-page); root docs/ unversioned • Resolution: Multi-repo topology documented with migration options.',
         },
+        {
+          left: 'DISC-10: The 26 vs 27 Router Architecture Reconciliation',
+          right: 'Historical: Inconsistent text claiming 26 mounted route groups vs 27 router files • Reality: Exactly 27 router files on disk in server/src/routes/; 26 mounted in server/src/routes/v1/index.js; the 27th router (mfaRoutes.js) is nested inside authRoutes.js at line 70, plus ratTrapBaitRouter at root • Resolution: Fully verified and documented in MASTER_SYSTEM_ARCHITECTURE_AND_VERIFICATION_BASELINE.md.',
+        },
       ]}
     />
   </div>
 );
+

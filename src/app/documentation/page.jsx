@@ -186,7 +186,7 @@ export default function DocumentationPage() {
     {
       category: '5. Core Operational Engines',
       items: [
-        { id: 'hm-workflows', label: 'Head Master 7 Core Workflows', icon: Briefcase },
+        { id: 'hm-workflows', label: 'Head Master 14-Tab Manual & 7 Workflows', icon: Briefcase },
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
@@ -218,7 +218,7 @@ export default function DocumentationPage() {
     {
       category: '8. Verification & Deployment',
       items: [
-        { id: 'discrepancy-register', label: 'Discrepancy Register (DISC-01 to DISC-09)', icon: AlertCircle },
+        { id: 'discrepancy-register', label: 'Discrepancy Register (DISC-01 to DISC-10)', icon: AlertCircle },
         { id: 'test-verification', label: '55 Test Suites Automated Reference', icon: CheckCircle2 },
         { id: 'deployment-topology', label: 'Multi-Zone Vercel Topology', icon: Building2 },
         { id: 'status-roadmap', label: 'Honest Status & Roadmap', icon: Activity },
@@ -306,7 +306,7 @@ export default function DocumentationPage() {
           <div className="flex items-center gap-2">
             <span className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-[#4B7F3A] border border-emerald-200">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4B7F3A] animate-pulse" />
-              <span>Staging Verified (1,116 Tests PASS)</span>
+              <span>Staging Verified (1,436 / 1,436 Tests PASS • 55 Suites)</span>
             </span>
 
             <a
@@ -421,8 +421,8 @@ export default function DocumentationPage() {
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
                   <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUTOMATED TESTS</div>
-                  <div className="text-sm font-black text-purple-600">1,116 PASS</div>
-                  <div className="text-xs text-[#526477]">40 Production Suites</div>
+                  <div className="text-sm font-black text-purple-600">1,436 PASS</div>
+                  <div className="text-xs text-[#526477]">55 Suites on Disk (100%)</div>
                 </div>
               </div>
 
@@ -436,7 +436,7 @@ export default function DocumentationPage() {
                   icon={<Building2 className="w-5 h-5" />}
                   color="blue"
                   title="Civil Service Accountability"
-                  desc="Staff deployment is governed by the Sindh Civil Servants Act. Teacher transfers, relieving orders, and joining confirmations represent legal civil service administrative actions that require non-repudiable audit logs."
+                  desc="Staff deployment is governed by DMC Liaquatabad Town Centre institutional municipal policy and operational division of authority. Inter-school transfers, relieving orders, and joining confirmations represent administrative actions requiring non-repudiable audit logs."
                 />
                 <InfoCard
                   icon={<Award className="w-5 h-5" />}
@@ -627,7 +627,7 @@ export default function DocumentationPage() {
                   icon={<Briefcase className="w-5 h-5" />}
                   color="purple"
                   title="Civil Service Legal Liability"
-                  desc="Teacher transfers and disciplinary suspensions carry severe legal and financial implications under the Sindh Civil Servants Act. Administrative mutations require non-repudiable audit logs admissible in court."
+                  desc="Teacher transfers and disciplinary suspensions carry institutional and civil service operational liability under DMC Liaquatabad Town governance rules. Administrative mutations require non-repudiable audit logs admissible in official inquiries."
                 />
                 <InfoCard
                   icon={<KeyRound className="w-5 h-5" />}

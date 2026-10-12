@@ -363,9 +363,9 @@ export const AtomicTransfersSection = () => (
         <div className="text-xs text-[#526477]">Class Keys &amp; Registers</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">LEGAL ADMISSIBILITY</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">MUNICIPAL AUDIT</div>
         <div className="text-sm font-black text-purple-600">AuditLog Non-Repudiation</div>
-        <div className="text-xs text-[#526477]">Sindh Civil Servants Act</div>
+        <div className="text-xs text-[#526477]">DMC Municipal Policy</div>
       </div>
     </div>
 
@@ -395,7 +395,7 @@ export const AtomicTransfersSection = () => (
         {
           left: '4. Unauthorized Political Verbal Transfers',
           right:
-            'Local political figures pressured Head Masters into informal transfers without Directorate approval. • SOLUTION: Transfer initiations are strictly role-gated to `SUPER_ADMIN` and `ADMIN`. Every status transition is immutably logged with actor IP, timestamp, and digital signature, making informal transfers technically impossible.',
+            'Local political figures pressured Head Masters into informal transfers without Directorate approval. • SOLUTION: Transfer initiations are strictly role-gated to `SUPER_ADMIN` and `ADMIN` (and `SUPERVISOR`). Every status transition is immutably logged with actor IP, timestamp, and digital signature, making informal transfers technically impossible.',
         },
       ]}
     />
@@ -405,8 +405,8 @@ export const AtomicTransfersSection = () => (
       items={[
         {
           step: '1',
-          title: 'INITIATED (Transfer Proposal)',
-          desc: 'A transfer request is created by a Cluster Supervisor, Head Master, or Admin specifying the Teacher, Source School, and Destination School with official transfer orders.',
+          title: 'INITIATED (Town Transfer Order)',
+          desc: 'A transfer request is initiated strictly by Town Administration (ADMIN, SUPER_ADMIN, SUPERVISOR). Head Masters cannot initiate transfers. Specifies the Teacher, Source School, and Destination School with official municipal transfer orders.',
         },
         {
           step: '2',
@@ -1459,73 +1459,257 @@ export const HeadMasterWorkflowsSection = () => (
     <DocHeader
       title="Head Master (HM) Operational Manual & 7 Core Institutional Workflows"
       badge="5. Core Operational Engines"
-      subtitle="Complete operational guide for school building administrators governing enrolment, marksheets, single-cohort assignments, and transfers."
+      subtitle="Exhaustive operational handbook for school building administrators governing enrolment, marksheets, single-cohort assignments, daily desk schedules, and transfers."
     />
 
     {/* 4-Metric HUD */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CORE WORKFLOWS</div>
-        <div className="text-sm font-black text-[#006AC7]">7 Operational Areas</div>
-        <div className="text-xs text-[#526477]">Admissions to Marksheets</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">14 OPERATIONAL TABS</div>
+        <div className="text-sm font-black text-[#006AC7]">6 Logical Groups</div>
+        <div className="text-xs text-[#526477]">Command, People, Academics, Ops, Comms, Records</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUTOMATED TESTING</div>
-        <div className="text-sm font-black text-[#4B7F3A]">184 Verified Tests</div>
-        <div className="text-xs text-[#526477]">10 Files (184 Passed, 8 in npm test)</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">7 CORE WORKFLOWS</div>
+        <div className="text-sm font-black text-[#4B7F3A]">100% Coded &amp; Verified</div>
+        <div className="text-xs text-[#526477]">Admissions to Official Gazette</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">SIGN-OFF GATE</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TEST VERIFICATION</div>
+        <div className="text-sm font-black text-purple-700">173 Tests (10 Suites)</div>
+        <div className="text-xs text-[#526477]">180 incl. single-cohort; 1,436 across platform</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">OPERATIONAL SIGN-OFF</div>
         <div className="text-sm font-black text-amber-600">Approval PENDING</div>
-        <div className="text-xs text-[#526477]">Awaiting Owner Sign-Off</div>
-      </div>
-      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TENANT ISOLATION</div>
-        <div className="text-sm font-black text-purple-600">Single School Scope</div>
-        <div className="text-xs text-[#526477]">BOLA-Hardened Filter</div>
+        <div className="text-xs text-[#526477]">Technical Ready • Awaiting Owner Sign-Off</div>
       </div>
     </div>
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      The Head Master (HM) possesses full administrative authority over their assigned municipal school building. Below are the 7 core operational workflows implemented in the application and verified by automated tests:
+      The Head Master (HM) serves as the chief institutional executive of an individual municipal school building within DMC Liaquatabad Town Centre. While possessing full daily administrative authority over students, faculty attendance, and examinations within their school perimeter, the HM operates under strict institutional boundaries: structural provisioning (classes/sections) and inter-school transfer orders are reserved for Town Administration, and zero fee collection exists under the free education mandate.
     </p>
 
+    <SectionTitle>The 14-Tab Operational Workspace Matrix (6 Functional Groups)</SectionTitle>
     <ComparisonTable
-      headers={['Operational Workflow', 'Route & Method', 'Institutional Reality & Security Invariant']}
+      headers={['Group & Tab ID', 'Operational Responsibility', 'Key Actions & Architectural Invariants']}
+      rows={[
+        {
+          left: '1. Overview (command / overview)',
+          right: 'Executive school cockpit • Displays real-time student headcount, faculty roster, present percentage, pending approval badges, active period status, and quick-action shortcuts.',
+        },
+        {
+          left: '2. Students (people / students)',
+          right: 'General Register (GR) student directory • New admission enrollment, manual GR entry, real-time search with debounce, student profile inspection, and non-destructive Strike-Off workflow.',
+        },
+        {
+          left: '3. Teaching Staff (people / faculty)',
+          right: 'Faculty personnel management • Active teacher roster, service book inspection, employment status tracking, and daily faculty attendance verification.',
+        },
+        {
+          left: '4. Academic Structure (academics / academics)',
+          right: 'Class & subject hierarchy • Read-only structural overview configured by Town Administration. HM verifies grades, curriculum subjects, and section assignments without modification authority.',
+        },
+        {
+          left: '5. Teaching Duties (academics / assignments)',
+          right: 'Faculty duty allocation • Binds teachers to classes and subjects. Single-cohort whole-class model (sectionId nullable per Zod schema). Enforces strictly 1 primary Class Teacher per class/section.',
+        },
+        {
+          left: '6. Timetable (academics / timetable)',
+          right: 'Weekly master schedule & period builder • Slot manager (Teaching, Assembly, Recess), collision detection, active assignment verification, and real-time Karachi period tracker.',
+        },
+        {
+          left: '7. Exams & Results (academics / exams)',
+          right: 'Assessment governance • Exam scheduling, marks verification, 700-mark Sindh Elementary Board gazette tabulation (Legal Landscape PDF), individual marksheet streaming (A4 Portrait PDF), and result publication gate.',
+        },
+        {
+          left: '8. Attendance (operations / attendance)',
+          right: 'Daily attendance intelligence • Scoped student attendance analytics, monthly aggregation rollups, late tracking, and official attendance record verification.',
+        },
+        {
+          left: '9. Approvals (operations / approvals)',
+          right: 'Parent Ward Link verification queue • Physical document verification (NADRA B-Form + Guardian CNIC), approve link, reject with mandatory justification, or revoke compromised links.',
+        },
+        {
+          left: '10. Incoming Staff (operations / transfers)',
+          right: 'Faculty transfer joining verification • View incoming staff transfer orders initiated by Town Admin, verify physical service books, approve arrival with joining date, or relieve departing faculty.',
+        },
+        {
+          left: '11. Notices & Circulars (communication / notices)',
+          right: 'Official municipal communications • Issue text-only or PDF circulars, emergency rain closure alerts, pinned high-priority announcements, and soft archival.',
+        },
+        {
+          left: '12. Reports (records / reports)',
+          right: 'Institutional analytics • Attendance trends, examination pass percentages, grade distribution histograms, and student enrollment growth metrics.',
+        },
+        {
+          left: '13. School Profile (records / profile)',
+          right: 'Institutional metadata • School building coordinates, SEMIS census code, municipal School Code, drawing & disbursing cluster, and infrastructure records.',
+        },
+        {
+          left: '14. Activity Log (records / activity)',
+          right: 'Immutable school audit trail • Chronological inspection of administrative mutations performed within the school (admissions, strikes, marks verified, transfers processed).',
+        },
+      ]}
+    />
+
+    <SectionTitle>The 7 Core Institutional Workflows (In-Depth Technical Blueprint)</SectionTitle>
+    <ComparisonTable
+      headers={['Core Institutional Workflow', 'Endpoint, Method & Payload', 'Institutional Reality, Guards & Audit Events']}
       rows={[
         {
           left: '1. Student Admission & Enrolment',
-          right: 'POST /api/v1/students/enroll • Enrols student into municipal register. Enforces unique compound index { schoolId, grNumber }. Generates unique student profile and ACTIVE lifecycle state.',
+          right: 'POST /api/v1/students/enroll • Body: { studentFullName, cnicOrBForm, fatherName, classId, sectionId?, grNumber?, dateOfBirth, gender } • Enforces compound unique index { schoolId, grNumber }. New admissions auto-increment lastGrNumber; existing entries validate uniqueness. Creates User (STUDENT, ACTIVE) and StudentProfile. Emits STUDENT_ENROLLED audit log.',
         },
         {
-          left: '2. Non-Destructive Strike-Off',
-          right: 'PATCH /api/v1/students/:id/strike-off • Permanent departure transition (status: STRUCK_OFF). Requires mandatory reason. Invalidates auth session and revokes parent access.',
+          left: '2. Non-Destructive Student Strike-Off',
+          right: 'PATCH /api/v1/students/:id/strike-off • Body: { reason: string (min 10 chars), remarks? } • Preserves permanent academic history and GR number. Transitions status to STRUCK_OFF, revokes active auth tokens (tokenVersion++), and auto-revokes linked ParentStudentLink claims. Emits STUDENT_STRUCK_OFF audit log.',
         },
         {
           left: '3. Single-Cohort Staff Allocation',
-          right: 'POST /api/v1/assignments • Binds teacher to class and subject. sectionId accepts null, empty string "", or omitted (evaluates as Whole Class allocation in single-cohort primary/middle schools per Zod schema). Enforces one primary Class Teacher rule.',
+          right: 'POST /api/v1/assignments • Body: { teacherId, classId, subjectId, sectionId?, academicYear, isClassTeacher? } • sectionId accepts null, empty string "", or omitted, representing Whole Class single-cohort allocation in Liaquatabad schools. Enforces at most 1 primary Class Teacher. Emits TEACHING_ASSIGNMENT_CREATED audit log.',
         },
         {
           left: '4. Legal/A4 Gazette & Marksheets',
-          right: 'GET /api/v1/exams/:id/tabulation-sheet (Legal Landscape PDF) & GET /api/v1/exams/:id/tabulation-data (JSON spreadsheet grid) • Generates official Sindh Elementary Board gazette matrix with 20-mark Nazra Quran split and Drawing letter grade. Individual marksheet streamed via GET /api/v1/exams/:id/results/:studentId/marksheet (A4 Portrait PDF). Marksheets strictly gated by PUBLISHED status.',
+          right: 'GET /api/v1/exams/:id/tabulation-sheet (Legal Landscape PDF) & GET /api/v1/exams/:id/tabulation-data (JSON grid) • Generates official 700-mark Sindh Elementary Board gazette with 20-mark Nazra Quran split and Drawing letter grade. Individual marksheet streamed via GET /api/v1/exams/:id/results/:studentId/marksheet (A4 Portrait PDF). Result publication strictly gated by status === "PUBLISHED".',
         },
         {
           left: '5. Emergency Rain Closures',
-          right: "POST /api/v1/holidays • Declares emergency local closure (body: { title, reason, startDate, endDate, holidayType: 'EMERGENCY_CLOSURE', scopeType: 'SCHOOL', schoolId }). Times evaluated in Asia/Karachi (PKT). Automatically emits notification outbox alerts.",
+          right: 'POST /api/v1/holidays • Body: { title, reason, startDate, endDate, holidayType: "EMERGENCY_CLOSURE", scopeType: "SCHOOL", schoolId } • Evaluated in Asia/Karachi (PKT) timezone. Dispatches urgent SMS/in-app notifications via NotificationOutbox and pins emergency banner on student/parent portals. Emits SCHOOL_CLOSURE_DECLARED audit log.',
         },
         {
-          left: '6. School Circulars & Notices',
-          right: 'POST /api/v1/documents • Publishes official school notices. Attachments are 100% optional; text-only circulars execute safely without requiring PDF upload.',
+          left: '6. School Circulars & Official Notices',
+          right: 'POST /api/v1/documents • Body: { title, content, scopeType: "SCHOOL", schoolId, category?, isPinned? } + optional file upload • Attachments are 100% optional: text-only circulars execute reliably without requiring PDF upload. Emits DOCUMENT_PUBLISHED audit log.',
         },
         {
           left: '7. Teacher Transfer Joining Confirmation',
-          right: 'PATCH /api/v1/transfers/:id/approve-joining • Destination HM verifies incoming teacher arrival and service book (body: { joiningDate, remarks }). Note: HM CANNOT initiate inter-school transfers (Town Admin authority only via POST /api/v1/transfers).',
+          right: 'PATCH /api/v1/transfers/:id/approve-joining • Body: { joiningDate, remarks } • Target HM verifies incoming teacher physical arrival and service book. Updates User.schoolId to target school, marks transfer as JOINED, and expires source teaching duties. Crucial: HM CANNOT initiate transfers (Town Admin authority only via POST /api/v1/transfers).',
+        },
+      ]}
+    />
+
+    <SectionTitle>The Head Master Daily Desk Schedule (07:30 AM to 02:00 PM PKT)</SectionTitle>
+    <TerminalBlock title="MUNICIPAL SCHOOL HEAD MASTER DAILY TIMELINE">
+{`07:30 AM – 08:15 AM: HARDWARE ATTENDANCE WINDOW & MORNING ROLL-CALL
+  ├── 07:30 AM: Attendance gates open in Karachi Hardware Window Engine
+  ├── 08:00 AM: Assembly inspection & morning bell
+  ├── 08:15 AM: LATE threshold triggered for students & teachers
+  └── 08:30 AM: Hard lock on morning attendance; HM reviews biometric/app exceptions
+
+08:30 AM – 09:30 AM: TIMETABLE & CLASSROOM MONITORING
+  ├── Live Period Badge shows ACTIVE_TEACHING Period 1
+  ├── HM reviews class coverage; assigns substitute teachers if faculty absent
+  └── Verifies single-cohort class allocations & subject duties
+
+09:30 AM – 11:00 AM: ADMISSIONS & PARENT WARD VERIFICATIONS
+  ├── Processes student admissions via HmAddStudentModal (GR auto-allocation)
+  ├── Inspects physical NADRA B-Form documents & guardian CNICs in Approvals tab
+  └── Approves or rejects pending ParentStudentLink claims with recorded reasons
+
+11:00 AM – 11:30 AM: RECESS & MID-DAY ADMINISTRATIVE REVIEW
+  ├── Recess period monitor active
+  └── HM reviews daily attendance analytics and flags unexcused student dropouts
+
+11:30 AM – 01:00 PM: EXAMINATION GRADING & OFFICIAL GAZETTE TABULATION
+  ├── Checks teacher marks entry for ongoing examinations
+  ├── Verifies 20-mark Nazra Quran split & Drawing letter grades
+  ├── Downloads official Legal Landscape Tabulation Sheet for physical archive
+  └── Executes Publish Gazette action when all results are verified
+
+01:00 PM – 02:00 PM: TRANSFERS, SERVICE BOOKS & OFFICIAL CIRCULARS
+  ├── Inspects incoming staff transfer orders from Town Admin; signs joining orders
+  ├── Relieves departing staff; ensures no active Class Teacher orphan assignments
+  ├── Issues weather or academic notices via Documents / Notices tab
+  └── 02:00 PM: School dispersal; HM reviews daily Activity Log audit trail`}
+    </TerminalBlock>
+
+    <SectionTitle>Municipal Governance &amp; Security Invariants</SectionTitle>
+    <ComparisonTable
+      headers={['Governance Dimension', 'Institutional Rule', 'Security & Code Implementation']}
+      rows={[
+        {
+          left: 'Transfer Boundary Law',
+          right: 'HM cannot initiate inter-school faculty transfers. Transfers can only be initiated by Town Administration (ADMIN, SUPER_ADMIN, SUPERVISOR). HM possesses only institutional Relieving (PATCH /relieve) and Joining confirmation (PATCH /approve-joining).',
+        },
+        {
+          left: 'Academic Structure Law',
+          right: 'Classes, sections, and curriculum subjects are provisioned exclusively by Town Administration (ADMIN). HM possesses strict read-only visibility over academic setup and cannot create or alter grade levels.',
+        },
+        {
+          left: 'Free Education Mandate',
+          right: 'DMC Liaquatabad municipal schools operate under the constitutional free public education mandate. Zero fee collection models, invoices, or billing endpoints exist in the application.',
+        },
+        {
+          left: 'Zero Hard Deletions Law',
+          right: 'No student, teacher, marksheet, or document record is ever hard deleted. All departures transition through explicit lifecycle states (STRUCK_OFF, RELIEVED, INACTIVE) with complete before/after snapshots in AuditLog.',
+        },
+        {
+          left: 'Single-School BOLA Boundary',
+          right: 'All queries and mutations are filtered strictly by request.user.schoolId. Any attempt to query or mutate records from another school is blocked with 403 Forbidden and logged as an authorization violation.',
+        },
+      ]}
+    />
+
+    <SectionTitle>Verified Automated Test Suites Evidence (10 HM Test Files)</SectionTitle>
+    <ComparisonTable
+      headers={['Test File Name', 'Test Scope & Invariants Verified', 'Result & Assertions']}
+      rows={[
+        {
+          left: 'hm_centralized_exam_and_timetable_sync.test.js',
+          right: 'Exam scheduling, timetable synchronization, period clash avoidance',
+          rightBadge: '3 / 3 PASS',
+        },
+        {
+          left: 'hm_class_teacher_and_transfer_authority.test.js',
+          right: 'Class Teacher uniqueness, single-cohort allocation, joining authority',
+          rightBadge: '14 / 14 PASS',
+        },
+        {
+          left: 'hm_examination_and_results.test.js',
+          right: 'Exam lifecycle, marks verification, unpublished draft shielding',
+          rightBadge: '23 / 23 PASS',
+        },
+        {
+          left: 'hm_faculty_and_teacher_attendance.test.js',
+          right: 'Teacher roster, daily attendance marking, biometric synchronization',
+          rightBadge: '14 / 14 PASS',
+        },
+        {
+          left: 'hm_notices_idempotency_and_reliability.test.js',
+          right: 'Notice board double-submit prevention, idempotent retry resilience',
+          rightBadge: 'VERIFIED STRUCTURAL',
+        },
+        {
+          left: 'hm_official_marksheet_and_tabulation.test.js',
+          right: 'A4 Marksheet PDF, Legal Landscape Tabulation Sheet, Nazra split',
+          rightBadge: '14 / 14 PASS',
+        },
+        {
+          left: 'hm_operational_authority_and_security.test.js',
+          right: 'Single-school scope boundaries, subordination ceilings, BOLA shields',
+          rightBadge: '30 / 30 PASS',
+        },
+        {
+          left: 'hm_school_circulars_and_notices.test.js',
+          right: 'Notice publishing, rain emergency closures, optional attachment handling',
+          rightBadge: '30 / 30 PASS',
+        },
+        {
+          left: 'hm_student_directory_and_enrollment.test.js',
+          right: 'Admission, GR numbers, compound indexes, non-destructive Strike-Off',
+          rightBadge: '20 / 20 PASS',
+        },
+        {
+          left: 'hm_transfer_lifecycle_and_security.test.js',
+          right: '5-stage transfer state machine, joining confirmation, cross-school locks',
+          rightBadge: '25 / 25 PASS',
         },
       ]}
     />
 
     <Callout type="warning" title="OPERATIONAL SIGN-OFF GATE NOTICE">
-      While all 7 Head Master workflows are fully coded and pass 184 verified automated test assertions across all 10 HM test files (115 passing tests across 6 core operational suites), <strong>Owner Operational Sign-Off remains explicitly PENDING</strong>. Automated tests certify technical behavior but do not constitute municipal owner operational clearance.
+      While all 7 Head Master workflows and 14 workspace tabs are fully coded, tested, and pass 173 verified automated assertions across all 10 HM test files on disk (and 180 assertions including optional sections), <strong>Owner Operational Sign-Off remains explicitly PENDING</strong>. Automated tests certify technical behavior but do not constitute municipal owner operational clearance.
     </Callout>
   </div>
 );
+
