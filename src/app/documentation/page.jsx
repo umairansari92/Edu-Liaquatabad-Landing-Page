@@ -161,7 +161,7 @@ export default function DocumentationPage() {
     {
       category: '3. Identity, Roles & Scopes',
       items: [
-        { id: 'roles-catalogue', label: 'The 9 Authoritative Roles', icon: Users },
+        { id: 'roles-catalogue', label: 'The 9 Authoritative Roles & Overviews', icon: Users },
         { id: 'capability-matrix', label: '31-Granular Permission Matrix', icon: Award },
         { id: 'subordination', label: 'Subordination Rules & Immunity', icon: Shield },
         { id: 'data-scopes', label: 'The 7 Geographic Scopes', icon: Layers },
@@ -186,7 +186,7 @@ export default function DocumentationPage() {
     {
       category: '5. Core Operational Engines',
       items: [
-        { id: 'hm-workflows', label: 'Head Master 14-Tab Manual & 7 Workflows', icon: Briefcase },
+        { id: 'hm-workflows', label: 'Head Master 14-Tab Manual & 10 Workflows', icon: Briefcase },
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
@@ -335,9 +335,8 @@ export default function DocumentationPage() {
       <div className="max-w-7xl mx-auto flex">
         {/* ── Left Navigation Sidebar (CVify Pro Desktop Sticky Layout) ── */}
         <aside
-          className={`fixed inset-y-0 left-0 z-30 w-72 bg-white border-r border-slate-200/80 p-5 overflow-y-auto transition-transform duration-200 lg:static lg:block lg:translate-x-0 ${
-            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-          }`}
+          className={`fixed inset-y-0 left-0 z-30 w-72 bg-white border-r border-slate-200/80 p-5 overflow-y-auto transition-transform duration-200 lg:static lg:block lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+            }`}
           style={{ maxHeight: 'calc(100vh - 57px)', top: '57px' }}
         >
           {/* Mobile search bar */}
@@ -366,17 +365,15 @@ export default function DocumentationPage() {
                       <button
                         key={item.id}
                         onClick={() => handleSelect(item.id)}
-                        className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all text-left ${
-                          isActive
+                        className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all text-left ${isActive
                             ? 'bg-blue-50 text-[#006AC7] font-bold border border-blue-200 shadow-2xs'
                             : 'text-[#526477] hover:bg-slate-50 hover:text-[#102033]'
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-2 truncate">
                           <IconComponent
-                            className={`w-3.5 h-3.5 flex-shrink-0 ${
-                              isActive ? 'text-[#006AC7]' : 'text-slate-400'
-                            }`}
+                            className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? 'text-[#006AC7]' : 'text-slate-400'
+                              }`}
                           />
                           <span className="truncate">{item.label}</span>
                         </div>
@@ -459,7 +456,7 @@ export default function DocumentationPage() {
               </div>
 
               <TerminalBlock title="HIGH-LEVEL SYSTEM TOPOLOGY">
-{`┌──────────────────────────────┐        ┌──────────────────────────────┐
+                {`┌──────────────────────────────┐        ┌──────────────────────────────┐
 │   PUBLIC CIVIC PORTAL        │        │   AUTHENTICATED WORKSPACE    │
 │   Next.js 15.1.7 (React 19)  │        │   React 18.3.1 (Vite 6.1.0)  │
 │   Free E-Books, Civic SEO    │        │   8 Dashboards, PWA App-Shell│

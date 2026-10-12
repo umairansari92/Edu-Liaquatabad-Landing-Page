@@ -44,22 +44,25 @@ export const TestVerificationSection = () => (
       </div>
     </div>
 
-    <SectionTitle>Dynamic Test Suite Architecture</SectionTitle>
+    <SectionTitle>Dynamic Test Suite Architecture &amp; Execution Verification</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The backend verification suite is partitioned into 34 core suites chained sequentially in <code>npm test</code> and 21 specialized adversarial suites targeting red-team vectors:
+      Backend testing relies on dynamic execution rather than static lists. The automated test integrity runner (<code>server/scripts/verifyTestBannerIntegrity.js</code>) dynamically discovers all 55 <code>.test.js</code> files on disk in <code>server/tests/</code> and executes each file live via isolated child processes (<code>execSync(&apos;node &#36;&#123;file&#125;&apos;)</code>) with <code>NODE_ENV=test</code>. If any assertion fails or an unhandled exception occurs, the runner aborts with exit code 1. The 1,436 figure represents the arithmetic sum of passing assertions parsed directly from stdout closing banners across all 55 executing suites:
     </p>
-    <TerminalBlock title="BACKEND TEST EXECUTION SUITES">
-{`# Run 34 Chained Core Integration Suites
+    <TerminalBlock title="BACKEND TEST SUITE EXECUTION MODES">
+{`# 1. Execute All 55 Discovered Test Suites via Dynamic Child-Process Runner (1,436 Assertions)
+$ cd server && node scripts/verifyTestBannerIntegrity.js
+
+# 2. Execute 34 Chained Core Integration Suites
 $ cd server && npm test
 
-# Run Phase 2 Red Team & Export Fail-Closed Adversarial Verification
-$ node tests/phase2_red_team_verification.test.js
+# 3. Execute Phase 2 Red Team & Export Fail-Closed Adversarial Verification
+$ cd server && node tests/phase2_red_team_verification.test.js
 
-# Run Parent Portal Adversarial Security Suite
-$ node tests/parent_adversarial_security.test.js
+# 4. Execute Parent Portal Adversarial Security Suite
+$ cd server && node tests/parent_adversarial_security.test.js
 
-# Run Single-Cohort Teaching Assignment Verification
-$ node tests/optional_sections_and_teaching_assignment.test.js`}
+# 5. Execute Single-Cohort Teaching Assignment & Query Verification
+$ cd server && node tests/optional_sections_and_teaching_assignment.test.js`}
     </TerminalBlock>
   </div>
 );

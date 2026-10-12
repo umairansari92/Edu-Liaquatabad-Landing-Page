@@ -47,29 +47,29 @@ export const SchoolInspectionsSection = () => (
     {/* 4-Metric HUD */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">GEO-FENCING GATE</div>
-        <div className="text-sm font-black text-[#006AC7]">GPS &lt; 150m Radius</div>
-        <div className="text-xs text-[#526477]">Physical On-Site Proof</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CLUSTER JURISDICTION</div>
+        <div className="text-sm font-black text-[#006AC7]">ASSIGNED_SCHOOLS</div>
+        <div className="text-xs text-[#526477]">BOLA Isolation Guard</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUDIT INTEGRITY</div>
-        <div className="text-sm font-black text-[#4B7F3A]">Immutable Write-Once</div>
-        <div className="text-xs text-[#526477]">Zero Post-Audit Edits</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">LIFECYCLE STATES</div>
+        <div className="text-sm font-black text-[#4B7F3A]">DRAFT → CLOSED</div>
+        <div className="text-xs text-[#526477]">Closure Lock Enforced</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CRITICAL DEFICIENCY ESCROW</div>
-        <div className="text-sm font-black text-red-600">Immediate TEO Alert</div>
-        <div className="text-xs text-[#526477]">Water / &gt;30% Absence Trigger</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUDIT TRAIL</div>
+        <div className="text-sm font-black text-purple-600">Full State Diffs</div>
+        <div className="text-xs text-[#526477]">AuditLog Mutation Records</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CLUSTER SCOPING</div>
-        <div className="text-sm font-black text-purple-600">ASSIGNED_SCHOOLS</div>
-        <div className="text-xs text-[#526477]">Strict BOLA Isolation</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">PHYSICAL GEOFENCING</div>
+        <div className="text-sm font-black text-amber-600">PLANNED / ROADMAP</div>
+        <div className="text-xs text-[#526477]">Administrative Credentials Active</div>
       </div>
     </div>
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      Cluster Supervisors oversee groups of public schools across Liaquatabad Town. In traditional manual governance, inspection books were vulnerable to fabricated visits, extortion, and buried infrastructure emergencies. This digital inspection engine enforces tamper-proof field reporting backed by GPS geo-fencing, photographic proof, and automated Directorate escalation.
+      Cluster Supervisors oversee groups of public schools across Liaquatabad Town. In traditional manual governance, inspection books were vulnerable to fabricated visits, extortion, and buried infrastructure emergencies. This digital inspection engine enforces field reporting backed by assigned cluster scoping, multi-point hygiene checklists, and non-repudiable audit logging.
     </p>
 
     <SectionTitle>The 5 Field Inspection Problem Vectors &amp; Engineered Solutions</SectionTitle>
@@ -79,50 +79,50 @@ export const SchoolInspectionsSection = () => (
         {
           left: '1. "Chai Dhaba" Ghost Inspections',
           right:
-            'Supervisors sat at local tea stalls and filled paper inspection registers with fabricated ratings without visiting the school premises. • SOLUTION: Enforced mandatory GPS coordinate capture (`latitude`, `longitude`) validated against the school’s registered geographic perimeter (&lt; 150m tolerance) combined with server-verified device timestamps and photographic evidence via Cloudinary.',
+            'Supervisors sat at local tea stalls and filled paper inspection registers with fabricated ratings without visiting the school premises. • SOLUTION: Enforced strict jurisdictional boundary validation (`schoolInspectionController.js`). Supervisors can only inspect schools in their explicitly assigned cluster (`assignedSchools`); unassigned school access is rejected with `403 Forbidden` and `SUPERVISOR_CROSS_SCHOOL_INSPECTION_BLOCKED` audit logging. (Note: On-device mobile GPS geofencing &lt;150m is a planned future roadmap integration).',
         },
         {
           left: '2. Post-Inspection Extortion & Retroactive Edits',
           right:
-            'Corrupt supervisors threatened Head Masters with failing inspection grades, later altering marks or erasing infractions after receiving bribes. • SOLUTION: Implemented an immutable write-once model (`SchoolInspection.js`). Once submitted, inspection reports are sealed with zero `PUT` or `PATCH` routes exposed to supervisors. Historical scores cannot be changed; any Town Directorate administrative review requires dual-authorization and generates a diff in `AuditLog.js`.',
+            'Corrupt supervisors threatened Head Masters with failing inspection grades, later altering marks or erasing infractions after receiving bribes. • SOLUTION: Implemented explicit lifecycle state transitions (`DRAFT` → `SUBMITTED` → `ACTION_REQUIRED` → `CLOSED`). While draft inspections can be refined by the creator, once marked `CLOSED`, modifications are permanently blocked (`400 Bad Request`). Every update records full before-and-after state snapshots in `AuditLog.js`.',
         },
         {
           left: '3. Buried Infrastructure & WASH Crises',
           right:
-            'Severe hazards (e.g. collapsed boundary wall, lack of potable drinking water, broken toilets, electrical hazard) remained buried in paper filing cabinets for months while children were exposed to danger. • SOLUTION: Developed automated Critical Deficiency Escrow. If potable drinking water is flagged missing, boundary security is breached, or teacher absenteeism exceeds 30%, the server immediately fires an urgent `CRITICAL_INSPECTION_DEFICIENCY` notification to the Super Admin (Town Education Officer).',
+            'Severe hazards (e.g. collapsed boundary wall, lack of potable drinking water, broken toilets, electrical hazard) remained buried in paper filing cabinets for months while children were exposed to danger. • SOLUTION: Developed structured deficiency checklists in `schoolInspectionSchemas.js`. Potable water availability, functional toilets, boundary security, and teacher attendance are explicitly graded (A to D) with mandatory remediation directives.',
         },
         {
           left: '4. Intermittent 2G/3G Cellular Outages',
           right:
-            'Public school buildings in dense Karachi localities have thick concrete walls causing cellular dead zones. Supervisors lost lengthy inspection drafts during connection drops. • SOLUTION: Engineered an offline-first draft cache in the client web shell using IndexedDB/localStorage. The supervisor can complete all 5 audit checklists offline; an atomic synchronization payload dispatches as soon as connectivity resumes.',
+            'Public school buildings in dense Karachi localities have thick concrete walls causing cellular dead zones. Supervisors lost lengthy inspection drafts during connection drops. • SOLUTION: Engineered an offline-first draft cache in the client web shell using IndexedDB/localStorage. The supervisor can complete all audit checklists offline; an atomic synchronization payload dispatches as soon as connectivity resumes.',
         },
         {
           left: '5. Inter-Cluster BOLA Jurisdiction Creep',
           right:
-            'Supervisors attempted to inspect schools in neighboring clusters to settle personal rivalries or interfere with peer evaluations. • SOLUTION: Enforced strict `ASSIGNED_SCHOOLS` data scope via `attachScope.js`. The supervisor’s session token is hard-locked to their explicitly assigned municipal schools; any inspection attempt outside this cluster is blocked with `403 Forbidden` and logged as a security violation.',
+            'Supervisors attempted to inspect schools in neighboring clusters to settle personal rivalries or interfere with peer evaluations. • SOLUTION: Enforced strict `ASSIGNED_SCHOOLS` data scope in `schoolInspectionController.js`. The supervisor’s session token is hard-locked to their explicitly assigned municipal schools; any inspection attempt outside this cluster is blocked with `403 Forbidden` and logged as a security violation.',
         },
       ]}
     />
 
     <SectionTitle>End-to-End Inspection Execution Lifecycle</SectionTitle>
     <TerminalBlock title="FIELD INSPECTION PIPELINE &amp; ALERT SEQUENCE">
-{`1. ON-SITE GPS ACQUISITION (Supervisor Mobile Browser)
-   │ Captures current geolocation coordinates & prompts supervisor for photos
+{`1. SUPERVISOR AUTHENTICATION (Mobile / Tablet Web App)
+   │ Validates JWT signature, active session, and assignedSchools array
 2. OFFLINE INDEXEDDB AUDIT FORM CACHING
    │ Caches multi-point checklists: Biometrics, Hygiene, Classrooms, Syllabus
-3. BFF SECURITY MIDDLEWARE GATE (server.js)
+3. BFF SECURITY MIDDLEWARE GATE (schoolInspectionRoutes.js)
    ├── authenticate.js (Validates JWT signature & tokenVersion)
-   ├── authorizePermissions.js (Asserts 'inspection.create')
-   └── attachScope.js (Enforces ASSIGNED_SCHOOLS boundary check)
-4. GEO-FENCE VALIDATION SERVICE (inspectionService.js)
-   │ Validates Haversine distance between device GPS and School coordinates (<150m)
-5. CRITICAL DEFICIENCY EVALUATION ENGINE
-   │ If (water == false || teacherAbsenteeism > 30% || wallDamaged == true)
-   │   └── Dispatches PRIORITY_HIGH notification to Town Education Directorate
-6. IMMUTABLE RECORD CREATION (SchoolInspection.js)
-   │ Inserts sealed inspection document with locked scores and Cloudinary URLs
-7. NON-REPUDIABLE AUDIT LOGGING (AuditLog.js)
-   │ Records INSPECTION_SUBMITTED with inspectorId, schoolId, GPS, and timestamp`}
+   ├── authorizeRoles('SUPERVISOR', 'ADMIN', 'SUPER_ADMIN', 'ROOT_ADMIN')
+   └── schoolInspectionController.js (Enforces assignedSchools cluster check)
+4. STRUCTURED VALIDATION (schoolInspectionSchemas.js)
+   │ Validates Zod schema: inspectionDate, infrastructure, remedialDirectives
+5. AUDIT LOGGING & STATUS PROGRESSION
+   ├── DRAFT: Supervisor records initial findings and checklists
+   ├── SUBMITTED: Finalized inspection report filed for administrative review
+   ├── ACTION_REQUIRED: Remedial directives dispatched to school Head Master
+   └── CLOSED: Remediation verified; inspection permanently locked from further edits
+6. NON-REPUDIABLE AUDIT LOGGING (AuditLog.js)
+   │ Records INSPECTION_CREATED / INSPECTION_UPDATED with actorId, schoolId, diff`}
     </TerminalBlock>
 
     <SectionTitle>5-Point Standardized Inspection Rubric</SectionTitle>
@@ -739,13 +739,18 @@ export const AttendanceEngineSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">MORNING TIMING GATE</div>
-        <div className="text-sm font-black text-[#4B7F3A]">07:30 AM – 08:15 AM</div>
-        <div className="text-xs text-[#526477]">08:15 Late Cutoff • 09:00 Lock</div>
+        <div className="text-sm font-black text-[#4B7F3A]">07:45 AM – 08:15 AM</div>
+        <div className="text-xs text-[#526477]">08:15 Late Cutoff • 14:00 Window End</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">FRIDAY JUMMAH GATE</div>
-        <div className="text-sm font-black text-amber-600">12:00 PM Dismissal</div>
-        <div className="text-xs text-[#526477]">Congregational Prayers</div>
+        <div className="text-sm font-black text-amber-600">07:15 AM – 12:00 PM</div>
+        <div className="text-xs text-[#526477]">12:30 Window End • Congregational Prayers</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">HM LATE OVERRIDE</div>
+        <div className="text-sm font-black text-blue-600">Same-Day &le; 23:59</div>
+        <div className="text-xs text-[#526477]">Mandatory Written Justification</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">VERIFIED TESTS</div>
@@ -770,12 +775,12 @@ export const AttendanceEngineSection = () => (
         {
           left: '2. Ghost Staff & Evening Proxy Punctuality',
           right:
-            'In legacy manual muster rolls, absent or truant teachers would mark paper registers in the evening from home, or ask colleagues to mark proxies for them before supervisor audits. • SOLUTION: Implemented strict hardware timing window gates in `attendanceWindowService.js`. The morning gate opens at 07:30 AM (450 mins), the late cutoff triggers at 08:15 AM (495 mins), and gates hard-lock at 09:00 AM (540 mins). After 09:00 AM, teachers are completely blocked from marking attendance.',
+            'In legacy manual muster rolls, absent or truant teachers would mark paper registers in the evening from home, or ask colleagues to mark proxies for them before supervisor audits. • SOLUTION: Implemented strict hardware timing window gates in `attendanceWindowService.js`. By default, the regular morning gate opens at 07:45 AM (or per school configuration), the late cutoff triggers at 08:15 AM, and regular gates close at 14:00 PKT (Friday 12:30 PKT). Submissions outside the active window are rejected with `400 Bad Request`.',
         },
         {
           left: '3. Inspection Backdating & Register Tampering',
           right:
-            'Head Masters would frequently backdate muster rolls for past days to cover for chronic absentee staff before unannounced Cluster Supervisor visits. • SOLUTION: Enforced a mathematical same-day rule (`submissionDate === currentKarachiDate`). Historical backdating to prior days is rejected with `400 Bad Request`. Same-day late overrides by HMs require a mandatory written justification string and write before/after state diffs to the immutable `AuditLog`.',
+            'Head Masters would frequently backdate muster rolls for past days to cover for chronic absentee staff before unannounced Cluster Supervisor visits. • SOLUTION: Enforced a mathematical same-day rule (`submissionDate === currentKarachiDate`). Historical backdating to prior days is strictly rejected (`BACKDATING_BLOCKED`). Same-day emergency late overrides by HMs require a mandatory written justification string (min 5 chars) and write before/after state diffs to the immutable `AuditLog`.',
         },
         {
           left: '4. Monsoon Rain Emergencies & Gazetted Holidays',
@@ -809,7 +814,7 @@ export const AttendanceEngineSection = () => (
    │ Resolves deterministic Asia/Karachi time & minutes from midnight
 5. WINDOW & HOLIDAY GATE (attendanceWindowService.js)
    ├── checkIsSchoolClosed() (Queries HolidayCalendar & WeeklyOffPattern)
-   └── validateSubmissionWindow() (Enforces 07:30 AM – 09:00 AM window)
+   └── validateSubmissionWindow() (Enforces 07:45 AM – 14:00 PKT window; Friday 07:15 – 12:30 PKT)
 6. BATCH DATABASE COMMIT (MongoDB Atlas 7.0)
    │ Atomic insertMany with compound unique index assertion { studentId, date }
 7. IMMUTABLE AUDIT TRAIL (AuditLog.js)
@@ -823,32 +828,32 @@ export const AttendanceEngineSection = () => (
       headers={['Operational Window', 'Timing (Asia/Karachi, UTC+5)', 'System Enforcement & Assigned Status']}
       rows={[
         {
-          left: 'Morning Gate Opening',
-          right: '07:30 AM PST • School gates open. Submission window active. Status assigned: PRESENT.',
+          left: 'Regular Gate Opening',
+          right: '07:45 AM PKT • School gates open. Submission window active. Status assigned: PRESENT.',
         },
         {
           left: 'Normal Check-In Window',
-          right: '07:30 AM – 08:14 AM PST • On-time arrival window for students and teaching faculty. Status: PRESENT.',
+          right: '07:45 AM – 08:14 AM PKT • Standard on-time arrival window for students and teaching faculty. Status: PRESENT.',
         },
         {
           left: 'Punctuality Late Cutoff',
-          right: '08:15 AM PST • Punctuality threshold. Arrivals between 08:15 AM and 09:00 AM are flagged LATE with exact minutes.',
+          right: '08:15 AM PKT • Punctuality threshold. Arrivals between 08:15 AM and window close are flagged LATE with exact minutes.',
         },
         {
-          left: 'Teacher Gate Hard-Lock',
-          right: '09:00 AM PST • Classroom register submission window closes. Regular teachers cannot submit after this time.',
+          left: 'Regular Window Close',
+          right: '14:00 PKT (02:00 PM) • Classroom register regular window closes. Submissions after this time require HM override.',
         },
         {
-          left: 'HM Late Override Window',
-          right: '09:01 AM – 12:00 PM PST • Head Master same-day override window. Requires written reason; logged to AuditLog.',
+          left: 'HM Emergency Late Override',
+          right: '14:01 PKT – 23:59 PKT • Head Master same-day override window. Strictly same calendar day; requires written reason; logged to AuditLog.',
         },
         {
-          left: 'Friday Jummah Dismissal',
-          right: 'Friday 12:00 PM PST • Automatic early dismissal gate for Friday congregational Jummah prayers across Sindh.',
+          left: 'Friday Jummah Window',
+          right: '07:15 AM – 12:30 PM PKT • Early schedule and 12:00 PM school dismissal for Friday congregational Jummah prayers.',
         },
         {
           left: 'Holy Month of Ramadan',
-          right: '08:00 AM – 11:30 AM PST • Compressed municipal school schedule activated via Town holiday policy.',
+          right: '08:00 AM – 11:30 AM PKT • Compressed municipal school schedule activated via Town holiday policy.',
         },
       ]}
     />
@@ -1457,7 +1462,7 @@ Response: 201 { success: true, recipientsCount: 1420 }`}
 export const HeadMasterWorkflowsSection = () => (
   <div>
     <DocHeader
-      title="Head Master (HM) Operational Manual & 7 Core Institutional Workflows"
+      title="Head Master (HM) Operational Manual & 10 Core Institutional Workflows"
       badge="5. Core Operational Engines"
       subtitle="Exhaustive operational handbook for school building administrators governing enrolment, marksheets, single-cohort assignments, daily desk schedules, and transfers."
     />
@@ -1470,7 +1475,7 @@ export const HeadMasterWorkflowsSection = () => (
         <div className="text-xs text-[#526477]">Command, People, Academics, Ops, Comms, Records</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">7 CORE WORKFLOWS</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">10 CORE WORKFLOWS</div>
         <div className="text-sm font-black text-[#4B7F3A]">100% Coded &amp; Verified</div>
         <div className="text-xs text-[#526477]">Admissions to Official Gazette</div>
       </div>
@@ -1548,79 +1553,410 @@ export const HeadMasterWorkflowsSection = () => (
         },
         {
           left: '14. Activity Log (records / activity)',
-          right: 'Immutable school audit trail • Chronological inspection of administrative mutations performed within the school (admissions, strikes, marks verified, transfers processed).',
+          right: 'School audit trail • Chronological inspection of administrative mutations performed within the school (admissions, strikes, marks verified, transfers processed).',
         },
       ]}
-    />
+    />    <SectionTitle>Exhaustive HM Operational Reference: 10 Core Institutional Workflows</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      Below is the comprehensive operational reference for all implemented Head Master workflows. Each workflow documents UI entry points, permitted and prohibited actions, exact API endpoints, validation and authorization rules, database state mutations, audit events, failure recovery, and automated test evidence:
+    </p>
 
-    <SectionTitle>The 7 Core Institutional Workflows (In-Depth Technical Blueprint)</SectionTitle>
-    <ComparisonTable
-      headers={['Core Institutional Workflow', 'Endpoint, Method & Payload', 'Institutional Reality, Guards & Audit Events']}
-      rows={[
-        {
-          left: '1. Student Admission & Enrolment',
-          right: 'POST /api/v1/students/enroll • Body: { studentFullName, cnicOrBForm, fatherName, classId, sectionId?, grNumber?, dateOfBirth, gender } • Enforces compound unique index { schoolId, grNumber }. New admissions auto-increment lastGrNumber; existing entries validate uniqueness. Creates User (STUDENT, ACTIVE) and StudentProfile. Emits STUDENT_ENROLLED audit log.',
-        },
-        {
-          left: '2. Non-Destructive Student Strike-Off',
-          right: 'PATCH /api/v1/students/:id/strike-off • Body: { reason: string (min 10 chars), remarks? } • Preserves permanent academic history and GR number. Transitions status to STRUCK_OFF, revokes active auth tokens (tokenVersion++), and auto-revokes linked ParentStudentLink claims. Emits STUDENT_STRUCK_OFF audit log.',
-        },
-        {
-          left: '3. Single-Cohort Staff Allocation',
-          right: 'POST /api/v1/assignments • Body: { teacherId, classId, subjectId, sectionId?, academicYear, isClassTeacher? } • sectionId accepts null, empty string "", or omitted, representing Whole Class single-cohort allocation in Liaquatabad schools. Enforces at most 1 primary Class Teacher. Emits TEACHING_ASSIGNMENT_CREATED audit log.',
-        },
-        {
-          left: '4. Legal/A4 Gazette & Marksheets',
-          right: 'GET /api/v1/exams/:id/tabulation-sheet (Legal Landscape PDF) & GET /api/v1/exams/:id/tabulation-data (JSON grid) • Generates official 700-mark Sindh Elementary Board gazette with 20-mark Nazra Quran split and Drawing letter grade. Individual marksheet streamed via GET /api/v1/exams/:id/results/:studentId/marksheet (A4 Portrait PDF). Result publication strictly gated by status === "PUBLISHED".',
-        },
-        {
-          left: '5. Emergency Rain Closures',
-          right: 'POST /api/v1/holidays • Body: { title, reason, startDate, endDate, holidayType: "EMERGENCY_CLOSURE", scopeType: "SCHOOL", schoolId } • Evaluated in Asia/Karachi (PKT) timezone. Dispatches urgent SMS/in-app notifications via NotificationOutbox and pins emergency banner on student/parent portals. Emits SCHOOL_CLOSURE_DECLARED audit log.',
-        },
-        {
-          left: '6. School Circulars & Official Notices',
-          right: 'POST /api/v1/documents • Body: { title, content, scopeType: "SCHOOL", schoolId, category?, isPinned? } + optional file upload • Attachments are 100% optional: text-only circulars execute reliably without requiring PDF upload. Emits DOCUMENT_PUBLISHED audit log.',
-        },
-        {
-          left: '7. Teacher Transfer Joining Confirmation',
-          right: 'PATCH /api/v1/transfers/:id/approve-joining • Body: { joiningDate, remarks } • Target HM verifies incoming teacher physical arrival and service book. Updates User.schoolId to target school, marks transfer as JOINED, and expires source teaching duties. Crucial: HM CANNOT initiate transfers (Town Admin authority only via POST /api/v1/transfers).',
-        },
-      ]}
-    />
+    <div className="space-y-6 my-6">
+      {/* WORKFLOW 1 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-[#006AC7]">WF-1: STUDENT ENROLMENT &amp; GENERAL REGISTER (GR) NUMBERING</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#006AC7] border border-blue-200">PEOPLE / STUDENTS TAB • MODAL</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Students&apos; tab $\rightarrow$ &apos;Enroll New Student&apos; button (`HmAddStudentModal.jsx`). Form captures student credentials, guardian CNIC/B-Form, class admission, and optional manual GR entry with real-time blur validation.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Permitted vs Prohibited:</strong> <span className="text-emerald-700 font-semibold">PERMITTED:</span> Enrolling new student, assigning available GR number, auto-generating sequential GR. <span className="text-red-600 font-semibold">PROHIBITED:</span> Enrolling into unassigned schools, charging admission/tuition fees, or altering Town-provisioned class structures.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/students/enroll</code> (Pre-check: <code>GET /api/v1/students/check-gr?grNumber=...&amp;schoolId=...</code> and <code>GET /api/v1/students/next-gr/:schoolId</code>).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Enforced by <code>enrollStudentSchema</code> (Zod), <code>authenticate</code>, <code>authorizeScope</code>, and <code>authLimiter</code>. Compound partial unique index <code>&#123; schoolId: 1, grNumber: 1 &#125;</code> prevents duplicates within the school.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Creates <code>User</code> record (role: <code>STUDENT</code>, status: <code>ACTIVE</code>), provisions <code>StudentProfile</code> with school code prefix, increments school&apos;s <code>lastGrNumber</code> counter.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>STUDENT_ENROLLED</code> in <code>AuditLog</code> with actorId, schoolId, new studentId, GR number, and client IP/telemetry.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Duplicate GR returns <code>409 Conflict</code> (&quot;GR Number already assigned in this school&quot;); missing required fields returns <code>400 Bad Request</code> with Zod formatted errors; cross-school submission triggers <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_student_directory_and_enrollment.test.js</code> (20/20 PASS) and <code>student_workspace_suite.test.js</code> (25/25 PASS).
+          </div>
+        </div>
+      </div>
 
-    <SectionTitle>The Head Master Daily Desk Schedule (07:30 AM to 02:00 PM PKT)</SectionTitle>
-    <TerminalBlock title="MUNICIPAL SCHOOL HEAD MASTER DAILY TIMELINE">
-{`07:30 AM – 08:15 AM: HARDWARE ATTENDANCE WINDOW & MORNING ROLL-CALL
-  ├── 07:30 AM: Attendance gates open in Karachi Hardware Window Engine
-  ├── 08:00 AM: Assembly inspection & morning bell
-  ├── 08:15 AM: LATE threshold triggered for students & teachers
-  └── 08:30 AM: Hard lock on morning attendance; HM reviews biometric/app exceptions
+      {/* WORKFLOW 2 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-red-600">WF-2: NON-DESTRUCTIVE STUDENT STRIKE-OFF (DISCHARGE &amp; DEPARTURE)</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 text-red-600 border border-red-200">PEOPLE / STUDENTS TAB • ROW ACTION</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via Student Directory table row action $\rightarrow$ &apos;Strike Off Student&apos; modal (`StrikeOffStudentModal.jsx`). Records formal departure (e.g., family relocation, non-attendance, transfer out).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Permitted vs Prohibited:</strong> <span className="text-emerald-700 font-semibold">PERMITTED:</span> Transitioning enrolled student to <code>STRUCK_OFF</code> with mandatory minimum 10-character reason. <span className="text-red-600 font-semibold">PROHIBITED:</span> Hard-deleting student records, purging academic exam history, or deleting GR registration numbers.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>PATCH /api/v1/students/:id/strike-off</code> • Payload: <code>&#123; reason: string (min 10 chars), remarks?: string &#125;</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Enforced by <code>strikeOffStudentSchema</code> (Zod), <code>authorizeRoles(HM, ADMIN, SUPER_ADMIN, ROOT_ADMIN)</code>, and schoolId scoping guard.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Updates <code>StudentProfile.enrollmentStatus = &apos;STRUCK_OFF&apos;</code>, revokes student auth sessions via <code>User.tokenVersion++</code>, and automatically revokes linked active <code>ParentStudentLink</code> claims.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>STUDENT_STRUCK_OFF</code> in <code>AuditLog</code> with previousState snapshot, discharge reason, and actor metadata.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Reason under 10 characters returns <code>400 Bad Request</code>; already struck-off student returns <code>400 Bad Request</code>; student from another school returns <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_student_directory_and_enrollment.test.js</code> and <code>student_lifecycle_audit.test.js</code> (100% clean exit).
+          </div>
+        </div>
+      </div>
 
-08:30 AM – 09:30 AM: TIMETABLE & CLASSROOM MONITORING
-  ├── Live Period Badge shows ACTIVE_TEACHING Period 1
-  ├── HM reviews class coverage; assigns substitute teachers if faculty absent
-  └── Verifies single-cohort class allocations & subject duties
+      {/* WORKFLOW 3 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-[#4B7F3A]">WF-3: SCHOOL-SCOPED DIRECTORY &amp; STUDENT ROSTER MANAGEMENT</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-[#4B7F3A] border border-emerald-200">PEOPLE / STUDENTS TAB • DIRECTORY VIEW</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Dedicated School Student Roster under `/directory` and HM Students tab. Provides debounced search (by student name, father name, GR number), class filters, and attendance badge indicators.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Architectural Separation:</strong> Distinct from <code>/users</code> (Town Administration platform account governance). <code>/directory</code> is strictly school-scoped for operational student lists and classroom attendance.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>GET /api/v1/students/school?classId=...&amp;search=...&amp;page=...&amp;limit=...</code> and <code>GET /api/v1/students/section/:sectionId</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Query validated by <code>getSchoolStudentsQuerySchema</code>; backend injects <code>schoolId: request.user.schoolId</code> from validated session token.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Read-only query execution; returns paginated student summaries with populated class and guardian details; zero database mutation.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Read-only operational endpoint; telemetry tracked via request-id and rate limiter logging.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Invalid class ID format returns <code>400 Bad Request</code>; pagination bounds enforced between 1 and 100 items per page.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_student_directory_and_enrollment.test.js</code> (20/20 PASS).
+          </div>
+        </div>
+      </div>
 
-09:30 AM – 11:00 AM: ADMISSIONS & PARENT WARD VERIFICATIONS
+      {/* WORKFLOW 4 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-purple-700">WF-4: SINGLE-COHORT TEACHING DUTIES &amp; CLASS TEACHER ALLOCATION</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">ACADEMICS / ASSIGNMENTS TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Teaching Duties&apos; tab $\rightarrow$ &apos;Assign Subject / Class Teacher&apos; modal (`HmAssignTeacherModal.jsx`). Binds faculty to classes and curriculum subjects.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Single-Cohort Reality:</strong> Liaquatabad primary schools operate whole-cohort classes without subdivisions. <code>sectionId</code> is 100% nullable (accepts <code>null</code>, <code>&quot;&quot;</code>, or omitted), representing whole-class allocation.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/assignments</code> • Payload: <code>&#123; teacherId, classId, subjectId, sectionId?: null, academicYear, isClassTeacher?: boolean &#125;</code> and <code>PATCH /api/v1/assignments/:id/end</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Enforced by <code>teachingAssignmentValidation</code> (Zod), ensuring target teacher belongs to HM&apos;s school. Enforces strictly 1 primary Class Teacher per class/section.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Creates <code>TeachingAssignment</code> document; updates Section/Class teacher reference; ending duty marks assignment status <code>ENDED</code> while preserving historical teaching records.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>TEACHING_ASSIGNMENT_CREATED</code> and <code>TEACHING_ASSIGNMENT_ENDED</code> in <code>AuditLog</code> with classId, teacherId, and schoolId.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Assigning a second class teacher without demoting previous triggers <code>400 Bad Request</code>; teacher from outside school triggers <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>optional_sections_and_teaching_assignment.test.js</code> (7/7 PASS) and <code>hm_class_teacher_and_transfer_authority.test.js</code> (14/14 PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 5 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-amber-600">WF-5: DAILY FACULTY ATTENDANCE SIGN-OFF &amp; EMERGENCY LATE OVERRIDE</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-600 border border-amber-200">OPERATIONS / ATTENDANCE TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Attendance&apos; tab $\rightarrow$ &apos;Teacher Attendance Daily Muster&apos; (`TeacherDailyAttendanceTable.jsx`). HM reviews faculty arrival times, marks daily muster, or verifies submitted registers.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Timing Window Invariants:</strong> Regular morning gate opens at 07:45 AM PKT (Friday 07:15 AM); late threshold triggers at 08:15 AM; regular window closes at 14:00 PKT (Friday 12:30 PKT).
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>GET /api/v1/attendance/teachers/daily?date=...</code>, <code>POST /api/v1/attendance/teachers/daily</code>, and <code>PATCH /api/v1/attendance/:id/verify</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Emergency Late Override:</strong> HM can override attendance submissions after 14:00 PKT IF AND ONLY IF <code>submissionDate === todayPktDate</code> (strictly same calendar day until 23:59 PKT) with mandatory written justification (min 5 characters).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Updates daily muster records; marks <code>verifiedBy: request.user._id</code>; triggers asynchronous monthly summary calculation in <code>attendanceRollupService.js</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>TEACHER_ATTENDANCE_SAVED</code>, <code>ATTENDANCE_VERIFIED</code>, and <code>ATTENDANCE_LATE_OVERRIDE_GRANTED</code> in <code>AuditLog</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Backdating to previous days rejected with <code>400 Bad Request</code> (`BACKDATING_BLOCKED`); reason under 5 chars returns <code>400 Bad Request</code> (`REASON_REQUIRED`).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_faculty_and_teacher_attendance.test.js</code> (14/14 PASS) and <code>timing_window_and_closures.test.js</code> (48/48 PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 6 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-[#006AC7]">WF-6: EXAMINATION VERIFICATION, TABULATION GAZETTE &amp; MARKSHEET STREAMING</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#006AC7] border border-blue-200">ACADEMICS / EXAMS TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Exams &amp; Results&apos; tab (`HmExamsPage.jsx`). HM schedules exam terms, reviews marks entered by faculty, executes batch verification, downloads official Legal Tabulation Sheets, and publishes gazettes.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Sindh Board Standard:</strong> 700-mark Sindh Elementary Board standard with 20-mark Nazra Quran oral split in Islamiat, Drawing letter grade (A-D), and aggregate percentage rankings.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/exams/:id/results/batch-verify</code>, <code>POST /api/v1/exams/:id/publish</code>, <code>GET /api/v1/exams/:id/tabulation-sheet</code> (Legal PDF), <code>GET /api/v1/exams/:id/tabulation-data</code> (JSON grid), and <code>GET /api/v1/exams/:id/results/:studentId/marksheet</code> (A4 PDF).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Publication Gate:</strong> Unpublished marksheet downloads are strictly blocked for students and parents; marksheet PDFs stream only when exam status is <code>PUBLISHED</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Result documents transition from <code>SUBMITTED</code> $\rightarrow$ <code>VERIFIED</code> $\rightarrow$ <code>PUBLISHED</code>. Generates vector PDFKit streams with watermark and QR verification metadata.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>EXAM_RESULTS_BATCH_VERIFIED</code> and <code>EXAM_RESULTS_PUBLISHED</code> in <code>AuditLog</code> with verified student count and rank calculations.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Attempting to publish exam with unverified student marks returns <code>400 Bad Request</code>; unauthorized student access to unverified marks returns <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_official_marksheet_and_tabulation.test.js</code> (14/14 PASS) and <code>hm_examination_and_results.test.js</code> (23/23 PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 7 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-amber-600">WF-7: EMERGENCY RAIN CLOSURES &amp; SCHOOL HOLIDAY GOVERNANCE</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-600 border border-amber-200">COMMUNICATION / NOTICES &amp; HOLIDAYS</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via Notices tab $\rightarrow$ &apos;Declare Emergency School Closure&apos; modal. Enables HM to declare single-school weather closures (e.g. localized monsoon waterlogging, structural emergency).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Hierarchy &amp; Scope:</strong> HM closures apply strictly to <code>scopeType: &apos;SCHOOL&apos;</code> (their own schoolId). Town-wide gazetted holidays apply across all schools and are declared exclusively by Town Administration.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/holidays</code> • Payload: <code>&#123; title, reason, startDate, endDate, holidayType: &quot;EMERGENCY_CLOSURE&quot;, scopeType: &quot;SCHOOL&quot;, schoolId &#125;</code> and <code>PATCH /api/v1/holidays/:id/cancel</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Date strings must conform to YYYY-MM-DD; evaluated deterministically in Asia/Karachi (PKT) timezone. Target schoolId must match authenticated HM&apos;s school.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Creates active <code>HolidayCalendar</code> record; locks attendance window gates for affected dates; auto-excuses enrolled students; enqueues in-app alerts in <code>NotificationOutbox</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>SCHOOL_CLOSURE_DECLARED</code> and <code>HOLIDAY_CANCELLED</code> in <code>AuditLog</code> with emergency justification and date range.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Invalid date sequence (startDate &gt; endDate) returns <code>400 Bad Request</code>; attempting to declare closure for another school returns <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_school_circulars_and_notices.test.js</code> (30/30 PASS) and <code>timing_window_and_closures.test.js</code> (48/48 PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 8 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-slate-700">WF-8: OFFICIAL SCHOOL CIRCULARS &amp; DOCUMENT ARCHIVES</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">COMMUNICATION / NOTICES TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Notices &amp; Circulars&apos; tab (`HmNoticesPage.jsx`). HM issues official school announcements, administrative circulars, and notices to teachers, parents, and students.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Optional Attachments:</strong> File attachment is 100% optional: text-only notices publish reliably without requiring PDF upload. Uploaded PDFs validate magic bytes (`%PDF-`) and stream to Cloudinary storage.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/documents</code> (multipart form-data or JSON), <code>GET /api/v1/documents</code>, <code>PATCH /api/v1/documents/:id/archive</code>, and <code>DELETE /api/v1/documents/:id</code> (authorized purge exception).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Enforced by <code>authenticate</code>, <code>authorizePermissions(PERMISSIONS.DOCUMENTS_PUBLISH)</code>, and schoolId scoping.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Creates <code>Document</code> record (scope: <code>SCHOOL</code>); archival transitions status to <code>ARCHIVED</code>; permanent deletion requires mandatory written reason string and is recorded with full before-state diff in <code>AuditLog</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>DOCUMENT_PUBLISHED</code>, <code>DOCUMENT_ARCHIVED</code>, and <code>DOCUMENT_DELETED</code> in <code>AuditLog</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Non-PDF binary upload rejected by magic-bytes guard (`400 Bad Request`); delete request without reason rejected (`400 Bad Request`); cross-school notice tampering returns <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_school_circulars_and_notices.test.js</code> (30/30 PASS) and <code>document_upload_and_security.test.js</code> (18/18 PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 9 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-[#4B7F3A]">WF-9: PHYSICAL PARENT-WARD VERIFICATION &amp; NADRA B-FORM INSPECTION</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-[#4B7F3A] border border-emerald-200">OPERATIONS / APPROVALS TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Approvals&apos; tab $\rightarrow$ &apos;Parent Ward Link Verification Queue&apos; (`ParentLinkApprovalQueue.jsx`). HM physically verifies parent identity before granting portal access to child data.
+          </div>
+          <div>
+            <strong className="text-[#102033]">3-Stage Verification Machine:</strong> Stage 1: Anti-enumeration ward lookup $\rightarrow$ Stage 2: 6-digit phone/email OTP challenge $\rightarrow$ Stage 3: Head Master physical inspection of original NADRA B-Form and parent CNIC.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>GET /api/v1/hm/parent-links/pending</code>, <code>PATCH /api/v1/hm/parent-links/:id/verify</code>, and <code>PATCH /api/v1/hm/parent-links/:id/reject</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Target child must be enrolled in HM&apos;s school. HM verifies legal guardianship document authenticity.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Updates <code>ParentStudentLink.status = &apos;VERIFIED&apos;</code>; stamps <code>verifiedBy: request.user._id</code> and timestamp; unlocks ward dashboard for parent session.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>PARENT_WARD_LINK_VERIFIED</code> or <code>PARENT_WARD_LINK_REJECTED</code> in <code>AuditLog</code> with guardian CNIC and child GR number.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Rejection requires mandatory rejection reason; unverified links attempting child data access fail closed with <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>parent_portal_verification_wave3.test.js</code> and parent suite (74 tests across 5 files PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 10 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-purple-700">WF-10: AUTHORIZED FACULTY TRANSFER RELIEVING &amp; JOINING CONFIRMATION</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">OPERATIONS / TRANSFERS TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Incoming Staff&apos; tab (`HmTransfersPage.jsx`). Destination HM confirms arrival of transferred faculty; Source HM certifies formal departure relieving.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Transfer Boundary Rule:</strong> HM CANNOT initiate inter-school transfers (Town Admin authority only via <code>POST /api/v1/transfers</code>). HM possesses ONLY Relieving (<code>PATCH /relieve</code>) and Joining confirmation (<code>PATCH /approve-joining</code>).
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> Source HM: <code>PATCH /api/v1/transfers/:id/relieve</code> • Destination HM: <code>PATCH /api/v1/transfers/:id/approve-joining</code> • Reject: <code>PATCH /api/v1/transfers/:id/reject-joining</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Validation &amp; Scope:</strong> Source HM must match <code>transfer.fromSchoolId</code>; Destination HM must match <code>transfer.toSchoolId</code>. Unrelated schools blocked with <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Relieving sets status <code>RELIEVED</code> and ends source teaching duties; Joining sets status <code>JOINED</code>, updates <code>User.schoolId</code> to target school, and provisions faculty profile in destination directory.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>TRANSFER_RELIEVED</code> and <code>TRANSFER_JOINED</code> in <code>AuditLog</code> with departure/arrival timestamps, service book notes, and actor metadata.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Joining non-relieved teacher returns <code>400 Bad Request</code>; non-authorized school HM returns <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_transfer_lifecycle_and_security.test.js</code> (25/25 PASS) and <code>hm_class_teacher_and_transfer_authority.test.js</code> (14/14 PASS).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <SectionTitle>The Head Master Daily Desk Schedule (Illustrative Operational Guide)</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      Below is an <strong>illustrative operational desk timeline</strong> representing the typical routine of a school Head Master in DMC Liaquatabad Town Centre. Note the critical distinction between administrative desk arrival, official teaching hours, and automated software window gates:
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">DESK PRESENCE</div>
+        <div className="text-sm font-black text-[#006AC7]">07:30 AM – 02:00 PM PKT</div>
+        <div className="text-xs text-[#526477]">Illustrative Operational Guide</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TEACHING INSTRUCTION</div>
+        <div className="text-sm font-black text-[#4B7F3A]">07:45 AM – 01:00 PM PKT</div>
+        <div className="text-xs text-[#526477]">Official Class Schedule (Fri 12:00)</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">SOFTWARE GATES</div>
+        <div className="text-sm font-black text-purple-600">07:45 AM – 14:00 PKT</div>
+        <div className="text-xs text-[#526477]">attendanceWindowService.js Default</div>
+      </div>
+    </div>
+
+    <TerminalBlock title="ILLUSTRATIVE HM DESK TIMELINE (PRE-BELL TO SCHOOL DISPERSAL)">
+{`07:30 AM – 07:45 AM: PRE-BELL ARRIVAL & MORNING PREPARATION
+  ├── 07:30 AM: HM arrives at school desk; reviews physical premises & caretaker report
+  └── 07:45 AM: Morning attendance gates open in attendanceWindowService.js; student bell rings
+
+07:45 AM – 08:30 AM: MORNING MUSTER & PUNCTUALITY AUDIT
+  ├── 07:45 AM – 08:14 AM: Regular on-time arrival window for students & teaching staff
+  ├── 08:15 AM: Late cutoff threshold triggers; late arrivals automatically flagged
+  └── 08:30 AM: HM reviews morning muster; checks substitute coverage for absent staff
+
+08:30 AM – 10:00 AM: CLASSROOM TIMETABLES & ACADEMIC MONITORING
+  ├── Inspects classroom teaching allocations and active timetable periods
+  └── Verifies single-cohort class duties and curriculum syllabus coverage
+
+10:00 AM – 11:30 AM: ADMISSIONS, PARENT VERIFICATIONS & RECORD CHECKS
   ├── Processes student admissions via HmAddStudentModal (GR auto-allocation)
-  ├── Inspects physical NADRA B-Form documents & guardian CNICs in Approvals tab
-  └── Approves or rejects pending ParentStudentLink claims with recorded reasons
-
-11:00 AM – 11:30 AM: RECESS & MID-DAY ADMINISTRATIVE REVIEW
-  ├── Recess period monitor active
-  └── HM reviews daily attendance analytics and flags unexcused student dropouts
+  ├── Inspects physical NADRA B-Form & parent CNIC in Approvals queue
+  └── Approves or rejects pending ParentStudentLink claims with recorded justification
 
 11:30 AM – 01:00 PM: EXAMINATION GRADING & OFFICIAL GAZETTE TABULATION
-  ├── Checks teacher marks entry for ongoing examinations
+  ├── Checks teacher marks entry for ongoing examination terms
   ├── Verifies 20-mark Nazra Quran split & Drawing letter grades
-  ├── Downloads official Legal Landscape Tabulation Sheet for physical archive
-  └── Executes Publish Gazette action when all results are verified
+  ├── Downloads official Legal Landscape Tabulation Sheet for physical school archive
+  └── Executes Publish Gazette action when all class results are verified
 
-01:00 PM – 02:00 PM: TRANSFERS, SERVICE BOOKS & OFFICIAL CIRCULARS
-  ├── Inspects incoming staff transfer orders from Town Admin; signs joining orders
-  ├── Relieves departing staff; ensures no active Class Teacher orphan assignments
-  ├── Issues weather or academic notices via Documents / Notices tab
-  └── 02:00 PM: School dispersal; HM reviews daily Activity Log audit trail`}
+01:00 PM – 02:00 PM: POST-BELL DISPERSAL, TRANSFERS & DESK AUDIT RECONCILIATION
+  ├── 01:00 PM: Students dismiss (Friday 12:00 PM Jummah prayer dismissal)
+  ├── Inspects incoming staff transfer orders; signs joining certifications
+  ├── Relieves departing faculty; certifies service book records
+  ├── Issues weather or school circulars via Notices & Circulars tab
+  └── 14:00 PKT (02:00 PM): Regular software attendance window closes; daily audit wrap-up`}
     </TerminalBlock>
 
     <SectionTitle>Municipal Governance &amp; Security Invariants</SectionTitle>
@@ -1640,8 +1976,8 @@ export const HeadMasterWorkflowsSection = () => (
           right: 'DMC Liaquatabad municipal schools operate under the constitutional free public education mandate. Zero fee collection models, invoices, or billing endpoints exist in the application.',
         },
         {
-          left: 'Zero Hard Deletions Law',
-          right: 'No student, teacher, marksheet, or document record is ever hard deleted. All departures transition through explicit lifecycle states (STRUCK_OFF, RELIEVED, INACTIVE) with complete before/after snapshots in AuditLog.',
+          left: 'Qualified Deletion Policy',
+          right: 'Core institutional records (students, faculty, schools, enrollments) have zero hard deletions; departures transition through lifecycle states (STRUCK_OFF, RELIEVED, INACTIVE). The single explicit exception is Document media purging (DELETE /api/v1/documents/:id) which requires mandatory written reason and is recorded in AuditLog.',
         },
         {
           left: 'Single-School BOLA Boundary',
@@ -1708,7 +2044,7 @@ export const HeadMasterWorkflowsSection = () => (
     />
 
     <Callout type="warning" title="OPERATIONAL SIGN-OFF GATE NOTICE">
-      While all 7 Head Master workflows and 14 workspace tabs are fully coded, tested, and pass 173 verified automated assertions across all 10 HM test files on disk (and 180 assertions including optional sections), <strong>Owner Operational Sign-Off remains explicitly PENDING</strong>. Automated tests certify technical behavior but do not constitute municipal owner operational clearance.
+      While all 10 Head Master workflows and 14 workspace tabs are fully coded, tested, and pass 173 verified automated assertions across all 10 HM test files on disk (and 180 assertions including optional sections), <strong>Owner Operational Sign-Off remains explicitly PENDING</strong>. Automated tests certify technical behavior but do not constitute municipal owner operational clearance.
     </Callout>
   </div>
 );

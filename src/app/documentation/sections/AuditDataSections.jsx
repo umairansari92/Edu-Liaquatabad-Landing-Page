@@ -45,8 +45,8 @@ export const AuditContractSection = () => (
       ]}
     />
 
-    <Callout type="security" title="TAMPER-RESISTANT VAULT GUARANTEE">
-      The <code>AuditLog</code> schema defines no update or delete routes. Database connection permissions for standard municipal roles prohibit <code>dropCollection</code> or <code>deleteMany</code> operations on the audit namespace.
+    <Callout type="security" title="APPLICATION-LEVEL APPEND-ONLY AUDIT GUARANTEE">
+      The <code>AuditLog</code> collection enforces append-only immutability via Mongoose schema pre-hooks (intercepting and throwing errors on <code>updateOne</code>, <code>updateMany</code>, <code>findOneAndUpdate</code>, <code>deleteOne</code>, and <code>deleteMany</code> queries). Zero update or delete routes exist across application controllers, guaranteeing that every recorded audit entry is immutable via application endpoints.
     </Callout>
   </div>
 );
@@ -60,7 +60,7 @@ export const DatabaseModelsSection = () => (
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      The backend is powered by 32 purpose-built Mongoose models organized by institutional domain. All models strictly adhere to the <strong>Zero-Hard-Deletion</strong> policy:
+      The backend is powered by 32 purpose-built Mongoose models organized by institutional domain. Core institutional entities (students, faculty, schools, and enrollments) strictly adhere to the <strong>Soft Lifecycle Policy</strong> (<code>STRUCK_OFF</code>, <code>RELIEVED</code>, <code>INACTIVE</code>). The single explicit exception is <code>Document</code>, where authorized publishers can permanently purge an erroneous circular/media file (<code>Document.deleteOne</code>) with mandatory written justification and full before-state capture in <code>AuditLog</code>:
     </p>
 
     <ComparisonTable
