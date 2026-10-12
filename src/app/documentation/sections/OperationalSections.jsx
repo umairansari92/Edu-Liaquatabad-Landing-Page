@@ -1746,7 +1746,7 @@ export const HeadMasterWorkflowsSection = () => (
             <strong className="text-[#102033]">Sindh Board Standard:</strong> 700-mark Sindh Elementary Board standard with 20-mark Nazra Quran oral split in Islamiat, Drawing letter grade (A-D), and aggregate percentage rankings.
           </div>
           <div>
-            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/exams/:id/results/batch-verify</code>, <code>POST /api/v1/exams/:id/publish</code>, <code>GET /api/v1/exams/:id/tabulation-sheet</code> (Legal PDF), <code>GET /api/v1/exams/:id/tabulation-data</code> (JSON grid), and <code>GET /api/v1/exams/:id/results/:studentId/marksheet</code> (A4 PDF).
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/exams/:id/results/batch-verify</code>, <code>POST /api/v1/exams/:id/publish</code>, <code>GET /api/v1/exams/:id/tabulation-sheet</code> (Class Tabulation PDF formatted for US Legal 14&quot;&times;8.5&quot; Landscape physical paper sheets), <code>GET /api/v1/exams/:id/tabulation-data</code> (JSON grid), and <code>GET /api/v1/exams/:id/results/:studentId/marksheet</code> (A4 Portrait Student Marksheet PDF).
           </div>
           <div>
             <strong className="text-[#102033]">Validation &amp; Publication Gate:</strong> Unpublished marksheet downloads are strictly blocked for students and parents; marksheet PDFs stream only when exam status is <code>PUBLISHED</code>.
@@ -1848,7 +1848,7 @@ export const HeadMasterWorkflowsSection = () => (
             <strong className="text-[#102033]">3-Stage Verification Machine:</strong> Stage 1: Anti-enumeration ward lookup $\rightarrow$ Stage 2: 6-digit phone/email OTP challenge $\rightarrow$ Stage 3: Head Master physical inspection of original NADRA B-Form and parent CNIC.
           </div>
           <div>
-            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>GET /api/v1/hm/parent-links/pending</code>, <code>PATCH /api/v1/hm/parent-links/:id/verify</code>, and <code>PATCH /api/v1/hm/parent-links/:id/reject</code>.
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>GET /api/v1/hm/parent-links</code> (Pending verification queue), <code>POST /api/v1/hm/parent-links/:linkId/verify</code> (HM physical verification sign-off), <code>POST /api/v1/hm/parent-links/:linkId/reject</code> (Rejection with mandatory reason), and <code>POST /api/v1/hm/parent-links/:linkId/revoke</code> (Link revocation).
           </div>
           <div>
             <strong className="text-[#102033]">Validation &amp; Scope:</strong> Target child must be enrolled in HM&apos;s school. HM verifies legal guardianship document authenticity.
@@ -1882,7 +1882,7 @@ export const HeadMasterWorkflowsSection = () => (
             <strong className="text-[#102033]">Transfer Boundary Rule:</strong> HM CANNOT initiate inter-school transfers (Town Admin authority only via <code>POST /api/v1/transfers</code>). HM possesses ONLY Relieving (<code>PATCH /relieve</code>) and Joining confirmation (<code>PATCH /approve-joining</code>).
           </div>
           <div>
-            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> Source HM: <code>PATCH /api/v1/transfers/:id/relieve</code> • Destination HM: <code>PATCH /api/v1/transfers/:id/approve-joining</code> • Reject: <code>PATCH /api/v1/transfers/:id/reject-joining</code>.
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> Source HM: <code>PATCH /api/v1/transfers/:id/relieve</code> • Destination HM: <code>PATCH /api/v1/transfers/:id/approve-joining</code> (or <code>/:id/approve</code>) • Reject: <code>PATCH /api/v1/transfers/:id/reject</code>. (Note: Inter-school transfer initiation is <code>POST /api/v1/transfers</code>, restricted to Town Administration / Supervisors; HM cannot initiate).
           </div>
           <div>
             <strong className="text-[#102033]">Validation &amp; Scope:</strong> Source HM must match <code>transfer.fromSchoolId</code>; Destination HM must match <code>transfer.toSchoolId</code>. Unrelated schools blocked with <code>403 Forbidden</code>.

@@ -64,6 +64,10 @@ $ cd server && node tests/parent_adversarial_security.test.js
 # 5. Execute Single-Cohort Teaching Assignment & Query Verification
 $ cd server && node tests/optional_sections_and_teaching_assignment.test.js`}
     </TerminalBlock>
+
+    <Callout type="info" title="TEST VERIFICATION METHODOLOGY &amp; SCOPE LIMITATIONS">
+      The 1,436 figure represents the arithmetic sum of passing test assertions reported across all 55 test suite files on disk when executed sequentially as independent child processes by <code>node scripts/verifyTestBannerIntegrity.js</code>. The script validates that every suite exits with status code 0 (zero unhandled rejections or assertion errors) and compares stdout regex banner sums against individual <code>&#x2705; PASS</code> line counts. Automated regression passes certify programmatic behavior under defined test conditions, but do not replace human institutional clearance or owner operational sign-off.
+    </Callout>
   </div>
 );
 
