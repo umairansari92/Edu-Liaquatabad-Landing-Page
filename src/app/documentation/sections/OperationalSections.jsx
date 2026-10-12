@@ -1732,6 +1732,50 @@ export const HeadMasterWorkflowsSection = () => (
         </div>
       </div>
 
+      {/* WORKFLOW 5b */}
+      <div className="p-5 rounded-xl bg-white border border-amber-200/80 shadow-xs space-y-3" style={{background: 'linear-gradient(135deg, #fffbeb 0%, #fff 100%)'}}>
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-amber-100">
+          <span className="text-xs font-black text-amber-700">WF-5b: HM CL PROXY — STUDENT ATTENDANCE ON BEHALF OF ABSENT TEACHER</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-300">OPERATIONS / ATTENDANCE TAB • HM ONLY</span>
+        </div>
+        <div className="px-3 py-2 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-800 font-medium mb-2">
+          ⚡ New Authority — When a teacher is on Casual Leave (CL), the Head Master can personally step in and submit that teacher&apos;s class student attendance for the day.
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">Operational Reality &amp; Purpose:</strong> In municipal primary schools, a teacher on CL means their class has no one to take attendance. The HM — who has school-wide authority and is physically present — steps in to mark that section&apos;s daily student attendance, preventing attendance gaps in official records.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Permitted vs Prohibited:</strong> <span className="text-emerald-700 font-semibold">PERMITTED:</span> HM submitting student attendance for any section in their school, with mandatory proxy identification fields. <span className="text-red-600 font-semibold">PROHIBITED:</span> Proxying for a teacher from another school; supplying an invalid or non-TEACHER userId; omitting proxyReason.
+          </div>
+          <div>
+            <strong className="text-[#102033]">API Endpoint &amp; Method:</strong> <code>POST /api/v1/attendance/submit</code> — the same endpoint used by teachers. HM adds two extra fields:<br />
+            <code>{'{ sectionId, date, absentStudentProfileIds?, proxyTeacherId: "<teacherId>", proxyReason: "Teacher on CL..." }'}</code>
+          </div>
+          <div>
+            <strong className="text-[#102033]">Authorization &amp; Permission Model:</strong> HM now holds <code>ATTENDANCE_MARK</code> permission (added to HM role defaults alongside existing <code>ATTENDANCE_VERIFY</code>). The <code>resolveTeacherSection()</code> gate already grants HM unrestricted school-boundary access without a TeachingAssignment check. Route guard: <code>authorizePermissions(PERMISSIONS.ATTENDANCE_MARK)</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Proxy Teacher Validation:</strong> Backend performs hard lookup: <code>{'User.findOne({ _id: proxyTeacherId, schoolId: hmSchoolId, role: ROLES.TEACHER })'}</code>. Teacher not found (wrong school, wrong role, or invalid ID) → <code>403 Forbidden</code>: &quot;CL Proxy denied…&quot;. Cross-school proxy is architecturally impossible.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Data &amp; Lifecycle Effects:</strong> Creates or upserts the section&apos;s daily <code>Attendance</code> document (<code>attendanceType: &apos;STUDENT&apos;</code>) with <code>recordedBy: hmUserId</code>. Status: <code>PENDING_VERIFICATION</code> (normal verification flow applies). <code>processAttendanceDelta()</code> rolls up monthly aggregates atomically.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Audit Telemetry:</strong> Emits <code>ATTENDANCE_HM_CL_PROXY_SUBMITTED</code> in <code>AuditLog</code> (distinct from standard <code>ATTENDANCE_SUBMITTED</code>). The <code>newState</code> object includes <code>isClProxy: true</code>, <code>proxyTeacherId</code>, <code>proxyTeacherName</code>, and <code>proxyReason</code> — making the proxy action fully non-repudiable.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Success Response (proxyContext):</strong> <code>{'{ isClProxy: true, proxyTeacherId, proxyTeacherName: "Ali Hassan", proxyReason: "..." }'}</code>. Regular teacher submissions return <code>proxyContext: null</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Failure Handling:</strong> Invalid ObjectId in <code>proxyTeacherId</code> → <code>400 Bad Request</code>; <code>proxyReason</code> under 5 chars → <code>400 Bad Request</code>; teacher from outside HM school → <code>403 Forbidden</code>; section from outside HM school → <code>403 Forbidden</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> New capability — integration tests pending. Backend logic verified: <code>attendanceController.js</code> CL proxy validation block + <code>permissions.js</code> HM role defaults (<code>ATTENDANCE_MARK</code> added). Existing test suite unaffected (55/55 suites).
+          </div>
+        </div>
+      </div>
+
       {/* WORKFLOW 6 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
