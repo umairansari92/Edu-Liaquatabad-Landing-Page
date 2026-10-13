@@ -54,13 +54,13 @@ export const AuditContractSection = () => (
 export const DatabaseModelsSection = () => (
   <div>
     <DocHeader
-      title="Complete 32-Model Mongoose Schema Catalogue"
+      title="Complete 34-Model Mongoose Schema Catalogue"
       badge="6. Immutable Audit & Data Vault"
-      subtitle="Comprehensive inventory of all 32 production data models in server/src/models/."
+      subtitle="Comprehensive inventory of all 34 production data models in server/src/models/."
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      The backend is powered by 32 purpose-built Mongoose models organized by institutional domain. Core institutional entities (students, faculty, schools, and enrollments) strictly adhere to the <strong>Soft Lifecycle Policy</strong> (<code>STRUCK_OFF</code>, <code>RELIEVED</code>, <code>INACTIVE</code>). The single explicit exception is <code>Document</code>, where authorized publishers can permanently purge an erroneous circular/media file (<code>Document.deleteOne</code>) with mandatory written justification and full before-state capture in <code>AuditLog</code>:
+      The backend is powered by 34 purpose-built Mongoose models organized by institutional domain. Core institutional entities (students, faculty, schools, and enrollments) strictly adhere to the <strong>Soft Lifecycle Policy</strong> (<code>STRUCK_OFF</code>, <code>RELIEVED</code>, <code>INACTIVE</code>). The single explicit exception is <code>Document</code>, where authorized publishers can permanently purge an erroneous circular/media file (<code>Document.deleteOne</code>) with mandatory written justification and full before-state capture in <code>AuditLog</code>:
     </p>
 
     <ComparisonTable
@@ -77,6 +77,7 @@ export const DatabaseModelsSection = () => (
         { left: 'HolidayCalendar', right: 'Operations • Gazetted provincial holidays and emergency weather closures with YYYY-MM-DD format.' },
         { left: 'Homework', right: 'Academics • Daily teacher homework assignments, subject diary notes, and 7-day expiring attachments.' },
         { left: 'IdempotencyRecord', right: 'Reliability • Mutation replay protection and key-reuse defense with SHA-256 fingerprinting (24h TTL).' },
+        { left: 'LeaveRequest', right: 'Faculty/Staff • CL & EL lifecycle, multi-tier approval authority, 24-day annual quota, 1 Jan reset, partial unique index, immutable correction history.' },
         { left: 'Notification', right: 'Communications • In-app user notifications and alerts with read/unread tracking.' },
         { left: 'NotificationOutbox', right: 'Communications • Asynchronous email/SMS dispatch queue with retry backoff and error recovery.' },
         { left: 'Organization', right: 'Civic • Top-level municipal authority (DMC Liaquatabad Town Centre) entity.' },
@@ -88,6 +89,7 @@ export const DatabaseModelsSection = () => (
         { left: 'SchoolInspection', right: 'Surveillance • Cluster Supervisor field inspection audit logs with infrastructure hygiene scores.' },
         { left: 'Section', right: 'Academics • Section sub-divisions within grades (Optional in single-cohort primary/middle schools).' },
         { left: 'SecurityLockout', right: 'Security • Triple-Lock temporary account lockouts triggered by consecutive failed attempts.' },
+        { left: 'StaffAttendanceRecord', right: 'Operations • Individual staff self-submission muster, 5-minute approval relaxation gate, late & rejection reason enforcement, HM self-record flag.' },
         { left: 'StudentProfile', right: 'Students • Enrolled student records, unique GR numbers, non-destructive STRUCK_OFF lifecycle.' },
         { left: 'Subject', right: 'Academics • Curriculum course subjects (English, Sindhi, Urdu, Math, Science, Islamiat, Drawing).' },
         { left: 'SystemControl', right: 'Governance • Platform emergency maintenance flags and global stealth 503 outage killswitch.' },
@@ -96,7 +98,7 @@ export const DatabaseModelsSection = () => (
         { left: 'Timetable', right: 'Scheduling • Weekly institutional timetable grids, period schedules, and teacher conflict checks.' },
         { left: 'Town', right: 'Institutions • Liaquatabad Town Centre administrative boundary and census metadata.' },
         { left: 'TransferRequest', right: 'Faculty • 5-stage atomic faculty transfer lifecycle (INITIATED, RELIEVED, JOINED).' },
-        { left: 'User', right: 'Identity • Decoupled core account credentials, Argon2id hash, role, scope, and tokenVersion.' },
+        { left: 'User', right: 'Identity • Decoupled core account credentials, Argon2id hash, role, scope, staffCategory, and tokenVersion.' },
         { left: 'WeeklyOffPattern', right: 'Operations • Municipal weekend policy patterns (Sunday / Saturday off).' },
       ]}
     />
@@ -108,7 +110,7 @@ export const ApiCatalogueSection = () => (
     <DocHeader
       title="RESTful API Architecture & Standard Envelope"
       badge="6. Immutable Audit & Data Vault"
-      subtitle="Standardized JSON response envelope, HTTP status code semantics, and 27-route mounted endpoint catalogue."
+      subtitle="Standardized JSON response envelope, HTTP status code semantics, and 29-route mounted endpoint catalogue."
     />
 
     <TerminalBlock title="STANDARD API JSON RESPONSE ENVELOPE">
@@ -137,9 +139,9 @@ export const ApiCatalogueSection = () => (
 }`}
     </TerminalBlock>
 
-    <SectionTitle>Complete 27-Router Architecture &amp; Mounted Endpoint Index</SectionTitle>
+    <SectionTitle>Complete 29-Router Architecture &amp; Mounted Endpoint Index</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The backend exposes 27 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 26 route modules are imported and mounted directly via <code>router.use()</code>. The 27th router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 70 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
+      The backend exposes 29 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 28 route modules are imported and mounted directly via <code>router.use()</code>. The 29th router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 70 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
     </p>
     <ComparisonTable
       headers={['Mounted Base Route', 'Domain / Route File', 'Guards & Middleware Pipeline']}
@@ -171,6 +173,8 @@ export const ApiCatalogueSection = () => (
         { left: '/api/v1/parent', right: 'Parent Portal • parentRoutes.js • Zero-trust ward discovery, OTP, marks monitoring.' },
         { left: '/api/v1/hm/parent-links', right: 'Verification • hmParentLinkRoutes.js • Head Master physical register verification.' },
         { left: '/api/v1/timetables', right: 'Timetable • timetableRoutes.js • Institutional timetable engine & live room monitor.' },
+        { left: '/api/v1/leave', right: 'Leave Governance • leaveRoutes.js • CL/EL submission, HM/Admin approval, 24-day quota, overlap defense, idempotency.' },
+        { left: '/api/v1/staff-attendance', right: 'Staff Muster • staffAttendanceRoutes.js • Self-submission, HM self-attendance, 5m relaxation gate, idempotency.' },
       ]}
     />
 

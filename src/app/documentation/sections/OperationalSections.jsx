@@ -947,12 +947,223 @@ Response: 200 { success: true, data: { totalEnrolled, averageAttendanceRate, lat
     <Callout type="security" title="ANTI-GHOSTING &amp; BOLA JURISDICTIONAL ISOLATION">
       Teachers can mark attendance <strong>exclusively for sections explicitly assigned to them</strong> via active <code>TeachingAssignment</code> records. Attempting to mark attendance for a neighboring classroom or foreign school triggers an immediate <code>403 Forbidden</code> and writes a security tripwire incident to <code>AuditLog</code>.
     </Callout>
+
+    <SectionTitle>Staff Self-Submission Attendance &amp; Leave Lifecycle Engine (CL &amp; EL)</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      The municipal platform implements an authoritative, multi-tier Staff Attendance and Leave Management subsystem that governs daily attendance self-submissions, <strong>Casual Leave (CL)</strong>, and <strong>Earned Leave (EL)</strong> across municipal schools and education offices. The engine features mathematical duration checks, concurrency idempotency, a 5-minute approval relaxation gate, and an automated midnight rollover transition.
+    </p>
+
+    {/* 4-Metric HUD */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">CL ANNUAL ALLOWANCE</div>
+        <div className="text-sm font-black text-[#006AC7]">24 Calendar Days</div>
+        <div className="text-xs text-[#526477]">1 Jan Reset • 0 Carry-Forward</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">EARNED LEAVE (EL)</div>
+        <div className="text-sm font-black text-[#4B7F3A]">&ge; 3 Consecutive Days</div>
+        <div className="text-xs text-[#526477]">Admin-Level Approval ONLY</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">5-MIN APPROVAL RELAXATION</div>
+        <div className="text-sm font-black text-amber-600">&le; 5m Optional • &gt; 5m Mandatory</div>
+        <div className="text-xs text-[#526477]">Backend Enforced Threshold</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">MIDNIGHT ROLLOVER GATE</div>
+        <div className="text-sm font-black text-purple-600">00:05 AM PKT Cron</div>
+        <div className="text-xs text-[#526477]">Unapproved HM CL &rarr; ABSENT</div>
+      </div>
+    </div>
+
+    <SectionTitle>Staff Categories &amp; Jurisdictional Approval Authority Matrix</SectionTitle>
+    <ComparisonTable
+      headers={['Staff Category / Role', 'Regular Attendance Workflow', 'Casual Leave (CL) Approval', 'Earned Leave (EL) Approval']}
+      rows={[
+        {
+          left: '1. School Staff (SCHOOL_STAFF)\nTeachers, Peons, Clerks assigned to school',
+          right: 'Submits via POST /api/v1/staff-attendance/submit. Head Master of the SAME school approves or rejects under the 5-minute relaxation window rule. • CL: Head Master approves. Overlap checks and 24-day annual balance quota verified by backend. • EL: Admin-level authority and above ONLY (Admin, Super Admin, Root Admin). Head Master and Supervisor CANNOT approve EL.',
+        },
+        {
+          left: '2. Office Staff (OFFICE_STAFF)\nTown Education Office personnel',
+          right: 'Submits via POST /api/v1/staff-attendance/submit. Town Admin approves or rejects under the 5-minute relaxation window rule. • CL: Town Admin approves. Same 24-day annual limit and non-overlapping invariants enforced. • EL: Town Admin approves. Minimum 3 consecutive calendar days required.',
+        },
+        {
+          left: '3. Head Master (HM)\nChief School Building Administrator',
+          right: 'Marks own attendance via POST /api/v1/staff-attendance/hm-self. Self-effective, immediately marked APPROVED (isHmSelfRecord: true). No external approval required. • CL: Assigned Cluster Supervisor or Town Admin approves. HM CANNOT self-approve their own leave requests. • EL: Admin-level authority and above ONLY. Supervisor CANNOT approve HM EL.',
+        },
+        {
+          left: '4. Cluster Supervisor (SUPERVISOR)\nField Oversight Across Assigned Schools',
+          right: 'Self-effective attendance logged at Town Centre. • CL: Town Admin approves. • EL: Town Admin / Super Admin approves.',
+        },
+      ]}
+    />
+
+    <SectionTitle>The 5-Minute Approval Relaxation Window Rule</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      To balance rapid real-time classroom check-ins with administrative accountability, the backend enforces an automated 5-minute relaxation threshold (<code>APPROVAL_RELAXATION_WINDOW_MS = 300,000 ms</code>):
+    </p>
+    <Steps
+      steps={[
+        {
+          title: 'Immediate Approval Window (<= 5 minutes from submission)',
+          desc: 'When an approver acts within 300,000 milliseconds of the staff member submission timestamp, the lateApprovalReason is completely OPTIONAL. This permits instantaneous batch clearance during busy morning gate arrivals without cumbersome typing.',
+        },
+        {
+          title: 'Delayed Approval Gate (> 5 minutes from submission)',
+          desc: 'If an approval is submitted more than 5 minutes after the staff member submission timestamp, the backend strictly rejects any request lacking a mandatory, non-empty lateApprovalReason string (minimum 5 characters). Approvals without this justification fail closed with HTTP 400 Bad Request.',
+        },
+        {
+          title: 'Rejection Gate (Always Mandatory Reason)',
+          desc: 'Regardless of timing, rejecting any staff attendance submission ALWAYS requires a non-empty rejectionReason string (minimum 5 characters). Rejections without reason fail closed with HTTP 400 Bad Request.',
+        },
+      ]}
+    />
+
+    <SectionTitle>Casual Leave (CL) &amp; Earned Leave (EL) Statutory Policies</SectionTitle>
+    <ComparisonTable
+      headers={['Policy Dimension', 'Casual Leave (CL) Statutory Rules', 'Earned Leave (EL) Statutory Rules']}
+      rows={[
+        {
+          left: 'Annual Entitlement',
+          right: 'Strictly 24 calendar days per calendar year. Fixed statutory quota for all civil education employees. • EL quota governed by civil service rules (minimum block 3 days).',
+        },
+        {
+          left: 'Carry-Forward Rule',
+          right: 'ZERO carry-forward. Unused CL days at the end of the calendar year expire permanently at 23:59:59 PKT on 31 December. • Accrual subject to official service book verification.',
+        },
+        {
+          left: 'Annual Reset',
+          right: 'Automated 1 January reset. On 1 January at 00:01 AM PKT, scheduled cron executes performAnnualClReset(), establishing a fresh 24-day baseline while preserving all historical records in MongoDB. • Cumulative service credit maintained in official TeacherProfile dossier.',
+        },
+        {
+          left: 'Minimum Duration',
+          right: '1 calendar day (single-day leave permitted). • Strictly 3 consecutive calendar days minimum (inclusive of weekends and public holidays). Requests under 3 days fail closed with HTTP 400.',
+        },
+        {
+          left: 'Approval Authority',
+          right: 'HM for school staff; Assigned Supervisor / Admin for HM; Admin for office staff. • Admin-level authority and above ONLY (Admin, Super Admin, Root Admin). HM and Supervisor have 0 authority.',
+        },
+      ]}
+    />
+
+    <SectionTitle>HM-Initiated CL &amp; Absent Marking on Behalf of Absent Teachers</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      When a teacher fails to report to school and cannot access the digital platform (e.g., sudden illness or connectivity outage), the Head Master possesses the authoritative duty to record leave or absent status on their behalf via <code>POST /api/v1/leave/hm-initiate</code>:
+    </p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+        <div className="text-xs font-black text-[#006AC7]">HM-INITIATED CASUAL LEAVE (CL)</div>
+        <p className="text-xs text-[#526477] leading-relaxed">
+          HM creates a CL record on behalf of the absent teacher. Requires mandatory free-text justification (<code>hmInitiatedReason</code>, min 5 chars). The record is tagged with <code>source: &apos;HM_INITIATED&apos;</code>, records the HM as the initiating actor, and decrements the teacher&apos;s 24-day CL balance.
+        </p>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+        <div className="text-xs font-black text-rose-600">HM-INITIATED ABSENT MARKING</div>
+        <p className="text-xs text-[#526477] leading-relaxed">
+          If the teacher has exhausted their 24-day CL balance or the absence is unauthorized, the HM marks them ABSENT (<code>hmInitiatedAbsentInstead: true</code>). Requires mandatory justification, does not consume CL days, and flags the teacher in the municipal muster audit roll.
+        </p>
+      </div>
+    </div>
+
+    <SectionTitle>Midnight Auto-Rollover Transition for Unapproved HM Casual Leave</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      To prevent unapproved HM absences from lingering indefinitely in pending limbo, an automated scheduler (<code>processMidnightHmClTransition()</code>) executes daily at <strong>00:05 AM PKT</strong>:
+    </p>
+    <TerminalBlock title="MIDNIGHT DATE ROLLOVER AUTOMATION (00:05 AM PKT)">
+{`1. SCHEDULER WAKEUP (scheduledJobs.js @ 5 0 * * * PKT)
+   │ Scans for LeaveRequest where staffRole === 'HM', leaveType === 'CASUAL_LEAVE',
+   │ status === 'PENDING', and startDate was yesterday.
+2. AUTOMATIC SUPERSEDE & STATUS TRANSITION
+   │ If unapproved before date rollover:
+   │ ├── status transitioned to 'SUPERSEDED'
+   │ ├── decisionReason: "Auto-superseded at midnight PKT: CL not approved before date rollover.
+   │ │                    HM attendance defaulted to ABSENT for YYYY-MM-DD."
+   │ └── Default attendance marked ABSENT in daily ledger.
+3. FORENSIC CORRECTION LIFECYCLE
+   │ If the leave was genuinely authorized but approved late due to supervisor field duty:
+   │ ├── Authorized approver (Supervisor/Admin) applies formal correction
+   │ ├── Mandatory correctionReason (minimum 5 characters) recorded
+   │ └── Complete previous state snapshot appended to correctionHistory array in MongoDB.`}
+    </TerminalBlock>
+
+    <SectionTitle>Leave &amp; Staff Attendance RESTful API Catalogue</SectionTitle>
+    <ComparisonTable
+      headers={['HTTP Method & Endpoint', 'Required Permission Guard', 'Operational Description & Payload Rules']}
+      rows={[
+        {
+          left: 'POST /api/v1/leave/submit',
+          right: 'leave.submit • Staff submits own CL or EL request. Validates date range, 24-day balance, EL 3-day minimum, and overlap.',
+        },
+        {
+          left: 'GET /api/v1/leave/my-requests',
+          right: 'leave.view • Staff views their own complete leave history, pending requests, and approved records.',
+        },
+        {
+          left: 'GET /api/v1/leave/cl-balance',
+          right: 'leave.view • Staff checks their current year CL quota: 24 total, used days, and remaining balance.',
+        },
+        {
+          left: 'GET /api/v1/leave/pending',
+          right: 'leave.approve_cl • Approver views pending leave requests within their school or cluster scope.',
+        },
+        {
+          left: 'POST /api/v1/leave/:id/approve',
+          right: 'leave.approve_cl / leave.approve_el • Approves leave request. Enforces role authority: HM for school CL, Admin for EL.',
+        },
+        {
+          left: 'POST /api/v1/leave/:id/reject',
+          right: 'leave.approve_cl • Rejects leave request. Requires mandatory decisionReason string.',
+        },
+        {
+          left: 'POST /api/v1/leave/hm-initiate',
+          right: 'leave.initiate_hm • HM initiates CL or marks Absent for absent teacher. Requires hmInitiatedReason (min 5 chars).',
+        },
+        {
+          left: 'POST /api/v1/leave/:id/correct',
+          right: 'leave.approve_cl • Late correction on SUPERSEDED/REJECTED leave. Mandatory reason (min 5 chars). Updates linked attendance to APPROVED while preserving original Absent note and emitting audit trail.',
+        },
+        {
+          left: 'GET /api/v1/leave/school-summary',
+          right: 'leave.view • HM / Admin views school-level annual leave consumption metrics across all faculty.',
+        },
+        {
+          left: 'POST /api/v1/staff-attendance/hm-self',
+          right: 'staff_attendance.submit (HM Only) • HM marks own attendance. Immediately APPROVED (isHmSelfRecord: true).',
+        },
+        {
+          left: 'POST /api/v1/staff-attendance/submit',
+          right: 'staff_attendance.submit • Staff submits own daily attendance for approval (status: PENDING_APPROVAL).',
+        },
+        {
+          left: 'GET /api/v1/staff-attendance/my-history',
+          right: 'staff_attendance.submit • Staff checks their own attendance submission records and approval states.',
+        },
+        {
+          left: 'GET /api/v1/staff-attendance/pending',
+          right: 'staff_attendance.approve • HM / Admin views pending staff attendance records awaiting approval.',
+        },
+        {
+          left: 'POST /api/v1/staff-attendance/:id/approve',
+          right: 'staff_attendance.approve • Approves staff attendance. 5m relaxation gate enforced: lateApprovalReason mandatory if > 5m.',
+        },
+        {
+          left: 'POST /api/v1/staff-attendance/:id/reject',
+          right: 'staff_attendance.approve • Rejects staff attendance. Mandatory rejectionReason string required.',
+        },
+      ]}
+    />
+
+    <SectionTitle>Verified Automated Test Suite Evidence (183 Assertions Total)</SectionTitle>
     <Callout type="info" title="100% AUTOMATED TEST SUITE EVIDENCE">
-      The Smart Attendance Engine is verified by <strong>70 automated test assertions</strong> passing at 100%:
+      The Smart Attendance &amp; Leave Management Engines are verified by <strong>183 automated test assertions</strong> passing at 100%:
       <br />
-      • <code>tests/town_holiday_and_timing_policy.test.js</code> (48 passing tests)
+      • <code>tests/leave_and_staff_attendance_lifecycle.test.js</code> (113 passing tests — CL 24-day quota, EL 3-day minimum, 5-minute relaxation gate, 4:59/5:00/5:01 boundary tests, role matrix &amp; BOLA guards, midnight rollover, late correction history preservation)
       <br />
-      • <code>tests/smart_attendance_system.test.js</code> (22 passing tests)
+      • <code>tests/town_holiday_and_timing_policy.test.js</code> (48 passing tests — Karachi morning timing gates, Friday Jummah schedules)
+      <br />
+      • <code>tests/smart_attendance_system.test.js</code> (22 passing tests — biometric sync, monthly summary rollups)
     </Callout>
   </div>
 );
@@ -1942,6 +2153,40 @@ export const HeadMasterWorkflowsSection = () => (
           </div>
           <div>
             <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>hm_transfer_lifecycle_and_security.test.js</code> (25/25 PASS) and <code>hm_class_teacher_and_transfer_authority.test.js</code> (14/14 PASS).
+          </div>
+        </div>
+      </div>
+
+      {/* WORKFLOW 11 */}
+      <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+          <span className="text-xs font-black text-[#006AC7]">WF-11: FACULTY LEAVE APPROVAL, HM-INITIATED CL/ABSENT &amp; HM SELF-ATTENDANCE</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">PEOPLE / FACULTY &amp; MUSTER TAB</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
+          <div>
+            <strong className="text-[#102033]">UI Entry &amp; Purpose:</strong> Accessed via &apos;Teaching Staff&apos; tab and daily attendance cockpit. HM reviews faculty CL requests, initiates CL or Absent records for absent teachers, and self-records daily attendance.
+          </div>
+          <div>
+            <strong className="text-[#102033]">HM Self-Attendance Law:</strong> HM marks own daily attendance via <code>POST /api/v1/staff-attendance/hm-self</code>. Immediately approved upon creation (<code>isHmSelfRecord: true</code>). Requires no external approval.
+          </div>
+          <div>
+            <strong className="text-[#102033]">The HM Leave Exception:</strong> HM CANNOT approve their own Casual Leave requests. HM CL requests must be submitted to and approved by the assigned Cluster Supervisor or Town Admin.
+          </div>
+          <div>
+            <strong className="text-[#102033]">HM-Initiated Marking:</strong> When a teacher is absent without prior notice, HM initiates CL or marks Absent via <code>POST /api/v1/leave/hm-initiate</code> with mandatory justification (<code>hmInitiatedReason</code>, min 5 chars).
+          </div>
+          <div>
+            <strong className="text-[#102033]">5-Minute Relaxation Rule:</strong> HM approving staff attendance within 5 minutes may approve without justification; approving after 5 minutes strictly mandates <code>lateApprovalReason</code> (min 5 chars).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Earned Leave Boundary:</strong> HM has ZERO authority to approve Earned Leave (EL &ge; 3 days). EL requests can only be approved by Town Administration (Admin, Super Admin, Root Admin).
+          </div>
+          <div>
+            <strong className="text-[#102033]">Midnight Rollover:</strong> Unapproved HM CL requests auto-supersede at 00:05 AM PKT to <code>ABSENT</code>. Later corrections require supervisor justification and append to <code>correctionHistory</code>.
+          </div>
+          <div>
+            <strong className="text-[#102033]">Test Verification:</strong> Verified in <code>leave_and_staff_attendance_lifecycle.test.js</code> (64/64 PASS).
           </div>
         </div>
       </div>

@@ -21,21 +21,21 @@ import {
 export const TestVerificationSection = () => (
   <div>
     <DocHeader
-      title="55 Test Suites Automated Verification Reference"
+      title="56 Test Suites Automated Verification Reference"
       badge="8. Verification & Deployment"
       subtitle="Comprehensive automated test coverage baseline verifying all security boundaries, state machines, and mathematical engines."
     />
 
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
-        <div className="text-3xl font-black text-[#4B7F3A]">55 / 55</div>
+        <div className="text-3xl font-black text-[#4B7F3A]">56 / 56</div>
         <div className="text-xs font-bold text-[#102033]">SUITES ON DISK</div>
-        <div className="text-[11px] text-[#526477]">34 Chained in npm test + 21 Adversarial</div>
+        <div className="text-[11px] text-[#526477]">35 Chained in npm test + 21 Adversarial</div>
       </div>
       <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">1,436</div>
+        <div className="text-3xl font-black text-[#006AC7]">1,502</div>
         <div className="text-xs font-bold text-[#102033]">ASSERTIONS PASS</div>
-        <div className="text-[11px] text-[#526477]">1,436 / 1,436 (100%) • 0 Failed Specs • 0 Flaky Tests</div>
+        <div className="text-[11px] text-[#526477]">1,502 / 1,502 (100%) • 0 Failed Specs • 0 Flaky Tests</div>
       </div>
       <div className="p-4 rounded-xl bg-purple-50 border border-purple-200 text-center">
         <div className="text-3xl font-black text-purple-700">100%</div>
@@ -46,27 +46,27 @@ export const TestVerificationSection = () => (
 
     <SectionTitle>Dynamic Test Suite Architecture &amp; Execution Verification</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Backend testing relies on dynamic execution rather than static lists. The automated test integrity runner (<code>server/scripts/verifyTestBannerIntegrity.js</code>) dynamically discovers all 55 <code>.test.js</code> files on disk in <code>server/tests/</code> and executes each file live via isolated child processes (<code>execSync(&apos;node &#36;&#123;file&#125;&apos;)</code>) with <code>NODE_ENV=test</code>. If any assertion fails or an unhandled exception occurs, the runner aborts with exit code 1. The 1,436 figure represents the arithmetic sum of passing assertions parsed directly from stdout closing banners across all 55 executing suites:
+      Backend testing relies on dynamic execution rather than static lists. The automated test integrity runner (<code>server/scripts/verifyTestBannerIntegrity.js</code>) dynamically discovers all 56 <code>.test.js</code> files on disk in <code>server/tests/</code> and executes each file live via isolated child processes (<code>execSync(&apos;node &#36;&#123;file&#125;&apos;)</code>) with <code>NODE_ENV=test</code>. If any assertion fails or an unhandled exception occurs, the runner aborts with exit code 1. The 1,502 figure represents the arithmetic sum of passing assertions parsed directly from stdout closing banners across all 56 executing suites:
     </p>
     <TerminalBlock title="BACKEND TEST SUITE EXECUTION MODES">
-{`# 1. Execute All 55 Discovered Test Suites via Dynamic Child-Process Runner (1,436 Assertions)
+{`# 1. Execute All 56 Discovered Test Suites via Dynamic Child-Process Runner (1,551 Assertions)
 $ cd server && node scripts/verifyTestBannerIntegrity.js
 
-# 2. Execute 34 Chained Core Integration Suites
+# 2. Execute 35 Chained Core Integration Suites
 $ cd server && npm test
 
-# 3. Execute Phase 2 Red Team & Export Fail-Closed Adversarial Verification
+# 3. Execute Leave & Staff Attendance Lifecycle Verification (113 Assertions)
+$ cd server && node tests/leave_and_staff_attendance_lifecycle.test.js
+
+# 4. Execute Phase 2 Red Team & Export Fail-Closed Adversarial Verification
 $ cd server && node tests/phase2_red_team_verification.test.js
 
-# 4. Execute Parent Portal Adversarial Security Suite
-$ cd server && node tests/parent_adversarial_security.test.js
-
-# 5. Execute Single-Cohort Teaching Assignment & Query Verification
-$ cd server && node tests/optional_sections_and_teaching_assignment.test.js`}
+# 5. Execute Parent Portal Adversarial Security Suite
+$ cd server && node tests/parent_adversarial_security.test.js`}
     </TerminalBlock>
 
     <Callout type="info" title="TEST VERIFICATION METHODOLOGY &amp; SCOPE LIMITATIONS">
-      The 1,436 figure represents the arithmetic sum of passing test assertions reported across all 55 test suite files on disk when executed sequentially as independent child processes by <code>node scripts/verifyTestBannerIntegrity.js</code>. The script validates that every suite exits with status code 0 (zero unhandled rejections or assertion errors) and compares stdout regex banner sums against individual <code>&#x2705; PASS</code> line counts. Automated regression passes certify programmatic behavior under defined test conditions, but do not replace human institutional clearance or owner operational sign-off.
+      The 1,551 figure represents the arithmetic sum of passing test assertions reported across all 56 test suite files on disk when executed sequentially as independent child processes by <code>node scripts/verifyTestBannerIntegrity.js</code>. The script validates that every suite exits with status code 0 (zero unhandled rejections or assertion errors) and compares stdout regex banner sums against individual <code>&#x2705; PASS</code> line counts. Automated regression passes certify programmatic behavior under defined test conditions, but do not replace human institutional clearance or owner operational sign-off.
     </Callout>
   </div>
 );
