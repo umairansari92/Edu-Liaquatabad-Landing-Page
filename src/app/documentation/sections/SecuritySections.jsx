@@ -345,6 +345,10 @@ export const CanonicalFindingRegisterSection = () => (
           left: 'CF-10 (PRIV-02)',
           right: 'Super Admin self-disable or last-admin lockout • HIGH • RESOLVED & VERIFIED (Last-standing administrator lockouts verified via authority model suite)',
         },
+        {
+          left: 'CF-11 (UX-SEC-01)',
+          right: 'Header Shield icon opened directly to device termination list • LOW • RESOLVED & VERIFIED (Defaulted to Security Overview tab; remote termination controls preserved under deliberate Active Sessions tab)',
+        },
       ]}
     />
   </div>

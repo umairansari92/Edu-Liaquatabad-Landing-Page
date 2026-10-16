@@ -940,12 +940,29 @@ Query:
   sectionId: string  optional  Mongo ObjectId
   month:     number  required  1-12
   year:      number  required  e.g. 2026
-Response: 200 { success: true, data: { totalEnrolled, averageAttendanceRate, lateIncidenceRate } }`}
+Response: 200 { success: true, data: { totalEnrolled, averageAttendanceRate, lateIncidenceRate } }
+
+# 4. School Attendance Windows & Timings Configuration
+PATCH /api/v1/schools/:id/timings
+Headers: Authorization: Bearer <accessToken>
+Guard: authorizePermissions('schools.timings_update'), authorizeScope
+Body:
+  timings: object required
+    regular: { startTime: HH:mm, endTime: HH:mm, attendanceWindowStart: HH:mm, attendanceWindowEnd: HH:mm }
+    friday:  { startTime: HH:mm, endTime: HH:mm, attendanceWindowStart: HH:mm, attendanceWindowEnd: HH:mm }
+    allowHmLateOverride: boolean (default true)
+  reason:  string (MANDATORY >= 5 chars for HM, optional for Admin)
+Response: 200 { success: true, message: "School attendance window updated successfully", data: { schoolId, timings } }
+Audit Event: HM_SCHOOL_ATTENDANCE_WINDOW_UPDATED (for HM) | SCHOOL_TIMINGS_UPDATED (for Admin)`}
     </TerminalBlock>
 
     <SectionTitle>Security, Scope Guards &amp; Audit Invariants</SectionTitle>
     <Callout type="security" title="ANTI-GHOSTING &amp; BOLA JURISDICTIONAL ISOLATION">
       Teachers can mark attendance <strong>exclusively for sections explicitly assigned to them</strong> via active <code>TeachingAssignment</code> records. Attempting to mark attendance for a neighboring classroom or foreign school triggers an immediate <code>403 Forbidden</code> and writes a security tripwire incident to <code>AuditLog</code>.
+    </Callout>
+
+    <Callout type="security" title="DECENTRALIZED ATTENDANCE WINDOW GOVERNANCE &amp; HM REASON ENFORCEMENT">
+      To adapt to seasonal hours, extreme weather shifts, and institutional autonomy, attendance windows are stored per-school in MongoDB Atlas and dynamically resolved via <code>resolveSchoolSchedule()</code>. Authorized Town Admins configure timing boundaries during school registration or full updates, while Head Masters can adjust windows for their own school only. Every Head Master adjustment requires a verified free-text justification (minimum 5 characters) and permanently records a <code>HM_SCHOOL_ATTENDANCE_WINDOW_UPDATED</code> audit trail with complete before/after snapshots. Attempting cross-school adjustment returns <code>403 Forbidden</code>, and missing/short reasons are rejected with <code>400 Bad Request</code> leaving settings untouched.
     </Callout>
 
     <SectionTitle>Staff Self-Submission Attendance &amp; Leave Lifecycle Engine (CL &amp; EL)</SectionTitle>
