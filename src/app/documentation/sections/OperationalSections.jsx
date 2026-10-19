@@ -953,7 +953,49 @@ Body:
     allowHmLateOverride: boolean (default true)
   reason:  string (MANDATORY >= 5 chars for HM, optional for Admin)
 Response: 200 { success: true, message: "School attendance window updated successfully", data: { schoolId, timings } }
-Audit Event: HM_SCHOOL_ATTENDANCE_WINDOW_UPDATED (for HM) | SCHOOL_TIMINGS_UPDATED (for Admin)`}
+Audit Event: HM_SCHOOL_ATTENDANCE_WINDOW_UPDATED (for HM) | SCHOOL_TIMINGS_UPDATED (for Admin)
+
+# 5. Smart Monthly Attendance Register (Hazri Register Reproduction)
+GET /api/v1/attendance/register?sectionId=<id>&month=10&year=2026
+Headers: Authorization: Bearer <accessToken>
+Guard: authorizePermissions('attendance.view'), attachScope
+Response: 200 {
+  success: true,
+  data: {
+    calendarDays: [{ date, dayNumber, dayOfWeek, dayType, isClosed, isWeeklyOff, closureLabel, status }],
+    students: [{ userId, fullName, grNumber, attendance: { [date]: 'PRESENT'|'ABSENT'|'LEAVE' }, totals: { P, A, L } }],
+    totalWorkingDays: 22,
+    recordedWorkingDays: 20,
+    missedWorkingDays: 2,
+    classAggregatePct: "88.5%"
+  }
+}
+
+# 6. Head Master Retrospective Missed-Attendance Clearance
+POST /api/v1/attendance/clear-missed
+Headers: Authorization: Bearer <accessToken>
+Guard: authorizePermissions('attendance.verify'), ROLES.HM / ADMIN / SUPER_ADMIN / ROOT_ADMIN
+Body:
+  sectionId: string required
+  date: string (YYYY-MM-DD) required (past date only)
+  absentStudentProfileIds: array of strings optional
+  leaveStudentProfileIds: array of strings optional
+  reason: string required (MANDATORY >= 10 characters)
+Response: 201 { success: true, message: "Missed attendance cleared and verified successfully", data: { attendanceId, verificationStatus: "VERIFIED" } }
+Audit Event: ATTENDANCE_MISSED_DAY_CLEARED
+
+# 7. Weekly-Off Governance Configuration (Admin / Super Admin / Root Admin)
+POST /api/v1/holidays/weekly-off
+Headers: Authorization: Bearer <accessToken>
+Guard: authorizeRoles('ROOT_ADMIN', 'SUPER_ADMIN', 'ADMIN')
+Body:
+  offDays: array of numbers required ([0, 6] for Sat & Sun, [0] for Sun only)
+  scopeType: "TOWN" | "SCHOOL"
+  schoolId: string optional (required if scopeType === 'SCHOOL')
+  effectiveFrom: string (YYYY-MM-DD)
+  reason: string required (MANDATORY >= 10 characters)
+Response: 201 { success: true, message: "Weekly off pattern configured successfully" }
+Audit Event: WEEKLY_OFF_PATTERN_CONFIGURED`}
     </TerminalBlock>
 
     <SectionTitle>Security, Scope Guards &amp; Audit Invariants</SectionTitle>
