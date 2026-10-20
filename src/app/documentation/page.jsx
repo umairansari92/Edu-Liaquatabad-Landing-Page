@@ -95,6 +95,7 @@ import {
 import {
   SchoolInspectionsSection,
   TeacherRostersSection,
+  TeacherPortalSection,
   AtomicTransfersSection,
   StudentManagementSection,
   ParentPortalSection,
@@ -189,6 +190,7 @@ export default function DocumentationPage() {
         { id: 'hm-workflows', label: 'Head Master 14-Tab Manual & 10 Workflows', icon: Briefcase },
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
+        { id: 'teacher-portal', label: 'Teacher Portal 2026 & My Classes', icon: GraduationCap },
         { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
         { id: 'student-management', label: 'Students, GR & Digital ID Card', icon: GraduationCap },
         { id: 'parent-portal', label: 'Parent Portal (Waves 1, 2, 3)', icon: Users },
@@ -657,6 +659,7 @@ export default function DocumentationPage() {
           {activeSection === 'hm-workflows' && <HeadMasterWorkflowsSection />}
           {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
           {activeSection === 'teacher-rosters' && <TeacherRostersSection />}
+          {activeSection === 'teacher-portal' && <TeacherPortalSection />}
 
           {activeSection === 'atomic-transfers' && <AtomicTransfersSection />}
 
