@@ -105,6 +105,7 @@ import {
   DocumentsLibrarySection,
   NotificationsOutboxSection,
   HeadMasterWorkflowsSection,
+  MunicipalSchoolsDirectorySection,
 } from './sections/OperationalSections';
 
 import {
@@ -187,6 +188,7 @@ export default function DocumentationPage() {
     {
       category: '5. Core Operational Engines',
       items: [
+        { id: 'schools-directory', label: 'Municipal Schools Directory', icon: Building2 },
         { id: 'hm-workflows', label: 'Head Master 14-Tab Manual & 10 Workflows', icon: Briefcase },
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
@@ -656,6 +658,7 @@ export default function DocumentationPage() {
           {/* ══════════════════════════════════════════════════════════════
               GROUP 5: CORE OPERATIONAL ENGINES
           ══════════════════════════════════════════════════════════════ */}
+          {activeSection === 'schools-directory' && <MunicipalSchoolsDirectorySection />}
           {activeSection === 'hm-workflows' && <HeadMasterWorkflowsSection />}
           {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
           {activeSection === 'teacher-rosters' && <TeacherRostersSection />}

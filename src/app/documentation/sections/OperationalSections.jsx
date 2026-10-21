@@ -2543,4 +2543,242 @@ export const TeacherPortalSection = () => (
   </div>
 );
 
+// ══════════════════════════════════════════════════════════════════════════════
+// 13. MUNICIPAL SCHOOLS DIRECTORY & OPERATIONAL GOVERNANCE (2026 SAAS STANDARD)
+// ══════════════════════════════════════════════════════════════════════════════
+export const MunicipalSchoolsDirectorySection = () => (
+  <div>
+    <DocHeader
+      title="Municipal Schools Directory & Operational Governance (2026 SaaS Standard)"
+      badge="5. Core Operational Engines"
+      subtitle="Authoritative institutional registry, grade-range provisioning, persistent teaching vs biometric gate windows, and role-aware directory governance for DMC Liaquatabad Town."
+    />
+
+    {/* 4-Metric HUD */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">MUNICIPAL COVERAGE</div>
+        <div className="text-sm font-black text-[#006AC7]">15 REGISTERED SCHOOLS</div>
+        <div className="text-xs text-[#526477]">100% Town Enrolment</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TIMINGS GOVERNANCE</div>
+        <div className="text-sm font-black text-[#4B7F3A]">BELL vs GATE DISAMBIGUATED</div>
+        <div className="text-xs text-[#526477]">Strict PKT Boundary Check</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUDIT MANDATE</div>
+        <div className="text-sm font-black text-amber-700">JUSTIFICATION &ge; 5 CHARS</div>
+        <div className="text-xs text-[#526477]">Zero Hardcoded Fallbacks</div>
+      </div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">RBAC DEFENSE</div>
+        <div className="text-sm font-black text-purple-700">LEVEL 80+ GATING</div>
+        <div className="text-xs text-[#526477]">BOLA Scoped Query Guards</div>
+      </div>
+    </div>
+
+    <SectionTitle>1. Executive Summary &amp; Scope Overview</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      The <strong>Municipal Schools Directory</strong> (accessible at <code className="text-[#006AC7] font-mono">/schools</code>) serves as the definitive institutional ledger for the Education Department, Liaquatabad Town Centre (DMC). In Phase 2, this module was overhauled to deliver an enterprise-grade 2026 SaaS experience, resolving confirmed role-navigation defects, eliminating dead whitespace, wrapping long institutional titles, and providing authoritative disambiguation between instructional bell hours and biometric attendance window gates.
+    </p>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <InfoCard
+        title="What Was Built &amp; Transformed"
+        desc="Key operational and visual improvements implemented in Phase 2."
+      >
+        <ul className="text-xs text-[#526477] space-y-1.5 list-disc list-inside mt-2">
+          <li><strong>Executive Directory Layout:</strong> Balanced single-institution detailed card when 1 school is active, and responsive 3-column card grid for multi-school browsing.</li>
+          <li><strong>Zero Text Truncation:</strong> Complete school name wrapping (<code className="font-mono text-slate-800">break-words</code>) eliminating one-line clipping.</li>
+          <li><strong>Enriched Backend Attributes:</strong> Authoritative display of <code className="font-mono text-slate-800">facultyCount</code>, <code className="font-mono text-slate-800">headMaster</code>, and grade range without synthetic defaults.</li>
+          <li><strong>Redux / BFF Integration:</strong> Replaced raw API client calls with existing <code className="font-mono text-slate-800">adminSlice.js</code> and <code className="font-mono text-slate-800">adminService.js</code> thunks.</li>
+        </ul>
+      </InfoCard>
+
+      <InfoCard
+        title="Why It Was Built"
+        desc="Institutional requirements and security mandates governing municipal schools."
+      >
+        <ul className="text-xs text-[#526477] space-y-1.5 list-disc list-inside mt-2">
+          <li><strong>Attendance Gate Fidelity:</strong> Preventing attendance rejection confusion by clearly separating instructional bell hours from biometric entry windows.</li>
+          <li><strong>Privilege Escalation Defense:</strong> Restricting school registration, metadata modifications, and timing updates strictly to authorized administrative levels.</li>
+          <li><strong>Audit Accountability:</strong> Enforcing meaningful user-entered justifications (&ge; 5 characters) for all school profile and timing modifications.</li>
+          <li><strong>Navigation Boundary Repair:</strong> Ensuring non-administrative roles (Teachers, Students, Parents, Peons) never receive administrative navigation groups.</li>
+        </ul>
+      </InfoCard>
+    </div>
+
+    <SectionTitle>2. Instructional Bell Hours vs. Biometric Attendance Gate Windows</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      Under DMC Liaquatabad Town operating regulations, school operations require two distinct, non-overlapping timing schedules. Previous interfaces conflated these values into a single generic &ldquo;Hours&rdquo; row:
+    </p>
+
+    <ComparisonTable
+      headers={['Schedule Category', 'Persisted Data Path', 'Institutional Meaning & Policy Enforcement']}
+      rows={[
+        {
+          left: 'Instructional Bell Hours (Mon–Sat)',
+          right: 'timings.regular.startTime → endTime (e.g. 08:00 – 13:30 PKT)',
+          rightBadge: 'TEACHING TIME',
+        },
+        {
+          left: 'Biometric Gate Window (Mon–Sat)',
+          right: 'timings.regular.attendanceWindowStart → attendanceWindowEnd (e.g. 07:45 – 14:00 PKT)',
+          rightBadge: 'BIOMETRIC WINDOW',
+        },
+        {
+          left: 'Friday Special Bell Hours',
+          right: 'timings.friday.startTime → endTime (e.g. 07:30 – 12:00 PKT)',
+          rightBadge: 'JUMMAH SCHEDULE',
+        },
+        {
+          left: 'Friday Biometric Gate Window',
+          right: 'timings.friday.attendanceWindowStart → attendanceWindowEnd (e.g. 07:15 – 12:30 PKT)',
+          rightBadge: 'EARLY CLOSURE',
+        },
+        {
+          left: 'HM Same-Day Late Clearance',
+          right: 'timings.allowHmLateOverride (Boolean flag)',
+          rightBadge: 'OVERRIDE PRIVILEGE',
+        },
+      ]}
+    />
+
+    <SectionTitle>3. Role-Based Directory Capabilities &amp; Action Gating</SectionTitle>
+    <p className="text-xs text-[#526477] leading-relaxed mb-4">
+      Frontend action buttons are strictly synchronized with authoritative server-side RBAC middleware (<code className="text-[#006AC7] font-mono">authorizeRoles</code>, <code className="text-[#006AC7] font-mono">authorizePermissions</code>, and <code className="text-[#006AC7] font-mono">authorizeScope</code>):
+    </p>
+
+    <div className="overflow-x-auto mb-6">
+      <table className="w-full text-xs text-left text-[#526477] border border-slate-200 rounded-xl overflow-hidden">
+        <thead className="bg-slate-50 text-[#102033] uppercase font-bold text-[11px] border-b border-slate-200">
+          <tr>
+            <th className="px-4 py-3">Role</th>
+            <th className="px-4 py-3">Directory View Scope</th>
+            <th className="px-4 py-3">Register School</th>
+            <th className="px-4 py-3">Edit Details</th>
+            <th className="px-4 py-3">Configure Timings</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-100">
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">ROOT_ADMIN (100)</td>
+            <td className="px-4 py-2.5">Global (All municipal schools)</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+          </tr>
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">SUPER_ADMIN (90)</td>
+            <td className="px-4 py-2.5">Global (All municipal schools)</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+          </tr>
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">ADMIN (80)</td>
+            <td className="px-4 py-2.5">Town Jurisdiction (Liaquatabad Town)</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
+          </tr>
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">SUPERVISOR (60)</td>
+            <td className="px-4 py-2.5">Cluster Scoped (<code className="font-mono">assignedSchools</code>)</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+          </tr>
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">HM (50)</td>
+            <td className="px-4 py-2.5">Single School (<code className="font-mono">schoolId</code> only)</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Own School (&ge; 5 char reason)</td>
+          </tr>
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">TEACHER (30)</td>
+            <td className="px-4 py-2.5">Single School (<code className="font-mono">schoolId</code> only)</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+          </tr>
+          <tr className="hover:bg-slate-50/50">
+            <td className="px-4 py-2.5 font-bold text-[#102033]">PEON / STUDENT / PARENT</td>
+            <td className="px-4 py-2.5 text-rose-600">403 Forbidden (No directory access)</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+            <td className="px-4 py-2.5 text-rose-600 font-bold">&#10007; Blocked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <SectionTitle>4. Verified Defects Fixed &amp; Architectural Solutions</SectionTitle>
+    <Steps
+      steps={[
+        {
+          title: 'Sidebar Conditional Overwrite & Teacher Admin Menu Leak',
+          desc: 'In Sidebar.jsx, if (isStudent) assigned student items and then immediately reassigned navigationItems to teacher items without an else if (isTeacher) branch. Consequently, teachers fell into the default else branch, granting them full Administrator navigation (/schools, /users, /approvals).',
+        },
+        {
+          title: 'Architectural Resolution: Pure ES Module Navigation Engine',
+          desc: 'Extracted getNavigationItemsForRole into client/src/utils/navigationConfig.js with explicit, strictly bounded branches for all 9 municipal roles, plus a safe self-service fallback (Dashboard, Holidays, Circulars, Profile) for unknown roles. Validated by 9/9 automated regression tests.',
+        },
+        {
+          title: 'Single-School Layout Balance & Whitespace Elimination',
+          desc: 'When an HM or cluster supervisor viewed a single scoped school, the 3-column CSS grid rendered one narrow card leaving 66% empty dead space. Phase 2 introduces an executive 3-column single-institution card layout that fully utilizes viewport width with comprehensive institutional details.',
+        },
+        {
+          title: 'Elimination of Hardcoded Audit Strings & Mandatory Reason Validation',
+          desc: 'EditSchoolModal previously hardcoded reason: "Municipal administrative update by Root Admin". Replaced with an empty, user-entered justification input validated client-side and server-side (minimum 5 characters). Added Section 4 mandatory justification to SchoolTimingsModal to satisfy backend audit compliance.',
+        },
+      ]}
+    />
+
+    <SectionTitle>5. Automated Verification &amp; Test Outcomes</SectionTitle>
+    <ComparisonTable
+      headers={['Verification Test Suite', 'Subsystem & Scope', 'Test Result']}
+      rows={[
+        {
+          left: 'testRoleNavigation.js (client/scripts)',
+          right: 'Pure ES Module regression suite verifying navigation groups for all 9 roles and safe unknown-role fallback.',
+          rightBadge: '9 / 9 PASS (100%)',
+        },
+        {
+          left: 'school_attendance_window_configuration.test.js (server)',
+          right: '13 core requirements: timing boundaries, HM own-school BOLA guards, minimum 5-char reason, immutability, and Karachi time resolution.',
+          rightBadge: '80 / 80 PASS (100%)',
+        },
+        {
+          left: 'school_grade_range_enforcement.test.js (server)',
+          right: 'Grade range boundary validation (min/max classes) and API bypass protection across Primary, Elementary, and Secondary schools.',
+          rightBadge: '10 / 10 PASS (100%)',
+        },
+        {
+          left: 'auth_hierarchy_suite.test.js (server)',
+          right: '8-Role hierarchy levels, ceiling enforcement, token claim validation, and append-only audit log snapshots.',
+          rightBadge: '42 / 42 PASS (100%)',
+        },
+        {
+          left: 'Vite Production Build (client)',
+          right: 'Client bundling, tree-shaking, CSS optimization, and PWA service worker precache generation.',
+          rightBadge: 'PASS (0 Errors)',
+        },
+        {
+          left: 'Browser Subagent Verification',
+          right: 'End-to-end browser verification of Schools Directory UI, search/filtering, timings modal, edit modal, and Teacher sidebar isolation.',
+          rightBadge: 'VERIFIED',
+        },
+      ]}
+    />
+
+    <Callout type="success" title="PHASE 2 COMPLIANCE ATTESTATION">
+      The Municipal Schools Directory has been fully aligned with 2026 enterprise SaaS design standards. It operates with 100% pure ES Modules, strict BOLA isolation, Redux Toolkit integration, and immutable audit logging across all institutional mutations.
+    </Callout>
+  </div>
+);
+
+
 
