@@ -55,21 +55,24 @@ export const InfoCard = ({ icon, color = 'blue', title, desc }) => {
   );
 };
 
-export const Steps = ({ items }) => (
-  <div className="space-y-3.5 my-6">
-    {items.map((s, i) => (
-      <div key={i} className="flex gap-4 items-start p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-        <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
-          {s.step || i + 1}
+export const Steps = ({ items, steps }) => {
+  const stepList = items || steps || [];
+  return (
+    <div className="space-y-3.5 my-6">
+      {stepList.map((s, i) => (
+        <div key={i} className="flex gap-4 items-start p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+            {s.step || i + 1}
+          </div>
+          <div className="space-y-1">
+            <p className="font-bold text-xs text-[#102033]">{s.title}</p>
+            <p className="text-xs text-[#526477] leading-relaxed">{s.desc}</p>
+          </div>
         </div>
-        <div className="space-y-1">
-          <p className="font-bold text-xs text-[#102033]">{s.title}</p>
-          <p className="text-xs text-[#526477] leading-relaxed">{s.desc}</p>
-        </div>
-      </div>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
+};
 
 export const ComparisonTable = ({ headers = ['Component / Choice', 'Implementation Rationale & Why It Won'], rows }) => (
   <div className="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white my-6">

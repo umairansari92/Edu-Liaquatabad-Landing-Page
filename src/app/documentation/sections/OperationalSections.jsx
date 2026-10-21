@@ -1304,7 +1304,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
       To balance rapid real-time classroom check-ins with administrative accountability, the backend enforces an automated 5-minute relaxation threshold (<code>APPROVAL_RELAXATION_WINDOW_MS = 300,000 ms</code>):
     </p>
     <Steps
-      steps={[
+      items={[
         {
           title: 'Immediate Approval Window (<= 5 minutes from submission)',
           desc: 'When an approver acts within 300,000 milliseconds of the staff member submission timestamp, the lateApprovalReason is completely OPTIONAL. This permits instantaneous batch clearance during busy morning gate arrivals without cumbersome typing.',
@@ -2964,7 +2964,7 @@ export const MunicipalSchoolsDirectorySection = () => (
 
     <SectionTitle>4. Verified Defects Fixed &amp; Architectural Solutions</SectionTitle>
     <Steps
-      steps={[
+      items={[
         {
           title: 'Sidebar Conditional Overwrite & Teacher Admin Menu Leak',
           desc: 'In Sidebar.jsx, if (isStudent) assigned student items and then immediately reassigned navigationItems to teacher items without an else if (isTeacher) branch. Consequently, teachers fell into the default else branch, granting them full Administrator navigation (/schools, /users, /approvals).',
