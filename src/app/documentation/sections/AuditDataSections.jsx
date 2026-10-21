@@ -54,13 +54,13 @@ export const AuditContractSection = () => (
 export const DatabaseModelsSection = () => (
   <div>
     <DocHeader
-      title="Complete 34-Model Mongoose Schema Catalogue"
+      title="Complete 35-Model Mongoose Schema Catalogue"
       badge="6. Immutable Audit & Data Vault"
-      subtitle="Comprehensive inventory of all 34 production data models in server/src/models/."
+      subtitle="Comprehensive inventory of all 35 production data models in server/src/models/."
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      The backend is powered by 34 purpose-built Mongoose models organized by institutional domain. Core institutional entities (students, faculty, schools, and enrollments) strictly adhere to the <strong>Soft Lifecycle Policy</strong> (<code>STRUCK_OFF</code>, <code>RELIEVED</code>, <code>INACTIVE</code>). The single explicit exception is <code>Document</code>, where authorized publishers can permanently purge an erroneous circular/media file (<code>Document.deleteOne</code>) with mandatory written justification and full before-state capture in <code>AuditLog</code>:
+      The backend is powered by 35 purpose-built Mongoose models organized by institutional domain. Core institutional entities (students, faculty, schools, and enrollments) strictly adhere to the <strong>Soft Lifecycle Policy</strong> (<code>STRUCK_OFF</code>, <code>RELIEVED</code>, <code>INACTIVE</code>). The single explicit exception is <code>Document</code>, where authorized publishers can permanently purge an erroneous circular/media file (<code>Document.deleteOne</code>) with mandatory written justification and full before-state capture in <code>AuditLog</code>:
     </p>
 
     <ComparisonTable
@@ -77,6 +77,7 @@ export const DatabaseModelsSection = () => (
         { left: 'HolidayCalendar', right: 'Operations • Gazetted provincial holidays and emergency weather closures with YYYY-MM-DD format.' },
         { left: 'Homework', right: 'Academics • Daily teacher homework assignments, subject diary notes, and 7-day expiring attachments.' },
         { left: 'IdempotencyRecord', right: 'Reliability • Mutation replay protection and key-reuse defense with SHA-256 fingerprinting (24h TTL).' },
+        { left: 'LateAttendanceRequest', right: 'Operations • Teacher emergency late attendance clearance requests & HM same-day in-app approval (Option A). Compound partial unique index { sectionId, datePkt, teacherUserId } for PENDING state, atomic state transitions, midnight Asia/Karachi cutoff.' },
         { left: 'LeaveRequest', right: 'Faculty/Staff • CL & EL lifecycle, multi-tier approval authority, 24-day annual quota, 1 Jan reset, partial unique index, immutable correction history.' },
         { left: 'Notification', right: 'Communications • In-app user notifications and alerts with read/unread tracking.' },
         { left: 'NotificationOutbox', right: 'Communications • Asynchronous email/SMS dispatch queue with retry backoff and error recovery.' },
@@ -160,7 +161,7 @@ export const ApiCatalogueSection = () => (
         { left: '/api/v1/admin/super-admins', right: 'Governance • superAdminRoutes.js • Super Admin provisioning & safe disable.' },
         { left: '/api/v1/admin/users', right: 'Governance • adminUserRoutes.js • Explicit administrative authority elevation.' },
         { left: '/api/v1/academic', right: 'Academics • academicRoutes.js • Central class grades, sections, curriculum subjects.' },
-        { left: '/api/v1/attendance', right: 'Operations • attendanceRoutes.js • Daily student/staff attendance & late overrides.' },
+        { left: '/api/v1/attendance', right: 'Operations • attendanceRoutes.js • Daily student/staff attendance, late overrides, missed day clearance & Option A late clearance requests/decisions.' },
         { left: '/api/v1/transfers', right: 'Transfers • transferRoutes.js • Town Admin transfer orders, HM relieving & joining.' },
         { left: '/api/v1/exports', right: 'Data Exports • exportRoutes.js • Streaming CSV with fail-closed audit log handling.' },
         { left: '/api/v1/homework', right: 'Pedagogical • homeworkRoutes.js • Daily homework diary & 7-day expiring attachments.' },

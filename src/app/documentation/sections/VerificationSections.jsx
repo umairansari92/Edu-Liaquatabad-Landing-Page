@@ -49,7 +49,7 @@ export const TestVerificationSection = () => (
       Backend testing relies on dynamic execution rather than static lists. The automated test integrity runner (<code>server/scripts/verifyTestBannerIntegrity.js</code>) dynamically discovers all 56 <code>.test.js</code> files on disk in <code>server/tests/</code> and executes each file live via isolated child processes (<code>execSync(&apos;node &#36;&#123;file&#125;&apos;)</code>) with <code>NODE_ENV=test</code>. If any assertion fails or an unhandled exception occurs, the runner aborts with exit code 1. The 1,502 figure represents the arithmetic sum of passing assertions parsed directly from stdout closing banners across all 56 executing suites:
     </p>
     <TerminalBlock title="BACKEND TEST SUITE EXECUTION MODES">
-{`# 1. Execute All 56 Discovered Test Suites via Dynamic Child-Process Runner (1,551 Assertions)
+{`# 1. Execute All 61 Discovered Test Suites via Dynamic Child-Process Runner
 $ cd server && node scripts/verifyTestBannerIntegrity.js
 
 # 2. Execute 35 Chained Core Integration Suites
@@ -62,7 +62,10 @@ $ cd server && node tests/leave_and_staff_attendance_lifecycle.test.js
 $ cd server && node tests/phase2_red_team_verification.test.js
 
 # 5. Execute Parent Portal Adversarial Security Suite
-$ cd server && node tests/parent_adversarial_security.test.js`}
+$ cd server && node tests/parent_adversarial_security.test.js
+
+# 6. Execute Teacher Late Attendance Clearance Lifecycle (Option A Sealed - 33 Assertions)
+$ cd server && node tests/teacher_late_attendance_clearance_lifecycle.test.js`}
     </TerminalBlock>
 
     <Callout type="info" title="TEST VERIFICATION METHODOLOGY &amp; SCOPE LIMITATIONS">
