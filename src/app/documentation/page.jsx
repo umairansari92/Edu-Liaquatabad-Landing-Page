@@ -73,6 +73,7 @@ import {
 } from './sections/ArchitectureSections';
 
 import { MasterBaselineSection } from './sections/MasterBaselineSection';
+import { HmWorkflowsSection } from './sections/HmWorkflowsSection';
 
 import {
   RolesCatalogueSection,
@@ -194,7 +195,7 @@ export default function DocumentationPage() {
       items: [
         { id: 'schools-directory', label: 'Municipal Schools Directory', icon: Building2 },
         { id: 'personal-profile', label: 'Personal Profile & Service Record (5 Zones)', icon: FileText },
-        { id: 'hm-workflows', label: 'Head Master 14-Tab Manual & 10 Workflows', icon: Briefcase },
+        { id: 'hm-operational-workflows', label: 'Head Master (HM) Operational Manual & Workflow Contracts', icon: Briefcase },
         { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'teacher-portal', label: 'Teacher Portal 2026 & My Classes', icon: GraduationCap },
@@ -242,14 +243,22 @@ export default function DocumentationPage() {
 
   const allTopics = navGroups.flatMap((g) => g.items);
 
-  // Sync hash routing on load
+  // Sync hash routing on load & on hashchange
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      const hash = window.location.hash.replace('#', '');
-      if (allTopics.some((t) => t.id === hash)) {
-        setActiveSection(hash);
+    const handleHash = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        const hash = window.location.hash.replace('#', '');
+        if (allTopics.some((t) => t.id === hash)) {
+          setActiveSection(hash);
+        } else if (hash === 'hm-workflows') {
+          setActiveSection('hm-operational-workflows');
+        }
       }
-    }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
   const handleSelect = (id) => {
@@ -373,6 +382,7 @@ export default function DocumentationPage() {
                     return (
                       <button
                         key={item.id}
+                        id={`nav-${item.id}`}
                         onClick={() => handleSelect(item.id)}
                         className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all text-left ${isActive
                             ? 'bg-blue-50 text-[#006AC7] font-bold border border-blue-200 shadow-2xs'
@@ -666,7 +676,7 @@ export default function DocumentationPage() {
           ══════════════════════════════════════════════════════════════ */}
           {activeSection === 'schools-directory' && <MunicipalSchoolsDirectorySection />}
           {activeSection === 'personal-profile' && <PersonalProfileDossierSection />}
-          {activeSection === 'hm-workflows' && <HeadMasterWorkflowsSection />}
+          {(activeSection === 'hm-operational-workflows' || activeSection === 'hm-workflows') && <HmWorkflowsSection />}
           {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
           {activeSection === 'teacher-rosters' && <TeacherRostersSection />}
           {activeSection === 'teacher-portal' && <TeacherPortalSection />}
