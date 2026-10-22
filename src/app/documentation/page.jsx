@@ -72,6 +72,8 @@ import {
   ArchitecturalDecisionsSection,
 } from './sections/ArchitectureSections';
 
+import { MasterBaselineSection } from './sections/MasterBaselineSection';
+
 import {
   RolesCatalogueSection,
   CapabilityMatrixSection,
@@ -152,6 +154,7 @@ export default function DocumentationPage() {
     {
       category: '2. Technology & Architecture',
       items: [
+        { id: 'master-architecture-baseline', label: 'Master System Architecture & Forensic Verification Baseline', icon: Shield },
         { id: 'tech-stack-why', label: 'Tech Stack & The "WHY"', icon: Database },
         { id: 'hierarchy', label: '5-Tier Organizational Hierarchy', icon: Layers },
         { id: 'decoupled-identity', label: 'Decoupled Identity Model', icon: KeyRound },
@@ -582,6 +585,7 @@ export default function DocumentationPage() {
             </div>
           )}
 
+          {activeSection === 'master-architecture-baseline' && <MasterBaselineSection />}
           {activeSection === 'hierarchy' && <HierarchySection />}
           {activeSection === 'decoupled-identity' && <DecoupledIdentitySection />}
           {activeSection === 'tech-topology' && <TechTopologySection />}
