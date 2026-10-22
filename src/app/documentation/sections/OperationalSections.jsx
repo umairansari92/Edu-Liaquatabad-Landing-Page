@@ -3040,7 +3040,7 @@ export const PersonalProfileDossierSection = () => (
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">SKETCH ZONES</div>
         <div className="text-sm font-black text-[#006AC7]">5 Unified Zones</div>
-        <div className="text-xs text-[#526477]">Identity to Security</div>
+        <div className="text-xs text-[#526477]">Prominent Photo to Security</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">ABAC SECURITY CEILINGS</div>
@@ -3054,8 +3054,8 @@ export const PersonalProfileDossierSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">VERIFICATION SUITE</div>
-        <div className="text-sm font-black text-amber-600">88 Automated Tests</div>
-        <div className="text-xs text-[#526477]">100% Pass Rate (0 Errors)</div>
+        <div className="text-sm font-black text-amber-600">140 Automated Tests</div>
+        <div className="text-xs text-[#526477]">68 Life + 63 Integ + 9 Nav (0 Fail)</div>
       </div>
     </div>
 
@@ -3066,14 +3066,14 @@ export const PersonalProfileDossierSection = () => (
     <SectionTitle>The 5 Core Architecture Zones (Direct Sketch Translation)</SectionTitle>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <InfoCard
-        title="Zone 1: Identity & Onboarding Profile"
+        title="Zone 1: Identity & Prominent Profile Card"
         badge="SKETCH ZONE 1"
         badgeColor="blue"
         items={[
-          'Profile Photo & Status: High-resolution official avatar, ACTIVE status badge, personal ID, and civil appointment designation.',
-          'Inline Eye Controls: Every sensitive field displays an accessible inline FieldVisibilityEye control for granular visibility management.',
-          'Personal Identification: Full Name, Father’s Name, CNIC, Date of Birth, Email, Phone Number, and Residential Address.',
-          'Service & Bank Particulars: Designation, appointment date, qualification, assigned school, and bank account details.',
+          'Prominent Portrait Photo Card: 3:4 portrait photo area on the left of Zone 1 matching user sketch, with Cloudinary storage, magic bytes validation, and live preview modal.',
+          'Inline Eye Controls (4 Exact Tiers): Accessible controls for "School Based", "Private", "Officials", and "Public" with hard PII ceilings.',
+          'Self-Managed Profile Details: EditProfileModal with tabbed interface for Personal & Contact, Bank & Payroll, and read-only Authoritative Records with institutional badges.',
+          'Service & Bank Particulars: Designation, appointment date, qualification, assigned school, and masked bank account details.',
         ]}
       />
       <InfoCard
@@ -3145,7 +3145,7 @@ export const PersonalProfileDossierSection = () => (
 
     <SectionTitle>Field-Level Visibility &amp; ABAC Privacy Ceilings Matrix</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Profile fields are categorized into strictly bounded visibility tiers. To protect civil servants from unauthorized exposure and identity theft, the platform enforces hard architectural security ceilings that cannot be overridden by user preference:
+      Profile fields are categorized into strictly bounded visibility tiers using four exact labels: <strong>School Based</strong>, <strong>Private</strong>, <strong>Officials</strong>, and <strong>Public</strong>. To protect civil servants from unauthorized exposure and identity theft, the platform enforces hard architectural security ceilings that cannot be overridden by user preference:
     </p>
 
     <ComparisonTable
@@ -3153,23 +3153,23 @@ export const PersonalProfileDossierSection = () => (
       rows={[
         {
           left: '1. Strict National PII',
-          right: 'cnic, bFormNumber • Permitted: AUTHORIZED_ROLE, PRIVATE • Ceiling: CAN NEVER BE PUBLIC OR SCHOOL-WIDE. Even Root Admin receives masked representation (42101-*******-1) when set to PRIVATE.',
+          right: 'cnic, bFormNumber • Permitted: Officials, Private • Ceiling: CAN NEVER BE PUBLIC OR SCHOOL BASED. Masked representation (42101-*******-1) when set to Private.',
         },
         {
           left: '2. Financial / Payroll',
-          right: 'bankDetails, accountNumber • Permitted: AUTHORIZED_ROLE, PRIVATE • Ceiling: CAN NEVER BE PUBLIC OR SCHOOL-WIDE. Masked to preserve only last 4 digits (****0123) across non-disbursing roles.',
+          right: 'bankDetails, accountNumber • Permitted: Officials, Private • Ceiling: CAN NEVER BE PUBLIC OR SCHOOL BASED. Masked to preserve only last 4 digits (****0123) across non-disbursing roles.',
         },
         {
           left: '3. Residential PII',
-          right: 'residentialAddress • Permitted: AUTHORIZED_ROLE, PRIVATE • Ceiling: CAN NEVER BE PUBLIC OR SCHOOL-WIDE. Restricted strictly to authorized municipal leadership and law enforcement.',
+          right: 'residentialAddress • Permitted: Officials, Private • Ceiling: CAN NEVER BE PUBLIC OR SCHOOL BASED. Restricted strictly to authorized municipal leadership.',
         },
         {
           left: '4. Institutional Contact',
-          right: 'phoneNumber, email • Permitted: PUBLIC, SCHOOL, PRIVATE • Configurable by employee. Default: SCHOOL-wide directory visibility.',
+          right: 'phoneNumber, email • Permitted: Public, School Based, Private • Configurable by employee. Default: School Based directory visibility.',
         },
         {
           left: '5. Public Credentials',
-          right: 'designation, qualification, profilePhoto • Permitted: PUBLIC, SCHOOL, PRIVATE • Default: PUBLIC across municipal educational directories.',
+          right: 'designation, qualification, profilePhoto • Permitted: Public, School Based, Private • Default: Public across municipal educational directories.',
         },
       ]}
     />
@@ -3182,27 +3182,27 @@ export const PersonalProfileDossierSection = () => (
           <strong>Problem:</strong> Parents clicking &apos;Profile&apos; in legacy systems were shown an employee-style service book with employee numbers, leave balances, and bank details that had no relevance to parents, creating data confusion and potential privilege escalation vectors.
         </p>
         <p>
-          <strong>Architectural Solution:</strong> Enforced the <em>Parent Isolation Rule</em>. In <code>StaffProfilePage.jsx</code>, any incoming user with <code>role === &apos;PARENT&apos;</code> is immediately redirected via client-side router to <code>/dashboard</code> (Parent Portal), where they view verified wards linked via <code>ParentStudentLink</code> with strict BOLA/IDOR prevention.
+          <strong>Architectural Solution:</strong> Enforced the <em>Parent Isolation Rule</em> across both frontend router and backend controllers. In <code>StaffProfilePage.jsx</code>, any incoming user with <code>role === &apos;PARENT&apos;</code> is immediately redirected via client-side router to <code>/dashboard</code> (Parent Portal), and all backend staff profile endpoints reject parent requests with <code>403 Forbidden</code>. Sidebar navigation also completely omits the Personal Profile link for parents.
         </p>
       </div>
 
       <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-        <strong className="text-[#102033] block text-sm">Challenge 2: Transfer History Omission in Staff Profile Projection</strong>
+        <strong className="text-[#102033] block text-sm">Challenge 2: Prominent Photo Area &amp; Multi-Tenant Cloud Storage</strong>
         <p>
-          <strong>Problem:</strong> While <code>transferController.js</code> stored historical relocations in <code>TeacherProfile.transferHistory</code>, the <code>handleGetStaffProfile</code> controller omitted this array from the outgoing JSON response, leaving the user sketch&apos;s Zone 2 empty.
+          <strong>Problem:</strong> The initial UI used a tiny top-bar avatar. The user&apos;s architectural sketch required a prominent, large portrait photo area on the left side of Zone 1 with upload, live preview, replacement, and safe deletion.
         </p>
         <p>
-          <strong>Architectural Solution:</strong> Updated <code>staffProfileController.js</code> to populate <code>transferHistory.fromSchoolId</code> and <code>transferHistory.toSchoolId</code> with school names, EMIS codes, and district details, and projected the complete chronology into <code>responseData.profile.transferHistory</code>.
+          <strong>Architectural Solution:</strong> Created <code>ProfilePhotoCard.jsx</code> and <code>PhotoUploadModal.jsx</code> adhering to a 3:4 portrait ratio with explicit touch-device upload buttons. The backend pipeline enforces a 5MB limit at the multer stream parser level, validates image magic bytes, uploads to Cloudinary folder <code>liaquatabad_sms/profiles</code> first, commits to the database, and only then deletes old assets to prevent data loss.
         </p>
       </div>
 
       <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-        <strong className="text-[#102033] block text-sm">Challenge 3: Security Invariants for Sensitive Data Masking</strong>
+        <strong className="text-[#102033] block text-sm">Challenge 3: Mass Assignment Vulnerability on Self-Managed Profile Edits</strong>
         <p>
-          <strong>Problem:</strong> Overly permissive profile settings could allow employees to inadvertently publish their CNIC or bank account number to the municipal directory.
+          <strong>Problem:</strong> If a generic update endpoint were exposed, malicious actors could forge payload fields to escalate privileges, change their own designation, approve their own transfers, or alter their assigned school.
         </p>
         <p>
-          <strong>Architectural Solution:</strong> Codified strict backend validation in <code>staffProfileController.js</code> and <code>privacyValidators.js</code> that explicitly rejects attempts to set <code>cnic</code>, <code>bFormNumber</code>, <code>bankDetails</code>, or <code>residentialAddress</code> to <code>PUBLIC</code> or <code>SCHOOL</code> with <code>400 Bad Request</code>.
+          <strong>Architectural Solution:</strong> Built <code>PATCH /api/v1/staff/:id/profile</code> with strict allowlists (<code>phoneNumber</code>, <code>fatherName</code>, <code>residentialAddress</code>, <code>qualification</code>, <code>bankName</code>, <code>branchName</code>, <code>accountTitle</code>, <code>accountNumber</code>). Any attempt to pass authoritative keys (<code>role</code>, <code>status</code>, <code>schoolId</code>, <code>claimedSchoolId</code>, <code>assignedSchools</code>, <code>scope</code>, <code>cnic</code>, <code>bFormNumber</code>) or unrecognized keys is immediately rejected with HTTP 400 Bad Request and logged to security auditing.
         </p>
       </div>
     </div>
@@ -3213,7 +3213,7 @@ export const PersonalProfileDossierSection = () => (
       rows={[
         {
           left: 'Root Admin / Super Admin',
-          right: 'Full administrative access across all staff dossiers. Can download official service record PDFs without consent restrictions. Sensitive fields (CNIC/Bank) masked if set to PRIVATE by employee.',
+          right: 'Full administrative access across all staff dossiers. Can download official service record PDFs without consent restrictions. Sensitive fields (CNIC/Bank) masked if set to Private by employee.',
         },
         {
           left: 'Town Admin / DDO',
@@ -3225,7 +3225,7 @@ export const PersonalProfileDossierSection = () => (
         },
         {
           left: 'Teacher',
-          right: 'Owner view over personal service record dossier. Can adjust field-level privacy within authorized ceilings, submit Casual Leave requests, update account password, and inspect active remote sessions.',
+          right: 'Owner view over personal service record dossier. Can upload/replace photo, edit self-managed contact & bank fields, adjust field-level privacy within authorized ceilings, submit Casual Leave requests, and manage password/sessions.',
         },
         {
           left: 'Peon / Support Staff',
@@ -3248,8 +3248,8 @@ export const PersonalProfileDossierSection = () => (
       rows={[
         {
           left: 'personal_profile_lifecycle_suite.test.js (server)',
-          right: 'Argon2id password change, session invalidation via tokenVersion, transfer history chronology, field visibility security ceilings, student projection, and casual leave calculation.',
-          rightBadge: '25 / 25 PASS (100%)',
+          right: 'Argon2id password change, session invalidation via tokenVersion, transfer history chronology, field visibility security ceilings, self-managed allowlist & mass assignment prevention, photo upload validation & magic bytes, safe Cloudinary replacement order & compensation, backend parent isolation, and 4 exact privacy tiers.',
+          rightBadge: '68 / 68 PASS (100%)',
         },
         {
           left: 'staff_profile_controller_integration.test.js (server)',
@@ -3257,14 +3257,19 @@ export const PersonalProfileDossierSection = () => (
           rightBadge: '63 / 63 PASS (100%)',
         },
         {
-          left: 'Master Test Suite Execution (server)',
-          right: 'Comprehensive regression across all core authentication, authorization, leave, attendance, and profile modules on disk.',
-          rightBadge: '162 / 162 PASS (100%)',
+          left: 'testRoleNavigation.js (client)',
+          right: 'Sidebar navigation verification across all 9 canonical roles: Personal Profile link present for 8 eligible roles and strictly omitted for PARENT (Parent Isolation Rule).',
+          rightBadge: '9 / 9 PASS (100%)',
         },
         {
           left: 'Vite Production Build (client)',
           right: 'Client bundling, tree-shaking, CSS optimization, and PWA service worker precache generation.',
-          rightBadge: 'PASS (0 Errors)',
+          rightBadge: 'PASS (0 Errors, 46.15s)',
+        },
+        {
+          left: 'Next.js Production Build (landing-page)',
+          right: 'Landing page & documentation portal production compilation, route tree generation, and static page prerendering.',
+          rightBadge: 'PASS (0 Errors, 8/8 routes)',
         },
       ]}
     />
