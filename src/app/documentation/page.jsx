@@ -179,7 +179,7 @@ export default function DocumentationPage() {
         { id: 'triple-lock', label: 'Triple-Lock Rate Limiting', icon: Lock },
         { id: 'argon2id-security', label: 'Argon2id + Pepper Hashing', icon: KeyRound },
         { id: 'captcha-engine', label: 'Custom Math CAPTCHA Nonce', icon: Hash },
-        { id: 'mfa-totp', label: 'Root Admin TOTP MFA Engine', icon: Lock },
+        { id: 'mfa-totp', label: 'Multi-Factor Authentication (MFA) & TOTP User Guide', icon: Lock },
         { id: 'security-invariants', label: '5 Non-Negotiable Invariants', icon: AlertTriangle },
         { id: 'threat-matrix', label: 'Adversarial Threat Matrix', icon: Shield },
         { id: 'canonical-findings', label: 'Canonical Finding Register (CF-01 to CF-10)', icon: Award },
