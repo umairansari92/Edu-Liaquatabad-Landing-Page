@@ -121,7 +121,7 @@ export const Callout = ({ type = 'info', title, children }) => {
   );
 };
 
-export const FaqItem = ({ question, answer, category }) => {
+export const FaqItem = ({ question, answer, category, evidence }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border border-slate-200/80 rounded-xl overflow-hidden bg-white shadow-xs transition-all">
@@ -131,7 +131,7 @@ export const FaqItem = ({ question, answer, category }) => {
       >
         <div className="flex items-center gap-3">
           {category && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-slate-100 text-slate-600 border border-slate-200">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-50 text-[#006AC7] border border-blue-200 flex-shrink-0">
               {category}
             </span>
           )}
@@ -140,10 +140,126 @@ export const FaqItem = ({ question, answer, category }) => {
         {isOpen ? <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
       </button>
       {isOpen && (
-        <div className="p-4 pt-0 text-xs text-[#526477] leading-relaxed border-t border-slate-100 bg-slate-50/30">
-          {answer}
+        <div className="p-4 pt-0 text-xs text-[#526477] leading-relaxed border-t border-slate-100 bg-slate-50/30 space-y-2">
+          <div>{answer}</div>
+          {evidence && (
+            <div className="pt-2 border-t border-slate-200/60 flex items-center gap-1.5 text-[11px] font-mono text-emerald-700">
+              <span className="font-bold uppercase tracking-wider text-[10px] text-slate-400 font-sans">Verification Evidence:</span>
+              <span>{evidence}</span>
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 };
+
+export const ReasoningCard = ({ title, decision, whyItWon, alternativesRejected, tradeOffs }) => (
+  <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-50/60 to-slate-50 border border-blue-200/80 shadow-xs my-6 space-y-3">
+    <div className="flex items-center gap-2">
+      <div className="w-2 h-2 rounded-full bg-[#006AC7]" />
+      <h4 className="font-bold text-xs uppercase tracking-wider text-[#102033]">{title || 'Architectural Reasoning & Decision Analysis'}</h4>
+    </div>
+    {decision && (
+      <div>
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[#006AC7]">Selected Approach: </span>
+        <span className="text-xs text-[#102033] font-medium">{decision}</span>
+      </div>
+    )}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+      {whyItWon && (
+        <div className="p-3 rounded-xl bg-white border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Why It Won</div>
+          <div className="text-xs text-[#526477] leading-relaxed">{whyItWon}</div>
+        </div>
+      )}
+      {alternativesRejected && (
+        <div className="p-3 rounded-xl bg-white border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-amber-700">Alternatives Rejected</div>
+          <div className="text-xs text-[#526477] leading-relaxed">{alternativesRejected}</div>
+        </div>
+      )}
+      {tradeOffs && (
+        <div className="p-3 rounded-xl bg-white border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-purple-700">Accepted Trade-offs</div>
+          <div className="text-xs text-[#526477] leading-relaxed">{tradeOffs}</div>
+        </div>
+      )}
+    </div>
+  </div>
+);
+
+export const FailureRecoveryCard = ({ failureMode, impact, handling, recovery }) => (
+  <div className="p-5 rounded-2xl bg-amber-50/50 border border-amber-200/80 shadow-xs my-6 space-y-3">
+    <div className="flex items-center gap-2 text-amber-800">
+      <div className="w-2 h-2 rounded-full bg-amber-600" />
+      <h4 className="font-bold text-xs uppercase tracking-wider">Failure Mode, Resilience & Recovery</h4>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+      <div className="p-3 rounded-xl bg-white border border-amber-200/60 space-y-1">
+        <div className="text-[10px] font-bold uppercase text-slate-500">Failure Trigger</div>
+        <div className="text-[#102033] font-medium leading-relaxed">{failureMode}</div>
+      </div>
+      <div className="p-3 rounded-xl bg-white border border-amber-200/60 space-y-1">
+        <div className="text-[10px] font-bold uppercase text-red-700">Immediate Impact</div>
+        <div className="text-[#526477] leading-relaxed">{impact}</div>
+      </div>
+      <div className="p-3 rounded-xl bg-white border border-amber-200/60 space-y-1">
+        <div className="text-[10px] font-bold uppercase text-[#006AC7]">System Behavior</div>
+        <div className="text-[#526477] leading-relaxed">{handling}</div>
+      </div>
+      <div className="p-3 rounded-xl bg-white border border-amber-200/60 space-y-1">
+        <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Recovery Path</div>
+        <div className="text-[#526477] leading-relaxed">{recovery}</div>
+      </div>
+    </div>
+  </div>
+);
+
+export const VerificationBox = ({ sourceFile, testSuite, command, result }) => (
+  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 shadow-sm my-6 text-xs font-mono space-y-2">
+    <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+      <div className="flex items-center gap-2 text-emerald-400 font-bold text-[11px]">
+        <span className="w-2 h-2 rounded-full bg-emerald-400" />
+        <span>VERIFICATION EVIDENCE & REPRODUCIBILITY</span>
+      </div>
+      {result && <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">{result}</span>}
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-300 text-[11px]">
+      <div>
+        <span className="text-slate-500">Source Module: </span>
+        <span className="text-blue-300">{sourceFile}</span>
+      </div>
+      <div>
+        <span className="text-slate-500">Test Suite: </span>
+        <span className="text-purple-300">{testSuite}</span>
+      </div>
+    </div>
+    {command && (
+      <div className="pt-1 text-[11px]">
+        <span className="text-slate-500">Execution Command: </span>
+        <span className="text-amber-300 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">{command}</span>
+      </div>
+    )}
+  </div>
+);
+
+export const CrossQuestions = ({ title = 'Deep Cross-Questions & Engineering Inquiries', items = [] }) => (
+  <div className="my-8 space-y-3">
+    <div className="flex items-center gap-2 pb-1">
+      <div className="w-1.5 h-4 rounded-full bg-[#006AC7]" />
+      <h3 className="text-sm font-bold text-[#102033] uppercase tracking-wider">{title}</h3>
+    </div>
+    <div className="space-y-2.5">
+      {items.map((item, index) => (
+        <FaqItem
+          key={index}
+          category={item.category || 'Architecture'}
+          question={item.question}
+          answer={item.answer}
+          evidence={item.evidence}
+        />
+      ))}
+    </div>
+  </div>
+);

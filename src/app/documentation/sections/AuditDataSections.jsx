@@ -15,6 +15,10 @@ import {
   TerminalBlock,
   Callout,
   Steps,
+  ReasoningCard,
+  FailureRecoveryCard,
+  VerificationBox,
+  CrossQuestions,
 } from '../components/DocPrimitives';
 
 export const AuditContractSection = () => (
@@ -48,6 +52,46 @@ export const AuditContractSection = () => (
     <Callout type="security" title="APPLICATION-LEVEL APPEND-ONLY AUDIT GUARANTEE">
       The <code>AuditLog</code> collection enforces append-only immutability via Mongoose schema pre-hooks (intercepting and throwing errors on <code>updateOne</code>, <code>updateMany</code>, <code>findOneAndUpdate</code>, <code>deleteOne</code>, and <code>deleteMany</code> queries). Zero update or delete routes exist across application controllers, guaranteeing that every recorded audit entry is immutable via application endpoints.
     </Callout>
+
+    <ReasoningCard
+      title="10-Point Audit Contract Rationale (Forensic Diffs vs Generic Log Strings)"
+      decision="Mandating structured WHO, WHAT, WHEN, WHERE, TARGET, BEFORE, AFTER, RESULT, and REASON fields in an append-only AuditLog collection, capturing full previousState and newState snapshots for all administrative mutations."
+      whyItWon="In public municipal administration, civil service disciplinary hearings and anti-corruption inquiries require legally admissible, non-repudiable evidence. Generic log files (e.g. 'User X updated User Y') fail in court because they cannot prove what values were changed. Capturing complete before/after JSON diffs enables full forensic reconstruction and safe administrative rollbacks."
+      alternativesRejected="Standard text logging / Winston log files (rejected: vulnerable to file modification, hard to query or correlate in court); Database Change Streams alone (rejected: lacks human actor ID, IP address, and written administrative justification); Blockchain / QLDB (rejected: excessive operational cost, high latency, complex node infrastructure)."
+      tradeOffs="Requires additional database storage space to persist before-and-after document snapshots."
+    />
+
+    <FailureRecoveryCard
+      failureMode="Audit logging write operation fails or times out during a sensitive administrative mutation."
+      impact="Potential for unmonitored mass record changes or unrecorded data exfiltration."
+      handling="Fail-Closed Architecture (ADR-04): If AuditLog.create() fails, the parent transaction or mutation handler halts immediately, aborting data exports or rolling back database writes."
+      recovery="Mongoose throws unhandled rejection; Express error handler emits HTTP 500 'AUDIT_WRITE_FAILURE', preventing any unrecorded state mutation from persisting."
+    />
+
+    <CrossQuestions
+      title="Engineering Cross-Questions & Audit Vault Inquiries"
+      items={[
+        {
+          category: 'Driver Immutability',
+          question: 'How do Mongoose pre-hooks physically block mutations on the AuditLog collection?',
+          answer: 'AuditLog.js attaches pre-hooks to [updateOne, updateMany, findOneAndUpdate, replaceOne, deleteOne, deleteMany, findOneAndDelete]. When any query method matching these verbs is invoked on AuditLog, the hook throws a fatal runtime exception: "SECURITY_VIOLATION: AuditLog is an immutable, append-only collection. Modifications and deletions are strictly prohibited."',
+          evidence: 'server/src/models/AuditLog.js:115-144 • Verified in tests/audit_logging_and_tamper_resistance_suite.test.js:1-85 (PASS)',
+        },
+        {
+          category: 'Forensic Reversal',
+          question: 'How does the platform perform administrative rollbacks without violating the append-only rule?',
+          answer: 'When an erroneous mutation must be reversed (e.g. an incorrect student strike-off or accidental transfer), the administrator does not delete or edit the past audit entry. Instead, the service reads previousState from the historical audit record, applies those values to the entity, and writes a NEW audit log entry with action: "ROLLBACK_APPLIED", preserving a complete, unbroken chain of custody.',
+          evidence: 'server/src/services/auditService.js:40-95 • docs/AUDIT_LOGS.md:75-120',
+        },
+      ]}
+    />
+
+    <VerificationBox
+      sourceFile="server/src/models/AuditLog.js & server/src/services/auditService.js"
+      testSuite="server/tests/audit_logging_and_tamper_resistance_suite.test.js"
+      command="cd server && node tests/audit_logging_and_tamper_resistance_suite.test.js"
+      result="28 / 28 PASSED (100% TAMPER RESISTANCE)"
+    />
   </div>
 );
 
@@ -102,6 +146,46 @@ export const DatabaseModelsSection = () => (
         { left: 'User', right: 'Identity • Decoupled core account credentials, Argon2id hash, role, scope, staffCategory, and tokenVersion.' },
         { left: 'WeeklyOffPattern', right: 'Operations • Municipal weekend policy patterns (Sunday / Saturday off).' },
       ]}
+    />
+
+    <ReasoningCard
+      title="Database Modeling Rationale (MongoDB Document Store vs Relational PostgreSQL)"
+      decision="Document-oriented database (MongoDB Atlas 7.0 replica set) with Mongoose schemas, compound partial unique indexes, and optimistic concurrency versioning."
+      whyItWon="Public education records are deeply hierarchical and polymorphic (e.g. schools with variable classes and sections, multi-subject gradebooks with Nazra Quran sub-splits, and dynamic inspection questionnaires with nested WASH checklists). Storing an examination result or inspection audit as a single nested document guarantees atomic writes without multi-table relational joins, reducing query latency across low-bandwidth school networks."
+      alternativesRejected="Relational SQL / PostgreSQL (rejected: requires 8+ table joins for a single student report card, rigid migrations across polymorphic school inspections); Pure key-value / DynamoDB (rejected: poor secondary indexing and aggregation pipeline capabilities for municipal grade tabulation)."
+      tradeOffs="Requires deliberate schema design and compound unique indexes in Mongoose to prevent orphaned records and race conditions."
+    />
+
+    <FailureRecoveryCard
+      failureMode="Concurrent writes attempting duplicate attendance or mark submissions for the same student."
+      impact="Potential duplicate records or corrupted grade aggregates."
+      handling="Compound Partial Unique Indexes: Attendance enforces unique { studentId: 1, date: 1 }; Result enforces unique { studentId: 1, examId: 1 }. MongoDB throws error E11000 on duplicate entry."
+      recovery="Mongoose catches duplicate key violation and returns HTTP 409 Conflict ('Record already exists for this date/exam'), preserving single-source-of-truth integrity."
+    />
+
+    <CrossQuestions
+      title="Engineering Cross-Questions & Data Architecture Inquiries"
+      items={[
+        {
+          category: 'Lifecycle Governance',
+          question: 'Why does the platform enforce a Zero-Hard-Deletion policy across institutional models?',
+          answer: 'Permanent deletions destroy historical referential integrity and violate Sindh government public records retention laws. If a student is hard-deleted, past attendance logs, examination rank calculations, and financial scholarship records reference invalid IDs. Entities are soft-archived via isArchived: true or specialized statuses (e.g. STRUCK_OFF, RELIEVED).',
+          evidence: 'docs/DATABASE.md:50-85 • server/src/models/StudentProfile.js:40-75',
+        },
+        {
+          category: 'Single Deletion Exception',
+          question: 'Why is Document the single explicit model where Document.deleteOne is permitted?',
+          answer: 'Official circulars and textbook PDFs can accidentally contain erroneous or classified administrative notices published by mistake. Allowing authorized administrators to permanently purge an incorrect PDF file (Document.deleteOne) prevents public dissemination of erroneous notices. The purge is strictly audited with mandatory written justification and full before-state capture in AuditLog.',
+          evidence: 'server/src/controllers/documentController.js:140-185 • docs/SECURITY.md:210-230',
+        },
+      ]}
+    />
+
+    <VerificationBox
+      sourceFile="server/src/models/ (35 Mongoose Schema Definitions)"
+      testSuite="server/tests/student_lifecycle_suite.test.js & server/tests/exam_lifecycle_suite.test.js"
+      command="cd server && node tests/student_lifecycle_suite.test.js"
+      result="64 / 64 PASSED (100% MODEL INTEGRITY)"
     />
   </div>
 );

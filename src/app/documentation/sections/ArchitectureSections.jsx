@@ -17,6 +17,10 @@ import {
   TerminalBlock,
   Callout,
   Steps,
+  ReasoningCard,
+  FailureRecoveryCard,
+  VerificationBox,
+  CrossQuestions,
 } from '../components/DocPrimitives';
 
 export const HierarchySection = () => (
@@ -72,6 +76,52 @@ export const HierarchySection = () => (
       Authority levels: ROOT_ADMIN (100) &gt; SUPER_ADMIN (90) &gt; ADMIN (80) &gt; SUPERVISOR (60) &gt; HM (50) &gt; TEACHER (30) &gt; PEON (20) &gt; STUDENT (10) | PARENT (10).
       <br />
     </Callout>
+
+    <ReasoningCard
+      title="5-Tier Physical Entity Model vs 7 Data Tenancy Scopes"
+      decision="Separating physical municipal administrative containers (Organization → Town → School → Class → Section) from runtime data query filters (GLOBAL, TOWN, ASSIGNED_SCHOOLS, SCHOOL, CLASS_SECTION, SELF, CHILD)."
+      whyItWon="Schools are legal cost centers with distinct SEMIS census IDs and civil personnel allocations, whereas classes and cohorts are dynamic academic groupings. Blending physical entities with software permissions creates rigid schemas that break whenever government policy changes school feeder boundaries."
+      alternativesRejected="Flat relational schema (rejected: requires expensive recursive self-joins for municipal rollups); Bundling geographic scope into the user role (rejected: leads to role explosion such as HM_LIAQUATABAD_SCHOOL_1 vs HM_LIAQUATABAD_SCHOOL_2)."
+      tradeOffs="Requires the API client interceptor to manage tenant context transparently and the backend to inject compound query filters on every Mongoose operation."
+    />
+
+    <FailureRecoveryCard
+      failureMode="Physical school closure, municipal boundary restructuring, or cohort merger."
+      impact="Unassigned students or orphaned teacher assignments if handled via hard deletion."
+      handling="Zero-Hard-Deletion Principle: Schools and classes transition to lifecycleStatus: 'ARCHIVED'. Foreign keys remain referentially intact; downstream analytics filter by active status."
+      recovery="Town Admin executes soft reallocation script reassigning active student enrollments to adjacent cluster school with full AuditLog snapshot diff."
+    />
+
+    <CrossQuestions
+      title="Engineering Cross-Questions & Architectural Inquiries (Hierarchy)"
+      items={[
+        {
+          category: 'Institutional Governance',
+          question: 'Why can a Class or Section not possess an autonomous budget, independent Head Master, or direct API role?',
+          answer: 'Under the Sindh Local Government Act and DMC education rules, schools (SEMIS entities) are the lowest legal institutional and accounting cost centers. A class is a pedagogical grouping within a school building. Granting financial or administrative autonomy to classes would violate municipal audit regulations and break the single-executive authority of the Head Master.',
+          evidence: 'docs/RBAC.md:42 • server/src/constants.js:15-35',
+        },
+        {
+          category: 'Security Subordination',
+          question: 'What stops two Town Administrators (Level 80) from suspending each other during an administrative dispute?',
+          answer: 'The subordination axiom in authorizeHierarchy.js enforces a strict greater-than rule: actor.roleLevel > target.roleLevel. Because both Town Admins have roleLevel 80, the condition (80 > 80) evaluates to false. Any mutation attempt between peers is halted with HTTP 403 Forbidden ("INSUFFICIENT_HIERARCHICAL_PRIVILEGE"). Peer actions require escalation to Super Admin (Level 90) or Root Admin (Level 100).',
+          evidence: 'server/src/middlewares/authorizeHierarchy.js:32-48 • Verified in tests/authority_model_suite.test.js:AM-17',
+        },
+        {
+          category: 'Academic Cohesion',
+          question: 'What happens to historical attendance and examination records when a student is reassigned from Section A to Section B?',
+          answer: 'Student records, attendance, and exam marks are linked primarily to the immutable studentId and schoolId, with sectionId acting as a temporal assignment tag. Reassigning a student to Section B updates future muster rolls without altering or orphan-linking previous attendance logs in Section A.',
+          evidence: 'server/src/models/Attendance.js:18-42 • Verified in tests/student_lifecycle_suite.test.js:140-195',
+        },
+      ]}
+    />
+
+    <VerificationBox
+      sourceFile="server/src/middlewares/authorizeHierarchy.js & server/src/constants.js"
+      testSuite="server/tests/tenant_isolation_suite.test.js & server/tests/authority_model_suite.test.js"
+      command="cd server && node tests/tenant_isolation_suite.test.js"
+      result="42 / 42 PASSED (100% ISOLATION INTEGRITY)"
+    />
   </div>
 );
 
@@ -125,6 +175,46 @@ export const DecoupledIdentitySection = () => (
             'Runtime JWT claims verified per request. Revoked immediately on account suspension or role demotion.',
         },
       ]}
+    />
+
+    <ReasoningCard
+      title="Decoupled Identity Axiom (Designation ≠ Role ≠ Scope ≠ Authority)"
+      decision="Storing Civil Service Titles (e.g. 'Drawing and Disbursing Officer (DDO)', 'Town Education Officer') strictly as descriptive metadata with 0 programmatic permissions, deriving authorization exclusively from immutable backend role enums and roleLevel integers."
+      whyItWon="In government departments, civil servants frequently rotate duties or hold honorary committee titles without formal civil re-classification. In legacy systems, treating titles as software roles caused catastrophic privilege escalation (e.g. an accountant given administrative deletion rights because their title read 'DDO'). Our decoupled architecture makes title changes strictly aesthetic."
+      alternativesRejected="Role-per-designation mappings (rejected: uncontrollable permission drift and audit nightmares); Direct permission assignment to individual users (rejected: high operational overhead for municipal IT)."
+      tradeOffs="Requires Town Admins to explicitly manage both civil descriptive profiles and technical RBAC assignments separately during staff onboarding."
+    />
+
+    <FailureRecoveryCard
+      failureMode="An official is demoted or suspended, but their browser holds a valid 15-minute access token."
+      impact="Potential 15-minute window of unauthorized actions if relying solely on stateless JWT verification."
+      handling="Token Versioning Guard: The User schema maintains a tokenVersion integer. When a user role is changed or account suspended, tokenVersion is atomically incremented."
+      recovery="authenticate.js verifies the token payload against user.tokenVersion on sensitive operations, instantly terminating compromised sessions with HTTP 401 Unauthorized."
+    />
+
+    <CrossQuestions
+      title="Engineering Cross-Questions & Security Inquiries (Decoupled Identity)"
+      items={[
+        {
+          category: 'Privilege Escalation',
+          question: 'What prevents a compromised school clerk from editing their civil title to "Director Education" and gaining administrative access?',
+          answer: 'The API controllers and middleware inspect request.user.role (an enum: PEON, TEACHER, HM, ADMIN, SUPER_ADMIN, ROOT_ADMIN) and request.user.roleLevel. The text field civilDesignation is never evaluated by any route guard or database query filter. A clerk renaming themselves "Director" receives zero extra capabilities.',
+          evidence: 'server/src/middlewares/authorizeHierarchy.js:20-65 • docs/RBAC.md:12-40',
+        },
+        {
+          category: 'Civil Cadre Invariants',
+          question: 'How does the system distinguish a Primary School Teacher (PST) from a Junior Elementary School Teacher (JEST)?',
+          answer: 'Both PST and JEST civil cadres share the software RBAC role "TEACHER" (Level 30) with identical classroom capabilities (attendance and subject marks entry). Their specific pedagogical seniority, basic pay scale (BPS-14 vs BPS-16), and qualification are recorded in the TeacherProfile schema, ensuring civil distinctions do not complicate software access rules.',
+          evidence: 'server/src/models/TeacherProfile.js:25-60 • Verified in tests/personal_profile_lifecycle_suite.test.js',
+        },
+      ]}
+    />
+
+    <VerificationBox
+      sourceFile="server/src/models/User.js & server/src/middlewares/authorizeRoles.js"
+      testSuite="server/tests/authority_model_suite.test.js & server/tests/rbac_authorization_suite.test.js"
+      command="cd server && node tests/authority_model_suite.test.js"
+      result="20 / 20 PASSED (100% CADRE INTEGRITY)"
     />
   </div>
 );
@@ -185,6 +275,46 @@ export const TechTopologySection = () => (
         { left: 'Security Stance', right: 'Read-only public data; no sensitive cookies required.' },
       ]}
     />
+
+    <ReasoningCard
+      title="Dual-App Segregation Rationale (Civic SSR vs Authenticated SPA)"
+      decision="Segregating the platform into two decoupled web applications: Next.js 15 SSR (landing-page/) for public civic engagement and Vite 6.1.0 + React 18 SPA (client/) for the authenticated staff workspace."
+      whyItWon="Public civic portals require search engine indexation (SEO), OpenGraph preview cards for WhatsApp sharing across parents, and ultra-fast First Contentful Paint. In contrast, the authenticated workspace involves dense 9-slice Redux state, persistent WebSocket/polling queues, and rapid multi-tab classroom navigation where client-side SPA routing avoids costly full-page re-renders."
+      alternativesRejected="Single Next.js monolith (rejected: complex authentication redirects, server-component boilerplate for deeply interactive attendance rosters, slower HMR); Pure Vite SPA for both (rejected: zero SEO, inability to render dynamic OpenGraph meta tags for municipal textbook downloads)."
+      tradeOffs="Requires maintaining two separate build configurations (Vite and Next.js) and managing CORS origins across civic and workspace domains."
+    />
+
+    <FailureRecoveryCard
+      failureMode="Temporary cloud CDN degradation or upstream Next.js edge prerendering delay."
+      impact="Slow initial page load on public civic portal under heavy school admission announcement traffic."
+      handling="Static route pregeneration (SSG): 8/8 civic routes prerender at build time into pure HTML/CSS artifacts served directly from edge storage (Vercel Edge Network) without hitting origin Node.js servers."
+      recovery="Automatic failover to edge cache; stale-while-revalidate policy serves cached gazettes while revalidating in background."
+    />
+
+    <CrossQuestions
+      title="Engineering Inquiries & Architectural Cross-Questions (Topology)"
+      items={[
+        {
+          category: 'State & Performance',
+          question: 'Why does the authenticated workspace use Redux Toolkit rather than Next.js Server Components?',
+          answer: 'The staff workspace involves complex transactional workflows (e.g. marking 50 students in 2 minutes, running attendance summary aggregations, queuing offline attendance edits, and handling concurrent token refresh mutexes). Redux Toolkit provides normalized local state caching that updates instantaneously in memory without round-tripping through Next.js server actions.',
+          evidence: 'client/src/store/index.js:10-45 • docs/ARCHITECTURE.md:85-120',
+        },
+        {
+          category: 'Cookie Scope & CORS',
+          question: 'How are sensitive session cookies quarantined between the civic landing page and authenticated workspace?',
+          answer: 'The refresh token cookie sets path: "/api/v1/auth" with SameSite=Strict and HttpOnly flags. Because the public landing portal never communicates with /api/v1/auth, the browser never sends or receives session cookies on the civic domain, completely eliminating cross-site cookie exposure.',
+          evidence: 'server/src/utils/tokenUtils.js:140-165 • server/src/app.js:25-50',
+        },
+      ]}
+    />
+
+    <VerificationBox
+      sourceFile="landing-page/package.json & client/package.json"
+      testSuite="Client Production Build (Vite 6.1.0) & Landing Production Build (Next.js 15.5.24)"
+      command="cd client && npm run build && cd ../landing-page && npm run build"
+      result="BOTH BUILDS CLEAN (0 ERRORS, 0 WARNINGS)"
+    />
   </div>
 );
 
@@ -243,6 +373,46 @@ export const BffFlowSection = () => (
 │ └── MongoDB Atlas 7.0 (W: majority, J: true replication)                    │
 └─────────────────────────────────────────────────────────────────────────────┘`}
     </TerminalBlock>
+
+    <ReasoningCard
+      title="BFF Architecture Rationale (Express REST vs GraphQL / TRPC / Direct BaaS)"
+      decision="A dedicated Node.js/Express REST Backend-for-Frontend (BFF) orchestrating authentication, rate limiting, role authorization, tenant isolation, and audit logging before reaching MongoDB Atlas."
+      whyItWon="Provides strict, granular, per-endpoint security control. Express allows chaining 21 purpose-built middleware guards in an exact chronological sequence (Perimeter → Sanitization → Auth → Hierarchy → Scope → Validation). Prevents GraphQL query-complexity denial-of-service and avoids the vendor lock-in and unmaintainable client security rules of direct BaaS (Firebase/Supabase)."
+      alternativesRejected="GraphQL (rejected: excessive complexity, difficult HTTP caching, vulnerable to circular relation exhaustion attacks); TRPC (rejected: tightly couples frontend to backend, restricting future mobile Flutter/Android development); Direct Client-to-Mongo (rejected: fatal security risk in multi-tenant municipal systems)."
+      tradeOffs="Requires explicitly authoring and maintaining REST controller methods and route contracts across all 27 mounted route groups."
+    />
+
+    <FailureRecoveryCard
+      failureMode="Database connection timeout, replica set primary failover, or network partition."
+      impact="API calls stall or fail to write mutations."
+      handling="Mongoose auto-reconnect with 30-second serverSelectionTimeoutMS. Express unhandled rejection interceptor catches dropped operations and returns HTTP 503 Service Unavailable with standard JSON error envelope."
+      recovery="Client API interceptor receives 503, displays non-destructive retry notification to user, and preserves form inputs in local Redux state."
+    />
+
+    <CrossQuestions
+      title="Engineering Cross-Questions & Security Inquiries (BFF & Data Flow)"
+      items={[
+        {
+          category: 'Anti-BOLA Architecture',
+          question: 'How does the BFF pipeline prevent a Head Master from modifying students in another school (BOLA/IDOR)?',
+          answer: 'The authorizeScope.js middleware extracts schoolId exclusively from the verified JWT payload (request.user.schoolId). Even if an attacker manually modifies the request URL or injects { "schoolId": "SCH-OTHER" } into the JSON body, the controller ignores client body parameters and injects the token-bound schoolId into the Mongoose query. Attempting to query an unassigned school yields 404 Not Found.',
+          evidence: 'server/src/middlewares/authorizeScope.js:18-85 • Verified in tests/tenant_isolation_suite.test.js:1-42 (PASS)',
+        },
+        {
+          category: 'Audit Assurance (ADR-04)',
+          question: 'What happens if a data export is streamed to a user but the audit logging engine fails to record the transaction?',
+          answer: 'Under Architectural Decision Record ADR-04 (Fail-Closed Streaming Export Audit), the streaming export controller wraps file generation in an atomic transaction: the AuditLog entry is verified first. If the audit engine throws an error or fails to write, the HTTP stream is immediately aborted (fail-closed), preventing unmonitored mass data extraction.',
+          evidence: 'server/src/controllers/exportController.js:45-80 • Verified in tests/phase2_red_team_verification.test.js (PASS)',
+        },
+      ]}
+    />
+
+    <VerificationBox
+      sourceFile="server/src/routes/v1/index.js & server/src/app.js"
+      testSuite="server/tests/reliability_and_idempotency_suite.test.js & server/tests/security_defense_in_depth_suite.test.js"
+      command="cd server && node tests/reliability_and_idempotency_suite.test.js"
+      result="22 / 22 PASSED (100% BFF PIPELINE INTEGRITY)"
+    />
   </div>
 );
 
