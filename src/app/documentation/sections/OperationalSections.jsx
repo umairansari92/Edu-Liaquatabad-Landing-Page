@@ -3054,8 +3054,8 @@ export const PersonalProfileDossierSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">VERIFICATION SUITE</div>
-        <div className="text-sm font-black text-amber-600">140 Automated Tests</div>
-        <div className="text-xs text-[#526477]">68 Life + 63 Integ + 9 Nav (0 Fail)</div>
+        <div className="text-sm font-black text-amber-600">153 Automated Tests</div>
+        <div className="text-xs text-[#526477]">81 Life + 63 Integ + 9 Nav (0 Fail)</div>
       </div>
     </div>
 
@@ -3248,8 +3248,8 @@ export const PersonalProfileDossierSection = () => (
       rows={[
         {
           left: 'personal_profile_lifecycle_suite.test.js (server)',
-          right: 'Argon2id password change, session invalidation via tokenVersion, transfer history chronology, field visibility security ceilings, self-managed allowlist & mass assignment prevention, photo upload validation & magic bytes, safe Cloudinary replacement order & compensation, backend parent isolation, and 4 exact privacy tiers.',
-          rightBadge: '68 / 68 PASS (100%)',
+          right: 'Argon2id password change, session invalidation via tokenVersion, transfer history chronology, field visibility security ceilings, self-managed allowlist & mass assignment prevention, photo upload validation & magic bytes, safe Cloudinary replacement order & compensation, backend parent isolation, 4 exact privacy tiers, PDF direct download vs consent request lifecycle, student profile GR number & academic schema resolution, and CL balance authoritative binding.',
+          rightBadge: '81 / 81 PASS (100%)',
         },
         {
           left: 'staff_profile_controller_integration.test.js (server)',
@@ -3264,7 +3264,7 @@ export const PersonalProfileDossierSection = () => (
         {
           left: 'Vite Production Build (client)',
           right: 'Client bundling, tree-shaking, CSS optimization, and PWA service worker precache generation.',
-          rightBadge: 'PASS (0 Errors, 46.15s)',
+          rightBadge: 'PASS (0 Errors, 20.04s)',
         },
         {
           left: 'Next.js Production Build (landing-page)',
