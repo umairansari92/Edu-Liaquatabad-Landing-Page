@@ -56,12 +56,12 @@ export default function CivicNavbar() {
               className="text-xs font-medium leading-none mt-0.5"
               style={{ color: '#526477' }}
             >
-              Liaquatabad Town Centre (DMC)
+              Town Municipal Corporation (TMC) Liaquatabad
             </div>
           </div>
           {/* Mobile short name */}
           <div className="sm:hidden leading-tight">
-            <div className="font-bold text-sm" style={{ color: '#102033' }}>DMC Liaquatabad</div>
+            <div className="font-bold text-sm" style={{ color: '#102033' }}>TMC Liaquatabad</div>
           </div>
         </a>
 

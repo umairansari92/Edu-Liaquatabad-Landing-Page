@@ -193,10 +193,10 @@ export default function DocumentationPage() {
     {
       category: '5. Core Operational Engines',
       items: [
-        { id: 'schools-directory', label: 'Municipal Schools Directory', icon: Building2 },
+        { id: 'schools-directory', label: 'Schools Directory', icon: Building2 },
         { id: 'personal-profile', label: 'Personal Profile & Service Record (5 Zones)', icon: FileText },
         { id: 'hm-operational-workflows', label: 'Head Master (HM) Operational Manual & Workflow Contracts', icon: Briefcase },
-        { id: 'school-inspections', label: 'Municipal Schools & Inspection', icon: Building2 },
+        { id: 'school-inspections', label: 'Schools & Field Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'teacher-portal', label: 'Teacher Portal 2026 & My Classes', icon: GraduationCap },
         { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
@@ -414,9 +414,9 @@ export default function DocumentationPage() {
           {activeSection === 'overview' && (
             <div>
               <DocHeader
-                title="Municipal Platform Mission & Institutional Identity"
+                title="School Management Platform — Mission & Institutional Identity"
                 badge="1. System Foundations"
-                subtitle="The official digital governance backbone for public primary, elementary, and secondary schools operating under the District Municipal Corporation (DMC) Liaquatabad Town Centre, Karachi Central."
+                subtitle="A unified digital management platform for public primary, elementary, and secondary schools operating under Town Municipal Corporation (TMC) Liaquatabad, Karachi. The platform supports coordinated administration of multiple schools while keeping each school's identity, records, responsibilities, and access boundaries distinct."
               />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -442,7 +442,7 @@ export default function DocumentationPage() {
                 </div>
               </div>
 
-              <SectionTitle>Why This System Exists: The Municipal Civic Mandate</SectionTitle>
+              <SectionTitle>Why This System Exists: Public Education & Multi-School Governance</SectionTitle>
               <p className="text-xs text-[#526477] leading-relaxed mb-6">
                 Public school education in urban municipal towns of Sindh requires a level of accountability and auditability that off-the-shelf commercial school software cannot satisfy. In municipal government schools:
               </p>
@@ -452,7 +452,7 @@ export default function DocumentationPage() {
                   icon={<Building2 className="w-5 h-5" />}
                   color="blue"
                   title="Civil Service Accountability"
-                  desc="Staff deployment is governed by DMC Liaquatabad Town Centre institutional municipal policy and operational division of authority. Inter-school transfers, relieving orders, and joining confirmations represent administrative actions requiring non-repudiable audit logs."
+                  desc="Staff deployment is governed by Town Municipal Corporation (TMC) Liaquatabad and Education Department institutional policy and operational division of authority. Inter-school transfers, relieving orders, and joining confirmations represent administrative actions requiring non-repudiable audit logs."
                 />
                 <InfoCard
                   icon={<Award className="w-5 h-5" />}

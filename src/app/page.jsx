@@ -63,11 +63,11 @@ export default async function HomePage() {
                 className="text-2xl sm:text-3xl font-bold leading-snug"
                 style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
               >
-                Education Department Liaquatabad Town Centre
+                Education Department Liaquatabad Town
               </h2>
               <p className="text-sm sm:text-base mt-4 leading-relaxed" style={{ color: '#526477' }}>
-                Operating under the District Municipal Corporation (DMC), the Education
-                Directorate oversees {townStats.metrics.totalSchools}+ public schools, providing universal free education,
+                Operating under Town Municipal Corporation (TMC) Liaquatabad, the Education
+                Department oversees {townStats.metrics.totalSchools}+ public schools, providing universal free education,
                 standardized science curriculum, continuous teacher professional development,
                 and rigorous examination integrity for over {enrolledStudentsFormatted} students.
               </p>

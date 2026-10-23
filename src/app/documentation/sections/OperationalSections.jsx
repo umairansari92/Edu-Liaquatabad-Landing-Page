@@ -43,9 +43,9 @@ import {
 export const SchoolInspectionsSection = () => (
   <div>
     <DocHeader
-      title="Municipal School & Cluster Field Inspection System"
+      title="Schools & Cluster Field Inspection System"
       badge="5. Core Operational Engines"
-      subtitle="Digital surveillance and unannounced physical inspection engine for Cluster Supervisors conducting on-site municipal school audits."
+      subtitle="Supervisory monitoring and unannounced physical inspection engine for Cluster Supervisors conducting on-site school audits."
     />
 
     {/* 4-Metric HUD */}
@@ -3099,15 +3099,15 @@ export const TeacherPortalSection = () => (
 export const MunicipalSchoolsDirectorySection = () => (
   <div>
     <DocHeader
-      title="Municipal Schools Directory & Operational Governance (2026 SaaS Standard)"
+      title="Schools Directory & Operational Governance (2026 SaaS Standard)"
       badge="5. Core Operational Engines"
-      subtitle="Authoritative institutional registry, grade-range provisioning, persistent teaching vs biometric gate windows, and role-aware directory governance for DMC Liaquatabad Town."
+      subtitle="Authoritative institutional registry, grade-range provisioning, persistent teaching vs biometric gate windows, and role-aware directory governance for Town Municipal Corporation (TMC) Liaquatabad and Education Department."
     />
 
     {/* 4-Metric HUD */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">MUNICIPAL COVERAGE</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">TOWN COVERAGE</div>
         <div className="text-sm font-black text-[#006AC7]">15 REGISTERED SCHOOLS</div>
         <div className="text-xs text-[#526477]">100% Town Enrolment</div>
       </div>
@@ -3130,7 +3130,7 @@ export const MunicipalSchoolsDirectorySection = () => (
 
     <SectionTitle>1. Executive Summary &amp; Scope Overview</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The <strong>Municipal Schools Directory</strong> (accessible at <code className="text-[#006AC7] font-mono">/schools</code>) serves as the definitive institutional ledger for the Education Department, Liaquatabad Town Centre (DMC). In Phase 2, this module was overhauled to deliver an enterprise-grade 2026 SaaS experience, resolving confirmed role-navigation defects, eliminating dead whitespace, wrapping long institutional titles, and providing authoritative disambiguation between instructional bell hours and biometric attendance window gates.
+      The <strong>Schools Directory</strong> (accessible at <code className="text-[#006AC7] font-mono">/schools</code>) serves as the definitive institutional ledger for Town Municipal Corporation (TMC) Liaquatabad and the Education Department. In Phase 2, this module was overhauled to deliver an enterprise-grade 2026 SaaS experience, resolving confirmed role-navigation defects, eliminating dead whitespace, wrapping long institutional titles, and providing authoritative disambiguation between instructional bell hours and biometric attendance window gates.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -3148,7 +3148,7 @@ export const MunicipalSchoolsDirectorySection = () => (
 
       <InfoCard
         title="Why It Was Built"
-        desc="Institutional requirements and security mandates governing municipal schools."
+        desc="Institutional requirements and security mandates governing schools."
       >
         <ul className="text-xs text-[#526477] space-y-1.5 list-disc list-inside mt-2">
           <li><strong>Attendance Gate Fidelity:</strong> Preventing attendance rejection confusion by clearly separating instructional bell hours from biometric entry windows.</li>
@@ -3161,7 +3161,7 @@ export const MunicipalSchoolsDirectorySection = () => (
 
     <SectionTitle>2. Instructional Bell Hours vs. Biometric Attendance Gate Windows</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Under DMC Liaquatabad Town operating regulations, school operations require two distinct, non-overlapping timing schedules. Previous interfaces conflated these values into a single generic &ldquo;Hours&rdquo; row:
+      Under institutional operating regulations for Town Municipal Corporation (TMC) Liaquatabad and the Education Department, school operations require two distinct, non-overlapping timing schedules. Previous interfaces conflated these values into a single generic &ldquo;Hours&rdquo; row:
     </p>
 
     <ComparisonTable
@@ -3214,14 +3214,14 @@ export const MunicipalSchoolsDirectorySection = () => (
         <tbody className="divide-y divide-slate-100">
           <tr className="hover:bg-slate-50/50">
             <td className="px-4 py-2.5 font-bold text-[#102033]">ROOT_ADMIN (100)</td>
-            <td className="px-4 py-2.5">Global (All municipal schools)</td>
+            <td className="px-4 py-2.5">Global (All registered schools)</td>
             <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
             <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
             <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
           </tr>
           <tr className="hover:bg-slate-50/50">
             <td className="px-4 py-2.5 font-bold text-[#102033]">SUPER_ADMIN (90)</td>
-            <td className="px-4 py-2.5">Global (All municipal schools)</td>
+            <td className="px-4 py-2.5">Global (All registered schools)</td>
             <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
             <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>
             <td className="px-4 py-2.5 text-emerald-700 font-bold">&#10003; Authorized</td>

@@ -192,8 +192,8 @@ export default function HeroSection({ initialMetrics = null }) {
           style={{ color: '#526477', fontFamily: 'var(--font-inter)' }}
         >
           The official digital gateway connecting 45+ public schools, dedicated faculty,
-          students, parents, and supervisory leadership under District Municipal
-          Corporation (DMC) Liaquatabad Town.
+          students, parents, and supervisory leadership under Town Municipal
+          Corporation (TMC) Liaquatabad and the Education Department.
         </p>
 
         {/* Call to Actions */}

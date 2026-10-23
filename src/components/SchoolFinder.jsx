@@ -90,7 +90,7 @@ export default function SchoolFinder() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="section-label justify-center">
             <School className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
-            Town Municipal School Directory
+            Town Schools Directory
           </span>
           <h2
             className="text-2xl sm:text-3xl font-bold mt-2"

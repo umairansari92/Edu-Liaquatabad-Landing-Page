@@ -87,13 +87,13 @@ export default function CivicFooter() {
                   className="text-xs"
                   style={{ color: 'rgba(255,255,255,0.50)' }}
                 >
-                  Liaquatabad Town Centre (DMC)
+                  Town Municipal Corporation (TMC) Liaquatabad
                 </div>
               </div>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              Official public education portal of District Municipal Corporation Liaquatabad,
-              providing centralized governance, verified academic records, and digital
+              Official public education portal of Town Municipal Corporation (TMC) Liaquatabad,
+              providing coordinated multi-school administration, verified academic records, and digital
               transparency across 45+ government schools.
             </p>
 
@@ -204,7 +204,7 @@ export default function CivicFooter() {
       >
         <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
           <span>
-            © {new Date().getFullYear()} Education Department Liaquatabad Town Centre (DMC). All rights reserved.
+            © {new Date().getFullYear()} Town Municipal Corporation (TMC) • Education Department Liaquatabad Town. All rights reserved.
           </span>
           <span className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-center">
             Powered by{' '}

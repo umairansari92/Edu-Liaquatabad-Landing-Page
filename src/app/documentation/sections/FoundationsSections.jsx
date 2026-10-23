@@ -23,13 +23,13 @@ import {
 export const ProblemStatementSection = () => (
   <div>
     <DocHeader
-      title="The Real-World Municipal Problem in Public School Education"
+      title="The Real-World Governance Challenges in Public School Education"
       badge="1. System Foundations"
       subtitle="The specific institutional failures, manual corruption vectors, and administrative gaps across Liaquatabad Town that necessitated this platform."
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      Before this platform, public municipal schools across <strong>Liaquatabad Town Centre (DMC)</strong> operated on paper ledgers and disconnected registers. This manual paradigm suffered from acute, systemic vulnerabilities:
+      Before this platform, public schools across <strong>Town Municipal Corporation (TMC) Liaquatabad and the Education Department</strong> operated on paper ledgers and disconnected registers. This manual paradigm suffered from acute, systemic vulnerabilities:
     </p>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -43,7 +43,7 @@ export const ProblemStatementSection = () => (
         icon={<AlertCircle className="w-5 h-5" />}
         color="amber"
         title="Untracked Staff Transfers"
-        desc="Transfers initiated by municipal orders frequently resulted in lost physical relieving chits, allowing teachers to draw salaries without joining destination schools, leaving classrooms vacant for months."
+        desc="Transfers initiated by administrative orders frequently resulted in lost physical relieving chits, allowing teachers to draw salaries without joining destination schools, leaving classrooms vacant for months."
       />
       <InfoCard
         icon={<AlertCircle className="w-5 h-5" />}
@@ -102,7 +102,7 @@ export const IsVsNotSection = () => (
     <DocHeader
       title="What This Platform IS vs What This Platform IS NOT"
       badge="1. System Foundations"
-      subtitle="Definitive boundary specification separating this municipal civic platform from generic commercial SaaS solutions."
+      subtitle="Definitive boundary specification separating this public education platform from generic commercial SaaS solutions."
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
@@ -113,7 +113,7 @@ export const IsVsNotSection = () => (
       headers={['What This Platform IS', 'What This Platform IS NOT']}
       rows={[
         {
-          left: '🏛️ Centralized Municipal Education Governance Portal for Liaquatabad Town public schools.',
+          left: '🏛️ Unified Multi-School Education Governance Portal for Liaquatabad Town public schools.',
           right: '❌ NOT a commercial multi-tenant SaaS selling software subscriptions to private academies.',
         },
         {
@@ -144,7 +144,7 @@ export const IsVsNotSection = () => (
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
         <div className="text-2xl font-black text-[#006AC7]">0 PKRs</div>
         <div className="text-xs font-bold text-[#102033]">Zero Fee Processing</div>
-        <div className="text-[11px] text-[#526477]">Public municipal schools charge no fees; no payment gateways exist.</div>
+        <div className="text-[11px] text-[#526477]">Public government schools charge no fees; no payment gateways exist.</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
         <div className="text-2xl font-black text-[#4B7F3A]">100% Free</div>
@@ -163,7 +163,7 @@ export const IsVsNotSection = () => (
 export const QuickAccessSection = () => (
   <div>
     <DocHeader
-      title="System at a Glance: The 4-Metric Municipal HUD"
+      title="System at a Glance: The 4-Metric Governance HUD"
       badge="1. System Foundations"
       subtitle="Current engineering benchmarks, verified automated test baselines, and security compliance scores."
     />
@@ -225,7 +225,7 @@ export const QuickAccessSection = () => (
 │ Mongoose Schemas Count               │ 32 Production Models in server/src/  │
 │ Argon2id Memory Hardness             │ 19,456 KiB (~19 MB) RAM per Hash     │
 │ Refresh Token Rotation Window        │ 3,000ms Grace Period for Concurrency │
-│ Karachi Municipal Late Gate Cutoff   │ 08:15 AM PST (Asia/Karachi, UTC+5)   │
+│ Morning Gate Late Cutoff             │ 08:15 AM PST (Asia/Karachi, UTC+5)   │
 │ Friday Early Dismissal Cutoff        │ 12:00 PM PST (Jummah Prayers)        │
 └──────────────────────────────────────┴──────────────────────────────────────┘`}
     </TerminalBlock>

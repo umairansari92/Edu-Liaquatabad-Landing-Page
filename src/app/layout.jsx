@@ -7,14 +7,15 @@ import { fetchTownStats } from '../lib/fetchTownStats.js';
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://liaquatabad-schools.gov.pk'),
   title: {
-    default: 'Education Department Liaquatabad Town Centre (DMC) | Official Government Portal',
-    template: '%s | Education Department Liaquatabad (DMC)',
+    default: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
+    template: '%s | TMC Liaquatabad Education',
   },
   description:
-    'Official digital government education gateway for Liaquatabad Town Centre (DMC). Verified school directory, free Sindh textbooks, public circulars, supervisory team, and single-sign-on portal.',
+    'Official digital government education gateway for Town Municipal Corporation (TMC) and Education Department Liaquatabad Town. Verified school directory, free Sindh textbooks, public circulars, supervisory team, and single-sign-on portal.',
   keywords: [
-    'Liaquatabad Town Centre',
-    'DMC Karachi Education',
+    'Liaquatabad Town',
+    'TMC Karachi Education',
+    'Town Municipal Corporation Liaquatabad',
     'Sindh Education Department',
     'Liaquatabad Schools Directory',
     'Government School Management System',
@@ -22,9 +23,9 @@ export const metadata = {
     'Liaquatabad Education Portal',
     'DDO Education Liaquatabad',
   ],
-  authors: [{ name: 'District Municipal Corporation (DMC) Liaquatabad' }],
-  creator: 'Education Department Liaquatabad Town Centre',
-  publisher: 'Government of Sindh / DMC Liaquatabad',
+  authors: [{ name: 'Town Municipal Corporation (TMC) Liaquatabad' }],
+  creator: 'Education Department Liaquatabad Town',
+  publisher: 'Government of Sindh / TMC Liaquatabad',
   robots: {
     index: true,
     follow: true,
@@ -40,8 +41,8 @@ export const metadata = {
     type: 'website',
     locale: 'en_PK',
     url: 'https://liaquatabad-schools.gov.pk',
-    siteName: 'Education Department Liaquatabad Town Centre (DMC)',
-    title: 'Education Department Liaquatabad Town Centre (DMC)',
+    siteName: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
+    title: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
     description:
       'Official public education portal providing centralized management for government schools, verified student results, faculty deployments, and digital circulars in Liaquatabad Town.',
     images: [
@@ -49,14 +50,14 @@ export const metadata = {
         url: '/og-liaquatabad-dmc.jpg',
         width: 1200,
         height: 630,
-        alt: 'Education Department Liaquatabad Town Centre (DMC) Official Portal',
+        alt: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Education Department Liaquatabad Town Centre (DMC)',
-    description: 'Empowering municipal schools with digital governance, verified results, and public transparency.',
+    title: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
+    description: 'Empowering government schools with digital governance, verified results, and public transparency.',
     images: ['/og-liaquatabad-dmc.jpg'],
   },
 };
@@ -64,13 +65,13 @@ export const metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'GovernmentOrganization',
-  name: 'Education Department Liaquatabad Town Centre (DMC)',
-  alternateName: 'DMC Liaquatabad Education Department',
+  name: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
+  alternateName: 'Education Department TMC Liaquatabad',
   url: 'https://liaquatabad-schools.gov.pk',
   logo: 'https://liaquatabad-schools.gov.pk/logo.png',
   department: {
     '@type': 'EducationalOrganization',
-    name: 'Town Education Directorate Liaquatabad',
+    name: 'Education Department Liaquatabad Town',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Liaquatabad Town',
