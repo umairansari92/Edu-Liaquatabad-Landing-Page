@@ -799,7 +799,7 @@ export const ParentPortalSection = () => (
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">SMS OTP CHALLENGE</div>
         <div className="text-sm font-black text-purple-600">6-Digit Nonce</div>
-        <div className="text-xs text-[#526477]">10-Minute Expiry Window</div>
+        <div className="text-xs text-[#526477]">5-Minute Expiry (300s)</div>
       </div>
     </div>
 
@@ -868,8 +868,8 @@ export const ParentPortalSection = () => (
         },
         {
           step: '2',
-          title: 'One-Time Password (OTP) Phone Verification',
-          desc: 'Click "Send Verification Code". A 6-digit numeric OTP is dispatched via SMS to the guardian mobile phone on official school record. Enter the code on screen within 10 minutes. Upon entry, your link status updates to PENDING_HM_APPROVAL.',
+          title: 'One-Time Password (OTP) Phone Verification (Or Paper-Record Direct Routing)',
+          desc: 'Click "Send Verification Code". If an official guardian mobile number is on school file, a 6-digit numeric OTP is dispatched (valid for 5 minutes / 300 seconds; dispatched via email/simulated gateway during staging, with telecom SMS planned for production). Enter the code within the validity window. (Note: If no mobile number was recorded during paper admission, the system automatically routes the claim into PENDING_HM_APPROVAL for physical verification. In this fallback state, digital records are not accessible immediately; parents must visit the school office with original documents, which requires administrative review and possible waiting time during peak hours).',
         },
         {
           step: '3',
@@ -891,12 +891,12 @@ export const ParentPortalSection = () => (
         {
           left: 'PENDING_OTP',
           right:
-            'Step 1 complete. Awaiting entry of the 6-digit SMS verification code dispatched to the guardian phone on record. • ACTION: Check your phone for the 6-digit SMS code and enter it on the portal screen within 10 minutes.',
+            'Step 1 complete. Awaiting entry of the 6-digit verification code dispatched to the guardian contact on record. • ACTION: Check your phone or email for the 6-digit code and enter it on the portal screen within 5 minutes (300 seconds). A 60-second cooldown applies before requesting a resend.',
         },
         {
           left: 'PENDING_HM_APPROVAL',
           right:
-            'Step 2 complete. Phone ownership confirmed; awaiting in-person document review by the Head Master. • ACTION: Visit the school\'s Head Master office with your original CNIC and the child\'s NADRA B-Form to complete physical verification.',
+            'Phone ownership verified (or OTP step bypassed because no mobile phone was recorded on the child\'s paper admission form). The claim is queued for physical in-person document review by the Head Master. Digital student records remain locked. • ACTION: Visit the school administration office during working hours with your original CNIC and the child\'s NADRA B-Form or admission receipt. The Head Master must physically inspect documents and click "Approve Link" in the console before access is granted. Approval depends on administrative review and may involve waiting time during busy periods.',
         },
         {
           left: 'VERIFIED',
@@ -983,9 +983,9 @@ Response: 200 { success: true, status: "VERIFIED", linkedAt: "..." }`}
     />
 
     <FailureRecoveryCard
-      failureMode="SMS telecom network latency or expired 10-minute OTP token during Step 2."
-      impact="Guardian cannot complete phone verification within the allocated 10-minute validity window."
-      handling="Temporary lookup token expires safely; no partial guardian link is activated; rate limiter protects the phone number from SMS bombing."
+      failureMode="SMS telecom network latency or expired 5-minute OTP token during Step 2."
+      impact="Guardian cannot complete phone verification within the allocated 300-second validity window."
+      handling="Temporary lookup token expires safely; no partial guardian link is activated; rate limiter protects the phone number from SMS bombing (60-second resend cooldown, max 3 attempts per cycle)."
       recovery="Guardian taps 'Request New Code' once cellular reception stabilizes; rate limiter resets automatically after the cooling period."
     />
 

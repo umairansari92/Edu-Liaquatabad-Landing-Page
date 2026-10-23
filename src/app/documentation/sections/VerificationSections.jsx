@@ -21,38 +21,38 @@ import {
 export const TestVerificationSection = () => (
   <div>
     <DocHeader
-      title="56 Test Suites Automated Verification Reference"
+      title="Automated Test Suite Verification Reference"
       badge="8. Verification & Deployment"
-      subtitle="Comprehensive automated test coverage baseline verifying all security boundaries, state machines, and mathematical engines."
+      subtitle="Dynamic automated test discovery and execution verifying security boundaries, state machines, and mathematical engines."
     />
 
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
-        <div className="text-3xl font-black text-[#4B7F3A]">56 / 56</div>
-        <div className="text-xs font-bold text-[#102033]">SUITES ON DISK</div>
-        <div className="text-[11px] text-[#526477]">35 Chained in npm test + 21 Adversarial</div>
+        <div className="text-3xl font-black text-[#4B7F3A]">62</div>
+        <div className="text-xs font-bold text-[#102033]">TEST SUITES ON DISK</div>
+        <div className="text-[11px] text-[#526477]">36 Chained in npm test + 26 Standalone &amp; Adversarial</div>
       </div>
       <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">1,502</div>
-        <div className="text-xs font-bold text-[#102033]">ASSERTIONS PASS</div>
-        <div className="text-[11px] text-[#526477]">1,502 / 1,502 (100%) • 0 Failed Specs • 0 Flaky Tests</div>
+        <div className="text-3xl font-black text-[#006AC7]">Dynamic</div>
+        <div className="text-xs font-bold text-[#102033]">AUTOMATED DISCOVERY</div>
+        <div className="text-[11px] text-[#526477]">Zero hardcoded lists • Reads server/tests/*.test.js directly</div>
       </div>
       <div className="p-4 rounded-xl bg-purple-50 border border-purple-200 text-center">
         <div className="text-3xl font-black text-purple-700">100%</div>
-        <div className="text-xs font-bold text-[#102033]">BANNER INTEGRITY</div>
-        <div className="text-[11px] text-[#526477]">Verified by automated test suites</div>
+        <div className="text-xs font-bold text-[#102033]">PROCESS INTEGRITY CHECK</div>
+        <div className="text-[11px] text-[#526477]">Child-process exit code and regex banner audit</div>
       </div>
     </div>
 
     <SectionTitle>Dynamic Test Suite Architecture &amp; Execution Verification</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Backend testing relies on dynamic execution rather than static lists. The automated test integrity runner (<code>server/scripts/verifyTestBannerIntegrity.js</code>) dynamically discovers all 56 <code>.test.js</code> files on disk in <code>server/tests/</code> and executes each file live via isolated child processes (<code>execSync(&apos;node &#36;&#123;file&#125;&apos;)</code>) with <code>NODE_ENV=test</code>. If any assertion fails or an unhandled exception occurs, the runner aborts with exit code 1. The 1,502 figure represents the arithmetic sum of passing assertions parsed directly from stdout closing banners across all 56 executing suites:
+      Backend testing relies on dynamic execution rather than static lists. The automated test integrity runner (<code>server/scripts/verifyTestBannerIntegrity.js</code>) dynamically discovers all 62 <code>.test.js</code> files on disk in <code>server/tests/</code> and executes each file live via isolated child processes (<code>execSync(&apos;node &#36;&#123;file&#125;&apos;)</code>) with <code>NODE_ENV=test</code>. If any assertion fails or an unhandled exception occurs, the runner aborts with exit code 1. The test runner parses stdout closing banners across executing suites to confirm that all test assertions execute to completion without unhandled rejections:
     </p>
     <TerminalBlock title="BACKEND TEST SUITE EXECUTION MODES">
-{`# 1. Execute All 61 Discovered Test Suites via Dynamic Child-Process Runner
+{`# 1. Execute All 62 Discovered Test Suites via Dynamic Child-Process Runner
 $ cd server && node scripts/verifyTestBannerIntegrity.js
 
-# 2. Execute 35 Chained Core Integration Suites
+# 2. Execute 36 Chained Core Integration Suites
 $ cd server && npm test
 
 # 3. Execute Leave & Staff Attendance Lifecycle Verification (113 Assertions)
@@ -68,8 +68,10 @@ $ cd server && node tests/parent_adversarial_security.test.js
 $ cd server && node tests/teacher_late_attendance_clearance_lifecycle.test.js`}
     </TerminalBlock>
 
-    <Callout type="info" title="TEST VERIFICATION METHODOLOGY &amp; SCOPE LIMITATIONS">
-      The 1,551 figure represents the arithmetic sum of passing test assertions reported across all 56 test suite files on disk when executed sequentially as independent child processes by <code>node scripts/verifyTestBannerIntegrity.js</code>. The script validates that every suite exits with status code 0 (zero unhandled rejections or assertion errors) and compares stdout regex banner sums against individual <code>&#x2705; PASS</code> line counts. Automated regression passes certify programmatic behavior under defined test conditions, but do not replace human institutional clearance or owner operational sign-off.
+    <Callout type="info" title="TEST VERIFICATION SCOPE, RIGOR &amp; OPERATIONAL REALITY">
+      Automated regression passes certify deterministic programmatic behavior (RBAC boundaries, cryptographic token rotation, input sanitization, and state machine transitions) under mock and test database conditions. They validate that software components adhere strictly to codified business logic.
+      <br /><br />
+      <strong>Important Context:</strong> Passing automated tests do not prove total platform perfection or absolute immunity to real-world operational challenges. They do not eliminate external operational risks—such as cloud database latency (e.g., MongoDB Atlas connection buffer timeouts when running dozens of suites consecutively), third-party delivery delays (Nodemailer SMTP or telco SMS gateway availability), or administrative human error. Automated tests are an indispensable programmatic gate, not a substitute for institutional oversight or administrative verification.
     </Callout>
   </div>
 );
@@ -126,7 +128,7 @@ export const StatusRoadmapSection = () => (
       rows={[
         {
           left: 'Backend API & BFF',
-          right: '100% PRODUCTION READY • 55 test suites on disk (34 chained in npm test), Triple-Lock active.',
+          right: '100% PRODUCTION READY • 62 test suites on disk (36 chained in npm test), Triple-Lock active.',
         },
         {
           left: 'Head Master (HM) Workspace',
