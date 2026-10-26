@@ -1827,20 +1827,24 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
       headers={['Staff Category / Role', 'Regular Attendance Workflow', 'Casual Leave (CL) Approval', 'Earned Leave (EL) Approval']}
       rows={[
         {
-          left: '1. School Staff (SCHOOL_STAFF)\nTeachers, Peons, Clerks assigned to school',
-          right: 'Submits via POST /api/v1/staff-attendance/submit. Head Master of the SAME school approves or rejects under the 5-minute relaxation window rule. • CL: Head Master approves. Overlap checks and 24-day annual balance quota verified by backend. • EL: Admin-level authority and above ONLY (Admin, Super Admin, Root Admin). Head Master and Supervisor CANNOT approve EL.',
+          left: '1. School Staff (SCHOOL_STAFF)\nTeachers, Peons, Clerks assigned to school campus',
+          right: 'Arrives on campus and self-submits via POST /api/v1/staff-attendance/submit. Head Master of the SAME school reviews and approves/rejects under the 5-minute relaxation window rule. Exact timestamps for physical arrival check-in (submittedAt) and Head Master verification (approvedAt) are captured and displayed in Asia/Karachi PKT. • CL: Head Master approves. Overlap checks and 24-day annual balance quota verified by backend. • EL: Admin-level authority and above ONLY (Admin, Super Admin, Root Admin). Head Master and Supervisor CANNOT approve EL.',
         },
         {
-          left: '2. Office Staff (OFFICE_STAFF)\nTown Education Office personnel',
-          right: 'Submits via POST /api/v1/staff-attendance/submit. Town Admin approves or rejects under the 5-minute relaxation window rule. • CL: Town Admin approves. Same 24-day annual limit and non-overlapping invariants enforced. • EL: Town Admin approves. Minimum 3 consecutive calendar days required.',
+          left: '2. Office Staff (OFFICE_STAFF)\nTown Education Office personnel (Admin, Supervisor, Clerks, Peons)',
+          right: 'STRICT ANTI-BYPASS MUNICIPAL POLICY: Office staff CANNOT self-submit attendance from mobile/home (blocked with 403 Forbidden). Attendance is marked authoritatively on the centralized Super Admin PC Terminal (POST /api/v1/staff-attendance/office-mark) ensuring 100% presence transparency. • CL: Town Admin / Super Admin approves. Same 24-day annual limit and non-overlapping invariants enforced. • EL: Admin-level authority approves. Minimum 3 consecutive calendar days required.',
         },
         {
-          left: '3. Head Master (HM)\nChief School Building Administrator',
+          left: '3. Super Admin & Root Admin\nChief Town Operational Administrators',
+          right: 'Super Admin marks own daily attendance directly via POST /api/v1/staff-attendance/super-admin-self. Self-effective, immediately marked APPROVED (isSuperAdminSelfRecord: true). Super Admin operates the centralized Office Terminal marking daily attendance for all administrative office personnel (Admins down to Support Staff).',
+        },
+        {
+          left: '4. Head Master (HM)\nChief School Building Administrator',
           right: 'Marks own attendance via POST /api/v1/staff-attendance/hm-self. Self-effective, immediately marked APPROVED (isHmSelfRecord: true). No external approval required. • CL: Assigned Cluster Supervisor or Town Admin approves. HM CANNOT self-approve their own leave requests. • EL: Admin-level authority and above ONLY. Supervisor CANNOT approve HM EL.',
         },
         {
-          left: '4. Cluster Supervisor (SUPERVISOR)\nField Oversight Across Assigned Schools',
-          right: 'Self-effective attendance logged at Town Centre. • CL: Town Admin approves. • EL: Town Admin / Super Admin approves.',
+          left: '5. Cluster Supervisor (SUPERVISOR)\nField Oversight Across Assigned Schools',
+          right: 'Field attendance logged via Town Centre oversight. When assigned to office, marked via Super Admin Terminal. • CL: Town Admin approves. • EL: Town Admin / Super Admin approves.',
         },
       ]}
     />
@@ -1975,27 +1979,39 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
         },
         {
           left: 'POST /api/v1/staff-attendance/hm-self',
-          right: 'staff_attendance.submit (HM Only) • HM marks own attendance. Immediately APPROVED (isHmSelfRecord: true).',
+          right: 'staff_attendance.submit (HM Only) • HM marks own daily attendance. Immediately APPROVED (isHmSelfRecord: true).',
+        },
+        {
+          left: 'POST /api/v1/staff-attendance/super-admin-self',
+          right: 'super_admin.self_attendance • Super Admin self-records daily attendance from office terminal. Immediately APPROVED (isSuperAdminSelfRecord: true). Emits SUPER_ADMIN_SELF_ATTENDANCE_MARKED.',
+        },
+        {
+          left: 'POST /api/v1/staff-attendance/office-mark',
+          right: 'super_admin.office_mark • Super Admin marks daily attendance for Town Centre office staff (Admins, Supervisors, Clerks, Peons) on centralized terminal. Resolves status immediately. Emits OFFICE_STAFF_ATTENDANCE_MARKED.',
+        },
+        {
+          left: 'GET /api/v1/staff-attendance/office-roster',
+          right: 'super_admin / admin • Returns full roster of town office personnel for target date with marked/unmarked status, timestamps, and summary statistics.',
         },
         {
           left: 'POST /api/v1/staff-attendance/submit',
-          right: 'staff_attendance.submit • Staff submits own daily attendance for approval (status: PENDING_APPROVAL).',
+          right: 'staff_attendance.submit • School staff (Teachers, Peons) physical arrival check-in (status: PENDING_APPROVAL). Strictly blocks office staff with 403 Forbidden.',
         },
         {
           left: 'GET /api/v1/staff-attendance/my-history',
-          right: 'staff_attendance.submit • Staff checks their own attendance submission records and approval states.',
+          right: 'staff_attendance.submit • Staff personal attendance history. Populates submittedAt, approvedAt, approver name/designation, and monthly summary metrics.',
         },
         {
           left: 'GET /api/v1/staff-attendance/pending',
-          right: 'staff_attendance.approve • HM / Admin views pending staff attendance records awaiting approval.',
+          right: 'staff_attendance.approve • HM / Admin pending staff arrival submissions queue. Calculates pendingDurationMinutes and sets lateApprovalReasonRequired if > 5m.',
         },
         {
           left: 'POST /api/v1/staff-attendance/:id/approve',
-          right: 'staff_attendance.approve • Approves staff attendance. 5m relaxation gate enforced: lateApprovalReason mandatory if > 5m.',
+          right: 'staff_attendance.approve • Approves staff attendance. 5m relaxation gate enforced: lateApprovalReason mandatory if > 5m. Emits STAFF_ATTENDANCE_APPROVED.',
         },
         {
           left: 'POST /api/v1/staff-attendance/:id/reject',
-          right: 'staff_attendance.approve • Rejects staff attendance. Mandatory rejectionReason string required.',
+          right: 'staff_attendance.approve • Rejects staff attendance. Mandatory rejectionReason string required (min 5 chars). Emits STAFF_ATTENDANCE_REJECTED.',
         },
       ]}
     />
