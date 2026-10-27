@@ -69,7 +69,7 @@ const tiles = [
     href: process.env.NEXT_PUBLIC_APP_PORTAL_URL
       ? `${process.env.NEXT_PUBLIC_APP_PORTAL_URL}/login`
       : 'http://localhost:5173/login',
-    accent: 'blue',
+    accent: 'green',
   },
 ];
 
@@ -86,7 +86,7 @@ export default function QuickAccessTiles() {
           <span className="section-label">
             <span
               className="w-1.5 h-1.5 rounded-full inline-block"
-              style={{ backgroundColor: '#006AC7' }}
+              style={{ backgroundColor: '#4B7F3A' }}
             />
             Quick Services
           </span>
@@ -122,7 +122,7 @@ export default function QuickAccessTiles() {
                   mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
                 }}
                 onMouseLeave={(mouseEvent) => {
-                  mouseEvent.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
+                  mouseEvent.currentTarget.style.borderColor = 'rgba(75,127,58,0.12)';
                   mouseEvent.currentTarget.style.transform = 'translateY(0)';
                   mouseEvent.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
                 }}

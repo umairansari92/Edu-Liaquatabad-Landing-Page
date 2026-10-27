@@ -116,7 +116,7 @@ export default function SchoolFinder() {
         >
           {/* Search Input */}
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: '#006AC7' }} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: '#4B7F3A' }} />
             <input
               type="text"
               value={query}
@@ -125,15 +125,15 @@ export default function SchoolFinder() {
               className="w-full pl-12 pr-4 py-3.5 rounded-xl text-sm focus:outline-none transition-all"
               style={{
                 background: '#FFFFFF',
-                border: '1.5px solid rgba(0,106,199,0.15)',
+                border: '1.5px solid rgba(75,127,58,0.20)',
                 color: '#102033',
               }}
               onFocus={(focusEvent) => {
-                focusEvent.target.style.borderColor = '#006AC7';
-                focusEvent.target.style.boxShadow = '0 0 0 4px rgba(0,106,199,0.08)';
+                focusEvent.target.style.borderColor = '#4B7F3A';
+                focusEvent.target.style.boxShadow = '0 0 0 4px rgba(75,127,58,0.12)';
               }}
               onBlur={(blurEvent) => {
-                blurEvent.target.style.borderColor = 'rgba(0,106,199,0.15)';
+                blurEvent.target.style.borderColor = 'rgba(75,127,58,0.20)';
                 blurEvent.target.style.boxShadow = 'none';
               }}
             />
@@ -246,7 +246,7 @@ export default function SchoolFinder() {
                   <div className="absolute top-3 left-3 flex gap-2">
                     <span
                       className="px-2.5 py-0.5 rounded-md text-[10px] font-black text-white tracking-widest font-mono shadow-sm"
-                      style={{ backgroundColor: '#006AC7' }}
+                      style={{ backgroundColor: '#4B7F3A' }}
                     >
                       {schoolItem.schoolCode}
                     </span>
@@ -383,14 +383,14 @@ export default function SchoolFinder() {
               <div
                 className="p-6 flex items-center justify-between gap-4 shrink-0"
                 style={{
-                  backgroundColor: '#F0F8FF',
-                  borderBottom: '1px solid rgba(0,106,199,0.10)',
+                  backgroundColor: '#F2F8EF',
+                  borderBottom: '1px solid rgba(75,127,58,0.12)',
                 }}
               >
                 <div className="flex items-center gap-3">
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-mono font-bold shadow-sm"
-                    style={{ backgroundColor: '#006AC7' }}
+                    style={{ backgroundColor: '#4B7F3A' }}
                   >
                     {selectedSchool.schoolCode}
                   </div>

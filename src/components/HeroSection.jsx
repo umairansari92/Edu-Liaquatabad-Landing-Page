@@ -87,47 +87,47 @@ export default function HeroSection({ initialMetrics = null }) {
       label: 'Government Schools',
       sub: 'Primary & Secondary',
       icon: School,
-      color: '#006AC7',
-      bgColor: 'rgba(0,106,199,0.06)',
+      color: '#4B7F3A',
+      bgColor: 'rgba(75,127,58,0.08)',
     },
     {
       value: metrics.enrolledStudents,
       label: 'Enrolled Students',
       sub: 'Dual GR & Global IDs',
       icon: GraduationCap,
-      color: '#4B7F3A',
-      bgColor: 'rgba(75,127,58,0.06)',
+      color: '#38662D',
+      bgColor: 'rgba(56,102,45,0.08)',
     },
     {
       value: metrics.totalTeachers,
       label: 'Dedicated Teachers',
       sub: 'Qualified Faculty',
       icon: Users,
-      color: '#006AC7',
-      bgColor: 'rgba(0,106,199,0.06)',
+      color: '#4B7F3A',
+      bgColor: 'rgba(75,127,58,0.08)',
     },
     {
       value: metrics.passedOutGraduates || '50,000+',
       label: 'Passed Out Alumni',
       sub: 'Matric & Higher Sec',
       icon: Award,
-      color: '#4B7F3A',
-      bgColor: 'rgba(75,127,58,0.06)',
+      color: '#006AC7',
+      bgColor: 'rgba(0,106,199,0.06)',
     },
     {
       value: metrics.digitalAttendanceRate || '96.4%',
       label: 'Digital Attendance',
       sub: 'Zero Ghost Policy',
       icon: ShieldCheck,
-      color: '#006AC7',
-      bgColor: 'rgba(0,106,199,0.06)',
+      color: '#294D22',
+      bgColor: 'rgba(41,77,34,0.08)',
     },
   ];
 
   return (
     <section
       className="relative pt-16 pb-20 sm:pt-24 sm:pb-28 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: '#F0F8FF', overflow: 'hidden' }}
+      style={{ backgroundColor: '#F2F8EF', overflow: 'hidden' }}
     >
       {/* Ambient Background Glows — subtle, not neon */}
       <div
@@ -138,7 +138,7 @@ export default function HeroSection({ initialMetrics = null }) {
           width: '480px',
           height: '480px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0,106,199,0.07) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(75,127,58,0.08) 0%, transparent 70%)',
         }}
       />
       <div
@@ -158,9 +158,9 @@ export default function HeroSection({ initialMetrics = null }) {
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8"
           style={{
-            background: 'rgba(0,106,199,0.08)',
-            border: '1px solid rgba(0,106,199,0.20)',
-            color: '#006AC7',
+            background: 'rgba(75,127,58,0.08)',
+            border: '1px solid rgba(75,127,58,0.22)',
+            color: '#38662D',
             fontSize: '0.6875rem',
             fontWeight: 600,
             letterSpacing: '0.08em',
@@ -181,7 +181,7 @@ export default function HeroSection({ initialMetrics = null }) {
           }}
         >
           Education for Every Child.{' '}
-          <span style={{ color: '#006AC7' }}>
+          <span style={{ color: '#4B7F3A' }}>
             A Stronger Future for Liaquatabad.
           </span>
         </h1>
@@ -218,7 +218,7 @@ export default function HeroSection({ initialMetrics = null }) {
             href="#resources"
             className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-medium inline-flex items-center justify-center gap-2 transition-all"
             style={{ color: '#526477' }}
-            onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#006AC7'; }}
+            onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#38662D'; }}
             onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#526477'; }}
           >
             <BookOpen className="w-4 h-4" />
@@ -229,7 +229,7 @@ export default function HeroSection({ initialMetrics = null }) {
         {/* Stats Grid */}
         <div
           className="mt-16 pt-10 grid grid-cols-2 md:grid-cols-5 gap-3"
-          style={{ borderTop: '1px solid rgba(0,106,199,0.12)' }}
+          style={{ borderTop: '1px solid rgba(75,127,58,0.14)' }}
         >
           {statCards.map((statCard) => {
             const Icon = statCard.icon;

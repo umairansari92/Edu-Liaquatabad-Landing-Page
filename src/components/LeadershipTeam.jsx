@@ -77,9 +77,9 @@ export default function LeadershipTeam() {
                   : 'hover:bg-slate-100'
               }`}
               style={{
-                backgroundColor: activeTab === tabOption.id ? '#006AC7' : 'rgba(255,255,255,0.70)',
+                backgroundColor: activeTab === tabOption.id ? '#4B7F3A' : 'rgba(255,255,255,0.70)',
                 color: activeTab === tabOption.id ? '#FFFFFF' : '#526477',
-                border: activeTab === tabOption.id ? '1px solid #006AC7' : '1px solid rgba(0,106,199,0.10)',
+                border: activeTab === tabOption.id ? '1px solid #4B7F3A' : '1px solid rgba(75,127,58,0.12)',
               }}
             >
               {tabOption.label}
@@ -96,7 +96,7 @@ export default function LeadershipTeam() {
               style={{
                 borderRadius: '20px',
                 background: 'rgba(255, 255, 255, 0.75)',
-                border: '1px solid rgba(0,106,199,0.10)',
+                border: '1px solid rgba(75,127,58,0.12)',
               }}
             >
               <div>

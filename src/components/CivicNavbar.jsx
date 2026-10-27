@@ -32,7 +32,7 @@ export default function CivicNavbar() {
         background: isScrolled ? 'rgba(255,255,255,0.88)' : 'rgba(255,255,255,0.72)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(0,106,199,0.08)',
+        borderBottom: '1px solid rgba(75,127,58,0.12)',
         boxShadow: isScrolled ? '0 2px 24px rgba(0,33,61,0.10)' : '0 1px 20px rgba(0,33,61,0.06)',
       }}
     >
@@ -41,7 +41,7 @@ export default function CivicNavbar() {
         <a href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="Education Department Liaquatabad">
           <div
             className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ backgroundColor: '#006AC7' }}
+            style={{ backgroundColor: '#4B7F3A' }}
           >
             <Shield className="w-5 h-5 text-white" />
           </div>
@@ -74,8 +74,8 @@ export default function CivicNavbar() {
               className="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150"
               style={{ color: '#526477', fontFamily: 'var(--font-inter)' }}
               onMouseEnter={(mouseEvent) => {
-                mouseEvent.currentTarget.style.color = '#006AC7';
-                mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.05)';
+                mouseEvent.currentTarget.style.color = '#38662D';
+                mouseEvent.currentTarget.style.backgroundColor = 'rgba(75,127,58,0.08)';
               }}
               onMouseLeave={(mouseEvent) => {
                 mouseEvent.currentTarget.style.color = '#526477';
@@ -95,8 +95,8 @@ export default function CivicNavbar() {
             className="w-9 h-9 rounded-lg hidden md:flex items-center justify-center transition-all"
             style={{ color: '#526477' }}
             onMouseEnter={(mouseEvent) => {
-              mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.06)';
-              mouseEvent.currentTarget.style.color = '#006AC7';
+              mouseEvent.currentTarget.style.backgroundColor = 'rgba(75,127,58,0.08)';
+              mouseEvent.currentTarget.style.color = '#38662D';
             }}
             onMouseLeave={(mouseEvent) => {
               mouseEvent.currentTarget.style.backgroundColor = 'transparent';
@@ -135,7 +135,7 @@ export default function CivicNavbar() {
           style={{
             backgroundColor: 'rgba(255,255,255,0.96)',
             backdropFilter: 'blur(20px)',
-            borderColor: 'rgba(0,106,199,0.08)',
+            borderColor: 'rgba(75,127,58,0.12)',
           }}
         >
           <div className="section-container flex flex-col gap-1">
@@ -147,8 +147,8 @@ export default function CivicNavbar() {
                 style={{ color: '#526477' }}
                 onClick={() => setIsMenuOpen(false)}
                 onMouseEnter={(mouseEvent) => {
-                  mouseEvent.currentTarget.style.color = '#006AC7';
-                  mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.05)';
+                  mouseEvent.currentTarget.style.color = '#38662D';
+                  mouseEvent.currentTarget.style.backgroundColor = 'rgba(75,127,58,0.08)';
                 }}
                 onMouseLeave={(mouseEvent) => {
                   mouseEvent.currentTarget.style.color = '#526477';
@@ -159,7 +159,7 @@ export default function CivicNavbar() {
               </a>
             ))}
             {/* Login CTA in mobile */}
-            <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(0,106,199,0.08)' }}>
+            <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(75,127,58,0.12)' }}>
               <a
                 href={`${portalUrl}/login`}
                 className="btn-primary w-full justify-center text-sm"

@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 /* ============================================================
-   DESIGN SYSTEM v2.0 — Education Department Liaquatabad DMC
-   FROZEN: Light Theme, Blue Primary, Green Accent
+   DESIGN SYSTEM v2.1 — Education Department Liaquatabad DMC
+   GOVERNMENT GREEN PRIMARY THEME (October 2026)
    ============================================================ */
 
 :root {
-  /* Primary Blue Scale */
-  --blue-50:  #F0F8FF;
-  --blue-100: #DCEFFF;
-  --blue-200: #B9DEFF;
-  --blue-300: #82C4F5;
-  --blue-400: #3FA4E8;
-  --blue-500: #006AC7;  /* PRIMARY BRAND BLUE */
-  --blue-600: #005299;  /* Hover */
-  --blue-700: #003F75;
-  --blue-800: #00213D;  /* Footer / Deep Navy */
-
-  /* Government Green Scale (Accent Only) */
+  /* Government Green Scale (Primary Brand & Actions) */
   --green-50:  #F2F8EF;
   --green-100: #E3F0DC;
   --green-200: #C9DFBC;
   --green-300: #A7C895;
   --green-400: #7FAE6A;
-  --green-500: #4B7F3A;  /* PRIMARY GREEN */
-  --green-600: #38662D;
-  --green-700: #294D22;
+  --green-500: #4B7F3A;  /* PRIMARY BRAND GREEN */
+  --green-600: #38662D;  /* Hover / High-Contrast Action */
+  --green-700: #294D22;  /* Deep Institutional Green */
+
+  /* Secondary Civic Blue Scale (Supporting & Informational) */
+  --blue-50:  #F0F8FF;
+  --blue-100: #DCEFFF;
+  --blue-200: #B9DEFF;
+  --blue-300: #82C4F5;
+  --blue-400: #3FA4E8;
+  --blue-500: #006AC7;  /* SECONDARY BRAND BLUE (links, circulars, tags) */
+  --blue-600: #005299;  /* Hover */
+  --blue-700: #003F75;
+  --blue-800: #00213D;  /* Footer / Deep Navy */
 
   /* Neutral */
   --surface:      #F8FBFD;
@@ -37,6 +37,7 @@
   --text-body:    #526477;
   --text-muted:   #8094A8;
   --border:       rgba(16, 32, 51, 0.10);
+  --border-brand: rgba(75, 127, 58, 0.16);
 
   /* Status */
   --status-active:  #4B7F3A;
@@ -83,13 +84,13 @@ p {
 
 /* ── Selection ───────────────────────────────────────────── */
 ::selection {
-  background-color: var(--blue-500);
+  background-color: var(--green-500);
   color: #ffffff;
 }
 
 /* ── Focus Accessibility (WCAG 2.2) ─────────────────────── */
 :focus-visible {
-  outline: 3px solid var(--blue-500);
+  outline: 3px solid var(--green-500);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -99,52 +100,52 @@ p {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--blue-50);
+  background: var(--surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--blue-200);
+  background: var(--green-200);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--blue-500);
+  background: var(--green-500);
 }
 
 /* ── Glass Card (Standard) ───────────────────────────────── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.60);
+  background: rgba(255, 255, 255, 0.70);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(0, 106, 199, 0.10);
-  box-shadow: 0 8px 30px rgba(0, 33, 61, 0.08);
+  border: 1px solid rgba(75, 127, 58, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 33, 61, 0.05);
   border-radius: 16px;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 106, 199, 0.25);
-  box-shadow: 0 12px 40px rgba(0, 33, 61, 0.12);
+  border-color: rgba(75, 127, 58, 0.28);
+  box-shadow: 0 12px 40px rgba(0, 33, 61, 0.08);
   transform: translateY(-3px);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Glass Navbar ────────────────────────────────────────── */
 .glass-navbar {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 106, 199, 0.08);
-  box-shadow: 0 1px 20px rgba(0, 33, 61, 0.06);
+  border-bottom: 1px solid rgba(75, 127, 58, 0.10);
+  box-shadow: 0 1px 20px rgba(0, 33, 61, 0.04);
 }
 
-/* ── Primary Button ──────────────────────────────────────── */
+/* ── Primary Button (Government Green) ───────────────────── */
 .btn-primary {
-  background-color: var(--blue-500);
+  background-color: var(--green-500);
   color: #ffffff;
   border-radius: 10px;
   padding: 12px 24px;
   font-weight: 600;
   font-size: 0.875rem;
   font-family: var(--font-inter);
-  box-shadow: 0 4px 14px rgba(0, 106, 199, 0.30);
+  box-shadow: 0 4px 14px rgba(75, 127, 58, 0.25);
   transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
   display: inline-flex;
   align-items: center;
@@ -154,22 +155,21 @@ p {
   cursor: pointer;
 }
 .btn-primary:hover {
-  background-color: var(--blue-600);
-  box-shadow: 0 6px 20px rgba(0, 106, 199, 0.40);
+  background-color: var(--green-600);
+  box-shadow: 0 6px 20px rgba(75, 127, 58, 0.35);
   transform: translateY(-1px);
 }
 
-/* ── Secondary Button ────────────────────────────────────── */
+/* ── Secondary Button (Soft Green Surface / Outline) ──────── */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.60);
-  border: 1.5px solid rgba(0, 106, 199, 0.20);
-  color: var(--blue-500);
+  background: var(--green-50);
+  border: 1.5px solid rgba(75, 127, 58, 0.25);
+  color: var(--green-600);
   border-radius: 10px;
   padding: 12px 24px;
   font-weight: 600;
   font-size: 0.875rem;
   font-family: var(--font-inter);
-  backdrop-filter: blur(8px);
   transition: all 0.15s ease;
   display: inline-flex;
   align-items: center;
@@ -178,13 +178,13 @@ p {
   cursor: pointer;
 }
 .btn-secondary:hover {
-  border-color: var(--blue-500);
-  background: rgba(0, 106, 199, 0.04);
+  border-color: var(--green-500);
+  background: var(--green-100);
 }
 
-/* ── Accent Button (Green) ───────────────────────────────── */
-.btn-accent {
-  background-color: var(--green-500);
+/* ── Supporting Button (Civic Blue) ──────────────────────── */
+.btn-supporting-blue {
+  background-color: var(--blue-500);
   color: #ffffff;
   border-radius: 10px;
   padding: 10px 20px;
@@ -199,8 +199,8 @@ p {
   border: none;
   cursor: pointer;
 }
-.btn-accent:hover {
-  background-color: var(--green-600);
+.btn-supporting-blue:hover {
+  background-color: var(--blue-600);
 }
 
 /* ── Section Container ───────────────────────────────────── */
@@ -220,7 +220,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--blue-500);
+  color: var(--green-600);
   margin-bottom: 12px;
 }
 
@@ -268,9 +268,9 @@ p {
   letter-spacing: 0.04em;
 }
 .badge-green {
-  background-color: rgba(75, 127, 58, 0.08);
-  color: var(--green-500);
-  border: 1px solid rgba(75, 127, 58, 0.18);
+  background-color: var(--green-50);
+  color: var(--green-600);
+  border: 1px solid rgba(75, 127, 58, 0.25);
   border-radius: 100px;
   padding: 3px 10px;
   font-size: 0.7rem;
