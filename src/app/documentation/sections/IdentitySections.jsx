@@ -197,10 +197,10 @@ export const RolesCatalogueSection = () => (
       <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center justify-between border-b border-slate-100 pb-2">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-600" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#4B7F3A]" />
             <h4 className="font-extrabold text-sm text-[#102033]">Role 3: ADMIN — Town Education Administration</h4>
           </div>
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-cyan-50 text-cyan-800 border border-cyan-200">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#F2F8EF] text-[#38662D] border border-[#C9DFBC]">
             Level 80 • Scope: TOWN
           </span>
         </div>

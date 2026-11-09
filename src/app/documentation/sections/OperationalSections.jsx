@@ -2499,7 +2499,7 @@ export const NotificationsOutboxSection = () => (
         <div className="text-xs text-[#526477]">Notifies source and destination Head Masters as a teacher advances through transfer stages.</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-xs font-bold text-indigo-600 uppercase">6. Ward Verification Requests</div>
+        <div className="text-xs font-bold text-[#4B7F3A] uppercase">6. Ward Verification Requests</div>
         <div className="text-xs text-[#526477]">Notifies Head Master when a parent arrives with physical documents for linkage approval.</div>
       </div>
     </div>
@@ -3310,13 +3310,13 @@ export const TeacherPortalSection = () => (
     </p>
     <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs space-y-2 mb-6">
       <div className="text-emerald-400 font-bold">// Canonical Routes &amp; Compatibility Aliases</div>
-      <div><span className="text-sky-300">GET /dashboard</span>               → Teacher Daily Overview (default tab: OVERVIEW)</div>
-      <div><span className="text-sky-300">GET /dashboard?tab=classes</span>   → Backward-compatible alias rendering MyClassesPage</div>
-      <div><span className="text-sky-300">GET /my-classes</span>              → Dedicated standalone route for My Classes Workspace</div>
-      <div><span className="text-sky-300">GET /classes</span>                 → Direct route alias redirecting to /my-classes</div>
-      <div><span className="text-sky-300">GET /dashboard?tab=attendance</span>→ Deep link directly into Daily Smart Attendance Register</div>
-      <div><span className="text-sky-300">GET /dashboard?tab=homework</span>  → Deep link directly into Daily Curriculum Diary</div>
-      <div><span className="text-sky-300">GET /dashboard?tab=marks</span>     → Deep link directly into Exam Marks Entry</div>
+      <div><span className="text-emerald-300">GET /dashboard</span>               → Teacher Daily Overview (default tab: OVERVIEW)</div>
+      <div><span className="text-emerald-300">GET /dashboard?tab=classes</span>   → Backward-compatible alias rendering MyClassesPage</div>
+      <div><span className="text-emerald-300">GET /my-classes</span>              → Dedicated standalone route for My Classes Workspace</div>
+      <div><span className="text-emerald-300">GET /classes</span>                 → Direct route alias redirecting to /my-classes</div>
+      <div><span className="text-emerald-300">GET /dashboard?tab=attendance</span>→ Deep link directly into Daily Smart Attendance Register</div>
+      <div><span className="text-emerald-300">GET /dashboard?tab=homework</span>  → Deep link directly into Daily Curriculum Diary</div>
+      <div><span className="text-emerald-300">GET /dashboard?tab=marks</span>     → Deep link directly into Exam Marks Entry</div>
     </div>
 
     <SectionTitle>Automated Verification &amp; Security Regression Results</SectionTitle>

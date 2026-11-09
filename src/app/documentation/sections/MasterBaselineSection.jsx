@@ -288,7 +288,7 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
             </tr>
             <tr className="hover:bg-slate-50/50">
               <td className="p-3 font-bold text-[#102033]">STUDENT</td>
-              <td className="p-3 text-center font-bold text-cyan-600">10</td>
+              <td className="p-3 text-center font-bold text-[#4B7F3A]">10</td>
               <td className="p-3"><code>SELF</code></td>
               <td className="p-3 text-center font-bold text-[#102033]">4</td>
               <td className="p-3">Forbidden: All writes, marks modification, tabulation access (403 blocked)</td>
