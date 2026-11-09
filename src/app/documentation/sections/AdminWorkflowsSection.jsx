@@ -41,7 +41,7 @@ export const AdminWorkflowsSection = () => (
     <DocHeader
       title="Town Admin Operational Manual & Governance Guide"
       badge="5. Core Operational Engines"
-      subtitle="Complete operational guide for Town Administrators (such as Town Education Officers and Drawing & Disbursing Officers) governing municipal schools, faculty rosters, inter-school transfers, attendance oversight, centralized board exams, town circulars, and calendar management across Town Municipal Corporation (TMC) Liaquatabad."
+      subtitle="Complete operational guide for Town Administrators governing municipal schools, faculty rosters, inter-school transfers, attendance oversight, centralized board exams, town circulars, and calendar management across Town Municipal Corporation (TMC) Liaquatabad."
     />
 
     {/* Metadata Ribbon */}
@@ -49,7 +49,7 @@ export const AdminWorkflowsSection = () => (
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">ROLE</div>
         <div className="text-sm font-black text-[#102033]">TOWN ADMINISTRATOR</div>
-        <div className="text-xs text-[#526477]">Town Education Officer / DDO</div>
+        <div className="text-xs text-[#526477]">Town-Wide Authority</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTION</div>
@@ -71,7 +71,7 @@ export const AdminWorkflowsSection = () => (
     {/* ── Section 1: The Town Administrator Role & Mission ── */}
     <SectionTitle>1. Understanding the Town Administrator Role</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      In the municipal governance structure of Liaquatabad Town, a <strong>Town Administrator</strong> (such as the Town Education Officer or Drawing &amp; Disbursing Officer) is the chief operational executive for public education within the town. Town Admins oversee all municipal schools, manage teaching and non-teaching personnel, coordinate inter-school faculty transfers, approve official Earned Leave, publish centralized announcements, declare town-wide weather emergencies, and monitor standardized examination results.
+      In the municipal governance structure of Liaquatabad Town, a <strong>Town Administrator</strong> is the chief operational executive for public education within the town. Town Admins oversee all municipal schools, manage teaching and non-teaching personnel, coordinate inter-school faculty transfers, approve official Earned Leave, publish centralized announcements, declare town-wide weather emergencies, and monitor standardized examination results.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -133,7 +133,7 @@ export const AdminWorkflowsSection = () => (
             <strong className="text-red-900">No Daily Attendance Tampering:</strong> Daily classroom attendance is marked by designated Class Teachers and verified by Headmasters. Admins audit compliance; they do not alter historical daily roll calls.
           </li>
           <li>
-            <strong className="text-red-900">Zero Fee Collection:</strong> Under the municipal public education charter, tuition is completely free. Admins have no authority to establish or collect student fees.
+            <strong className="text-red-900">No Direct System or Security Mutation:</strong> Admins manage operational records within their assigned town; they cannot modify core security policies, system configuration, database tables directly, or access unassigned towns.
           </li>
         </ol>
       </div>
@@ -146,25 +146,45 @@ export const AdminWorkflowsSection = () => (
     </p>
 
     <ComparisonTable
-      headers={['Administrative Tier', 'Jurisdiction & Authority', 'Account Management & Operational Scope']}
+      headers={['Administrative Tier', 'Jurisdiction & Authority', 'Account Lifecycle Governance']}
       rows={[
         {
-          left: 'Town Admin (Level 80)',
+          left: 'Town Administrator',
           right:
-            'Operates strictly within an authorized municipal town. Manages operational schools, subordinate staff (HMs, Supervisors, Teachers, Peons), inter-school transfers, Earned Leave approvals, centralized exams, and town circulars. Cannot create or modify other Admins or platform-level accounts.',
+            'Operates strictly within an authorized municipal town. Manages operational schools, subordinate staff (Headmasters, Supervisors, Teachers, and Support Staff), inter-school transfers, Earned Leave statutory approvals, centralized board exams, and town circulars.',
+          extra:
+            'Cannot create, modify, suspend, or delete other Admins, Super Admins, or Root Admins. Account lifecycle is managed exclusively by Super Administrators.',
         },
         {
-          left: 'Super Admin (Level 90)',
+          left: 'Super Administrator',
           right:
-            'Exercises global platform oversight across multiple towns. Provisions and manages Town Admin accounts, configures global system settings, and inspects multi-town audit logs. Protected by active-account preservation rules (cannot disable their own account or the last active Super Admin).',
+            'Exercises global administrative oversight across all municipal towns. Provisions and manages Town Admin accounts, configures global system policies, oversees town-wide academic operations, and inspects multi-town audit logs.',
+          extra:
+            'Accounts must be provisioned through the canonical authority workflow. A Super Admin cannot unilaterally suspend, demote, or disable a peer Super Admin. At least one active Super Admin must always remain on the platform; Root Admin does not substitute for an active Super Admin.',
         },
         {
-          left: 'Root Admin (Level 100)',
+          left: 'Root Administrator',
           right:
-            'The ultimate emergency recovery authority. Initialized strictly through secure server configuration for system maintenance and disaster recovery. Root Admin identity is hidden from general staff listings to prevent targeted credential attacks.',
+            'The platform emergency break-glass authority. Initialized strictly through protected server environment configuration for disaster recovery and system maintenance. Root Admin identity is safeguarded from general staff listings.',
+          extra:
+            'Cannot be created, modified, or deleted via standard administrative APIs. Retains exclusive authority over protected peer Super Admin lifecycle actions (requiring verified MFA). Does not perform routine daily administrative workflows.',
         },
       ]}
     />
+
+    <Callout type="security" title="Account Lifecycle Governance & Invariant Protections">
+      <ul className="space-y-1.5 list-disc list-inside">
+        <li>
+          <strong>Canonical Account Creation Workflow:</strong> Privileged administrative accounts are never created via unverified self-registration; they require formal authority grants through verified administrative channels.
+        </li>
+        <li>
+          <strong>Peer Super Admin Protection:</strong> Under system governance rules, a Super Admin cannot unilaterally disable, demote, or suspend a peer Super Admin (enforcing the peer-protection invariant). Peer Super Admin lifecycle actions strictly require Root Admin authorization with verified Multi-Factor Authentication.
+        </li>
+        <li>
+          <strong>Last-Active Super Admin Invariant:</strong> The system strictly blocks disabling or deleting the final remaining active Super Admin. Root Admin availability does not count towards or satisfy this operational requirement.
+        </li>
+      </ul>
+    </Callout>
 
     {/* ── Section 3: The Town Admin Command Center ── */}
     <SectionTitle>3. Navigating the Town Admin Command Center</SectionTitle>
@@ -179,41 +199,57 @@ export const AdminWorkflowsSection = () => (
           left: 'Town Overview',
           right:
             'High-level telemetry dashboard showing four real-time metrics: Total Town Schools, Active Faculty Count, Enrolled Student Count, and Town Attendance Average. Includes governance summary cards and quick operation shortcuts.',
+          extra:
+            'Monitor municipal attendance trends and jump directly to active modules via quick-action cards.',
         },
         {
           left: 'Schools',
           right:
             'Complete municipal school directory. Inspect campus details, view operating shifts, review classroom infrastructure, register new schools, and update official timing windows.',
+          extra:
+            'Provision new school profiles and calibrate morning/afternoon shift attendance cutoffs.',
         },
         {
           left: 'Faculty & Staff',
           right:
             'Searchable roster of all teaching and non-teaching personnel assigned within the town. Filter by designation (HM, Supervisor, Teacher, Peon) and manage active or suspended lifecycle statuses.',
+          extra:
+            'Update employment lifecycle with mandatory justification logs and assign cluster supervision roles.',
         },
         {
           left: 'Students Roster',
           right:
             'Centralized enrollment registry across all municipal campuses. Filter by school, class, and gender, or search by student name and General Register (GR) number.',
+          extra:
+            'Review cross-school enrollment figures and inspect individual student academic histories.',
         },
         {
           left: 'Teacher Transfers',
           right:
             'Inter-school transfer management hub. Initiate transfer orders between town schools, track relieving and joining progress, and cancel directives when needed.',
+          extra:
+            'Draft transfer directives, monitor campus clearance checklists, and issue administrative cancellations.',
         },
         {
           left: 'Live Monitor',
           right:
             'Real-time classroom execution monitor. Check current teaching periods, subject timetables, and classroom occupancy across town schools as classes take place.',
+          extra:
+            'Audit instructional delivery in real time and track active faculty period coverage across campuses.',
         },
         {
           left: 'Academic Operations',
           right:
             'Elementary Board Examination coordination workspace. Manage exam schedules, grade weightages, Nazra Quran splits, marksheet verification, and tabulation sheets.',
+          extra:
+            'Configure 700-mark aggregates, oversee marksheet entry, and generate official Legal Landscape gazettes.',
         },
         {
           left: 'Reports & Circulars',
           right:
             'Centralized document repository. Broadcast town-wide directives, inspect school circulars published by Headmasters, and participate in discussion threads.',
+          extra:
+            'Publish town-wide announcements, review campus notices, and formally reject non-compliant notices.',
         },
       ]}
     />
@@ -321,18 +357,23 @@ export const AdminWorkflowsSection = () => (
           icon={<Briefcase className="w-5 h-5" />}
           color="amber"
           title="Stage 2: HM Recommendation"
-          desc="The school Headmaster reviews the application, verifies classroom substitute arrangements, and officially forwards the request to Town Office."
+          desc="The school Headmaster reviews the application, verifies classroom substitute arrangements, and officially forwards the request through proper channel."
         />
         <InfoCard
           icon={<Shield className="w-5 h-5" />}
           color="emerald"
           title="Stage 3: Town Admin Approval"
-          desc="The Town Administrator / DDO reviews the forwarded request and grants official statutory approval or rejection. HM-only approvals are blocked."
+          desc="The Town Administrator reviews the forwarded request and grants official statutory approval or rejection. HM-only direct approvals of EL are blocked."
         />
       </div>
 
-      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-[#526477] leading-relaxed">
-        <strong>Casual Leave (CL) vs. Earned Leave (EL):</strong> Casual Leave (up to 3 consecutive working days) is approved directly at the campus level by the school Headmaster. Earned Leave (3 or more days) legally requires Town Admin approval.
+      <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-[#526477] leading-relaxed space-y-1">
+        <div>
+          <strong>Casual Leave (CL) vs. Earned Leave (EL):</strong> Casual Leave (up to 3 consecutive working days) is approved directly at the campus level by the school Headmaster without Town Office escalation. Earned Leave (3 or more days) legally requires HM endorsement followed by Town Admin statutory approval.
+        </div>
+        <div className="text-[11px] text-[#526477] italic">
+          Note: Attendance performance bands (such as 85% optimal, 75–84% warning, and below 75% critical) displayed on administrative dashboards are operational health indicators and monitoring benchmarks, rather than statutory legislation.
+        </div>
       </div>
     </div>
 
@@ -371,6 +412,10 @@ export const AdminWorkflowsSection = () => (
         },
       ]}
     />
+
+    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-[#526477] mb-6 italic">
+      Operational Benchmark Note: Percentage grade thresholds and performance bands displayed on dashboards serve as platform operational metrics for monitoring academic health, not statutory mandates.
+    </div>
 
     {/* ── Section 9: Announcements & Document Oversight ── */}
     <SectionTitle>9. Town Announcements &amp; Campus Notice Oversight</SectionTitle>
@@ -450,10 +495,10 @@ export const AdminWorkflowsSection = () => (
       Under civil service privacy policies, sensitive personal information—including national identity numbers (CNIC/B-Form), private residential addresses, personal bank details, and confidential annual evaluation reports—is strictly protected. Holding a Town Admin role does not grant unrestricted access to private employee records. Data is displayed on a need-to-know basis to protect employee privacy.
     </Callout>
 
-    {/* ── Section 12: Real Problems We Encountered & How We Solved Them ── */}
-    <SectionTitle>12. Real Improvements We Made to the Town Admin Experience</SectionTitle>
+    {/* ── Section 12: Real Improvements We Made to the Town Admin Experience ── */}
+    <SectionTitle>12. Architectural Safeguards &amp; Administrative Improvements</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      During system development and administrative trials, our team resolved several operational challenges to ensure a smooth administrative experience:
+      To ensure dependable administrative workflows and prevent operational errors, the platform incorporates several key structural safeguards:
     </p>
 
     <div className="space-y-4 mb-8">
@@ -464,17 +509,17 @@ export const AdminWorkflowsSection = () => (
             1
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
-            Prevented Accidental Cross-Town Data Leaks
+            Prevented Potential Cross-Town Data Access
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> In early prototypes, searching for schools or teachers could display institutions located in neighboring municipal towns, risking accidental reassignments or confusion during administrative audits.
+          <strong>Design Challenge:</strong> In multi-tenant municipal architectures, search queries or roster lookups risk returning records from adjacent towns if boundary parameters are not strictly isolated, potentially causing administrative confusion during audits.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We established strict town-level data boundaries. All searches, school registries, and faculty lists are automatically locked to your assigned municipal town.
+          <strong>Architectural Solution:</strong> We enforced strict town-scoping boundaries across all data services. All searches, school registries, and faculty lists are automatically constrained by the administrator&apos;s authorized municipal town identifier.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: Admins only see and manage records within their authorized town jurisdiction.
+          Result: Administrators only see and manage records within their authorized town jurisdiction.
         </div>
       </div>
 
@@ -485,17 +530,17 @@ export const AdminWorkflowsSection = () => (
             2
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
-            Enforced the &ldquo;Through Proper Channel&rdquo; Leave Hierarchy
+            Codified the Formal Two-Tier Leave Hierarchy
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> Teachers were submitting long-term Earned Leave requests directly to Town Office without notifying their school, leaving classrooms without coverage. In other cases, Headmasters attempted to approve long-term leaves beyond their legal authority.
+          <strong>Design Challenge:</strong> Direct long-term leave applications bypassing the school campus can lead to unnotified classroom vacancies. Conversely, campus-only approvals of long-term leaves exceed local administrative delegation.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We codified the official two-tier workflow. Teachers submit to their school, Headmasters review and forward with substitute recommendations, and Town Admins give final statutory approval.
+          <strong>Architectural Solution:</strong> We codified the statutory two-tier workflow. Teachers submit to their school, Headmasters review and verify substitute coverage before forwarding through proper channels, and Town Administrators grant final statutory approval.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: Complete staffing accountability with zero unnotified classroom vacancies.
+          Result: Complete staffing accountability with verified classroom coverage for all approved leaves.
         </div>
       </div>
 
@@ -506,17 +551,17 @@ export const AdminWorkflowsSection = () => (
             3
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
-            Structured Oversight for School-Level Notices
+            Structured Campus Notice Review &amp; Reasoned Rejection
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> When Headmasters published campus notices with incorrect dates or policy misunderstandings, Admins had no structured way to request revisions without completely deleting the notice, which destroyed official records.
+          <strong>Design Challenge:</strong> When campus-level circulars contain policy discrepancies or inaccurate calendar dates, administrative intervention must not erase historical records or disrupt school operations without clear feedback.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We created the School Notice Oversight tab. Admins can join threaded discussions with the Headmaster to clarify details or formally reject the notice with a written explanation, while preserving the full audit trail.
+          <strong>Architectural Solution:</strong> We built the School Announcements Oversight workspace. Admins can join threaded discussions with the Headmaster to clarify directives or formally reject the notice with an official written reason, preserving the full audit trail.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: Transparent, collaborative oversight that keeps public school notices accurate and compliant.
+          Result: Transparent, collaborative oversight that keeps public school notices compliant while preserving historical integrity.
         </div>
       </div>
 
@@ -531,13 +576,13 @@ export const AdminWorkflowsSection = () => (
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> Announcing gazetted breaks (such as Iqbal&apos;s Day or Winter Vacation) required manually re-entering dates, justifications, and policies every season, creating opportunities for date mismatches across town schools.
+          <strong>Design Challenge:</strong> Recurring seasonal declarations (such as gazetted national holidays or monsoon emergency closures) previously risked date discrepancies if scheduled manually on a per-school basis.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We introduced 1-Click Rapid Break Presets. Admins can deploy standardized town-wide gazetted breaks and weather alerts with one click, ensuring uniform dates across all campuses.
+          <strong>Architectural Solution:</strong> We introduced 1-Click Rapid Break Presets. Admins can deploy standardized town-wide gazetted breaks and weather alerts with one click, ensuring synchronized calendar updates across all campuses.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: Fast, error-free holiday scheduling across the entire municipal town.
+          Result: Instant, synchronized calendar coordination across all municipal schools.
         </div>
       </div>
 
@@ -552,13 +597,13 @@ export const AdminWorkflowsSection = () => (
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> In earlier versions, various Admin tabs used inconsistent color accents, mismatched fonts, and cluttered headers that felt disjointed from the public education portal.
+          <strong>Design Challenge:</strong> Complex municipal tools risk cognitive fatigue if interface layouts, color coding, and data density vary across operational modules.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We harmonized all administrative workspaces under the approved Education Department Government Green palette, with clear typography, intuitive icons, and responsive layouts for desktop and mobile.
+          <strong>Architectural Solution:</strong> We harmonized all administrative workspaces under the approved Education Department Government Green palette, maintaining strict WCAG AA contrast standards, intuitive hierarchy, and seamless desktop-to-mobile responsiveness.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: A cohesive, professional SaaS interface tailored for public administration.
+          Result: A cohesive, distraction-free administrative interface tailored for municipal governance.
         </div>
       </div>
     </div>
@@ -575,6 +620,13 @@ export const AdminWorkflowsSection = () => (
       />
 
       <FaqItem
+        category="Accounts"
+        question="Can a Super Administrator suspend or demote a peer Super Administrator?"
+        answer="No. Under platform governance invariants, a Super Admin cannot unilaterally suspend, demote, or disable a peer Super Admin. Peer Super Admin lifecycle actions strictly require Root Admin authorization with verified Multi-Factor Authentication. Furthermore, the platform prevents disabling the last active Super Admin, and Root Admin does not substitute for an active Super Admin."
+        evidence="Verified against superAdminManagementController peer protection and last-active invariant checks."
+      />
+
+      <FaqItem
         category="Transfers"
         question="Why can't a Town Admin confirm that a transferred teacher has joined their new school?"
         answer="To ensure local campus accountability, the Headmaster of the receiving school must physically verify that the incoming teacher has reported on-site before confirming joining in the system. Town Admins initiate and oversee the transfer order, while local physical reporting remains verified by campus executives."
@@ -584,7 +636,7 @@ export const AdminWorkflowsSection = () => (
       <FaqItem
         category="Leave"
         question="Can a Headmaster approve Earned Leave directly without Town Admin review?"
-        answer="No. Under civil service regulations, Headmasters can only grant Casual Leave (up to 3 days). Earned Leave legally requires review by the school Headmaster followed by final statutory approval from the Town Administrator / DDO."
+        answer="No. Under civil service regulations, Headmasters can only grant Casual Leave (up to 3 days). Earned Leave (minimum 3 calendar days) legally requires review and substitute endorsement by the school Headmaster followed by final statutory approval from the Town Administrator."
         evidence="Verified against the two-tier leave policy workflow."
       />
 
@@ -598,7 +650,7 @@ export const AdminWorkflowsSection = () => (
       <FaqItem
         category="Accounts"
         question="Can a Town Administrator create another Admin or promote someone to Super Admin?"
-        answer="No. Town Admins manage operational personnel (HMs, Supervisors, Teachers, Peons) within their town. Provisioning, modifying, or promoting higher-tier platform accounts (Admins and Super Admins) is restricted exclusively to Super Administrators."
+        answer="No. Town Admins manage operational personnel (Headmasters, Supervisors, Teachers, and Support Staff) within their town. Provisioning, modifying, or promoting higher-tier platform accounts (Admins and Super Admins) is restricted exclusively to Super Administrators via the canonical authority workflow."
         evidence="Verified against central user governance authorization ceilings."
       />
 
@@ -611,4 +663,3 @@ export const AdminWorkflowsSection = () => (
     </div>
   </div>
 );
-

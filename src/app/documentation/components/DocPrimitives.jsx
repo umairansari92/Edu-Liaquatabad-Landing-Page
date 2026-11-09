@@ -80,7 +80,7 @@ export const ComparisonTable = ({ headers = ['Component / Choice', 'Implementati
       <thead className="bg-slate-50 border-b border-slate-200 font-bold text-[#102033]">
         <tr>
           {headers.map((h, i) => (
-            <th key={i} className="p-3.5">
+            <th key={i} className="p-3.5 whitespace-nowrap">
               {h}
             </th>
           ))}
@@ -89,8 +89,11 @@ export const ComparisonTable = ({ headers = ['Component / Choice', 'Implementati
       <tbody className="divide-y divide-slate-100 text-[#526477]">
         {rows.map((row, i) => (
           <tr key={i} className="hover:bg-slate-50/50 transition-colors">
-            <td className="p-3.5 font-bold text-[#102033] align-top w-1/3">{row.left}</td>
+            <td className="p-3.5 font-bold text-[#102033] align-top w-1/4 sm:w-1/3">{row.left}</td>
             <td className="p-3.5 align-top leading-relaxed">{row.right}</td>
+            {headers.length > 2 && (
+              <td className="p-3.5 align-top leading-relaxed">{row.extra || ''}</td>
+            )}
           </tr>
         ))}
       </tbody>

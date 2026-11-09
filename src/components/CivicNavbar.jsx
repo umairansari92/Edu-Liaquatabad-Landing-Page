@@ -66,7 +66,7 @@ export default function CivicNavbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-1">
           {navLinks.map((navLink) => (
             <a
               key={navLink.label}
@@ -117,7 +117,7 @@ export default function CivicNavbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-all"
+            className="xl:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-all"
             style={{ color: '#526477' }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -131,7 +131,7 @@ export default function CivicNavbar() {
       {/* Mobile Slide-out Drawer */}
       {isMenuOpen && (
         <div
-          className="lg:hidden border-t py-4"
+          className="xl:hidden border-t py-4"
           style={{
             backgroundColor: 'rgba(255,255,255,0.96)',
             backdropFilter: 'blur(20px)',
