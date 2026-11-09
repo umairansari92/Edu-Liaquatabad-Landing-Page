@@ -74,6 +74,7 @@ import {
 
 import { MasterBaselineSection } from './sections/MasterBaselineSection';
 import { HmWorkflowsSection } from './sections/HmWorkflowsSection';
+import { SupervisorWorkflowsSection } from './sections/SupervisorWorkflowsSection';
 
 import {
   RolesCatalogueSection,
@@ -196,6 +197,7 @@ export default function DocumentationPage() {
         { id: 'schools-directory', label: 'Schools Directory', icon: Building2 },
         { id: 'personal-profile', label: 'Personal Profile & Service Record (5 Zones)', icon: FileText },
         { id: 'hm-operational-workflows', label: 'Head Master (HM) Operational Manual & Workflow Contracts', icon: Briefcase },
+        { id: 'supervisor-operational-workflows', label: 'Supervisor Operational Manual & Cluster Oversight Guide', icon: Shield },
         { id: 'school-inspections', label: 'Schools & Field Inspection', icon: Building2 },
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'teacher-portal', label: 'Teacher Portal 2026 & My Classes', icon: GraduationCap },
@@ -252,6 +254,8 @@ export default function DocumentationPage() {
           setActiveSection(hash);
         } else if (hash === 'hm-workflows') {
           setActiveSection('hm-operational-workflows');
+        } else if (hash === 'supervisor-workflows' || hash === 'supervisor' || hash === 'supervisor-operational-workflows') {
+          setActiveSection('supervisor-operational-workflows');
         }
       }
     };
@@ -677,6 +681,9 @@ export default function DocumentationPage() {
           {activeSection === 'schools-directory' && <MunicipalSchoolsDirectorySection />}
           {activeSection === 'personal-profile' && <PersonalProfileDossierSection />}
           {(activeSection === 'hm-operational-workflows' || activeSection === 'hm-workflows') && <HmWorkflowsSection />}
+          {(activeSection === 'supervisor-operational-workflows' || activeSection === 'supervisor-workflows' || activeSection === 'supervisor') && (
+            <SupervisorWorkflowsSection />
+          )}
           {activeSection === 'school-inspections' && <SchoolInspectionsSection />}
           {activeSection === 'teacher-rosters' && <TeacherRostersSection />}
           {activeSection === 'teacher-portal' && <TeacherPortalSection />}
