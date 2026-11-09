@@ -23,7 +23,7 @@ export default function CivicFooter() {
   ];
 
   return (
-    <footer style={{ backgroundColor: '#00213D', color: '#FFFFFF' }}>
+    <footer style={{ backgroundColor: '#102619', color: '#FFFFFF' }}>
       {/* CTA Strip */}
       <div
         className="px-4 sm:px-6 lg:px-8 py-12 border-b"
@@ -100,15 +100,15 @@ export default function CivicFooter() {
             {/* Contact */}
             <div className="mt-6 space-y-2.5">
               <div className="flex items-start gap-2.5 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" style={{ color: '#3FA4E8' }} />
+                <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" style={{ color: '#7FAE6A' }} />
                 <span>Town Office, Liaquatabad, Karachi, Sindh, Pakistan</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                <Phone className="w-3.5 h-3.5" style={{ color: '#3FA4E8' }} />
+                <Phone className="w-3.5 h-3.5" style={{ color: '#7FAE6A' }} />
                 <span>+92-21-XXXX-XXXX</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                <Mail className="w-3.5 h-3.5" style={{ color: '#3FA4E8' }} />
+                <Mail className="w-3.5 h-3.5" style={{ color: '#7FAE6A' }} />
                 <span>education@liaquatabad-dmc.gov.pk</span>
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function CivicFooter() {
                     href={quickLink.href}
                     className="text-sm transition-colors duration-150"
                     style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#7FAE6A'; }}
                     onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
                   >
                     {quickLink.label}
@@ -154,7 +154,7 @@ export default function CivicFooter() {
                     href={portalLink.href}
                     className="text-sm transition-colors duration-150"
                     style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#7FAE6A'; }}
                     onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
                   >
                     {portalLink.label}
@@ -185,7 +185,7 @@ export default function CivicFooter() {
                     href="#"
                     className="text-sm transition-colors duration-150"
                     style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none' }}
-                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+                    onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#7FAE6A'; }}
                     onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = 'rgba(255,255,255,0.55)'; }}
                   >
                     {legalItem}
@@ -212,9 +212,9 @@ export default function CivicFooter() {
               href="https://dataversetechnologies.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: '#3FA4E8', textDecoration: 'none', fontWeight: 600 }}
+              style={{ color: '#7FAE6A', textDecoration: 'none', fontWeight: 600 }}
               onMouseEnter={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#6DC0FF'; }}
-              onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#3FA4E8'; }}
+              onMouseLeave={(mouseEvent) => { mouseEvent.currentTarget.style.color = '#7FAE6A'; }}
             >
               DataVerse Technologies
             </a>

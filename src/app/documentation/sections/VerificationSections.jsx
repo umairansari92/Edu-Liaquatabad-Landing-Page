@@ -32,8 +32,8 @@ export const TestVerificationSection = () => (
         <div className="text-xs font-bold text-[#102033]">TEST SUITES ON DISK</div>
         <div className="text-[11px] text-[#526477]">36 Chained in npm test + 26 Standalone &amp; Adversarial</div>
       </div>
-      <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">Dynamic</div>
+      <div className="p-4 rounded-xl bg-[#F2F8EF] border border-[#C9DFBC] text-center">
+        <div className="text-3xl font-black text-[#4B7F3A]">Dynamic</div>
         <div className="text-xs font-bold text-[#102033]">AUTOMATED DISCOVERY</div>
         <div className="text-[11px] text-[#526477]">Zero hardcoded lists • Reads server/tests/*.test.js directly</div>
       </div>
@@ -206,7 +206,7 @@ export const DiscrepancyRegisterSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUDITED DISCREPANCIES</div>
-        <div className="text-sm font-black text-[#006AC7]">10 Discrepancies</div>
+        <div className="text-sm font-black text-[#4B7F3A]">10 Discrepancies</div>
         <div className="text-xs text-[#526477]">DISC-01 through DISC-10</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">

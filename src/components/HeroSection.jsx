@@ -111,7 +111,7 @@ export default function HeroSection({ initialMetrics = null }) {
       label: 'Passed Out Alumni',
       sub: 'Matric & Higher Sec',
       icon: Award,
-      color: '#006AC7',
+      color: '#4B7F3A',
       bgColor: 'rgba(0,106,199,0.06)',
     },
     {

@@ -18,21 +18,14 @@
   --green-600: #38662D;  /* Hover / High-Contrast Action */
   --green-700: #294D22;  /* Deep Institutional Green */
 
-  /* Secondary Civic Blue Scale (Supporting & Informational) */
-  --blue-50:  #F0F8FF;
-  --blue-100: #DCEFFF;
-  --blue-200: #B9DEFF;
-  --blue-300: #82C4F5;
-  --blue-400: #3FA4E8;
-  --blue-500: #006AC7;  /* SECONDARY BRAND BLUE (links, circulars, tags) */
-  --blue-600: #005299;  /* Hover */
-  --blue-700: #003F75;
-  --blue-800: #00213D;  /* Footer / Deep Navy */
+  /* Deep Government Forest Foundation Scale (Footers, High-Authority Foundations) */
+  --forest-750: #183925;
+  --forest-800: #102619;  /* Footer / Deep Forest Ground */
 
   /* Neutral */
   --surface:      #F8FBFD;
   --white:        #FFFFFF;
-  --hero-bg:      #F0F8FF;
+  --hero-bg:      #F2F8EF;
   --text-primary: #102033;
   --text-body:    #526477;
   --text-muted:   #8094A8;
@@ -43,7 +36,7 @@
   --status-active:  #4B7F3A;
   --status-pending: #D97706;
   --status-danger:  #DC2626;
-  --status-info:    #006AC7;
+  --status-info:    #38662D;
   --status-muted:   #6B7280;
 
   /* Font */
@@ -116,13 +109,13 @@ p {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(75, 127, 58, 0.12);
-  box-shadow: 0 8px 30px rgba(0, 33, 61, 0.05);
+  box-shadow: 0 8px 30px rgba(16, 38, 25, 0.05);
   border-radius: 16px;
 }
 
 .glass-card:hover {
   border-color: rgba(75, 127, 58, 0.28);
-  box-shadow: 0 12px 40px rgba(0, 33, 61, 0.08);
+  box-shadow: 0 12px 40px rgba(16, 38, 25, 0.08);
   transform: translateY(-3px);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -133,7 +126,7 @@ p {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(75, 127, 58, 0.10);
-  box-shadow: 0 1px 20px rgba(0, 33, 61, 0.04);
+  box-shadow: 0 1px 20px rgba(16, 38, 25, 0.04);
 }
 
 /* ── Primary Button (Government Green) ───────────────────── */
@@ -182,9 +175,9 @@ p {
   background: var(--green-100);
 }
 
-/* ── Supporting Button (Civic Blue) ──────────────────────── */
-.btn-supporting-blue {
-  background-color: var(--blue-500);
+/* ── Supporting Button (Government Forest) ────────────────── */
+.btn-supporting-green {
+  background-color: var(--green-600);
   color: #ffffff;
   border-radius: 10px;
   padding: 10px 20px;
@@ -199,8 +192,8 @@ p {
   border: none;
   cursor: pointer;
 }
-.btn-supporting-blue:hover {
-  background-color: var(--blue-600);
+.btn-supporting-green:hover {
+  background-color: var(--green-700);
 }
 
 /* ── Section Container ───────────────────────────────────── */
@@ -257,10 +250,10 @@ p {
 }
 
 /* ── Badge Pills ─────────────────────────────────────────── */
-.badge-blue {
-  background-color: rgba(0, 106, 199, 0.08);
-  color: var(--blue-500);
-  border: 1px solid rgba(0, 106, 199, 0.18);
+.badge-green-soft {
+  background-color: var(--green-50);
+  color: var(--green-600);
+  border: 1px solid rgba(75, 127, 58, 0.25);
   border-radius: 100px;
   padding: 3px 10px;
   font-size: 0.7rem;

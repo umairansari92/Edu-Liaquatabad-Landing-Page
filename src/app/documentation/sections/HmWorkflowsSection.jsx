@@ -44,7 +44,7 @@ export const HmWorkflowsSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTIONAL SCOPE</div>
-        <div className="text-sm font-black text-[#006AC7]">SCHOOL Scope</div>
+        <div className="text-sm font-black text-[#4B7F3A]">SCHOOL Scope</div>
         <div className="text-xs text-[#526477]">Single Assigned Campus Gates</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -132,7 +132,7 @@ studentController.js:handleEnrollStudent
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs mb-4">
         <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
           <span className="font-bold text-[#102033]">Frontend Route:</span>
-          <div className="font-mono text-[#006AC7]">/directory?tab=students</div>
+          <div className="font-mono text-[#4B7F3A]">/directory?tab=students</div>
         </div>
         <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
           <span className="font-bold text-[#102033]">Redux Slice:</span>
@@ -177,8 +177,8 @@ studentController.js:handleEnrollStudent
     <SectionTitle>3. Workflow 2: Teaching Allocation &amp; Class Teacher Designation</SectionTitle>
 
     <div className="space-y-4 mb-6">
-      <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-200 space-y-1.5">
-        <h4 className="text-xs font-bold text-[#006AC7] uppercase tracking-wider">3.1 Municipal Single-Cohort Model (sectionId: null)</h4>
+      <div className="p-4 rounded-xl bg-[#F2F8EF]/70 border border-[#C9DFBC] space-y-1.5">
+        <h4 className="text-xs font-bold text-[#4B7F3A] uppercase tracking-wider">3.1 Municipal Single-Cohort Model (sectionId: null)</h4>
         <p className="text-xs text-[#526477] leading-relaxed">
           In Liaquatabad Town municipal government schools, primary and middle classes operate as whole cohorts without subdivided &ldquo;A/B/C&rdquo; sections.
         </p>

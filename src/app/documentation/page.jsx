@@ -300,18 +300,18 @@ export default function DocumentationPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#526477] hover:text-[#006AC7] transition-colors py-1.5 px-3 rounded-lg border border-slate-200 hover:border-blue-300"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#526477] hover:text-[#4B7F3A] transition-colors py-1.5 px-3 rounded-lg border border-slate-200 hover:border-[#A7C895]"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Civic Home</span>
             </Link>
             <div className="h-4 w-px bg-slate-200 hidden sm:block" />
             <div className="hidden sm:flex items-center gap-2 text-xs font-extrabold text-[#102033]">
-              <span className="w-5 h-5 rounded-md bg-[#006AC7] text-white flex items-center justify-center font-mono text-[10px]">
+              <span className="w-5 h-5 rounded-md bg-[#4B7F3A] text-white flex items-center justify-center font-mono text-[10px]">
                 D
               </span>
               <span>DMC Liaquatabad</span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-[#006AC7] border border-blue-200 uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC] uppercase tracking-wider">
                 MASTER KNOWLEDGE BASE
               </span>
             </div>
@@ -325,7 +325,7 @@ export default function DocumentationPage() {
               placeholder="Search topics (e.g. why Argon2id, attendance timing, transfer state)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-xs pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[#102033] focus:outline-none focus:border-[#006AC7] focus:bg-white transition-all placeholder:text-slate-400"
+              className="w-full text-xs pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[#102033] focus:outline-none focus:border-[#4B7F3A] focus:bg-white transition-all placeholder:text-slate-400"
             />
           </div>
 
@@ -339,7 +339,7 @@ export default function DocumentationPage() {
               href={portalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#006AC7] hover:bg-[#005299] text-white shadow-xs transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#4B7F3A] hover:bg-[#38662D] text-white shadow-xs transition-colors"
             >
               <span>Access Portal</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -373,7 +373,7 @@ export default function DocumentationPage() {
               placeholder="Search topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-xs pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[#102033] focus:outline-none focus:border-[#006AC7]"
+              className="w-full text-xs pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[#102033] focus:outline-none focus:border-[#4B7F3A]"
             />
           </div>
 
@@ -393,18 +393,18 @@ export default function DocumentationPage() {
                         id={`nav-${item.id}`}
                         onClick={() => handleSelect(item.id)}
                         className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all text-left ${isActive
-                            ? 'bg-blue-50 text-[#006AC7] font-bold border border-blue-200 shadow-2xs'
+                            ? 'bg-[#F2F8EF] text-[#4B7F3A] font-bold border border-[#C9DFBC] shadow-2xs'
                             : 'text-[#526477] hover:bg-slate-50 hover:text-[#102033]'
                           }`}
                       >
                         <div className="flex items-center gap-2 truncate">
                           <IconComponent
-                            className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? 'text-[#006AC7]' : 'text-slate-400'
+                            className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? 'text-[#4B7F3A]' : 'text-slate-400'
                               }`}
                           />
                           <span className="truncate">{item.label}</span>
                         </div>
-                        {isActive && <ChevronRight className="w-3 h-3 text-[#006AC7] flex-shrink-0" />}
+                        {isActive && <ChevronRight className="w-3 h-3 text-[#4B7F3A] flex-shrink-0" />}
                       </button>
                     );
                   })}
@@ -435,7 +435,7 @@ export default function DocumentationPage() {
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
                   <div className="text-[10px] font-extrabold uppercase text-[#526477]">ENTITY HIERARCHY</div>
-                  <div className="text-sm font-black text-[#006AC7]">5-Tier Entity Hierarchy</div>
+                  <div className="text-sm font-black text-[#4B7F3A]">5-Tier Entity Hierarchy</div>
                   <div className="text-xs text-[#526477]">Org to Section (7 Scopes)</div>
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -458,7 +458,7 @@ export default function DocumentationPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <InfoCard
                   icon={<Building2 className="w-5 h-5" />}
-                  color="blue"
+                  color="green"
                   title="Civil Service Accountability"
                   desc="Staff deployment is governed by Town Municipal Corporation (TMC) Liaquatabad and Education Department institutional policy and operational division of authority. Inter-school transfers, relieving orders, and joining confirmations represent administrative actions requiring non-repudiable audit logs."
                 />
@@ -591,7 +591,7 @@ export default function DocumentationPage() {
                   {
                     left: 'TailwindCSS v4.0.6 (@tailwindcss/vite)',
                     right:
-                      'Next-generation engine compiling CSS directly inside the Vite compiler. Enforces the Frozen Design Constitution v2.0 with custom theme tokens (Brand Blue 55%, White 25%, Neutral 12%, Green <= 8%). Zero runtime CSS-in-JS overhead.',
+                      'Next-generation engine compiling CSS directly inside the Vite compiler. Enforces the Unified Government Green Design System v2.2 with custom theme tokens (Government Green Primary #4B7F3A, Soft Surfaces #F2F8EF, Forest Foundations #102619, Canvas White #FFFFFF, Neutral Slate #526477). Zero runtime CSS-in-JS overhead.',
                   },
                   {
                     left: 'Vite Plugin PWA (Workbox)',
@@ -644,7 +644,7 @@ export default function DocumentationPage() {
                 />
                 <InfoCard
                   icon={<Award className="w-5 h-5" />}
-                  color="blue"
+                  color="green"
                   title="Official Examination Fraud Prevention"
                   desc="Sindh Elementary Board results dictate class standing and eligibility for secondary school. In manual or insecure systems, grade tampering and mark inflation were rampant. Our engine ensures calculation integrity."
                 />
@@ -825,10 +825,10 @@ export default function DocumentationPage() {
             {nextTopic && (
               <button
                 onClick={() => handleSelect(nextTopic.id)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#006AC7] hover:bg-[#005299] text-xs font-bold text-white transition-colors ml-auto shadow-xs"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#4B7F3A] hover:bg-[#38662D] text-xs font-bold text-white transition-colors ml-auto shadow-xs"
               >
                 <div className="text-right">
-                  <div className="text-[10px] text-blue-200 font-normal">Next Topic</div>
+                  <div className="text-[10px] text-[#C9DFBC] font-normal">Next Topic</div>
                   <div>{nextTopic.label}</div>
                 </div>
                 <ChevronRight className="w-3.5 h-3.5" />

@@ -25,7 +25,7 @@ export default function LeadershipTeam() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <span className="section-label">
-              <Users className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+              <Users className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
               Administrative Governance & Field Leadership
             </span>
             <h2
@@ -44,18 +44,18 @@ export default function LeadershipTeam() {
             className="p-4 rounded-2xl flex items-center gap-3.5 shadow-sm shrink-0"
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.85)',
-              border: '1.5px solid rgba(0, 106, 199, 0.15)',
-              boxShadow: '0 4px 20px rgba(0, 33, 61, 0.06)',
+              border: '1.5px solid rgba(75, 127, 58, 0.15)',
+              boxShadow: '0 4px 20px rgba(16, 38, 25, 0.06)',
             }}
           >
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-sm"
-              style={{ backgroundColor: '#006AC7' }}
+              style={{ backgroundColor: '#4B7F3A' }}
             >
               DDO
             </div>
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#006AC7' }}>
+              <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#4B7F3A' }}>
                 Town Education Officer
               </p>
               <p className="text-xs font-bold" style={{ color: '#102033' }}>
@@ -121,14 +121,14 @@ export default function LeadershipTeam() {
                       className="text-[10px] font-bold px-2 py-0.5 rounded-full"
                       style={{
                         backgroundColor: 'rgba(0,106,199,0.08)',
-                        color: '#006AC7',
+                        color: '#4B7F3A',
                         border: '1px solid rgba(0,106,199,0.18)',
                       }}
                     >
                       {teamMember.wing || teamMember.category}
                     </span>
                     <h3
-                      className="text-base font-bold mt-1 transition-colors group-hover:text-blue-600"
+                      className="text-base font-bold mt-1 transition-colors group-hover:text-[#4B7F3A]"
                       style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                     >
                       {teamMember.name}
@@ -152,13 +152,13 @@ export default function LeadershipTeam() {
                   )}
                   {teamMember.schoolName && (
                     <div className="flex items-center gap-2">
-                      <Briefcase className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
+                      <Briefcase className="w-3.5 h-3.5 shrink-0" style={{ color: '#4B7F3A' }} />
                       <span className="line-clamp-1">{teamMember.schoolName}</span>
                     </div>
                   )}
                   {teamMember.experience && (
                     <div className="flex items-center gap-2">
-                      <Award className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
+                      <Award className="w-3.5 h-3.5 shrink-0" style={{ color: '#4B7F3A' }} />
                       <span>{teamMember.experience}</span>
                     </div>
                   )}

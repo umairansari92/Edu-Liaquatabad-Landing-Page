@@ -8,7 +8,7 @@ import {
 export const DocHeader = ({ title, badge, subtitle }) => (
   <div className="space-y-3 mb-8 border-b border-slate-200/80 pb-6">
     {badge && (
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-blue-50 text-[#006AC7] border border-blue-200">
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC]">
         <Sparkles className="w-3.5 h-3.5" />
         <span>{badge}</span>
       </div>
@@ -20,14 +20,14 @@ export const DocHeader = ({ title, badge, subtitle }) => (
 
 export const SectionTitle = ({ children }) => (
   <h3 className="text-base font-bold text-[#102033] mt-8 mb-4 flex items-center gap-2">
-    <div className="w-1.5 h-4 rounded-full bg-[#006AC7]" />
+    <div className="w-1.5 h-4 rounded-full bg-[#4B7F3A]" />
     <span>{children}</span>
   </h3>
 );
 
-export const InfoCard = ({ icon, color = 'blue', title, desc }) => {
+export const InfoCard = ({ icon, color = 'green', title, desc }) => {
   const colorMap = {
-    blue: 'bg-blue-50/70 border-blue-200 text-blue-900',
+    green: 'bg-[#F2F8EF]/80 border-[#C9DFBC] text-[#102033]',
     emerald: 'bg-emerald-50/70 border-emerald-200 text-emerald-900',
     purple: 'bg-purple-50/70 border-purple-200 text-purple-900',
     amber: 'bg-amber-50/70 border-amber-200 text-amber-900',
@@ -36,7 +36,7 @@ export const InfoCard = ({ icon, color = 'blue', title, desc }) => {
   };
 
   const iconColorMap = {
-    blue: 'text-[#006AC7]',
+    green: 'text-[#4B7F3A]',
     emerald: 'text-[#4B7F3A]',
     purple: 'text-purple-600',
     amber: 'text-amber-600',
@@ -45,9 +45,9 @@ export const InfoCard = ({ icon, color = 'blue', title, desc }) => {
   };
 
   return (
-    <div className={`p-4 rounded-2xl border transition-all hover:shadow-xs ${colorMap[color] || colorMap.blue}`}>
+    <div className={`p-4 rounded-2xl border transition-all hover:shadow-xs ${colorMap[color] || colorMap.green}`}>
       <div className="flex items-center gap-2.5 mb-2">
-        <span className={iconColorMap[color] || 'text-[#006AC7]'}>{icon}</span>
+        <span className={iconColorMap[color] || 'text-[#4B7F3A]'}>{icon}</span>
         <h4 className="font-bold text-xs uppercase tracking-wider">{title}</h4>
       </div>
       <p className="text-xs text-[#526477] leading-relaxed font-normal">{desc}</p>
@@ -61,7 +61,7 @@ export const Steps = ({ items, steps }) => {
     <div className="space-y-3.5 my-6">
       {stepList.map((s, i) => (
         <div key={i} className="flex gap-4 items-start p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+          <div className="w-7 h-7 rounded-lg bg-[#F2F8EF] border border-[#C9DFBC] text-[#4B7F3A] flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
             {s.step || i + 1}
           </div>
           <div className="space-y-1">
@@ -110,7 +110,7 @@ export const TerminalBlock = ({ title = 'SYSTEM PIPELINE ARCHITECTURE', children
 
 export const Callout = ({ type = 'info', title, children }) => {
   const styles = {
-    info: 'bg-blue-50/70 border-[#006AC7] text-blue-900',
+    info: 'bg-[#F2F8EF]/80 border-[#4B7F3A] text-[#102033]',
     warning: 'bg-amber-50/70 border-amber-600 text-amber-900',
     security: 'bg-red-50/70 border-red-600 text-red-900',
     success: 'bg-emerald-50/70 border-[#4B7F3A] text-emerald-900',
@@ -134,7 +134,7 @@ export const FaqItem = ({ question, answer, category, evidence }) => {
       >
         <div className="flex items-center gap-3">
           {category && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-50 text-[#006AC7] border border-blue-200 flex-shrink-0">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC] flex-shrink-0">
               {category}
             </span>
           )}
@@ -158,14 +158,14 @@ export const FaqItem = ({ question, answer, category, evidence }) => {
 };
 
 export const ReasoningCard = ({ title, decision, whyItWon, alternativesRejected, tradeOffs }) => (
-  <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-50/60 to-slate-50 border border-blue-200/80 shadow-xs my-6 space-y-3">
+  <div className="p-5 rounded-2xl bg-gradient-to-br from-[#F2F8EF]/80 to-slate-50 border border-[#C9DFBC]/80 shadow-xs my-6 space-y-3">
     <div className="flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-[#006AC7]" />
+      <div className="w-2 h-2 rounded-full bg-[#4B7F3A]" />
       <h4 className="font-bold text-xs uppercase tracking-wider text-[#102033]">{title || 'Architectural Reasoning & Decision Analysis'}</h4>
     </div>
     {decision && (
       <div>
-        <span className="text-[11px] font-bold uppercase tracking-wider text-[#006AC7]">Selected Approach: </span>
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[#4B7F3A]">Selected Approach: </span>
         <span className="text-xs text-[#102033] font-medium">{decision}</span>
       </div>
     )}
@@ -208,7 +208,7 @@ export const FailureRecoveryCard = ({ failureMode, impact, handling, recovery })
         <div className="text-[#526477] leading-relaxed">{impact}</div>
       </div>
       <div className="p-3 rounded-xl bg-white border border-amber-200/60 space-y-1">
-        <div className="text-[10px] font-bold uppercase text-[#006AC7]">System Behavior</div>
+        <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">System Behavior</div>
         <div className="text-[#526477] leading-relaxed">{handling}</div>
       </div>
       <div className="p-3 rounded-xl bg-white border border-amber-200/60 space-y-1">
@@ -231,7 +231,7 @@ export const VerificationBox = ({ sourceFile, testSuite, command, result }) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-300 text-[11px]">
       <div>
         <span className="text-slate-500">Source Module: </span>
-        <span className="text-blue-300">{sourceFile}</span>
+        <span className="text-[#A7C895]">{sourceFile}</span>
       </div>
       <div>
         <span className="text-slate-500">Test Suite: </span>
@@ -250,7 +250,7 @@ export const VerificationBox = ({ sourceFile, testSuite, command, result }) => (
 export const CrossQuestions = ({ title = 'Deep Cross-Questions & Engineering Inquiries', items = [] }) => (
   <div className="my-8 space-y-3">
     <div className="flex items-center gap-2 pb-1">
-      <div className="w-1.5 h-4 rounded-full bg-[#006AC7]" />
+      <div className="w-1.5 h-4 rounded-full bg-[#4B7F3A]" />
       <h3 className="text-sm font-bold text-[#102033] uppercase tracking-wider">{title}</h3>
     </div>
     <div className="space-y-2.5">

@@ -53,7 +53,7 @@ export const AdminWorkflowsSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTION</div>
-        <div className="text-sm font-black text-[#006AC7]">TOWN-WIDE SCOPE</div>
+        <div className="text-sm font-black text-[#4B7F3A]">TOWN-WIDE SCOPE</div>
         <div className="text-xs text-[#526477]">Authorized Municipal Town</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -263,7 +263,7 @@ export const AdminWorkflowsSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider flex items-center gap-1.5">
-          <Building2 className="w-4 h-4 text-[#006AC7]" />
+          <Building2 className="w-4 h-4 text-[#4B7F3A]" />
           <span>School Registration &amp; Profiles</span>
         </h4>
         <p className="text-xs text-[#526477] leading-relaxed">
@@ -290,7 +290,7 @@ export const AdminWorkflowsSection = () => (
 
     <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs mb-6 space-y-3">
       <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider flex items-center gap-1.5">
-        <Users className="w-4 h-4 text-[#006AC7]" />
+        <Users className="w-4 h-4 text-[#4B7F3A]" />
         <span>Staff Lifecycle Actions &amp; Justification Requirements</span>
       </h4>
       <p className="text-xs text-[#526477] leading-relaxed">
@@ -349,7 +349,7 @@ export const AdminWorkflowsSection = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <InfoCard
           icon={<FileText className="w-5 h-5" />}
-          color="blue"
+          color="green"
           title="Stage 1: Teacher Application"
           desc="The teacher submits an Earned Leave request (minimum 3 calendar days) from their classroom dashboard, specifying dates and reason."
         />
@@ -426,7 +426,7 @@ export const AdminWorkflowsSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider flex items-center gap-1.5">
-          <Megaphone className="w-4 h-4 text-[#006AC7]" />
+          <Megaphone className="w-4 h-4 text-[#4B7F3A]" />
           <span>Broadcasting Town Directives</span>
         </h4>
         <p className="text-xs text-[#526477] leading-relaxed">
@@ -452,10 +452,10 @@ export const AdminWorkflowsSection = () => (
     </p>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-      <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-blue-800">1-CLICK PRESETS</div>
-        <div className="text-sm font-black text-blue-900">Rapid Seasonal Breaks</div>
-        <div className="text-xs text-blue-700 leading-relaxed">
+      <div className="p-4 rounded-xl bg-[#F2F8EF]/90 border border-[#C9DFBC] shadow-xs space-y-1">
+        <div className="text-[10px] font-extrabold uppercase text-[#294D22]">1-CLICK PRESETS</div>
+        <div className="text-sm font-black text-[#102033]">Rapid Seasonal Breaks</div>
+        <div className="text-xs text-[#38662D] leading-relaxed">
           Quick-declare Summer Vacation, Winter Break, Iqbal&apos;s Day, or Eid-ul-Fitr.
         </div>
       </div>
@@ -505,7 +505,7 @@ export const AdminWorkflowsSection = () => (
       {/* Case 1 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             1
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -526,7 +526,7 @@ export const AdminWorkflowsSection = () => (
       {/* Case 2 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             2
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -547,7 +547,7 @@ export const AdminWorkflowsSection = () => (
       {/* Case 3 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             3
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -568,7 +568,7 @@ export const AdminWorkflowsSection = () => (
       {/* Case 4 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             4
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -589,7 +589,7 @@ export const AdminWorkflowsSection = () => (
       {/* Case 5 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             5
           </div>
           <h4 className="font-bold text-xs text-[#102033]">

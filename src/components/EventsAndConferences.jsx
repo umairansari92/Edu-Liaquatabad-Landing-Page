@@ -12,7 +12,7 @@ export default function EventsAndConferences() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <span className="section-label">
-              <Calendar className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+              <Calendar className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
               Academic Calendar & Official Assemblies
             </span>
             <h2
@@ -45,13 +45,13 @@ export default function EventsAndConferences() {
                 <div
                   className="w-16 h-16 rounded-2xl flex flex-col items-center justify-center text-center shrink-0 shadow-sm"
                   style={{
-                    backgroundColor: '#F0F8FF',
+                    backgroundColor: '#F2F8EF',
                     border: '1px solid rgba(0,106,199,0.20)',
                   }}
                 >
                   <span
                     className="text-xs font-bold uppercase tracking-wider"
-                    style={{ color: '#006AC7' }}
+                    style={{ color: '#4B7F3A' }}
                   >
                     {eventItem.date.month}
                   </span>
@@ -72,7 +72,7 @@ export default function EventsAndConferences() {
                       className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
                       style={{
                         backgroundColor: 'rgba(0,106,199,0.08)',
-                        color: '#006AC7',
+                        color: '#4B7F3A',
                         border: '1px solid rgba(0,106,199,0.18)',
                       }}
                     >
@@ -91,7 +91,7 @@ export default function EventsAndConferences() {
                   </div>
 
                   <h3
-                    className="text-base sm:text-lg font-bold transition-colors group-hover:text-blue-600"
+                    className="text-base sm:text-lg font-bold transition-colors group-hover:text-[#4B7F3A]"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
                     {eventItem.title}
@@ -112,7 +112,7 @@ export default function EventsAndConferences() {
                 }}
               >
                 <div className="flex items-center gap-1.5 font-medium" style={{ color: '#102033' }}>
-                  <Clock className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+                  <Clock className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
                   <span>{eventItem.time}</span>
                 </div>
                 <div className="flex items-center gap-1.5" style={{ color: '#526477' }}>
@@ -120,7 +120,7 @@ export default function EventsAndConferences() {
                   <span className="line-clamp-1">{eventItem.venue}</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px]" style={{ color: '#8094A8' }}>
-                  <UserCheck className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+                  <UserCheck className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
                   <span>Chair: {eventItem.chairperson}</span>
                 </div>
               </div>

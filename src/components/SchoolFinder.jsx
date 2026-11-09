@@ -70,26 +70,26 @@ export default function SchoolFinder() {
   });
 
   const facilityLabels = [
-    { key: 'computerLab', label: 'Computer / IT Lab', icon: <Monitor className="w-4 h-4" style={{ color: '#006AC7' }} /> },
-    { key: 'scienceLab', label: 'General Science Lab', icon: <Sparkles className="w-4 h-4" style={{ color: '#006AC7' }} /> },
-    { key: 'physicsLab', label: 'Physics & Chem Lab', icon: <Activity className="w-4 h-4" style={{ color: '#006AC7' }} /> },
+    { key: 'computerLab', label: 'Computer / IT Lab', icon: <Monitor className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
+    { key: 'scienceLab', label: 'General Science Lab', icon: <Sparkles className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
+    { key: 'physicsLab', label: 'Physics & Chem Lab', icon: <Activity className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
     { key: 'library', label: 'Library & Reading Room', icon: <BookOpen className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
     { key: 'playground', label: 'Sports Playground', icon: <Award className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
     { key: 'solarPower', label: 'Solar Backup Power', icon: <Sun className="w-4 h-4" style={{ color: '#D97706' }} /> },
-    { key: 'drinkingWater', label: 'Filtered Drinking Water', icon: <Droplets className="w-4 h-4" style={{ color: '#006AC7' }} /> },
+    { key: 'drinkingWater', label: 'Filtered Drinking Water', icon: <Droplets className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
     { key: 'firstAid', label: 'First Aid & Health Corner', icon: <HeartPulse className="w-4 h-4" style={{ color: '#DC2626' }} /> },
     { key: 'canteen', label: 'School Canteen / Tuck Shop', icon: <UtensilsCrossed className="w-4 h-4" style={{ color: '#D97706' }} /> },
-    { key: 'auditorium', label: 'School Auditorium', icon: <Building2 className="w-4 h-4" style={{ color: '#006AC7' }} /> },
+    { key: 'auditorium', label: 'School Auditorium', icon: <Building2 className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
     { key: 'smartClassrooms', label: 'Digital Smart Classrooms', icon: <Layers className="w-4 h-4" style={{ color: '#4B7F3A' }} /> },
   ];
 
   return (
-    <section id="schools" className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F0F8FF' }}>
+    <section id="schools" className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F2F8EF' }}>
       <div className="section-container">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="section-label justify-center">
-            <School className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+            <School className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
             Town Schools Directory
           </span>
           <h2
@@ -212,7 +212,7 @@ export default function SchoolFinder() {
               <button
                 onClick={() => { setQuery(''); setSelectedArea('ALL'); setSelectedGender('ALL'); setSelectedLevel('ALL'); }}
                 className="font-bold underline cursor-pointer"
-                style={{ color: '#006AC7' }}
+                style={{ color: '#4B7F3A' }}
               >
                 Reset Filters
               </button>
@@ -260,7 +260,7 @@ export default function SchoolFinder() {
 
                 {/* School Name */}
                 <h3
-                  className="text-base font-bold transition-colors group-hover:text-blue-600 leading-snug"
+                  className="text-base font-bold transition-colors group-hover:text-[#4B7F3A] leading-snug"
                   style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                 >
                   {schoolItem.name}
@@ -273,11 +273,11 @@ export default function SchoolFinder() {
                     <span className="line-clamp-2">{schoolItem.address}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <GraduationCap className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
+                    <GraduationCap className="w-3.5 h-3.5 shrink-0" style={{ color: '#4B7F3A' }} />
                     <span><strong>HM:</strong> {schoolItem.headMaster}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 shrink-0" style={{ color: '#006AC7' }} />
+                    <Phone className="w-3.5 h-3.5 shrink-0" style={{ color: '#4B7F3A' }} />
                     <span>{schoolItem.phone}</span>
                   </div>
                 </div>
@@ -316,7 +316,7 @@ export default function SchoolFinder() {
                       className="px-2 py-0.5 rounded text-[10px]"
                       style={{
                         backgroundColor: 'rgba(0,106,199,0.06)',
-                        color: '#006AC7',
+                        color: '#4B7F3A',
                         border: '1px solid rgba(0,106,199,0.12)',
                       }}
                     >
@@ -328,7 +328,7 @@ export default function SchoolFinder() {
                       className="px-2 py-0.5 rounded text-[10px]"
                       style={{
                         backgroundColor: 'rgba(0,106,199,0.06)',
-                        color: '#006AC7',
+                        color: '#4B7F3A',
                         border: '1px solid rgba(0,106,199,0.12)',
                       }}
                     >
@@ -354,7 +354,7 @@ export default function SchoolFinder() {
                 className="mt-5 pt-3 flex items-center justify-between text-xs font-semibold"
                 style={{
                   borderTop: '1px solid rgba(0,106,199,0.08)',
-                  color: '#006AC7',
+                  color: '#4B7F3A',
                 }}
               >
                 <span>View Full School Details</span>
@@ -454,7 +454,7 @@ export default function SchoolFinder() {
                   >
                     <h4
                       className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5"
-                      style={{ color: '#006AC7' }}
+                      style={{ color: '#4B7F3A' }}
                     >
                       <GraduationCap className="w-4 h-4" />
                       School Leadership & Direct Contact
@@ -477,11 +477,11 @@ export default function SchoolFinder() {
                         <span><strong>HM Mobile:</strong> {selectedSchool.hmMobile || 'Official Cell Connected'}</span>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        <Phone className="w-4 h-4 shrink-0" style={{ color: '#006AC7' }} />
+                        <Phone className="w-4 h-4 shrink-0" style={{ color: '#4B7F3A' }} />
                         <span><strong>School Landline:</strong> {selectedSchool.phone}</span>
                       </div>
                       <div className="flex items-center gap-2.5">
-                        <Mail className="w-4 h-4 shrink-0" style={{ color: '#006AC7' }} />
+                        <Mail className="w-4 h-4 shrink-0" style={{ color: '#4B7F3A' }} />
                         <span className="text-[11px] font-mono">{selectedSchool.email}</span>
                       </div>
                       <div className="flex items-start gap-2.5 pt-1">
@@ -506,7 +506,7 @@ export default function SchoolFinder() {
                       className="text-sm font-bold flex items-center gap-2 mb-2.5"
                       style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                     >
-                      <School className="w-4 h-4" style={{ color: '#006AC7' }} />
+                      <School className="w-4 h-4" style={{ color: '#4B7F3A' }} />
                       <span>About {selectedSchool.name}</span>
                     </h4>
                     <p className="text-xs sm:text-sm leading-relaxed" style={{ color: '#526477' }}>
@@ -543,7 +543,7 @@ export default function SchoolFinder() {
                         border: '1px solid rgba(0,106,199,0.10)',
                       }}
                     >
-                      <span className="text-lg font-bold" style={{ color: '#006AC7' }}>{selectedSchool.classroomsCount || 18}</span>
+                      <span className="text-lg font-bold" style={{ color: '#4B7F3A' }}>{selectedSchool.classroomsCount || 18}</span>
                       <p className="text-[10px] mt-0.5" style={{ color: '#8094A8' }}>Classrooms</p>
                     </div>
                     <div
@@ -569,7 +569,7 @@ export default function SchoolFinder() {
                     <div className="flex items-center justify-between">
                       <h4
                         className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5"
-                        style={{ color: '#006AC7' }}
+                        style={{ color: '#4B7F3A' }}
                       >
                         <CheckCircle2 className="w-4 h-4" />
                         Campus Facilities & Laboratory Checklist

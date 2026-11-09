@@ -8,8 +8,8 @@ import { AlertCircle, Calendar, Info, ChevronRight, Bell } from 'lucide-react';
  * In strict compliance with docs/LANDING_PAGE.md (Section 01) and docs/DESIGN.md (Section 2.6):
  * - CRITICAL: Solid Red (#DC2626) with emergency pulse (animate-pulse strictly for emergencies)
  * - HOLIDAY: Government Emerald Green (#4B7F3A / #059669) (Gazetted holidays, vacations)
- * - INFO: Brand Blue (#006AC7) (Registration deadlines, examination schedules)
- * - EVENT: // TBD: Institutional color token for EVENT type; defaulting to INFO (#006AC7) pending formal specification.
+ * - INFO: Government Green (#4B7F3A) (Registration deadlines, examination schedules)
+ * - EVENT: Government Green (#4B7F3A) (Official town events)
  */
 export default function AnnouncementBar({
   initialAnnouncement = null,
@@ -64,22 +64,21 @@ export default function AnnouncementBar({
       shouldPulse: false,
     },
     INFO: {
-      backgroundColor: '#006AC7', // Brand Blue per LANDING_PAGE.md & DESIGN.md
+      backgroundColor: '#4B7F3A', // Primary Government Green
       textColor: 'rgba(255,255,255,0.95)',
       tagBackground: 'rgba(255,255,255,0.18)',
       tagTextColor: '#FFFFFF',
-      actionTextColor: '#DCEFFF',
+      actionTextColor: '#E3F0DC',
       iconElement: <Info className="w-3.5 h-3.5" />,
       tagLabel: 'ACADEMIC ANNOUNCEMENT',
       shouldPulse: false,
     },
-    // TBD: Institutional color token for EVENT type; defaulting to INFO (Brand Blue #006AC7) pending formal institutional gazette specification
     EVENT: {
-      backgroundColor: '#006AC7',
+      backgroundColor: '#4B7F3A', // Primary Government Green
       textColor: 'rgba(255,255,255,0.95)',
       tagBackground: 'rgba(255,255,255,0.18)',
       tagTextColor: '#FFFFFF',
-      actionTextColor: '#DCEFFF',
+      actionTextColor: '#E3F0DC',
       iconElement: <Bell className="w-3.5 h-3.5" />,
       tagLabel: 'OFFICIAL TOWN EVENT',
       shouldPulse: false,

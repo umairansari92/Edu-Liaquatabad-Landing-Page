@@ -18,21 +18,21 @@ const tiles = [
     title: 'School Directory',
     description: 'Find local government schools',
     href: '#schools',
-    accent: 'blue',
+    accent: 'green',
   },
   {
     icon: Bell,
     title: 'Latest Notices',
     description: 'Public announcements',
     href: '#notices',
-    accent: 'blue',
+    accent: 'green',
   },
   {
     icon: FileText,
     title: 'Official Circulars',
     description: 'Verified government orders',
     href: '#circulars',
-    accent: 'blue',
+    accent: 'green',
   },
   {
     icon: BookOpen,
@@ -53,7 +53,7 @@ const tiles = [
     title: 'Academic Calendar',
     description: 'Class schedules & timetables',
     href: '#timetable',
-    accent: 'blue',
+    accent: 'green',
   },
   {
     icon: ClipboardList,
@@ -105,10 +105,9 @@ export default function QuickAccessTiles() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
           {tiles.map((tileItem) => {
             const Icon = tileItem.icon;
-            const isBlue = tileItem.accent === 'blue';
-            const iconColor = isBlue ? '#006AC7' : '#4B7F3A';
-            const iconBg = isBlue ? 'rgba(0,106,199,0.07)' : 'rgba(75,127,58,0.07)';
-            const hoverBorder = isBlue ? 'rgba(0,106,199,0.25)' : 'rgba(75,127,58,0.25)';
+            const iconColor = '#4B7F3A';
+            const iconBg = 'rgba(75,127,58,0.08)';
+            const hoverBorder = 'rgba(75,127,58,0.30)';
 
             return (
               <a
@@ -119,7 +118,7 @@ export default function QuickAccessTiles() {
                 onMouseEnter={(mouseEvent) => {
                   mouseEvent.currentTarget.style.borderColor = hoverBorder;
                   mouseEvent.currentTarget.style.transform = 'translateY(-3px)';
-                  mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(16,38,25,0.08)';
                 }}
                 onMouseLeave={(mouseEvent) => {
                   mouseEvent.currentTarget.style.borderColor = 'rgba(75,127,58,0.12)';

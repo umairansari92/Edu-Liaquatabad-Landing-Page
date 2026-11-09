@@ -233,7 +233,7 @@ export const TechTopologySection = () => (
 
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-        <div className="flex items-center gap-2 text-[#006AC7] font-bold text-sm">
+        <div className="flex items-center gap-2 text-[#4B7F3A] font-bold text-sm">
           <Building2 className="w-5 h-5" />
           <span>Next.js 15 Civic Portal (landing-page/)</span>
         </div>
@@ -489,7 +489,7 @@ export const ArchitecturalDecisionsSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">CANONICAL ADRS</div>
-        <div className="text-sm font-black text-[#006AC7]">8 Formal Records</div>
+        <div className="text-sm font-black text-[#4B7F3A]">8 Formal Records</div>
         <div className="text-xs text-[#526477]">ADR-01 through ADR-08</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">

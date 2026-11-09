@@ -52,7 +52,7 @@ export const SchoolInspectionsSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">CLUSTER JURISDICTION</div>
-        <div className="text-sm font-black text-[#006AC7]">ASSIGNED_SCHOOLS</div>
+        <div className="text-sm font-black text-[#4B7F3A]">ASSIGNED_SCHOOLS</div>
         <div className="text-xs text-[#526477]">BOLA Isolation Guard</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -210,7 +210,7 @@ export const TeacherRostersSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">CIVIL CADRE ENFORCEMENT</div>
-        <div className="text-sm font-black text-[#006AC7]">PST, JEST, ECT, SLT</div>
+        <div className="text-sm font-black text-[#4B7F3A]">PST, JEST, ECT, SLT</div>
         <div className="text-xs text-[#526477]">Sindh Civil Service Rules</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -353,7 +353,7 @@ export const AtomicTransfersSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">FINITE STATE MACHINE</div>
-        <div className="text-sm font-black text-[#006AC7]">5 Sequential Stages</div>
+        <div className="text-sm font-black text-[#4B7F3A]">5 Sequential Stages</div>
         <div className="text-xs text-[#526477]">Zero State Skipping</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -517,7 +517,7 @@ export const StudentManagementSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">DETERMINISTIC GR INDEX</div>
-        <div className="text-sm font-black text-[#006AC7]">{'{ schoolId, grNumber }'}</div>
+        <div className="text-sm font-black text-[#4B7F3A]">{'{ schoolId, grNumber }'}</div>
         <div className="text-xs text-[#526477]">Compound Unique Key</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -691,7 +691,7 @@ export const StudentManagementSection = () => (
       />
       <InfoCard
         title="Typographical Correction of Name or DOB"
-        color="blue"
+        color="green"
         desc="Name or date-of-birth errors discovered after enrollment can be corrected exclusively by the Head Master upon physical inspection of the child's NADRA B-Form before the end of the first academic quarter."
       />
     </div>
@@ -783,7 +783,7 @@ export const ParentPortalSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">ZERO-TRUST WARD VERIFICATION</div>
-        <div className="text-sm font-black text-[#006AC7]">3 Sequential Gates</div>
+        <div className="text-sm font-black text-[#4B7F3A]">3 Sequential Gates</div>
         <div className="text-xs text-[#526477]">Anti-Stalking Defense</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -838,7 +838,7 @@ export const ParentPortalSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <InfoCard
         title="1. Child's Official GR Number"
-        color="blue"
+        color="green"
         desc="Found on your child's school admission slip, old report card, or school fee voucher. It is the permanent academic serial number for your child."
       />
       <InfoCard
@@ -935,7 +935,7 @@ export const ParentPortalSection = () => (
       />
       <InfoCard
         title="Linking Multiple Children"
-        color="blue"
+        color="green"
         desc="If you have children in different classes or different municipal schools across Liaquatabad Town, you can link all of them under a single guardian account."
       />
     </div>
@@ -1037,7 +1037,7 @@ export const AttendanceEngineSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">TIMEZONE NORMALIZATION</div>
-        <div className="text-sm font-black text-[#006AC7]">Asia/Karachi (UTC+5)</div>
+        <div className="text-sm font-black text-[#4B7F3A]">Asia/Karachi (UTC+5)</div>
         <div className="text-xs text-[#526477]">Immune to Server Clock Drift</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -1052,7 +1052,7 @@ export const AttendanceEngineSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">HM LATE OVERRIDE</div>
-        <div className="text-sm font-black text-blue-600">Same-Day &le; 23:59</div>
+        <div className="text-sm font-black text-[#4B7F3A]">Same-Day &le; 23:59</div>
         <div className="text-xs text-[#526477]">Mandatory Written Justification</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -1371,7 +1371,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">CLEARANCE VALIDITY</div>
-        <div className="text-sm font-black text-[#006AC7]">Same-Day &le; 23:59 PKT</div>
+        <div className="text-sm font-black text-[#4B7F3A]">Same-Day &le; 23:59 PKT</div>
         <div className="text-xs text-[#526477]">Re-locks Automatically at Midnight</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -1490,7 +1490,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
     <SectionTitle>Exhaustive Operational Role Guides: Standard Operating Procedures (SOP)</SectionTitle>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
       <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-        <div className="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider">
+        <div className="flex items-center gap-2 text-[#4B7F3A] font-bold text-xs uppercase tracking-wider">
           <Users className="w-4 h-4" />
           <span>Classroom Teacher Guide</span>
         </div>
@@ -1563,7 +1563,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">STATUS: IMPLEMENTED</div>
-        <div className="text-sm font-black text-[#006AC7]">TESTED + VERIFIED</div>
+        <div className="text-sm font-black text-[#4B7F3A]">TESTED + VERIFIED</div>
         <div className="text-xs text-[#526477]">51/51 Server Tests PASS</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -1741,7 +1741,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
     <SectionTitle>Role-by-Role Operational Guide: Interactive Register</SectionTitle>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
       <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
-        <div className="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider">
+        <div className="flex items-center gap-2 text-[#4B7F3A] font-bold text-xs uppercase tracking-wider">
           <Users className="w-4 h-4" />
           <span>Classroom Teacher</span>
         </div>
@@ -1802,7 +1802,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">CL ANNUAL ALLOWANCE</div>
-        <div className="text-sm font-black text-[#006AC7]">24 Calendar Days</div>
+        <div className="text-sm font-black text-[#4B7F3A]">24 Calendar Days</div>
         <div className="text-xs text-[#526477]">1 Jan Reset • 0 Carry-Forward</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -1903,7 +1903,7 @@ Response: 200 { success: true, data: { status: "APPROVED", expiresAt: "2026-10-2
     </p>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-        <div className="text-xs font-black text-[#006AC7]">HM-INITIATED CASUAL LEAVE (CL)</div>
+        <div className="text-xs font-black text-[#4B7F3A]">HM-INITIATED CASUAL LEAVE (CL)</div>
         <p className="text-xs text-[#526477] leading-relaxed">
           HM creates a CL record on behalf of the absent teacher. Requires mandatory free-text justification (<code>hmInitiatedReason</code>, min 5 chars). The record is tagged with <code>source: &apos;HM_INITIATED&apos;</code>, records the HM as the initiating actor, and decrements the teacher&apos;s 24-day CL balance.
         </p>
@@ -2046,7 +2046,7 @@ export const ExaminationEngineSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">STATUTORY AGGREGATE</div>
-        <div className="text-sm font-black text-[#006AC7]">700 Max Marks</div>
+        <div className="text-sm font-black text-[#4B7F3A]">700 Max Marks</div>
         <div className="text-xs text-[#526477]">7 Standard Subjects × 100</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -2149,37 +2149,37 @@ export const ExaminationEngineSection = () => (
         </thead>
         <tbody className="divide-y divide-slate-100 text-[#526477]">
           <tr>
-            <td className="p-3 font-bold text-[#006AC7]">A-1</td>
+            <td className="p-3 font-bold text-[#4B7F3A]">A-1</td>
             <td className="p-3 font-mono">&ge; 80.00%</td>
             <td className="p-3 font-medium text-[#102033]">Outstanding / Exceptional</td>
             <td className="p-3 text-[#4B7F3A] font-bold">Eligible for 1st, 2nd, 3rd Rank</td>
           </tr>
           <tr>
-            <td className="p-3 font-bold text-[#006AC7]">A</td>
+            <td className="p-3 font-bold text-[#4B7F3A]">A</td>
             <td className="p-3 font-mono">70.00% – 79.99%</td>
             <td className="p-3 font-medium text-[#102033]">Excellent</td>
             <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
           </tr>
           <tr>
-            <td className="p-3 font-bold text-[#006AC7]">B</td>
+            <td className="p-3 font-bold text-[#4B7F3A]">B</td>
             <td className="p-3 font-mono">60.00% – 69.99%</td>
             <td className="p-3 font-medium text-[#102033]">Very Good</td>
             <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
           </tr>
           <tr>
-            <td className="p-3 font-bold text-[#006AC7]">C</td>
+            <td className="p-3 font-bold text-[#4B7F3A]">C</td>
             <td className="p-3 font-mono">50.00% – 59.99%</td>
             <td className="p-3 font-medium text-[#102033]">Good</td>
             <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
           </tr>
           <tr>
-            <td className="p-3 font-bold text-[#006AC7]">D</td>
+            <td className="p-3 font-bold text-[#4B7F3A]">D</td>
             <td className="p-3 font-mono">40.00% – 49.99%</td>
             <td className="p-3 font-medium text-[#102033]">Fair</td>
             <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
           </tr>
           <tr>
-            <td className="p-3 font-bold text-[#006AC7]">E</td>
+            <td className="p-3 font-bold text-[#4B7F3A]">E</td>
             <td className="p-3 font-mono">33.00% – 39.99%</td>
             <td className="p-3 font-medium text-[#102033]">Pass</td>
             <td className="p-3 text-[#4B7F3A] font-bold">Eligible</td>
@@ -2235,7 +2235,7 @@ export const MarksheetsTabulationSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">STREAMING VECTOR ENGINE</div>
-        <div className="text-sm font-black text-[#006AC7]">PDFKit 0.16.0</div>
+        <div className="text-sm font-black text-[#4B7F3A]">PDFKit 0.16.0</div>
         <div className="text-xs text-[#526477]">&lt; 15MB Server RAM</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -2337,7 +2337,7 @@ export const DocumentsLibrarySection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">FREE SINDH TEXTBOOKS</div>
-        <div className="text-sm font-black text-[#006AC7]">Class 1 to Class 10</div>
+        <div className="text-sm font-black text-[#4B7F3A]">Class 1 to Class 10</div>
         <div className="text-xs text-[#526477]">100% Free Public CDN Access</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -2425,7 +2425,7 @@ export const NotificationsOutboxSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">DELIVERY LATENCY</div>
-        <div className="text-sm font-black text-[#006AC7]">&lt; 250ms Alert Push</div>
+        <div className="text-sm font-black text-[#4B7F3A]">&lt; 250ms Alert Push</div>
         <div className="text-xs text-[#526477]">Real-Time Web Shell</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -2483,7 +2483,7 @@ export const NotificationsOutboxSection = () => (
         <div className="text-xs text-[#526477]">Rain emergency and heatwave school closure alerts broadcasted to all parents and staff.</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-xs font-bold text-[#006AC7] uppercase">2. Attendance Deficit Warnings</div>
+        <div className="text-xs font-bold text-[#4B7F3A] uppercase">2. Attendance Deficit Warnings</div>
         <div className="text-xs text-[#526477]">Dispatched to parents when student attendance drops below 75% examination threshold.</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -2545,7 +2545,7 @@ export const HeadMasterWorkflowsSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">14 OPERATIONAL TABS</div>
-        <div className="text-sm font-black text-[#006AC7]">6 Logical Groups</div>
+        <div className="text-sm font-black text-[#4B7F3A]">6 Logical Groups</div>
         <div className="text-xs text-[#526477]">Command, People, Academics, Ops, Comms, Records</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -2639,8 +2639,8 @@ export const HeadMasterWorkflowsSection = () => (
       {/* WORKFLOW 1 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
-          <span className="text-xs font-black text-[#006AC7]">WF-1: STUDENT ENROLMENT &amp; GENERAL REGISTER (GR) NUMBERING</span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#006AC7] border border-blue-200">PEOPLE / STUDENTS TAB • MODAL</span>
+          <span className="text-xs font-black text-[#4B7F3A]">WF-1: STUDENT ENROLMENT &amp; GENERAL REGISTER (GR) NUMBERING</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC]">PEOPLE / STUDENTS TAB • MODAL</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
           <div>
@@ -2853,8 +2853,8 @@ export const HeadMasterWorkflowsSection = () => (
       {/* WORKFLOW 6 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
-          <span className="text-xs font-black text-[#006AC7]">WF-6: EXAMINATION VERIFICATION, TABULATION GAZETTE &amp; MARKSHEET STREAMING</span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#006AC7] border border-blue-200">ACADEMICS / EXAMS TAB</span>
+          <span className="text-xs font-black text-[#4B7F3A]">WF-6: EXAMINATION VERIFICATION, TABULATION GAZETTE &amp; MARKSHEET STREAMING</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC]">ACADEMICS / EXAMS TAB</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
           <div>
@@ -3023,7 +3023,7 @@ export const HeadMasterWorkflowsSection = () => (
       {/* WORKFLOW 11 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
-          <span className="text-xs font-black text-[#006AC7]">WF-11: FACULTY LEAVE APPROVAL, HM-INITIATED CL/ABSENT &amp; HM SELF-ATTENDANCE</span>
+          <span className="text-xs font-black text-[#4B7F3A]">WF-11: FACULTY LEAVE APPROVAL, HM-INITIATED CL/ABSENT &amp; HM SELF-ATTENDANCE</span>
           <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">PEOPLE / FACULTY &amp; MUSTER TAB</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-[#526477]">
@@ -3063,7 +3063,7 @@ export const HeadMasterWorkflowsSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">DESK PRESENCE</div>
-        <div className="text-sm font-black text-[#006AC7]">07:30 AM – 02:00 PM PKT</div>
+        <div className="text-sm font-black text-[#4B7F3A]">07:30 AM – 02:00 PM PKT</div>
         <div className="text-xs text-[#526477]">Illustrative Operational Guide</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -3216,7 +3216,7 @@ export const TeacherPortalSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">IA ARCHITECTURE</div>
-        <div className="text-sm font-black text-[#006AC7]">Option 1 + Option 3</div>
+        <div className="text-sm font-black text-[#4B7F3A]">Option 1 + Option 3</div>
         <div className="text-xs text-[#526477]">Decoupled Daily Overview &amp; Classes</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -3367,7 +3367,7 @@ export const MunicipalSchoolsDirectorySection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">TOWN COVERAGE</div>
-        <div className="text-sm font-black text-[#006AC7]">15 REGISTERED SCHOOLS</div>
+        <div className="text-sm font-black text-[#4B7F3A]">15 REGISTERED SCHOOLS</div>
         <div className="text-xs text-[#526477]">100% Town Enrolment</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -3389,7 +3389,7 @@ export const MunicipalSchoolsDirectorySection = () => (
 
     <SectionTitle>1. Executive Summary &amp; Scope Overview</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The <strong>Schools Directory</strong> (accessible at <code className="text-[#006AC7] font-mono">/schools</code>) serves as the definitive institutional ledger for Town Municipal Corporation (TMC) Liaquatabad and the Education Department. In Phase 2, this module was overhauled to deliver an enterprise-grade 2026 SaaS experience, resolving confirmed role-navigation defects, eliminating dead whitespace, wrapping long institutional titles, and providing authoritative disambiguation between instructional bell hours and biometric attendance window gates.
+      The <strong>Schools Directory</strong> (accessible at <code className="text-[#4B7F3A] font-mono">/schools</code>) serves as the definitive institutional ledger for Town Municipal Corporation (TMC) Liaquatabad and the Education Department. In Phase 2, this module was overhauled to deliver an enterprise-grade 2026 SaaS experience, resolving confirmed role-navigation defects, eliminating dead whitespace, wrapping long institutional titles, and providing authoritative disambiguation between instructional bell hours and biometric attendance window gates.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -3456,7 +3456,7 @@ export const MunicipalSchoolsDirectorySection = () => (
 
     <SectionTitle>3. Role-Based Directory Capabilities &amp; Action Gating</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Frontend action buttons are strictly synchronized with authoritative server-side RBAC middleware (<code className="text-[#006AC7] font-mono">authorizeRoles</code>, <code className="text-[#006AC7] font-mono">authorizePermissions</code>, and <code className="text-[#006AC7] font-mono">authorizeScope</code>):
+      Frontend action buttons are strictly synchronized with authoritative server-side RBAC middleware (<code className="text-[#4B7F3A] font-mono">authorizeRoles</code>, <code className="text-[#4B7F3A] font-mono">authorizePermissions</code>, and <code className="text-[#4B7F3A] font-mono">authorizeScope</code>):
     </p>
 
     <div className="overflow-x-auto mb-6">
@@ -3632,7 +3632,7 @@ export const PersonalProfileDossierSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">SKETCH ZONES</div>
-        <div className="text-sm font-black text-[#006AC7]">5 Unified Zones</div>
+        <div className="text-sm font-black text-[#4B7F3A]">5 Unified Zones</div>
         <div className="text-xs text-[#526477]">Prominent Photo to Security</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -3661,7 +3661,7 @@ export const PersonalProfileDossierSection = () => (
       <InfoCard
         title="Zone 1: Identity & Prominent Profile Card"
         badge="SKETCH ZONE 1"
-        badgeColor="blue"
+        badgeColor="green"
         items={[
           'Prominent Portrait Photo Card: 3:4 portrait photo area on the left of Zone 1 matching user sketch, with Cloudinary storage, magic bytes validation, and live preview modal.',
           'Inline Eye Controls (4 Exact Tiers): Accessible controls for "School Based", "Private", "Officials", and "Public" with hard PII ceilings.',
@@ -3707,7 +3707,7 @@ export const PersonalProfileDossierSection = () => (
     {/* Credentials Zone */}
     <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-4 mb-6">
       <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
-        <span className="text-xs font-black text-[#006AC7] uppercase tracking-wider">
+        <span className="text-xs font-black text-[#4B7F3A] uppercase tracking-wider">
           Zone 5: Credentials &amp; Security Governance (Sketch Zone 5)
         </span>
         <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">

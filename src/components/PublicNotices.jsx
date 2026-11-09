@@ -10,7 +10,7 @@ const notices = [
     title: 'School Timing Notification — Winter Schedule 2026',
     date: '30 August 2026',
     audience: 'Town Wide',
-    dot: 'blue',
+    dot: 'green',
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const notices = [
     title: 'Academic Circular — Mid-Term Examination Schedule',
     date: '28 August 2026',
     audience: 'All Schools',
-    dot: 'blue',
+    dot: 'green',
   },
   {
     id: 4,
@@ -42,12 +42,11 @@ const notices = [
     title: 'Official Gazette: Defence Day Holiday — 6 September 2026',
     date: '25 August 2026',
     audience: 'All Schools',
-    dot: 'blue',
+    dot: 'green',
   },
 ];
 
 const dotColors = {
-  blue:  '#006AC7',
   green: '#4B7F3A',
   amber: '#D97706',
 };
@@ -63,7 +62,7 @@ export default function PublicNotices() {
     <section
       id="notices"
       className="py-16 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: '#F0F8FF' }}
+      style={{ backgroundColor: '#F2F8EF' }}
     >
       <div className="section-container">
         {/* Header */}
@@ -72,7 +71,7 @@ export default function PublicNotices() {
             <span className="section-label">
               <span
                 className="w-1.5 h-1.5 rounded-full inline-block"
-                style={{ backgroundColor: '#006AC7' }}
+                style={{ backgroundColor: '#4B7F3A' }}
               />
               Official Communications
             </span>
@@ -96,16 +95,16 @@ export default function PublicNotices() {
         <div
           className="rounded-2xl overflow-hidden"
           style={{
-            background: 'rgba(255,255,255,0.60)',
+            background: 'rgba(255,255,255,0.75)',
             backdropFilter: 'blur(18px)',
             WebkitBackdropFilter: 'blur(18px)',
-            border: '1px solid rgba(0,106,199,0.10)',
-            boxShadow: '0 8px 30px rgba(0,33,61,0.08)',
+            border: '1px solid rgba(75,127,58,0.15)',
+            boxShadow: '0 8px 30px rgba(16,38,25,0.05)',
           }}
         >
           {notices.map((noticeItem, noticeIndex) => {
             const Icon = typeIcons[noticeItem.type] || Bell;
-            const dotColor = dotColors[noticeItem.dot];
+            const dotColor = dotColors[noticeItem.dot] || '#4B7F3A';
             const isLast = noticeIndex === notices.length - 1;
 
             return (
@@ -114,11 +113,11 @@ export default function PublicNotices() {
                 href="#notice-detail"
                 className="flex items-center gap-4 px-5 py-4 transition-all duration-200 group no-underline"
                 style={{
-                  borderBottom: isLast ? 'none' : '1px solid rgba(0,106,199,0.07)',
+                  borderBottom: isLast ? 'none' : '1px solid rgba(75,127,58,0.10)',
                   textDecoration: 'none',
                 }}
                 onMouseEnter={(mouseEvent) => {
-                  mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.03)';
+                  mouseEvent.currentTarget.style.backgroundColor = 'rgba(75,127,58,0.04)';
                 }}
                 onMouseLeave={(mouseEvent) => {
                   mouseEvent.currentTarget.style.backgroundColor = 'transparent';
@@ -127,9 +126,9 @@ export default function PublicNotices() {
                 {/* Type Icon */}
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: 'rgba(0,106,199,0.07)' }}
+                  style={{ backgroundColor: 'rgba(75,127,58,0.08)' }}
                 >
-                  <Icon className="w-4 h-4" style={{ color: '#006AC7' }} />
+                  <Icon className="w-4 h-4" style={{ color: '#4B7F3A' }} />
                 </div>
 
                 {/* Content */}
@@ -155,7 +154,7 @@ export default function PublicNotices() {
                 {/* Arrow */}
                 <ArrowRight
                   className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-1"
-                  style={{ color: '#006AC7', opacity: 0.6 }}
+                  style={{ color: '#4B7F3A', opacity: 0.6 }}
                 />
               </a>
             );

@@ -53,7 +53,7 @@ export const ProblemStatementSection = () => (
       />
       <InfoCard
         icon={<AlertCircle className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="Parent Information Blackout"
         desc="Working-class parents had zero access to daily attendance, official homework directives, or authentic report cards. Commercial school apps required high monthly fees that public schools cannot fund."
       />
@@ -142,7 +142,7 @@ export const IsVsNotSection = () => (
     <SectionTitle>Key Architectural Invariants</SectionTitle>
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs text-center space-y-1">
-        <div className="text-2xl font-black text-[#006AC7]">0 PKRs</div>
+        <div className="text-2xl font-black text-[#4B7F3A]">0 PKRs</div>
         <div className="text-xs font-bold text-[#102033]">Zero Fee Processing</div>
         <div className="text-[11px] text-[#526477]">Public government schools charge no fees; no payment gateways exist.</div>
       </div>
@@ -169,10 +169,10 @@ export const QuickAccessSection = () => (
     />
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-      <div className="p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-[#102033] space-y-2">
+      <div className="p-5 rounded-2xl bg-[#F2F8EF]/70 border border-[#C9DFBC] text-[#102033] space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[11px] font-extrabold text-[#006AC7] uppercase tracking-wider">PLATFORM RUNTIME</span>
-          <Activity className="w-4 h-4 text-[#006AC7]" />
+          <span className="text-[11px] font-extrabold text-[#4B7F3A] uppercase tracking-wider">PLATFORM RUNTIME</span>
+          <Activity className="w-4 h-4 text-[#4B7F3A]" />
         </div>
         <div className="text-2xl font-black text-[#102033]">Pure ESM</div>
         <p className="text-[11px] text-[#526477] leading-relaxed">

@@ -35,7 +35,7 @@ export const RolesCatalogueSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">DEFINED ROLES</div>
-        <div className="text-sm font-black text-[#006AC7]">9 Municipal Roles</div>
+        <div className="text-sm font-black text-[#4B7F3A]">9 Municipal Roles</div>
         <div className="text-xs text-[#526477]">Root Admin to Parent</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -60,7 +60,7 @@ export const RolesCatalogueSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       <InfoCard
         title="1. Role (Account Type)"
-        color="blue"
+        color="green"
         desc="Your role defines what you are responsible for in the software. Note: Your civil job title (e.g. 'Senior Teacher' or 'Education Officer') is purely descriptive metadata; software powers come exclusively from your assigned system Role."
       />
       <InfoCard
@@ -139,10 +139,10 @@ export const RolesCatalogueSection = () => (
       <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center justify-between border-b border-slate-100 pb-2">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#4B7F3A]" />
             <h4 className="font-extrabold text-sm text-[#102033]">Role 1: ROOT_ADMIN — Emergency Platform Custodian</h4>
           </div>
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-50 text-[#006AC7] border border-blue-200">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC]">
             Level 100 • Scope: GLOBAL
           </span>
         </div>
@@ -342,10 +342,10 @@ export const RolesCatalogueSection = () => (
       <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center justify-between border-b border-slate-100 pb-2">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#4B7F3A]" />
             <h4 className="font-extrabold text-sm text-[#102033]">Role 8: STUDENT — Enrolled Municipal Pupil</h4>
           </div>
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-50 text-[#006AC7] border border-blue-200">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#F2F8EF] text-[#4B7F3A] border border-[#C9DFBC]">
             Level 10 • Scope: SELF
           </span>
         </div>

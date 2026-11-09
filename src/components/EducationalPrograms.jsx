@@ -11,7 +11,7 @@ export default function EducationalPrograms() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <span className="section-label justify-center">
-            <Sparkles className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+            <Sparkles className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
             Town-Wide Co-Curricular & Academic Galas
           </span>
           <h2
@@ -49,7 +49,7 @@ export default function EducationalPrograms() {
                   <div className="absolute top-4 left-4 flex gap-2">
                     <span
                       className="px-3 py-1 rounded-full text-[11px] font-bold text-white shadow-sm"
-                      style={{ backgroundColor: '#006AC7' }}
+                      style={{ backgroundColor: '#4B7F3A' }}
                     >
                       {programItem.badge}
                     </span>
@@ -64,7 +64,7 @@ export default function EducationalPrograms() {
                 {/* Body */}
                 <div className="p-6">
                   <h3
-                    className="text-lg sm:text-xl font-bold transition-colors group-hover:text-blue-600"
+                    className="text-lg sm:text-xl font-bold transition-colors group-hover:text-[#4B7F3A]"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
                     {programItem.title}
@@ -79,7 +79,7 @@ export default function EducationalPrograms() {
                     style={{ borderTop: '1px solid rgba(0,106,199,0.08)', color: '#526477' }}
                   >
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 shrink-0" style={{ color: '#006AC7' }} />
+                      <Calendar className="w-4 h-4 shrink-0" style={{ color: '#4B7F3A' }} />
                       <span><strong>Date:</strong> {programItem.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function EducationalPrograms() {
                       <span className="line-clamp-1"><strong>Host:</strong> {programItem.hostSchool}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 shrink-0" style={{ color: '#006AC7' }} />
+                      <Users className="w-4 h-4 shrink-0" style={{ color: '#4B7F3A' }} />
                       <span><strong>Eligibility:</strong> {programItem.targetGrades}</span>
                     </div>
                   </div>

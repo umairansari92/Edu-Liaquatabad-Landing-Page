@@ -39,7 +39,7 @@ export default function EbooksLibraryPage() {
 
   const mediumBadges = {
     URDU: { bg: '#4B7F3A', label: 'Urdu' },
-    ENGLISH: { bg: '#006AC7', label: 'English' },
+    ENGLISH: { bg: '#4B7F3A', label: 'English' },
     SINDHI: { bg: '#D97706', label: 'Sindhi' },
   };
 
@@ -47,11 +47,11 @@ export default function EbooksLibraryPage() {
     <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10" style={{ backgroundColor: '#F8FBFD' }}>
       {/* ─── Breadcrumb Navigation ─────────────────────────────────────────── */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs" style={{ color: '#526477' }}>
-        <Link href="/" className="transition-colors hover:text-blue-600">
+        <Link href="/" className="transition-colors hover:text-[#4B7F3A]">
           <span>Home</span>
         </Link>
         <ChevronRight className="w-3.5 h-3.5" style={{ color: '#8094A8' }} />
-        <span className="font-semibold" style={{ color: '#006AC7' }}>eBooks & Sindh Textbooks Library</span>
+        <span className="font-semibold" style={{ color: '#4B7F3A' }}>eBooks & Sindh Textbooks Library</span>
         {selectedClassObj && (
           <>
             <ChevronRight className="w-3.5 h-3.5" style={{ color: '#8094A8' }} />
@@ -64,18 +64,18 @@ export default function EbooksLibraryPage() {
       <div
         className="p-8 sm:p-12 rounded-3xl relative overflow-hidden"
         style={{
-          backgroundColor: '#F0F8FF',
-          border: '1px solid rgba(0, 106, 199, 0.12)',
-          boxShadow: '0 8px 30px rgba(0, 33, 61, 0.06)',
+          backgroundColor: '#F2F8EF',
+          border: '1px solid rgba(75, 127, 58, 0.12)',
+          boxShadow: '0 8px 30px rgba(16, 38, 25, 0.06)',
         }}
       >
         <div className="max-w-3xl space-y-4">
           <div
             className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
             style={{
-              backgroundColor: 'rgba(0, 106, 199, 0.08)',
-              border: '1px solid rgba(0, 106, 199, 0.20)',
-              color: '#006AC7',
+              backgroundColor: 'rgba(75, 127, 58, 0.08)',
+              border: '1px solid rgba(75, 127, 58, 0.20)',
+              color: '#4B7F3A',
             }}
           >
             <BookOpen className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export default function EbooksLibraryPage() {
 
         {/* Search Bar */}
         <div className="mt-8 relative max-w-2xl">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: '#006AC7' }} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: '#4B7F3A' }} />
           <input
             type="text"
             value={searchQuery}
@@ -105,15 +105,15 @@ export default function EbooksLibraryPage() {
             className="w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm focus:outline-none transition-all"
             style={{
               backgroundColor: '#FFFFFF',
-              border: '1.5px solid rgba(0, 106, 199, 0.15)',
+              border: '1.5px solid rgba(75, 127, 58, 0.15)',
               color: '#102033',
             }}
             onFocus={(focusEvent) => {
-              focusEvent.target.style.borderColor = '#006AC7';
-              focusEvent.target.style.boxShadow = '0 0 0 4px rgba(0, 106, 199, 0.08)';
+              focusEvent.target.style.borderColor = '#4B7F3A';
+              focusEvent.target.style.boxShadow = '0 0 0 4px rgba(75, 127, 58, 0.08)';
             }}
             onBlur={(blurEvent) => {
-              blurEvent.target.style.borderColor = 'rgba(0, 106, 199, 0.15)';
+              blurEvent.target.style.borderColor = 'rgba(75, 127, 58, 0.15)';
               blurEvent.target.style.boxShadow = 'none';
             }}
           />
@@ -126,9 +126,9 @@ export default function EbooksLibraryPage() {
           onClick={() => setSelectedMedium('ALL')}
           className="px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer"
           style={{
-            backgroundColor: selectedMedium === 'ALL' ? '#006AC7' : 'rgba(255,255,255,0.75)',
+            backgroundColor: selectedMedium === 'ALL' ? '#4B7F3A' : 'rgba(255,255,255,0.75)',
             color: selectedMedium === 'ALL' ? '#FFFFFF' : '#526477',
-            border: selectedMedium === 'ALL' ? '1px solid #006AC7' : '1px solid rgba(0, 106, 199, 0.12)',
+            border: selectedMedium === 'ALL' ? '1px solid #4B7F3A' : '1px solid rgba(75, 127, 58, 0.12)',
             boxShadow: selectedMedium === 'ALL' ? '0 4px 14px rgba(0,106,199,0.30)' : 'none',
           }}
         >
@@ -141,7 +141,7 @@ export default function EbooksLibraryPage() {
           style={{
             backgroundColor: selectedMedium === 'SINDHI' ? '#D97706' : 'rgba(255,255,255,0.75)',
             color: selectedMedium === 'SINDHI' ? '#FFFFFF' : '#526477',
-            border: selectedMedium === 'SINDHI' ? '1px solid #D97706' : '1px solid rgba(0, 106, 199, 0.12)',
+            border: selectedMedium === 'SINDHI' ? '1px solid #D97706' : '1px solid rgba(75, 127, 58, 0.12)',
           }}
         >
           <span className="w-2 h-2 rounded-full bg-amber-400" />
@@ -154,7 +154,7 @@ export default function EbooksLibraryPage() {
           style={{
             backgroundColor: selectedMedium === 'URDU' ? '#4B7F3A' : 'rgba(255,255,255,0.75)',
             color: selectedMedium === 'URDU' ? '#FFFFFF' : '#526477',
-            border: selectedMedium === 'URDU' ? '1px solid #4B7F3A' : '1px solid rgba(0, 106, 199, 0.12)',
+            border: selectedMedium === 'URDU' ? '1px solid #4B7F3A' : '1px solid rgba(75, 127, 58, 0.12)',
           }}
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -165,19 +165,19 @@ export default function EbooksLibraryPage() {
           onClick={() => setSelectedMedium('ENGLISH')}
           className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer"
           style={{
-            backgroundColor: selectedMedium === 'ENGLISH' ? '#006AC7' : 'rgba(255,255,255,0.75)',
+            backgroundColor: selectedMedium === 'ENGLISH' ? '#4B7F3A' : 'rgba(255,255,255,0.75)',
             color: selectedMedium === 'ENGLISH' ? '#FFFFFF' : '#526477',
-            border: selectedMedium === 'ENGLISH' ? '1px solid #006AC7' : '1px solid rgba(0, 106, 199, 0.12)',
+            border: selectedMedium === 'ENGLISH' ? '1px solid #4B7F3A' : '1px solid rgba(75, 127, 58, 0.12)',
           }}
         >
-          <span className="w-2 h-2 rounded-full bg-blue-400" />
+          <span className="w-2 h-2 rounded-full bg-[#7FAE6A]" />
           <span>English</span>
         </button>
       </div>
 
       {/* ─── 1. Browse by Class Grid ───────────────────────────────────────── */}
       <section className="space-y-4">
-        <div className="flex items-center gap-2 border-l-4 pl-3" style={{ borderColor: '#006AC7' }}>
+        <div className="flex items-center gap-2 border-l-4 pl-3" style={{ borderColor: '#4B7F3A' }}>
           <h2 className="text-xl font-bold" style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}>
             Browse by Class
           </h2>
@@ -195,8 +195,8 @@ export default function EbooksLibraryPage() {
                 }}
                 className="p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-between group cursor-pointer"
                 style={{
-                  backgroundColor: isSelected ? 'rgba(0, 106, 199, 0.08)' : 'rgba(255, 255, 255, 0.75)',
-                  borderColor: isSelected ? '#006AC7' : 'rgba(0, 106, 199, 0.10)',
+                  backgroundColor: isSelected ? 'rgba(75, 127, 58, 0.08)' : 'rgba(255, 255, 255, 0.75)',
+                  borderColor: isSelected ? '#4B7F3A' : 'rgba(75, 127, 58, 0.10)',
                   boxShadow: isSelected ? '0 4px 20px rgba(0,106,199,0.12)' : '0 2px 10px rgba(0,33,61,0.04)',
                 }}
               >
@@ -205,7 +205,7 @@ export default function EbooksLibraryPage() {
                 </span>
                 <span
                   className="text-xs font-bold block transition-colors"
-                  style={{ color: isSelected ? '#006AC7' : '#102033' }}
+                  style={{ color: isSelected ? '#4B7F3A' : '#102033' }}
                 >
                   {classOption.name}
                 </span>
@@ -219,7 +219,7 @@ export default function EbooksLibraryPage() {
       </section>
 
       {/* ─── 2. Class Dedicated Books View ─────────────────────────────────── */}
-      <section className="space-y-6 pt-4" style={{ borderTop: '1px solid rgba(0, 106, 199, 0.10)' }}>
+      <section className="space-y-6 pt-4" style={{ borderTop: '1px solid rgba(75, 127, 58, 0.10)' }}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 pl-3" style={{ borderColor: '#4B7F3A' }}>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold" style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}>
@@ -307,7 +307,7 @@ export default function EbooksLibraryPage() {
                   <div className="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
                     <div>
                       <h3
-                        className="text-xs sm:text-sm font-bold transition-colors group-hover:text-blue-600 line-clamp-1"
+                        className="text-xs sm:text-sm font-bold transition-colors group-hover:text-[#4B7F3A] line-clamp-1"
                         style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                       >
                         {book.title}
@@ -339,7 +339,7 @@ export default function EbooksLibraryPage() {
                         className="p-2 rounded-lg transition-colors flex items-center justify-center"
                         style={{
                           backgroundColor: 'rgba(0,106,199,0.08)',
-                          color: '#006AC7',
+                          color: '#4B7F3A',
                         }}
                         title="Download PDF"
                       >
@@ -355,13 +355,13 @@ export default function EbooksLibraryPage() {
       </section>
 
       {/* ─── 3. Recently Added Books Showcase ─────────────────────────────── */}
-      <section className="space-y-4 pt-4" style={{ borderTop: '1px solid rgba(0, 106, 199, 0.10)' }}>
-        <div className="flex items-center gap-3 border-l-4 pl-3" style={{ borderColor: '#006AC7' }}>
+      <section className="space-y-4 pt-4" style={{ borderTop: '1px solid rgba(75, 127, 58, 0.10)' }}>
+        <div className="flex items-center gap-3 border-l-4 pl-3" style={{ borderColor: '#4B7F3A' }}>
           <span
             className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest"
             style={{
               backgroundColor: 'rgba(0,106,199,0.08)',
-              color: '#006AC7',
+              color: '#4B7F3A',
               border: '1px solid rgba(0,106,199,0.18)',
             }}
           >
@@ -403,7 +403,7 @@ export default function EbooksLibraryPage() {
 
                 <div>
                   <h4
-                    className="text-xs font-bold line-clamp-1 group-hover:text-blue-600 transition-colors"
+                    className="text-xs font-bold line-clamp-1 group-hover:text-[#4B7F3A] transition-colors"
                     style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
                   >
                     {book.title}
@@ -436,14 +436,14 @@ export default function EbooksLibraryPage() {
             <div
               className="p-5 flex items-center justify-between"
               style={{
-                backgroundColor: '#F0F8FF',
+                backgroundColor: '#F2F8EF',
                 borderBottom: '1px solid rgba(0,106,199,0.10)',
               }}
             >
               <div className="flex items-center gap-3">
                 <div
                   className="p-2 rounded-xl text-white"
-                  style={{ backgroundColor: '#006AC7' }}
+                  style={{ backgroundColor: '#4B7F3A' }}
                 >
                   <BookOpen className="w-5 h-5" />
                 </div>

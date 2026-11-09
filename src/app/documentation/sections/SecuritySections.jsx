@@ -63,8 +63,8 @@ export const SecurityScorecardSection = () => (
         <div className="text-xs font-bold text-[#102033]">CRITICAL FAILURES</div>
         <div className="text-[11px] text-[#526477]">Zero Unmitigated Exploits</div>
       </div>
-      <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">96.4%</div>
+      <div className="p-4 rounded-xl bg-[#F2F8EF] border border-[#C9DFBC] text-center">
+        <div className="text-3xl font-black text-[#4B7F3A]">96.4%</div>
         <div className="text-xs font-bold text-[#102033]">COMPLIANCE SCORE</div>
         <div className="text-[11px] text-[#526477]">Level 2/3 Enterprise Certified</div>
       </div>
@@ -101,7 +101,7 @@ export const TripleLockSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
       <InfoCard
         icon={<Lock className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="Lock 1: Global IP Tracker"
         desc="Tracks aggregate traffic per IP subnet. High threshold (100 req/15 min) catches volumetric DDoS and brute-force botnets without penalizing shared NAT schools."
       />
@@ -209,7 +209,7 @@ export const MfaTotpSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">TARGET AUDIENCE</div>
-        <div className="text-sm font-black text-[#006AC7]">All Municipal Staff &amp; Leadership</div>
+        <div className="text-sm font-black text-[#4B7F3A]">All Municipal Staff &amp; Leadership</div>
         <div className="text-xs text-[#526477]">HM, Teachers, Clerks, Admins</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -236,7 +236,7 @@ export const MfaTotpSection = () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <InfoCard
           icon={<KeyRound className="w-5 h-5" />}
-          color="blue"
+          color="green"
           title="First Factor (Something You Know)"
           desc="Your confidential account password. This remains private and known only to you."
         />
@@ -265,7 +265,7 @@ export const MfaTotpSection = () => (
         </div>
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
           <div className="flex items-center gap-2 text-xs font-bold text-[#102033]">
-            <CheckCircle2 className="w-4 h-4 text-[#006AC7]" />
+            <CheckCircle2 className="w-4 h-4 text-[#4B7F3A]" />
             <span>Password Complement, Not Replacement</span>
           </div>
           <p className="text-xs text-[#526477] leading-relaxed">
@@ -301,7 +301,7 @@ export const MfaTotpSection = () => (
       />
       <InfoCard
         icon={<Laptop className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="2. Active Signed-In Session"
         desc="Access to the portal via a modern desktop, tablet, or smartphone web browser."
       />
@@ -328,7 +328,7 @@ export const MfaTotpSection = () => (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
       <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">A</div>
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">A</div>
           <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider">Pathway A: From Any Page (Top Navigation Bar)</h4>
         </div>
         <ol className="space-y-2 text-xs text-[#526477] list-decimal list-inside leading-relaxed">
@@ -370,7 +370,7 @@ export const MfaTotpSection = () => (
       {/* Step 1 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-[#F2F8EF] border border-[#C9DFBC] text-[#4B7F3A] flex items-center justify-center font-bold text-xs flex-shrink-0">
             Step 1
           </div>
           <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider">Inspect Current Status</h4>
@@ -380,7 +380,7 @@ export const MfaTotpSection = () => (
         </p>
         <ul className="text-xs text-[#526477] space-y-1.5 list-disc list-inside leading-relaxed">
           <li>If MFA is not yet configured, you will see a yellow notification banner: <em>&ldquo;Two-Factor Authentication is Disabled &mdash; Protects account access using TOTP authenticator apps (Google Authenticator, etc.).&rdquo;</em></li>
-          <li>Below the banner, click the prominent blue button: <strong>&ldquo;Configure Two-Factor Authentication&rdquo;</strong>.</li>
+          <li>Below the banner, click the prominent green button: <strong>&ldquo;Configure Two-Factor Authentication&rdquo;</strong>.</li>
         </ul>
         <TerminalBlock title="STEP 1 MOCKUP: DISABLED MFA STATE">
 {`┌────────────────────────────────────────────────────────────────────────┐
@@ -397,7 +397,7 @@ export const MfaTotpSection = () => (
       {/* Step 2 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-[#F2F8EF] border border-[#C9DFBC] text-[#4B7F3A] flex items-center justify-center font-bold text-xs flex-shrink-0">
             Step 2
           </div>
           <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider">Confirm Account Password (Step-Up Verification)</h4>
@@ -416,7 +416,7 @@ export const MfaTotpSection = () => (
       {/* Step 3 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-[#F2F8EF] border border-[#C9DFBC] text-[#4B7F3A] flex items-center justify-center font-bold text-xs flex-shrink-0">
             Step 3
           </div>
           <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider">Link Your Authenticator App (Dual-Mode Setup)</h4>
@@ -450,8 +450,8 @@ export const MfaTotpSection = () => (
         </TerminalBlock>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-          <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-200 space-y-2">
-            <div className="flex items-center gap-2 font-bold text-xs text-[#006AC7]">
+          <div className="p-4 rounded-xl bg-[#F2F8EF]/70 border border-[#C9DFBC] space-y-2">
+            <div className="flex items-center gap-2 font-bold text-xs text-[#4B7F3A]">
               <QrCode className="w-4 h-4" />
               <span>Option A: Fast QR Code Scan (Recommended &ndash; 2 Seconds)</span>
             </div>
@@ -483,7 +483,7 @@ export const MfaTotpSection = () => (
       {/* Step 4 */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 text-[#006AC7] flex items-center justify-center font-bold text-xs flex-shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-[#F2F8EF] border border-[#C9DFBC] text-[#4B7F3A] flex items-center justify-center font-bold text-xs flex-shrink-0">
             Step 4
           </div>
           <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider">Verify First TOTP Code &amp; Confirm Activation</h4>
@@ -491,7 +491,7 @@ export const MfaTotpSection = () => (
         <ol className="text-xs text-[#526477] space-y-1.5 list-decimal list-inside leading-relaxed">
           <li>Observe the current 6-digit code displayed in your authenticator app for <code>LiaquatabadSMS</code>.</li>
           <li>Type the 6 digits into the large centered input box: <code>[ 0 0 0 0 0 0 ]</code>.</li>
-          <li>Click the blue button: <strong>&ldquo;Verify Code &amp; Complete Setup&rdquo;</strong>.</li>
+          <li>Click the green button: <strong>&ldquo;Verify Code &amp; Complete Setup&rdquo;</strong>.</li>
           <li>The system cryptographically validates the code against a &plusmn;30-second time-step window using HMAC-SHA1.</li>
         </ol>
       </div>
@@ -682,7 +682,7 @@ Step 2: Two-Factor Verification Prompt
       {/* 7.1 Transfer to New Phone */}
       <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2.5">
         <div className="flex items-center gap-2 font-bold text-xs text-[#102033] uppercase tracking-wider">
-          <RefreshCw className="w-4 h-4 text-[#006AC7]" />
+          <RefreshCw className="w-4 h-4 text-[#4B7F3A]" />
           <span>7.1 How to Transfer MFA to a New Phone (Device Rotation)</span>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
@@ -783,8 +783,8 @@ Step 2: Two-Factor Verification Prompt
       </div>
 
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-        <div className="flex items-center gap-2 font-bold text-xs text-blue-700">
-          <Smartphone className="w-4 h-4 text-[#006AC7] flex-shrink-0" />
+        <div className="flex items-center gap-2 font-bold text-xs text-[#38662D]">
+          <Smartphone className="w-4 h-4 text-[#4B7F3A] flex-shrink-0" />
           <span>3. Dedicated Physical Device</span>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
@@ -1098,7 +1098,7 @@ export const ScreenCaptureProtectionSection = () => (
       />
       <InfoCard
         icon={<Lock className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="Heuristic Screen Deterrence"
         desc="Hotkey interception (PrintScreen, Ctrl+Shift+S) and window blur handlers provide heuristic deterrence against casual capture, flushing the clipboard on trigger."
       />

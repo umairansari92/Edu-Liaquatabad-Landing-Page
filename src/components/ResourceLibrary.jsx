@@ -10,7 +10,7 @@ const resourceCategories = [
     count: '120+ Books',
     description: 'Official Sindh Textboard PDFs',
     href: '/ebooks',
-    accent: 'blue',
+    accent: 'green',
   },
   {
     icon: FileText,
@@ -18,7 +18,7 @@ const resourceCategories = [
     count: '85+ Documents',
     description: 'Government official notices',
     href: '#circulars',
-    accent: 'blue',
+    accent: 'green',
   },
   {
     icon: GraduationCap,
@@ -78,11 +78,10 @@ export default function ResourceLibrary() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
           {resourceCategories.map((categoryItem) => {
             const Icon = categoryItem.icon;
-            const isBlue = categoryItem.accent === 'blue';
-            const iconColor = isBlue ? '#006AC7' : '#4B7F3A';
-            const iconBg = isBlue ? 'rgba(0,106,199,0.08)' : 'rgba(75,127,58,0.08)';
-            const hoverBorder = isBlue ? 'rgba(0,106,199,0.28)' : 'rgba(75,127,58,0.28)';
-            const countColor = isBlue ? '#006AC7' : '#4B7F3A';
+            const iconColor = '#4B7F3A';
+            const iconBg = 'rgba(75,127,58,0.08)';
+            const hoverBorder = 'rgba(75,127,58,0.30)';
+            const countColor = '#4B7F3A';
 
             return (
               <a
@@ -93,12 +92,12 @@ export default function ResourceLibrary() {
                 onMouseEnter={(mouseEvent) => {
                   mouseEvent.currentTarget.style.borderColor = hoverBorder;
                   mouseEvent.currentTarget.style.transform = 'translateY(-3px)';
-                  mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(0,33,61,0.12)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 12px 40px rgba(16,38,25,0.08)';
                 }}
                 onMouseLeave={(mouseEvent) => {
-                  mouseEvent.currentTarget.style.borderColor = 'rgba(0,106,199,0.10)';
+                  mouseEvent.currentTarget.style.borderColor = 'rgba(75,127,58,0.12)';
                   mouseEvent.currentTarget.style.transform = 'translateY(0)';
-                  mouseEvent.currentTarget.style.boxShadow = '0 8px 30px rgba(0,33,61,0.08)';
+                  mouseEvent.currentTarget.style.boxShadow = '0 8px 30px rgba(16,38,25,0.05)';
                 }}
               >
                 <div
@@ -145,8 +144,8 @@ export default function ResourceLibrary() {
               background: 'rgba(255,255,255,0.60)',
               backdropFilter: 'blur(18px)',
               WebkitBackdropFilter: 'blur(18px)',
-              border: '1px solid rgba(0,106,199,0.10)',
-              boxShadow: '0 8px 30px rgba(0,33,61,0.08)',
+              border: '1px solid rgba(75,127,58,0.15)',
+              boxShadow: '0 8px 30px rgba(16,38,25,0.05)',
             }}
           >
             {featuredBooks.map((featuredBook, bookIndex) => {
@@ -156,10 +155,10 @@ export default function ResourceLibrary() {
                   key={featuredBook.title}
                   className="flex items-center gap-4 px-5 py-3.5 transition-all duration-200"
                   style={{
-                    borderBottom: isLast ? 'none' : '1px solid rgba(0,106,199,0.07)',
+                    borderBottom: isLast ? 'none' : '1px solid rgba(75,127,58,0.10)',
                   }}
                   onMouseEnter={(mouseEvent) => {
-                    mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.02)';
+                    mouseEvent.currentTarget.style.backgroundColor = 'rgba(75,127,58,0.04)';
                   }}
                   onMouseLeave={(mouseEvent) => {
                     mouseEvent.currentTarget.style.backgroundColor = 'transparent';
@@ -190,15 +189,15 @@ export default function ResourceLibrary() {
                   <button
                     className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
                     style={{
-                      color: '#006AC7',
-                      backgroundColor: 'rgba(0,106,199,0.07)',
-                      border: '1px solid rgba(0,106,199,0.12)',
+                      color: '#38662D',
+                      backgroundColor: '#F2F8EF',
+                      border: '1px solid rgba(75,127,58,0.25)',
                     }}
                     onMouseEnter={(mouseEvent) => {
-                      mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.14)';
+                      mouseEvent.currentTarget.style.backgroundColor = '#E3F0DC';
                     }}
                     onMouseLeave={(mouseEvent) => {
-                      mouseEvent.currentTarget.style.backgroundColor = 'rgba(0,106,199,0.07)';
+                      mouseEvent.currentTarget.style.backgroundColor = '#F2F8EF';
                     }}
                   >
                     <Download className="w-3 h-3" />

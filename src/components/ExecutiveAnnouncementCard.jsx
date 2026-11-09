@@ -15,7 +15,7 @@ import {
  * DDO / Admin Executive Announcement Bulletin Card
  * In strict compliance with:
  * - docs/LANDING_PAGE.md (Authoritative Public Gateway & Transparency Engine)
- * - docs/DESIGN.md (V2.0 Frozen Design Constitution: Blue #006AC7, Green #4B7F3A, Glass Cards)
+ * - docs/DESIGN.md (V2.2 Unified Government Green Design System: Green #4B7F3A, Soft Surface #F2F8EF, Forest #102619)
  * - docs/CODE_QUALITY_AND_NAMING_STANDARDS.md (Meaningful, context-aware naming)
  */
 export default function ExecutiveAnnouncementCard({
@@ -69,18 +69,17 @@ export default function ExecutiveAnnouncementCard({
       shouldPulse: false,
     },
     INFO: {
-      badgeBackgroundColor: '#DCEFFF',
-      badgeBorderColor: '#B9DEFF',
-      badgeTextColor: '#006AC7',
+      badgeBackgroundColor: '#E3F0DC',
+      badgeBorderColor: '#C9DFBC',
+      badgeTextColor: '#4B7F3A',
       iconElement: <Info className="w-3.5 h-3.5" />,
       label: 'DEPARTMENTAL DIRECTIVE',
       shouldPulse: false,
     },
-    // TBD: Institutional color token for EVENT type; defaulting to INFO (Brand Blue #006AC7) pending formal institutional specification
     EVENT: {
-      badgeBackgroundColor: '#DCEFFF',
-      badgeBorderColor: '#B9DEFF',
-      badgeTextColor: '#006AC7',
+      badgeBackgroundColor: '#E3F0DC',
+      badgeBorderColor: '#C9DFBC',
+      badgeTextColor: '#4B7F3A',
       iconElement: <Bell className="w-3.5 h-3.5" />,
       label: 'TOWN EDUCATIONAL EVENT',
       shouldPulse: false,
@@ -125,8 +124,8 @@ export default function ExecutiveAnnouncementCard({
             backgroundColor: 'rgba(255, 255, 255, 0.75)',
             backdropFilter: 'blur(18px)',
             WebkitBackdropFilter: 'blur(18px)',
-            border: '1px solid rgba(0, 106, 199, 0.14)',
-            boxShadow: '0 16px 40px rgba(0, 33, 61, 0.06)',
+            border: '1px solid rgba(75, 127, 58, 0.14)',
+            boxShadow: '0 16px 40px rgba(16, 38, 25, 0.06)',
           }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -140,14 +139,14 @@ export default function ExecutiveAnnouncementCard({
                     className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover shadow-md"
                     style={{
                       border: '3px solid #FFFFFF',
-                      boxShadow: '0 8px 24px rgba(0, 106, 199, 0.12)',
+                      boxShadow: '0 8px 24px rgba(75, 127, 58, 0.12)',
                     }}
                   />
                 ) : (
                   <div
                     className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center shadow-md"
                     style={{
-                      background: 'linear-gradient(135deg, #006AC7 0%, #00213D 100%)',
+                      background: 'linear-gradient(135deg, #4B7F3A 0%, #102619 100%)',
                       border: '3px solid #FFFFFF',
                     }}
                   >
@@ -172,7 +171,7 @@ export default function ExecutiveAnnouncementCard({
               </h3>
               <p
                 className="text-xs font-semibold mt-0.5"
-                style={{ color: '#006AC7' }}
+                style={{ color: '#4B7F3A' }}
               >
                 {activeAnnouncement.announcerDesignation}
               </p>
@@ -252,7 +251,7 @@ export default function ExecutiveAnnouncementCard({
               {/* Official Seal / Footer Note */}
               <div
                 className="mt-6 pt-4 flex flex-wrap items-center justify-between gap-3 text-xs"
-                style={{ borderTop: '1px solid rgba(0, 106, 199, 0.10)' }}
+                style={{ borderTop: '1px solid rgba(75, 127, 58, 0.10)' }}
               >
                 <span
                   className="font-medium flex items-center gap-1.5"
@@ -266,7 +265,7 @@ export default function ExecutiveAnnouncementCard({
 
                 <span
                   className="text-[11px] font-semibold"
-                  style={{ color: '#006AC7' }}
+                  style={{ color: '#4B7F3A' }}
                 >
                   Official Public Education Gateway
                 </span>

@@ -46,7 +46,7 @@ export const SupervisorWorkflowsSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTION</div>
-        <div className="text-sm font-black text-[#006AC7]">ASSIGNED CLUSTER</div>
+        <div className="text-sm font-black text-[#4B7F3A]">ASSIGNED CLUSTER</div>
         <div className="text-xs text-[#526477]">Authorized Municipal Schools</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -141,7 +141,7 @@ export const SupervisorWorkflowsSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <InfoCard
         icon={<Briefcase className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="1. Dedicated Supervisor Account"
         desc="Full-time supervisory officers assigned by Town Administration. When signing in, the platform opens directly into the cluster supervision workspace."
       />
@@ -223,7 +223,7 @@ export const SupervisorWorkflowsSection = () => (
 
     <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs mb-6 space-y-3">
       <div className="flex items-center gap-2">
-        <Eye className="w-4 h-4 text-[#006AC7]" />
+        <Eye className="w-4 h-4 text-[#4B7F3A]" />
         <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider">
           Read-Only Institutional Profile Screen
         </h4>
@@ -231,7 +231,7 @@ export const SupervisorWorkflowsSection = () => (
       <p className="text-xs text-[#526477] leading-relaxed">
         Clicking <strong>&ldquo;View Full Profile&rdquo;</strong> on any school card opens the complete institutional overview for that campus. Supervisors can inspect classrooms, enrolled student distributions, teaching rosters, and facilities.
       </p>
-      <div className="p-3 rounded-lg bg-blue-50/70 border border-blue-200 text-xs text-blue-900 leading-relaxed">
+      <div className="p-3 rounded-lg bg-[#F2F8EF]/80 border border-[#C9DFBC] text-xs text-[#102033] leading-relaxed">
         <strong>Important Safety Guard:</strong> When opened by a Supervisor, the school profile runs in <em>Read-Only Inspection Mode</em>. Action controls that modify school records (such as updating school contact info or reassigning class teachers) are automatically disabled. This guarantees that Supervisors can review school records thoroughly without any risk of accidentally altering official school files.
       </div>
     </div>
@@ -376,7 +376,7 @@ export const SupervisorWorkflowsSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <h4 className="font-bold text-xs text-[#102033] uppercase tracking-wider flex items-center gap-1.5">
-          <Users className="w-4 h-4 text-[#006AC7]" />
+          <Users className="w-4 h-4 text-[#4B7F3A]" />
           <span>Staff Directory Oversight</span>
         </h4>
         <p className="text-xs text-[#526477] leading-relaxed">
@@ -436,7 +436,7 @@ export const SupervisorWorkflowsSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <InfoCard
         icon={<Clock className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="Live Class Monitor"
         desc="Check what is happening in any classroom right now. Shows the active period, scheduled subject, assigned teacher, and classroom location in real time."
       />
@@ -464,7 +464,7 @@ export const SupervisorWorkflowsSection = () => (
       {/* Problem 1 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             1
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -485,7 +485,7 @@ export const SupervisorWorkflowsSection = () => (
       {/* Problem 2 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             2
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -506,7 +506,7 @@ export const SupervisorWorkflowsSection = () => (
       {/* Problem 3 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             3
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -527,7 +527,7 @@ export const SupervisorWorkflowsSection = () => (
       {/* Problem 4 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             4
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
@@ -548,7 +548,7 @@ export const SupervisorWorkflowsSection = () => (
       {/* Problem 5 */}
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-blue-50 text-[#006AC7] flex items-center justify-center font-bold text-xs">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
             5
           </div>
           <h4 className="font-bold text-xs text-[#102033]">

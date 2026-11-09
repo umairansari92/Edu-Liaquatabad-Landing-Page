@@ -33,48 +33,48 @@ export const DesignConstitutionSection = () => (
     />
 
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
-      To maintain visual consistency and avoid arbitrary styling across 100+ components, the frontend workspace and landing portal adhere strictly to the <strong>Frozen Design Constitution v2.0</strong>:
+      To maintain visual consistency and avoid arbitrary styling across 100+ components, the frontend workspace and landing portal adhere strictly to the <strong>Unified Government Green Design System v2.2</strong>:
     </p>
 
     <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
-      <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">55%</div>
-        <div className="text-xs font-bold text-[#102033]">BRAND CIVIC BLUE</div>
-        <div className="text-[11px] text-[#526477]">Headers, Primary CTAs, Active States</div>
+      <div className="p-4 rounded-xl bg-[#F2F8EF] border border-[#C9DFBC] text-center">
+        <div className="text-3xl font-black text-[#4B7F3A]">PRIMARY</div>
+        <div className="text-xs font-bold text-[#102033]">GOVERNMENT GREEN</div>
+        <div className="text-[11px] text-[#526477]">#4B7F3A · #38662D · Buttons & Focus</div>
       </div>
-      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-        <div className="text-3xl font-black text-[#102033]">25%</div>
-        <div className="text-xs font-bold text-[#102033]">CANVAS WHITE</div>
-        <div className="text-[11px] text-[#526477]">Card Backgrounds, Surface Layers</div>
+      <div className="p-4 rounded-xl bg-[#F2F8EF]/80 border border-[#C9DFBC] text-center">
+        <div className="text-3xl font-black text-[#38662D]">SURFACE</div>
+        <div className="text-xs font-bold text-[#102033]">SOFT GREEN SURFACES</div>
+        <div className="text-[11px] text-[#526477]">#F2F8EF · #E3F0DC · KPI & Cards</div>
       </div>
-      <div className="p-4 rounded-xl bg-slate-100 border border-slate-300 text-center">
-        <div className="text-3xl font-black text-slate-700">12%</div>
-        <div className="text-xs font-bold text-[#102033]">NEUTRAL SLATE</div>
-        <div className="text-[11px] text-[#526477]">Body Typography, Subtle Borders</div>
+      <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-center text-white">
+        <div className="text-3xl font-black text-emerald-400">FOREST</div>
+        <div className="text-xs font-bold text-white">DEEP FOUNDATION</div>
+        <div className="text-[11px] text-slate-300">#102619 · #183925 · Footers & Hero</div>
       </div>
-      <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
-        <div className="text-3xl font-black text-[#4B7F3A]">≤ 8%</div>
-        <div className="text-xs font-bold text-[#102033]">MUNICIPAL GREEN</div>
-        <div className="text-[11px] text-[#526477]">Verified Badges, Success Badges Only</div>
+      <div className="p-4 rounded-xl bg-white border border-slate-200 text-center">
+        <div className="text-3xl font-black text-[#102033]">CANVAS</div>
+        <div className="text-xs font-bold text-[#102033]">CLEAN WHITE</div>
+        <div className="text-[11px] text-[#526477]">#FFFFFF · Breathing Space & Text</div>
       </div>
     </div>
 
-    <Callout type="warning" title="THE 8% GREEN RULE">
-      Municipal green (<code>#4B7F3A</code>) represents the official crest of the Government of Sindh. It is strictly reserved for verified civic credentials, passing grades, and successful inspections. Overusing green as a background or generic button color violates the Design Constitution.
+    <Callout type="success" title="100% PURE GOVERNMENT GREEN UNIFIED THEME">
+      All institutional actions, navigation highlights, KPI badges, and civic verification indicators follow the single-family Government Green scale (Green 50 through Green 700 and Forest 800). All legacy blue tokens have been completely removed across the system.
     </Callout>
 
     <ReasoningCard
-      title="Color Area Rationale (55/25/12/8 Mathematical Proportion)"
-      decision="A mathematically frozen color area ratio: 55% Brand Civic Blue (#006AC7), 25% Canvas White (#FFFFFF), 12% Neutral Slate (#526477), and ≤ 8% Municipal Green (#4B7F3A)."
-      whyItWon="Municipal civil servants and teachers spend 6 to 8 hours daily reading tabular data, marksheets, and attendance rosters on budget desktop monitors. Bright multi-colored dashboards or unconstrained CSS utility palettes cause eye strain and degrade legibility. High-contrast Brand Blue against Canvas White establishes authoritative government dignity while ensuring accessibility compliance (WCAG AAA contrast)."
-      alternativesRejected="Generic SaaS dark mode by default (rejected: poor legibility under harsh ambient sunlight in municipal school offices); Material Design multi-accent palette (rejected: introduces rainbow visual clutter that dilutes official institutional gravity); Unrestricted Tailwind utility classes (rejected: causes visual drift across components)."
-      tradeOffs="Requires frontend developers to adhere strictly to semantic tokens in client/src/index.css rather than inventing arbitrary inline hex codes."
+      title="Single-Family Government Green Architecture Rationale"
+      decision="A unified Government Green design system: Primary Government Green (#4B7F3A, #38662D), Soft Surfaces (#F2F8EF, #E3F0DC), Forest Foundations (#102619), Canvas White (#FFFFFF), and Neutral Slate (#526477)."
+      whyItWon="Municipal civil servants and teachers spend 6 to 8 hours daily reading tabular data, marksheets, and attendance rosters on budget desktop monitors. A unified Government Green palette provides high contrast, eliminates visual clash between competing accent colors, and aligns directly with the official institutional identity of the Sindh Education Department."
+      alternativesRejected="Legacy Civic Blue scale (rejected: created visual dissonance with the official Government Green crest and diluted institutional identity); Generic SaaS dark mode by default (rejected: poor legibility under harsh ambient sunlight in municipal school offices); Unrestricted Tailwind utility classes (rejected: causes visual drift across components)."
+      tradeOffs="Requires frontend developers to adhere strictly to semantic tokens in client/src/styles/index.css rather than inventing arbitrary inline hex codes."
     />
 
     <FailureRecoveryCard
       failureMode="Component author introduces non-standard colors or inconsistent button styling."
       impact="Visual fragmentation, degraded contrast ratios, and violation of official civic design standards."
-      handling="Automated linting and CSS token isolation: client/src/index.css defines root CSS custom properties. Arbitrary hex codes trigger design system review flags."
+      handling="Automated linting and CSS token isolation: client/src/styles/index.css defines root CSS custom properties. Arbitrary hex codes trigger design system review flags."
       recovery="Refactor component to use established primitives from client/src/components/common (DocHeader, InfoCard, StatusBadge)."
     />
 
@@ -84,14 +84,14 @@ export const DesignConstitutionSection = () => (
         {
           category: 'Accessibility & Contrast',
           question: 'Why is Dark Mode not enabled as the primary default theme for the municipal portal?',
-          answer: 'Government school administrative offices in Karachi typically operate with high ambient daylight and budget LCD/CRT monitors. Dark backgrounds create glare, reflections, and severe ocular fatigue when staff read dense 50-row student marksheets and attendance grids for hours. Light theme (Canvas White with Brand Blue headers) provides maximum optical contrast.',
-          evidence: 'docs/DOCUMENTATION_STANDARDS.md:14-35 • client/src/index.css:1-50',
+          answer: 'Government school administrative offices in Karachi typically operate with high ambient daylight and budget LCD/CRT monitors. Dark backgrounds create glare, reflections, and severe ocular fatigue when staff read dense 50-row student marksheets and attendance grids for hours. Light theme (Canvas White with Government Green headers and soft green cards) provides maximum optical contrast.',
+          evidence: 'docs/DESIGN.md • client/src/styles/index.css:1-50',
         },
         {
           category: 'Institutional Crest',
-          question: 'Why is Municipal Green (#4B7F3A) strictly capped at 8% of the surface area?',
-          answer: 'In municipal administration, green is the color of the official Government of Sindh seal and signifies legally verified status (e.g. verified CNIC, passed inspection, verified transfer). If green were used casually for generic buttons, headers, or decorative borders, users would lose the ability to instinctively spot verified versus unverified institutional records.',
-          evidence: 'docs/DOCUMENTATION_STANDARDS.md:40-65 • client/src/components/common/StatusBadge.jsx',
+          question: 'Why was the system migrated to a 100% Pure Government Green unified theme?',
+          answer: 'The Government of Sindh official crest and institutional branding is rooted in Government Green (#4B7F3A). Unifying all UI components, buttons, navigation bars, and data badges under this single coherent palette reinforces municipal authority and guarantees WCAG AAA visual contrast across all administrative screens.',
+          evidence: 'docs/DESIGN.md • landing-page/src/app/globals.css',
         },
       ]}
     />
@@ -116,7 +116,7 @@ export const ClientArchitectureSection = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <InfoCard
         icon={<Cpu className="w-5 h-5" />}
-        color="blue"
+        color="green"
         title="9 Normalized Redux Slices"
         desc="Slices manage auth, schools, teachers, students, attendance, exams, transfers, documents, and notifications independently."
       />

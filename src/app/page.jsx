@@ -33,7 +33,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* 1. Hero Section with Live Initial Metrics — #F0F8FF */}
+      {/* 1. Hero Section with Live Initial Metrics — #F2F8EF */}
       <HeroSection initialMetrics={townStats.metrics} />
 
       {/* 2. DDO Executive Announcement Bulletin (Conditionally Rendered) — #F8FBFD */}
@@ -55,7 +55,7 @@ export default async function HomePage() {
               <span className="section-label">
                 <span
                   className="w-1.5 h-1.5 rounded-full inline-block"
-                  style={{ backgroundColor: '#006AC7' }}
+                  style={{ backgroundColor: '#4B7F3A' }}
                 />
                 Institutional Mandate & Mission
               </span>
@@ -93,7 +93,7 @@ export default async function HomePage() {
                 className="font-bold text-base flex items-center gap-2 mb-4"
                 style={{ color: '#102033', fontFamily: 'var(--font-inter)' }}
               >
-                <School className="w-5 h-5" style={{ color: '#006AC7' }} />
+                <School className="w-5 h-5" style={{ color: '#4B7F3A' }} />
                 One Connected Education Network
               </h3>
               <p className="text-sm leading-relaxed" style={{ color: '#526477' }}>
@@ -141,7 +141,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. School Finder — #F0F8FF (rendered inside component) */}
+      {/* 5. School Finder — #F2F8EF (rendered inside component) */}
       <SchoolFinder />
 
       {/* 6. Educational Programs — #F8FBFD */}
@@ -153,7 +153,7 @@ export default async function HomePage() {
       {/* 8. Leadership Team — #F8FBFD */}
       <LeadershipTeam />
 
-      {/* 9. Public Notices — #F0F8FF */}
+      {/* 9. Public Notices — #F2F8EF */}
       <PublicNotices />
 
       {/* 10. Resource Library — #FFFFFF */}
@@ -165,7 +165,7 @@ export default async function HomePage() {
       {/* 12. Final CTA Banner */}
       <section
         className="py-16 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: '#F0F8FF' }}
+        style={{ backgroundColor: '#F2F8EF' }}
       >
         <div className="section-container">
           <div

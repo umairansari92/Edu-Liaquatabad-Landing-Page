@@ -49,7 +49,7 @@ export default function CampusLifeGallery() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <span className="section-label justify-center">
-            <Camera className="w-3.5 h-3.5" style={{ color: '#006AC7' }} />
+            <Camera className="w-3.5 h-3.5" style={{ color: '#4B7F3A' }} />
             Campus Life & Learning Across Liaquatabad
           </span>
           <h2
@@ -84,7 +84,7 @@ export default function CampusLifeGallery() {
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <span
                   className="px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
-                  style={{ backgroundColor: '#006AC7' }}
+                  style={{ backgroundColor: '#4B7F3A' }}
                 >
                   {galleryItem.category}
                 </span>

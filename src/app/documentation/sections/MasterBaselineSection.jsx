@@ -52,7 +52,7 @@ export const MasterBaselineSection = () => (
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">INSPECTION DATE</div>
-        <div className="text-sm font-black text-[#006AC7]">October 12, 2026</div>
+        <div className="text-sm font-black text-[#4B7F3A]">October 12, 2026</div>
         <div className="text-xs text-[#526477]">Local Dev Host • Antigravity IDE</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -79,7 +79,7 @@ export const MasterBaselineSection = () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <InfoCard
           icon={<Terminal className="w-5 h-5" />}
-          color="blue"
+          color="green"
           title="Server Repository (BFF & REST API)"
           desc="Express 4.21.2 REST API & BFF, Node.js 20+ Pure ESM ('type': 'module'), Mongoose 8.10.1, Argon2id (@node-rs/argon2), Zod 3.24.2, PDFKit 0.20.1."
         />
@@ -154,7 +154,7 @@ export const MasterBaselineSection = () => (
 
     <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2 mb-6">
       <div className="flex items-center gap-2 text-xs font-bold text-[#102033] uppercase tracking-wider">
-        <GitBranch className="w-4 h-4 text-[#006AC7]" />
+        <GitBranch className="w-4 h-4 text-[#4B7F3A]" />
         <span>Git Repository Ownership Boundaries</span>
       </div>
       <p className="text-xs text-[#526477] leading-relaxed">
@@ -243,7 +243,7 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
             </tr>
             <tr className="hover:bg-slate-50/50">
               <td className="p-3 font-bold text-[#102033]">ADMIN (Town)</td>
-              <td className="p-3 text-center font-bold text-[#006AC7]">80</td>
+              <td className="p-3 text-center font-bold text-[#4B7F3A]">80</td>
               <td className="p-3"><code>TOWN</code></td>
               <td className="p-3 text-center font-bold text-[#102033]">24</td>
               <td className="p-3">Forbidden: users.assign_role, ROOT_ADMIN assignment</td>
@@ -317,7 +317,7 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
           <div className="font-bold text-xs text-[#102033] flex items-center gap-1.5">
-            <Lock className="w-3.5 h-3.5 text-blue-600" />
+            <Lock className="w-3.5 h-3.5 text-[#4B7F3A]" />
             <span>Public Authentication Routes</span>
           </div>
           <ul className="text-xs text-[#526477] space-y-1 list-disc list-inside">
@@ -361,7 +361,7 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
           { name: 'timetableSlice.js', desc: 'Timetable grid, period allocations' },
         ].map((s, idx) => (
           <div key={idx} className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs space-y-1">
-            <div className="font-bold text-xs text-[#006AC7]">{s.name}</div>
+            <div className="font-bold text-xs text-[#4B7F3A]">{s.name}</div>
             <div className="text-[11px] text-[#526477] leading-tight">{s.desc}</div>
           </div>
         ))}
@@ -382,8 +382,8 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
     <SectionTitle>5. Backend Route, Controller, Service &amp; Model Inventory</SectionTitle>
 
     <div className="space-y-4 mb-6">
-      <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 space-y-2">
-        <div className="font-bold text-xs text-[#006AC7] uppercase tracking-wider">The 26 vs 27 Route Discrepancy Reconciliation</div>
+      <div className="p-4 rounded-xl bg-[#F2F8EF]/80 border border-[#C9DFBC] space-y-2">
+        <div className="font-bold text-xs text-[#4B7F3A] uppercase tracking-wider">The 26 vs 27 Route Discrepancy Reconciliation</div>
         <p className="text-xs text-[#526477] leading-relaxed">
           Previous audit reports contained contradictory statements describing &ldquo;26 mounted route groups&rdquo; versus &ldquo;27 routers&rdquo;. Source code forensic analysis establishes the exact structural reality:
         </p>
@@ -398,7 +398,7 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
           <div className="font-bold text-xs text-[#102033] flex items-center gap-2">
-            <Database className="w-4 h-4 text-[#006AC7]" />
+            <Database className="w-4 h-4 text-[#4B7F3A]" />
             <span>Mongoose Models (server/src/models/ &mdash; Exactly 32 Schema Models)</span>
           </div>
           <div className="text-[11px] text-[#526477] font-mono leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200">
@@ -564,7 +564,7 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
 
     <div className="p-5 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-3 mb-6">
       <div className="font-bold text-xs text-[#102033] uppercase tracking-wider flex items-center gap-2">
-        <Award className="w-4 h-4 text-[#006AC7]" />
+        <Award className="w-4 h-4 text-[#4B7F3A]" />
         <span>The Transfer Authority Correction</span>
       </div>
       <p className="text-xs text-[#526477] leading-relaxed">
@@ -647,8 +647,8 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
         <div className="text-xs font-bold text-[#102033]">TEST FILES ON DISK</div>
         <div className="text-[11px] text-[#526477]">34 Core Chained + 21 Adversarial</div>
       </div>
-      <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-center">
-        <div className="text-3xl font-black text-[#006AC7]">1,450+</div>
+      <div className="p-4 rounded-xl bg-[#F2F8EF] border border-[#C9DFBC] text-center">
+        <div className="text-3xl font-black text-[#4B7F3A]">1,450+</div>
         <div className="text-xs font-bold text-[#102033]">AUTOMATED ASSERTIONS</div>
         <div className="text-[11px] text-[#526477]">100% Passing • 0 Failures</div>
       </div>
@@ -717,8 +717,8 @@ STUDENT/PARENT(10)──► Beneficiary Self / Child Scope (Read-Only)`}
       </div>
 
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-        <div className="font-bold text-xs text-blue-700 flex items-center gap-2">
-          <BriefcaseIcon className="w-4 h-4 text-[#006AC7]" />
+        <div className="font-bold text-xs text-[#38662D] flex items-center gap-2">
+          <BriefcaseIcon className="w-4 h-4 text-[#4B7F3A]" />
           <span>P1: Core Operational Workflows</span>
         </div>
         <ul className="text-xs text-[#526477] space-y-1.5 list-disc list-inside">
