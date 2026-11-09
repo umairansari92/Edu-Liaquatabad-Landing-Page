@@ -14,20 +14,9 @@ import {
   IdCard,
   CheckCircle2,
   AlertTriangle,
-  AlertCircle,
-  HelpCircle,
   Eye,
-  RefreshCw,
-  Sparkles,
-  Lock,
-  Download,
-  Upload,
-  ArrowRight,
-  CheckSquare,
-  FileCheck,
   Briefcase,
-  UserCheck,
-  Search,
+  Copy,
 } from 'lucide-react';
 
 import {
@@ -35,7 +24,6 @@ import {
   SectionTitle,
   InfoCard,
   ComparisonTable,
-  TerminalBlock,
   Callout,
   Steps,
   FaqItem,
@@ -52,31 +40,31 @@ export const SupervisorWorkflowsSection = () => (
     {/* Metadata Ribbon */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">ROLE CODE &amp; LEVEL</div>
-        <div className="text-sm font-black text-[#102033]">SUPERVISOR &bull; Level 60</div>
-        <div className="text-xs text-[#526477]">Academic Cluster Field Inspector</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">ROLE</div>
+        <div className="text-sm font-black text-[#102033]">ACADEMIC SUPERVISOR</div>
+        <div className="text-xs text-[#526477]">Cluster Field Inspector</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTIONAL SCOPE</div>
-        <div className="text-sm font-black text-[#006AC7]">ASSIGNED_SCHOOLS</div>
-        <div className="text-xs text-[#526477]">Explicit Municipal Cluster Roster</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">JURISDICTION</div>
+        <div className="text-sm font-black text-[#006AC7]">ASSIGNED CLUSTER</div>
+        <div className="text-xs text-[#526477]">Authorized Municipal Schools</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
         <div className="text-[10px] font-extrabold uppercase text-[#526477]">WORKSPACE STATUS</div>
-        <div className="text-sm font-black text-[#4B7F3A]">IMPLEMENTED &amp; VERIFIED</div>
+        <div className="text-sm font-black text-[#4B7F3A]">ACTIVE &amp; VERIFIED</div>
         <div className="text-xs text-[#526477]">8 Dedicated Modules Active</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-[#526477]">DUAL-DUTY SUPPORT</div>
-        <div className="text-sm font-black text-purple-600">FULL WORKSPACE SWITCHING</div>
-        <div className="text-xs text-[#526477]">Teacher/HM + Supervisor Duties</div>
+        <div className="text-[10px] font-extrabold uppercase text-[#526477]">DUAL-DUTY WORKSPACE</div>
+        <div className="text-sm font-black text-purple-600">WORKSPACE SWITCHING</div>
+        <div className="text-xs text-[#526477]">Teacher / HM + Supervisor</div>
       </div>
     </div>
 
     {/* ── Section 1: The Supervisor Role & Core Mission ── */}
     <SectionTitle>1. Understanding the Academic Supervisor Role</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      In the public education system of Liaquatabad Town, an <strong>Academic Supervisor</strong> serves as an independent field officer. Supervisors bridge the gap between central Town Municipal Administration and individual school buildings. They conduct on-site physical audits, monitor student and faculty attendance trends, inspect campus hygiene and safety, and ensure that government curriculum standards are being met.
+      In the public education system of Liaquatabad Town, an <strong>Academic Supervisor</strong> serves as an independent field oversight officer. Supervisors bridge the gap between central Town Municipal Administration and individual school buildings. They conduct on-site physical audits, monitor student and faculty attendance trends, inspect campus hygiene and safety, and verify that instructional standards are being maintained.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -90,7 +78,7 @@ export const SupervisorWorkflowsSection = () => (
         </div>
         <ul className="text-xs text-[#526477] space-y-2 list-disc list-inside leading-relaxed">
           <li>
-            <strong>Cluster-Wide School Visibility:</strong> Review institutional profiles, student enrollments, faculty counts, and operating shifts for all schools in your assigned cluster.
+            <strong>Cluster-Wide School Visibility:</strong> Review institutional profiles, student enrollments, faculty counts, and operating shifts for all schools within your authorized cluster.
           </li>
           <li>
             <strong>Unannounced Field Inspections:</strong> Conduct on-site audits, record physical headcounts, assess drinking water and electrical safety, and submit official inspection reports.
@@ -99,7 +87,7 @@ export const SupervisorWorkflowsSection = () => (
             <strong>Remedial Directives:</strong> Issue prioritized corrective action items (High, Medium, Low) to school leadership for safety or academic improvements.
           </li>
           <li>
-            <strong>Signed Copy Archives:</strong> Upload scanned, signed copies of physical inspection orders directly into the central municipal record.
+            <strong>Signed Copy Archives:</strong> Upload scanned, signed copies of physical inspection orders (PDF format, up to 10MB) directly into the central municipal record.
           </li>
           <li>
             <strong>Attendance Monitoring:</strong> Audit daily and monthly student attendance compliance rates without altering classroom records.
@@ -126,16 +114,16 @@ export const SupervisorWorkflowsSection = () => (
         </div>
         <ol className="text-xs text-[#526477] space-y-2.5 list-decimal list-inside leading-relaxed">
           <li>
-            <strong className="text-red-900">No Cross-Cluster Access:</strong> A Supervisor can only access schools explicitly assigned to their cluster. Any attempt to inspect or query an unassigned school is blocked automatically and logged as a security event.
+            <strong className="text-red-900">No Cross-Cluster Access:</strong> A Supervisor can only access schools explicitly assigned to their cluster. Any attempt to inspect or query an unassigned school is blocked automatically by access boundaries.
           </li>
           <li>
-            <strong className="text-red-900">Read-Only Institutional Records:</strong> While Supervisors can view school details and student lists, they cannot change school settings, operating hours, class names, or student General Register (GR) profiles.
+            <strong className="text-red-900">Read-Only Institutional Records:</strong> While Supervisors can view school profiles and student lists, they cannot change school configurations, operating hours, class names, or student General Register (GR) profiles.
           </li>
           <li>
-            <strong className="text-red-900">No Attendance Marking Authority:</strong> Attendance must be recorded directly by classroom teachers and verified by Headmasters. Supervisors audit attendance data; they do not mark or change daily attendance logs.
+            <strong className="text-red-900">No Attendance Marking Authority:</strong> Attendance must be recorded directly by classroom teachers and verified by Headmasters. Supervisors audit attendance data; they do not mark or modify daily attendance logs.
           </li>
           <li>
-            <strong className="text-red-900">No Final Transfer Approval:</strong> Supervisors can propose faculty transfers, but physical joining must be approved by the destination Headmaster, and transfer orders can only be finalized or canceled by Town Administrators.
+            <strong className="text-red-900">No Final Transfer Approval:</strong> Supervisors can propose faculty transfers between cluster schools, but physical joining must be approved by the destination Headmaster, and transfer orders can only be finalized or canceled by Town Administrators.
           </li>
           <li>
             <strong className="text-red-900">No Inspection Self-Closure:</strong> Once an inspection report is submitted, only central Town Administrators can conduct formal reviews, request revisions, or mark an inspection officially closed.
@@ -147,7 +135,7 @@ export const SupervisorWorkflowsSection = () => (
     {/* ── Section 2: Dual Responsibilities & Workspace Switching ── */}
     <SectionTitle>2. Dual Responsibilities &amp; Workspace Switching</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      In public education administration, senior educators frequently fulfill dual roles. For example, a senior teacher might teach regular morning science classes at their home school while also serving as an Academic Supervisor for a cluster of four neighboring schools.
+      In public education administration, staff members may carry dual responsibilities. For example, a senior teacher might teach regular morning classes at their base school while also serving as an Academic Supervisor for a cluster of neighboring schools.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -155,24 +143,24 @@ export const SupervisorWorkflowsSection = () => (
         icon={<Briefcase className="w-5 h-5" />}
         color="blue"
         title="1. Dedicated Supervisor Account"
-        desc="Full-time supervisory officers appointed directly by Town Administration. When they sign in, the system opens directly into the cluster supervision workspace."
+        desc="Full-time supervisory officers assigned by Town Administration. When signing in, the platform opens directly into the cluster supervision workspace."
       />
       <InfoCard
         icon={<GraduationCap className="w-5 h-5" />}
         color="emerald"
         title="2. Teacher + Supervisor Duties"
-        desc="Educators who manage classroom teaching at their base school while conducting field visits for assigned cluster schools. Their teaching timetable and classes remain intact."
+        desc="Educators who manage classroom teaching at their base school while conducting field visits for assigned cluster schools. Their classroom schedules and student rosters remain active."
       />
       <InfoCard
         icon={<Building2 className="w-5 h-5" />}
         color="purple"
         title="3. Headmaster + Supervisor Duties"
-        desc="School executives managing their own campus while also providing cluster-level oversight for nearby feeder schools. Both duty scopes are preserved independently."
+        desc="School executives managing their own campus while also providing cluster-level oversight for neighboring schools. Both duty scopes operate independently."
       />
     </div>
 
     <Callout type="info" title="How to Switch Your Active Workspace">
-      If you hold dual responsibilities, you do not need multiple logins or separate accounts. Click the <strong>Mode Switcher</strong> located at the top of your dashboard. Choose whether you want to work as a <strong>Teacher</strong> (to view your timetable and mark attendance), a <strong>Headmaster</strong> (to manage school records), or a <strong>Supervisor</strong> (to inspect cluster schools). The application switches instantly while keeping your identity and service record unified.
+      If you hold dual responsibilities, you use a single unified account rather than multiple logins. Click the <strong>Mode Switcher</strong> located at the top of your dashboard. Choose whether you want to work as a <strong>Teacher</strong> (to view your timetable and mark classroom attendance), a <strong>Headmaster</strong> (to manage your campus), or a <strong>Supervisor</strong> (to inspect cluster schools). Switching workspaces updates your active dashboard tools and data views immediately while keeping your single login and user identity unified.
     </Callout>
 
     {/* ── Section 3: The Supervisor Workspace & Navigation ── */}
@@ -187,12 +175,12 @@ export const SupervisorWorkflowsSection = () => (
         {
           left: 'Overview',
           right:
-            'A high-level command center showing key metrics: total assigned schools, average cluster attendance rate, active inspections, and pending staff transfers. Also provides 1-click copying of official inspection briefings for administrative reporting.',
+            'A central command center displaying four real-time metrics: Total Assigned Schools, Average Cluster Attendance Rate, Active/Pending Inspections, and Active Staff Transfers. Also provides a "Copy Briefing Summary" button that formats a summary briefing of cluster statistics to your clipboard for administrative reporting.',
         },
         {
           left: 'Inspections',
           right:
-            'The core field inspection hub. Create new school inspection reports using standardized checklists, track draft and submitted audits, generate official PDFs, and upload signed office copies.',
+            'The core field inspection hub. Create new school inspection reports using standardized checklists, track draft and submitted audits, generate official formatted PDFs, and upload signed office copies.',
         },
         {
           left: 'Schools',
@@ -202,22 +190,22 @@ export const SupervisorWorkflowsSection = () => (
         {
           left: 'Attendance',
           right:
-            'Cluster-wide attendance health monitoring. Review overall percentage benchmarks, identify schools requiring compliance intervention, and audit monthly working day logs.',
+            'Cluster-wide attendance health monitoring. Review overall percentage benchmarks, identify schools requiring compliance follow-up, and audit monthly working day logs.',
         },
         {
           left: 'Staff Directory',
           right:
-            'A searchable roster of teaching faculty and non-teaching support personnel assigned across your cluster schools. Filter by institution and view official pay scale (BPS) designations.',
+            'A searchable roster of teaching faculty and non-teaching support personnel assigned across your cluster schools. Filter by institution and category (Teaching, Non-Teaching, Parents) to view designations and campus postings.',
         },
         {
           left: 'Student Directory',
           right:
-            'A centralized roster of enrolled students across all assigned schools. Search by student name, General Register (GR) number, or parent details with instant search filtering.',
+            'A centralized roster of enrolled students across all assigned cluster schools. Filter by school, gender, and enrollment status, or search by student name, General Register (GR) number, or parent details.',
         },
         {
           left: 'Staff Transfers',
           right:
-            'Track ongoing inter-school teacher transfer directives affecting your cluster. Initiate transfer recommendations and monitor relief and joining statuses.',
+            'Track ongoing inter-school teacher transfer directives affecting your cluster. Initiate transfer recommendations between assigned schools and monitor relief and joining statuses.',
         },
         {
           left: 'Live Monitor',
@@ -230,7 +218,7 @@ export const SupervisorWorkflowsSection = () => (
     {/* ── Section 4: Cluster Schools Directory & Read-Only Profiles ── */}
     <SectionTitle>4. Reviewing Assigned Schools &amp; School Profiles</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The <strong>Schools</strong> tab gives Supervisors full operational visibility into each campus under their supervision. You can quickly see the school level, operating shift, campus address, Headmaster contact information, student enrollment counts, and faculty numbers.
+      The <strong>Schools</strong> tab gives Supervisors operational visibility into each campus under their supervision. You can quickly view the school level, operating shift, campus address, Headmaster contact details, student enrollment counts, and faculty numbers.
     </p>
 
     <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs mb-6 space-y-3">
@@ -241,17 +229,17 @@ export const SupervisorWorkflowsSection = () => (
         </h4>
       </div>
       <p className="text-xs text-[#526477] leading-relaxed">
-        Clicking <strong>&ldquo;View Full Profile&rdquo;</strong> on any school card opens the complete institutional dashboard for that school. Supervisors can inspect classrooms, enrolled student distributions, teaching rosters, and facilities.
+        Clicking <strong>&ldquo;View Full Profile&rdquo;</strong> on any school card opens the complete institutional overview for that campus. Supervisors can inspect classrooms, enrolled student distributions, teaching rosters, and facilities.
       </p>
       <div className="p-3 rounded-lg bg-blue-50/70 border border-blue-200 text-xs text-blue-900 leading-relaxed">
-        <strong>Important Safety Guard:</strong> When opened by a Supervisor, the school profile runs in <em>Read-Only Inspection Mode</em>. Action buttons that modify school records (such as updating school contact details or reassigning class teachers) are automatically disabled. This guarantees that Supervisors can review school records thoroughly without any risk of accidentally changing official school files.
+        <strong>Important Safety Guard:</strong> When opened by a Supervisor, the school profile runs in <em>Read-Only Inspection Mode</em>. Action controls that modify school records (such as updating school contact info or reassigning class teachers) are automatically disabled. This guarantees that Supervisors can review school records thoroughly without any risk of accidentally altering official school files.
       </div>
     </div>
 
     {/* ── Section 5: The Field Inspection Workflow ── */}
     <SectionTitle>5. The Step-by-Step Field Inspection Process</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Field inspections provide objective, verifiable data regarding school conditions, teacher attendance, and classroom learning. The platform standardizes every visit into a reliable, multi-point evaluation.
+      Field inspections provide structured, verifiable data regarding school conditions, teacher attendance, and classroom learning. The platform organizes every visit into a standardized, multi-point evaluation.
     </p>
 
     <Steps
@@ -274,7 +262,7 @@ export const SupervisorWorkflowsSection = () => (
         {
           step: '4',
           title: 'Assign Grade & Issue Remedial Directives',
-          desc: 'Assign an overall visit grade (A, B, C, or D). If deficiencies exist, add prioritized remedial directives (High, Medium, or Low) with clear completion deadlines for the school administration.',
+          desc: 'Assign an overall visit grade (A, B, C, or D) and summary score. If deficiencies exist, add prioritized remedial directives (High, Medium, or Low) with clear completion deadlines for the school administration.',
         },
         {
           step: '5',
@@ -284,7 +272,7 @@ export const SupervisorWorkflowsSection = () => (
         {
           step: '6',
           title: 'Upload Official Signed Office Copy',
-          desc: 'Download the authoritative inspection report as a formatted PDF, obtain necessary physical signatures on-site, and upload the signed document (PDF only, up to 10MB) to complete the official record.',
+          desc: 'Download the inspection report as a formatted PDF, obtain necessary physical signatures on-site, and upload the signed document (PDF only, up to 10MB) to complete the official record.',
         },
       ]}
     />
@@ -299,7 +287,7 @@ export const SupervisorWorkflowsSection = () => (
           {
             left: 'DRAFT',
             right:
-              'The report is currently being prepared by the Supervisor. You can continue editing scores, notes, and directives until you are ready to submit.',
+              'The report is currently being prepared by the Supervisor. You can continue updating scores, checklists, notes, and directives until you are ready to submit.',
           },
           {
             left: 'SUBMITTED',
@@ -309,12 +297,12 @@ export const SupervisorWorkflowsSection = () => (
           {
             left: 'ACTION_REQUIRED',
             right:
-              'The visit identified critical safety or academic concerns (e.g. Grade C or D, broken facilities, or severe headcount discrepancies). Immediate follow-up is assigned.',
+              'The visit identified critical safety or academic concerns (such as Grade C or D ratings, broken sanitation facilities, or severe headcount discrepancies). Immediate follow-up is assigned.',
           },
           {
             left: 'UNDER_REVIEW',
             right:
-              'Town Municipal Officers are actively reviewing the inspection findings and coordinating necessary municipal resources or inquiries.',
+              'Town Municipal Officers are actively reviewing the inspection findings and coordinating necessary departmental follow-up.',
           },
           {
             left: 'REVIEWED',
@@ -329,16 +317,19 @@ export const SupervisorWorkflowsSection = () => (
           {
             left: 'CLOSED',
             right:
-              'All remedial actions have been confirmed completed by Town Administration. The inspection record is permanently archived and cannot be changed.',
+              'All remedial actions have been confirmed completed by Town Administration. The inspection record is permanently archived and cannot be modified.',
           },
         ]}
       />
+      <p className="text-[11px] text-[#526477] italic">
+        Note: The letter grading thresholds (A, B, C, D) are operational working defaults built into the dashboard to highlight areas needing attention, rather than statutory gazetted standards.
+      </p>
     </div>
 
     {/* ── Section 6: Attendance Compliance Standards ── */}
     <SectionTitle>6. Monitoring Attendance Compliance</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Regular student and faculty attendance is vital for quality public education. The <strong>Attendance</strong> tab gives Supervisors real-time cluster averages and categorizes schools into standard government compliance tiers:
+      Regular student and faculty attendance is vital for quality public education. The <strong>Attendance</strong> tab gives Supervisors real-time cluster averages and categorizes schools into operational health indicators:
     </p>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -372,7 +363,11 @@ export const SupervisorWorkflowsSection = () => (
       </div>
     </div>
 
-    {/* ── Section 7: Staff Rosters, Student Directory & Smart Caching ── */}
+    <Callout type="info" title="Operational Health Indicator Note">
+      These percentage tiers represent operational health benchmarks configured in the dashboard to help supervisors spot attendance drops quickly. They serve as administrative monitoring guides rather than statutory legislative standards. Daily attendance marking remains the sole responsibility of classroom teachers and Headmasters.
+    </Callout>
+
+    {/* ── Section 7: Staff Rosters, Student Directory & Caching ── */}
     <SectionTitle>7. Working with Staff and Student Directories</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
       Supervisors have access to verified directories for both school personnel and enrolled students across their assigned cluster.
@@ -385,7 +380,7 @@ export const SupervisorWorkflowsSection = () => (
           <span>Staff Directory Oversight</span>
         </h4>
         <p className="text-xs text-[#526477] leading-relaxed">
-          Search all teachers and non-teaching support staff (such as peons and lab attendants) assigned to your cluster. You can check official BPS salary grades, school postings, and contact information. This ensures that ghost employees cannot be hidden on school rosters.
+          Search all teachers and non-teaching support staff (such as peons and support personnel) assigned to your cluster. You can check designations, school postings, and contact information. This ensures that staffing allocations remain transparent across institutions.
         </p>
       </div>
 
@@ -395,7 +390,7 @@ export const SupervisorWorkflowsSection = () => (
           <span>Student Directory &amp; Fast Searching</span>
         </h4>
         <p className="text-xs text-[#526477] leading-relaxed">
-          Look up enrolled students by name, General Register (GR) number, or parent details. The system uses smart background caching: once student data is loaded, switching between tabs is instantaneous with zero annoying loading spinners or screen flicker.
+          Look up enrolled students by name, General Register (GR) number, or parent details. When cluster student records are already loaded and no new search filters have been applied, switching back to this tab displays existing data immediately, reducing unnecessary network delays during field visits.
         </p>
       </div>
     </div>
@@ -403,7 +398,7 @@ export const SupervisorWorkflowsSection = () => (
     {/* ── Section 8: Staff Transfers ── */}
     <SectionTitle>8. Managing Staff Transfers: Initiation vs. Approval</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      Staff transfers in municipal government schools must follow strict administrative protocol. To prevent arbitrary personnel changes or operational confusion, the platform separates transfer responsibilities cleanly:
+      Staff transfers in municipal government schools must follow formal administrative protocol. To prevent arbitrary personnel movements or operational disruption, the platform separates transfer responsibilities cleanly:
     </p>
 
     <ComparisonTable
@@ -417,7 +412,7 @@ export const SupervisorWorkflowsSection = () => (
         {
           left: '2. Relieving Order',
           right:
-            'The releasing school Headmaster completes the relieving checklist, verifying that classroom materials and records have been handed over.',
+            'The releasing school Headmaster completes the relieving checklist, confirming that classroom materials and records have been handed over.',
         },
         {
           left: '3. Joining Approval',
@@ -462,7 +457,7 @@ export const SupervisorWorkflowsSection = () => (
     {/* ── Section 10: Real Problems We Encountered & How We Solved Them ── */}
     <SectionTitle>10. Real Improvements We Made to the Supervisor Experience</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      During user testing and field trials, our team identified several frustrating usability challenges. Here is what we found, what we improved, and how the platform behaves now:
+      During user testing and field trials, our team identified several usability challenges. Here is what we found, what we improved, and how the platform behaves now:
     </p>
 
     <div className="space-y-4 mb-8">
@@ -477,7 +472,7 @@ export const SupervisorWorkflowsSection = () => (
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> On laptops and desktop monitors, users saw two navigation menus at the same time: the main left sidebar and an extra row of navigation buttons across the top of the dashboard. This cluttered the screen and caused confusion about where to click.
+          <strong>What users experienced:</strong> On laptops and desktop monitors, users saw two navigation menus simultaneously: the main left sidebar and an extra row of navigation buttons across the top of the dashboard. This cluttered the screen and caused confusion about where to click.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
           <strong>How it was improved:</strong> We streamlined the layout. The top navigation buttons now appear exclusively on mobile and tablet devices where the sidebar is hidden. On desktops, navigation is cleanly handled by the main sidebar.
@@ -498,13 +493,13 @@ export const SupervisorWorkflowsSection = () => (
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> When switching between sections (like moving from Inspections to Attendance), the web address bar did not change. If a Supervisor refreshed their browser or clicked the browser Back button, they were thrown back to the home screen and lost their place.
+          <strong>What users experienced:</strong> When switching between sections (like moving from Inspections to Attendance), the web address bar did not change. If a Supervisor refreshed their browser or clicked the browser Back button, they were thrown back to the overview screen and lost their place.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> Every dashboard section now has its own clear address (for example, <code>/dashboard?tab=inspections</code>). Refreshing the page or using browser Back and Forward buttons now works reliably.
+          <strong>How it was improved:</strong> Every dashboard section now syncs to clear URL address parameters (for example, <code>/dashboard?tab=inspections</code>). Refreshing the page or using browser Back and Forward buttons now works reliably.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: You can bookmark specific tabs and use your browser buttons naturally without losing your work.
+          Result: You can bookmark specific tabs and use your browser buttons naturally without losing your place.
         </div>
       </div>
 
@@ -515,17 +510,17 @@ export const SupervisorWorkflowsSection = () => (
             3
           </div>
           <h4 className="font-bold text-xs text-[#102033]">
-            Eliminated Annoying Loading Spinners in the Student Directory
+            Reduced Unnecessary Loading Spinners in the Student Directory
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
           <strong>What users experienced:</strong> Every time a user clicked over to the Student Directory, the screen flashed with a full loading spinner—even if they had just visited that tab seconds earlier. This caused noticeable delays in the field.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We added smart background caching. If student records for your cluster are already loaded and no new search filters have been typed, the directory opens instantly without re-fetching from scratch.
+          <strong>How it was improved:</strong> We added smart background caching. If student records for your cluster are already loaded and no new search filters have been entered, the directory opens immediately without a full re-fetch.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
-          Result: Instant tab switching with zero annoying spinner flicker.
+          Result: Significantly faster tab switching with reduced screen flicker.
         </div>
       </div>
 
@@ -543,7 +538,7 @@ export const SupervisorWorkflowsSection = () => (
           <strong>What users experienced:</strong> When Supervisors clicked into a school profile to check classrooms or facilities, there was a risk that clicking an edit button might accidentally change school settings or teacher allocations.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>How it was improved:</strong> We implemented a strict <em>Read-Only Inspection Mode</em>. When a Supervisor opens any school profile, all data is clearly visible, but editing controls are cleanly locked.
+          <strong>How it was improved:</strong> We implemented a strict <em>Read-Only Inspection Mode</em>. When a Supervisor opens any school profile, all data is clearly visible, but editing controls are locked.
         </p>
         <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
           Result: Supervisors can explore school data with complete confidence, knowing official records remain protected.
@@ -561,7 +556,7 @@ export const SupervisorWorkflowsSection = () => (
           </h4>
         </div>
         <p className="text-xs text-[#526477] leading-relaxed">
-          <strong>What users experienced:</strong> Teachers who also served as cluster supervisors previously had difficulty accessing their teaching rosters versus their supervisory tools, leading to confusion about which role was active.
+          <strong>What users experienced:</strong> Teachers who also served as cluster supervisors previously had difficulty accessing their teaching tools versus their supervisory tools, leading to confusion about which workspace was active.
         </p>
         <p className="text-xs text-[#526477] leading-relaxed">
           <strong>How it was improved:</strong> We introduced the Mode Switcher menu in the dashboard header. With one tap, users can toggle between their Teacher, Headmaster, or Supervisor workspaces.
@@ -580,44 +575,43 @@ export const SupervisorWorkflowsSection = () => (
         category="Access"
         question="Why can't I see a school that is located just outside my cluster?"
         answer="Access is strictly governed by municipal administrative assignments. You can only view and inspect schools that are explicitly assigned to your supervision cluster by Town Administration. If your cluster assignment has changed, contact the Town Education Office to update your official cluster roster."
-        evidence="Enforced in server/src/controllers/schoolInspectionController.js via ASSIGNED_SCHOOLS boundary check."
+        evidence="Verified against cluster boundary access rules and active test suites."
       />
 
       <FaqItem
         category="Inspections"
         question="Can I edit an inspection report after submitting it?"
         answer="While an inspection is in DRAFT status, you can freely update scores, checklists, and remarks. Once submitted to the Town Directorate, the report is locked to preserve official audit integrity. If corrections are needed, Town Administration can return the report with review notes, allowing you to revise and resubmit."
-        evidence="Governed by ALLOWED_INSPECTION_TRANSITIONS state machine in server/src/models/SchoolInspection.js."
+        evidence="Verified against inspection state lifecycle rules."
       />
 
       <FaqItem
         category="Transfers"
         question="Why can't I approve a teacher's transfer joining directly from my dashboard?"
-        answer="To ensure local accountability, physical joining must be confirmed by the Headmaster of the destination school where the teacher will physically report. Supervisors have the authority to initiate transfer recommendations, but final campus joining remains the responsibility of the receiving Headmaster."
-        evidence="Validated in server/src/routes/transferRoutes.js (TRANSFERS_APPROVE_JOINING restricted to HM and Admin)."
+        answer="To ensure local campus accountability, physical joining must be confirmed by the Headmaster of the destination school where the teacher will physically report. Supervisors have the authority to initiate transfer recommendations, but final campus joining remains the responsibility of the receiving Headmaster."
+        evidence="Verified against transfer route authorization rules."
       />
 
       <FaqItem
         category="Attendance"
         question="Can a Supervisor mark student attendance during an unannounced school visit?"
         answer="No. Daily student attendance must be marked by designated Period 1 Class Teachers and verified by the school Headmaster. During inspections, Supervisors perform independent physical headcounts to audit and verify the accuracy of the school's recorded attendance."
-        evidence="Enforced in attendanceController.js and verified in tests/supervisor_attendance_audit.test.js."
+        evidence="Verified against attendance engine permissions."
       />
 
       <FaqItem
         category="Documents"
         question="What file types and sizes are supported when uploading signed inspection copies?"
-        answer="To ensure legal archiving standards and prevent malicious files, the platform accepts only valid PDF documents up to 10 Megabytes (MB). Every uploaded file undergoes binary header verification (magic bytes) before being stored."
-        evidence="Protected by uploadSignedInspectionPdf and validateFileMagicBytes in server/src/middlewares/fileUpload.js."
+        answer="To ensure legal archiving standards and prevent malicious files, the platform accepts only valid PDF documents up to 10 Megabytes (MB). Every uploaded file undergoes binary header verification before being stored."
+        evidence="Verified against file upload security validation."
       />
 
       <FaqItem
         category="Dual Roles"
         question="If I switch from Supervisor mode to Teacher mode, will I lose my inspection drafts?"
-        answer="No. All your inspection drafts and notes are safely saved to your user profile in the central database. Switching modes only changes your active view; it never erases your work or affects your records in either role."
-        evidence="Duty switching implemented via Redux activeDutyId state and server-side resolveActiveDuty middleware."
+        answer="No. All your inspection drafts and notes are safely saved to your user profile in the central database. Switching modes only changes your active workspace view; it never erases your work or affects your records in either role."
+        evidence="Verified against workspace context switching service."
       />
     </div>
   </div>
 );
-

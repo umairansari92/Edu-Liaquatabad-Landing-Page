@@ -73,6 +73,7 @@ import {
 } from './sections/ArchitectureSections';
 
 import { MasterBaselineSection } from './sections/MasterBaselineSection';
+import { AdminWorkflowsSection } from './sections/AdminWorkflowsSection';
 import { HmWorkflowsSection } from './sections/HmWorkflowsSection';
 import { SupervisorWorkflowsSection } from './sections/SupervisorWorkflowsSection';
 
@@ -196,6 +197,7 @@ export default function DocumentationPage() {
       items: [
         { id: 'schools-directory', label: 'Schools Directory', icon: Building2 },
         { id: 'personal-profile', label: 'Personal Profile & Service Record (5 Zones)', icon: FileText },
+        { id: 'admin-operational-workflows', label: 'Town Admin Operational Manual & Governance Guide', icon: Shield },
         { id: 'hm-operational-workflows', label: 'Head Master (HM) Operational Manual & Workflow Contracts', icon: Briefcase },
         { id: 'supervisor-operational-workflows', label: 'Supervisor Operational Manual & Cluster Oversight Guide', icon: Shield },
         { id: 'school-inspections', label: 'Schools & Field Inspection', icon: Building2 },
@@ -252,6 +254,8 @@ export default function DocumentationPage() {
         const hash = window.location.hash.replace('#', '');
         if (allTopics.some((t) => t.id === hash)) {
           setActiveSection(hash);
+        } else if (hash === 'admin-workflows' || hash === 'admin' || hash === 'admin-operational-workflows') {
+          setActiveSection('admin-operational-workflows');
         } else if (hash === 'hm-workflows') {
           setActiveSection('hm-operational-workflows');
         } else if (hash === 'supervisor-workflows' || hash === 'supervisor' || hash === 'supervisor-operational-workflows') {
@@ -680,6 +684,9 @@ export default function DocumentationPage() {
           ══════════════════════════════════════════════════════════════ */}
           {activeSection === 'schools-directory' && <MunicipalSchoolsDirectorySection />}
           {activeSection === 'personal-profile' && <PersonalProfileDossierSection />}
+          {(activeSection === 'admin-operational-workflows' || activeSection === 'admin-workflows' || activeSection === 'admin') && (
+            <AdminWorkflowsSection />
+          )}
           {(activeSection === 'hm-operational-workflows' || activeSection === 'hm-workflows') && <HmWorkflowsSection />}
           {(activeSection === 'supervisor-operational-workflows' || activeSection === 'supervisor-workflows' || activeSection === 'supervisor') && (
             <SupervisorWorkflowsSection />
