@@ -12,6 +12,11 @@ export const metadata = {
   },
   description:
     'Official digital government education gateway for Town Municipal Corporation (TMC) and Education Department Liaquatabad Town. Verified school directory, free Sindh textbooks, public circulars, supervisory team, and single-sign-on portal.',
+  icons: {
+    icon: '/brand/official_logo_transparent.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   keywords: [
     'Liaquatabad Town',
     'TMC Karachi Education',
@@ -68,7 +73,7 @@ const jsonLd = {
   name: 'Town Municipal Corporation (TMC) • Education Department Liaquatabad Town',
   alternateName: 'Education Department TMC Liaquatabad',
   url: 'https://liaquatabad-schools.gov.pk',
-  logo: 'https://liaquatabad-schools.gov.pk/logo.png',
+  logo: 'https://liaquatabad-schools.gov.pk/brand/official_logo.png',
   department: {
     '@type': 'EducationalOrganization',
     name: 'Education Department Liaquatabad Town',

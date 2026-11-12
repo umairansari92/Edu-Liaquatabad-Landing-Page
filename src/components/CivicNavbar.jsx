@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, Shield, ChevronDown } from 'lucide-react';
+import { Menu, X, Search, ChevronDown } from 'lucide-react';
+import OfficialLogo from './OfficialLogo';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -37,14 +38,13 @@ export default function CivicNavbar() {
       }}
     >
       <nav className="section-container py-3.5 flex items-center justify-between">
-        {/* Logo */}
+        {/* Official Institutional Logo */}
         <a href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="Education Department Liaquatabad">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ backgroundColor: '#4B7F3A' }}
-          >
-            <Shield className="w-5 h-5 text-white" />
-          </div>
+          <OfficialLogo
+            variant="header"
+            useTransparent={true}
+            className="w-9 h-9 sm:w-10 sm:h-10 shrink-0"
+          />
           <div className="leading-tight hidden sm:block">
             <div
               className="font-bold text-sm leading-none"

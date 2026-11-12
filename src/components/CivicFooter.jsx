@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, Building2, Phone, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import OfficialLogo from './OfficialLogo';
 
 export default function CivicFooter() {
   const portalUrl = process.env.NEXT_PUBLIC_APP_PORTAL_URL || 'http://localhost:5173';
@@ -70,12 +71,11 @@ export default function CivicFooter() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: '#4B7F3A' }}
-              >
-                <Building2 className="w-5 h-5 text-white" />
-              </div>
+              <OfficialLogo
+                variant="footer"
+                useTransparent={true}
+                className="w-10 h-10 shrink-0"
+              />
               <div>
                 <div
                   className="font-bold text-sm leading-snug"
