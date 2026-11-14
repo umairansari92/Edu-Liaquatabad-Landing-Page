@@ -17,6 +17,9 @@ import {
   Eye,
   Briefcase,
   Copy,
+  FileSpreadsheet,
+  Download,
+  Sparkles,
 } from 'lucide-react';
 
 import {
@@ -175,12 +178,12 @@ export const SupervisorWorkflowsSection = () => (
         {
           left: 'Overview',
           right:
-            'A central command center displaying four real-time metrics: Total Assigned Schools, Average Cluster Attendance Rate, Active/Pending Inspections, and Active Staff Transfers. Also provides a "Copy Briefing Summary" button that formats a summary briefing of cluster statistics to your clipboard for administrative reporting.',
+            'A central command center displaying four real-time metrics: Total Assigned Schools, Average Cluster Attendance Rate, Active/Pending Inspections, and Active Staff Transfers. Features the Municipal Inspection Summary Gazette modal for executive directorate briefings, and a "Copy Briefing Summary" action that copies structured Markdown briefing metrics directly to your clipboard.',
         },
         {
           left: 'Inspections',
           right:
-            'The core field inspection hub. Create new school inspection reports using standardized checklists, track draft and submitted audits, generate official formatted PDFs, and upload signed office copies.',
+            'The core field inspection hub. Create new school inspection reports using standardized checklists, track draft and submitted audits, generate official formatted PDFs with background watermark layering, and upload signed office copies.',
         },
         {
           left: 'Schools',
@@ -326,6 +329,111 @@ export const SupervisorWorkflowsSection = () => (
       </p>
     </div>
 
+    {/* 5.1 The 6-Part Standardized Field Inspection Rubric */}
+    <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs mb-6 space-y-3">
+      <div className="flex items-center gap-2">
+        <ClipboardCheck className="w-4 h-4 text-[#4B7F3A]" />
+        <h4 className="font-bold text-xs uppercase tracking-wider text-[#102033]">
+          5.1 The 6-Part Standardized Field Inspection Rubric
+        </h4>
+      </div>
+      <p className="text-xs text-[#526477] leading-relaxed">
+        To prevent subjective audits or arbitrary remarks, every inspection is evaluated across an authoritative six-part rubric:
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Part 1: Campus Infrastructure</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Boundary wall integrity, gate security, building structural safety, and classroom lighting/ventilation.
+          </div>
+        </div>
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Part 2: WASH Hygiene Standards</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Potable drinking water safety, functional student washrooms, operational sanitation, and waste disposal.
+          </div>
+        </div>
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Part 3: Academic Pacing &amp; Syllabus</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Teacher lesson diary maintenance, Sindh Textbook Board curriculum milestones, and student notebook checks.
+          </div>
+        </div>
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Part 4: Headcount Variance Audit</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Physical classroom headcount vs. registered enrollment. Flags ghost students and unauthorized staff absence.
+          </div>
+        </div>
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Part 5: Prioritized Remedial Directives</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Action items assigned with strict severity (High, Medium, Low) and mandatory compliance deadlines.
+          </div>
+        </div>
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">Part 6: Signed Copy Archive &amp; Closure</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Scanned physical signed copy upload (PDF, &le;10MB binary verified) followed by Town Directorate closure review.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* 5.2 Inspection Dossier PDF Watermark Layering Architecture */}
+    <div className="p-5 rounded-2xl bg-[#F2F8EF]/80 border border-[#C9DFBC] shadow-xs mb-6 space-y-3">
+      <div className="flex items-center gap-2">
+        <Sparkles className="w-4 h-4 text-[#4B7F3A]" />
+        <h4 className="font-bold text-xs uppercase tracking-wider text-[#102033]">
+          5.2 Official PDF Watermark Layering Architecture (Strict Background Rendering)
+        </h4>
+      </div>
+      <p className="text-xs text-[#526477] leading-relaxed">
+        The official inspection dossier PDF generator (<code>inspectionPdfGenerator.js</code>) enforces an authentic institutional watermark rendering standard:
+      </p>
+      <ul className="text-xs text-[#526477] space-y-2 list-disc list-inside leading-relaxed">
+        <li>
+          <strong>Subtle 7% Opacity Watermark:</strong> The canonical TMC Liaquatabad emblem is rendered at an exact <code>0.07</code> opacity level, providing clear institutional branding without diminishing high-contrast text legibility.
+        </li>
+        <li>
+          <strong>Rendered Strictly BEHIND Content:</strong> Unlike naïve implementations that loop over pages at the end and draw watermarks over existing content (which obscures table borders, marks, and signature boxes), our generator draws the watermark on Page 1 <em>before</em> any titles or rubrics are drawn.
+        </li>
+        <li>
+          <strong>jsPDF-AutoTable willDrawPage Hook Integration:</strong> For multi-page inspection dossiers, the watermark is hooked into the <code>autoTable.willDrawPage</code> callback. This guarantees that on every newly generated page, the watermark is rendered onto the canvas first, and all table cells, scores, notes, and borders render cleanly on top of it.
+        </li>
+        <li>
+          <strong>Signature Area Integrity:</strong> The inspection report footer and official signature block (Field Inspector, Head Master, Town Director) remain 100% crisp, unclipped, and legible for formal municipal archiving.
+        </li>
+      </ul>
+    </div>
+
+    {/* 5.3 Municipal Inspection Summary Gazette & Directorate Briefings */}
+    <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs mb-6 space-y-3">
+      <div className="flex items-center gap-2">
+        <FileText className="w-4 h-4 text-[#4B7F3A]" />
+        <h4 className="font-bold text-xs uppercase tracking-wider text-[#102033]">
+          5.3 Municipal Inspection Summary Gazette &amp; Directorate Briefings
+        </h4>
+      </div>
+      <p className="text-xs text-[#526477] leading-relaxed">
+        For executive reporting to the Town Municipal Commissioner and Education Directorate, the Supervisor dashboard provides two high-speed briefing mechanisms:
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">In-App Municipal Gazette Modal</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            Clicking <strong>&ldquo;View Inspection Gazette&rdquo;</strong> opens a modal displaying cluster-wide compliance metrics, campus attendance rankings, critical deficiency alerts, and pending remedial actions, complete with official institutional branding.
+          </div>
+        </div>
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
+          <div className="text-[10px] font-bold uppercase text-[#4B7F3A]">One-Click Markdown Briefing Summary</div>
+          <div className="text-xs text-[#526477] leading-relaxed">
+            The <strong>&ldquo;Copy Briefing Summary&rdquo;</strong> button instantly copies a pre-formatted, executive Markdown summary of all cluster schools to the clipboard, formatted specifically for official email circulars, WhatsApp administrative groups, and Directorate briefings.
+          </div>
+        </div>
+      </div>
+    </div>
+
     {/* ── Section 6: Attendance Compliance Standards ── */}
     <SectionTitle>6. Monitoring Attendance Compliance</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
@@ -393,6 +501,33 @@ export const SupervisorWorkflowsSection = () => (
           Look up enrolled students by name, General Register (GR) number, or parent details. When cluster student records are already loaded and no new search filters have been applied, switching back to this tab displays existing data immediately, reducing unnecessary network delays during field visits.
         </p>
       </div>
+    </div>
+
+    {/* 7.1 Cluster-Scoped Dual Export Subsystem */}
+    <div className="p-5 rounded-2xl bg-[#F2F8EF]/80 border border-[#C9DFBC] shadow-xs mb-6 space-y-3">
+      <div className="flex items-center gap-2">
+        <FileSpreadsheet className="w-4 h-4 text-[#4B7F3A]" />
+        <h4 className="font-bold text-xs uppercase tracking-wider text-[#102033]">
+          7.1 Cluster-Scoped Dual Export Subsystem (CSV &amp; Formatted Excel .xlsx)
+        </h4>
+      </div>
+      <p className="text-xs text-[#526477] leading-relaxed">
+        Supervisors can export student rosters and staff directory data for their cluster using either <strong>Export CSV</strong> or <strong>Export Excel (.xlsx)</strong>:
+      </p>
+      <ul className="text-xs text-[#526477] space-y-2 list-disc list-inside leading-relaxed">
+        <li>
+          <strong>Strict Cluster Scoping &amp; BOLA Isolation:</strong> The export endpoints (<code>/api/v1/exports/students.*</code> and <code>/api/v1/exports/staff.*</code>) automatically filter records strictly by the supervisor&apos;s authorized <code>assignedSchools</code> array. Any attempt to supply an unassigned school query is blocked with <code>403 Forbidden</code>.
+        </li>
+        <li>
+          <strong>Clean Machine CSV vs. Directorate Excel:</strong> CSV starts directly on Row 1 with standard RFC 4180 headers for automated reporting. Excel (.xlsx) embeds the official TMC Liaquatabad logo, 4-row institutional title block, dark green headers (<code>#1B3E20</code>), Freeze Panes, and AutoFilter.
+        </li>
+        <li>
+          <strong>OWASP Formula Injection Defense:</strong> All exported fields are sanitized with <code>sanitizeCsvFormulaInjection</code>, automatically prefixing any value starting with <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>, <code>\t</code>, or <code>\r</code> with a single quote (<code>'</code>).
+        </li>
+        <li>
+          <strong>Fail-Closed Pre-Flight Audit Logging:</strong> The backend persists an immutable <code>AuditLog</code> record (<code>STUDENTS_CSV_EXPORTED</code>, <code>STUDENTS_XLSX_EXPORTED</code>, <code>STAFF_CSV_EXPORTED</code>, or <code>STAFF_XLSX_EXPORTED</code>) <em>before</em> initiating the download stream. If the audit write fails, the export immediately aborts.
+        </li>
+      </ul>
     </div>
 
     {/* ── Section 8: Staff Transfers ── */}
@@ -565,12 +700,75 @@ export const SupervisorWorkflowsSection = () => (
           Result: One unified account handles all your professional responsibilities effortlessly.
         </div>
       </div>
+
+      {/* Case 6 */}
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
+            6
+          </div>
+          <h4 className="font-bold text-xs text-[#102033]">
+            Inspection Dossier PDF Watermark Layering: Background Rendering vs. Text Occlusion
+          </h4>
+        </div>
+        <p className="text-xs text-[#526477] leading-relaxed">
+          <strong>Design Challenge:</strong> In official government field inspection dossiers, drawing an institutional watermark over completed pages obscures delicate table borders, compliance ratings, and handwritten signature blocks. Conversely, omitting the watermark leaves printed field dossiers vulnerable to forgery or unverified replication.
+        </p>
+        <p className="text-xs text-[#526477] leading-relaxed">
+          <strong>Architectural Solution:</strong> In <code>inspectionPdfGenerator.js</code>, the canonical TMC Liaquatabad emblem is rendered at an exact 7% opacity (<code>0.07</code>) strictly <strong>BEHIND content</strong> on every page. The watermark is drawn on Page 1 before any text or headings are written, and for multi-page tables, it is hooked into the <code>autoTable.willDrawPage</code> callback so that table cells, scores, notes, and borders render cleanly on top of the watermark.
+        </p>
+        <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
+          Result: Crystal-clear legibility across all inspection tables and signature blocks, backed by non-intrusive official institutional watermark authentication.
+        </div>
+      </div>
+
+      {/* Case 7 */}
+      <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-md bg-[#F2F8EF] text-[#4B7F3A] flex items-center justify-center font-bold text-xs">
+            7
+          </div>
+          <h4 className="font-bold text-xs text-[#102033]">
+            Cluster-Scoped Dual Export Architecture (Machine-Readable CSV vs. Formatted Excel .xlsx)
+          </h4>
+        </div>
+        <p className="text-xs text-[#526477] leading-relaxed">
+          <strong>Design Challenge:</strong> Field supervisors frequently need to extract student and staff rosters during cluster audits. Generic exports either dumped unformatted text without institutional branding or risked cross-cluster data leakage (BOLA) if school queries were not strictly scoped to authorized clusters.
+        </p>
+        <p className="text-xs text-[#526477] leading-relaxed">
+          <strong>Architectural Solution:</strong> We implemented cluster-scoped export endpoints (<code>/exports/students.*</code> and <code>/exports/staff.*</code>) that enforce the supervisor&apos;s authorized <code>assignedSchools</code> filter at the database level. Supervisors have access to dual-button actions: clean RFC 4180 CSV for data processing and formatted Excel (<code>.xlsx</code>) with embedded institutional branding, freeze panes, and auto-filters for directorate reviews.
+        </p>
+        <div className="text-[11px] text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-lg border border-emerald-200">
+          Result: Zero cross-cluster BOLA risk, OWASP formula injection protection, and publication-ready field audit rosters.
+        </div>
+      </div>
     </div>
 
     {/* ── Section 11: Common Questions & Helpful Tips ── */}
     <SectionTitle>11. Frequently Asked Questions &amp; Helpful Tips</SectionTitle>
 
     <div className="space-y-3 my-6">
+      <FaqItem
+        category="PDF Dossier"
+        question="How does the inspection PDF ensure the official watermark does not obscure tables or signatures?"
+        answer="In inspectionPdfGenerator.js, the official emblem is rendered at 7% opacity directly onto the canvas before text elements are drawn on Page 1, and via the autoTable.willDrawPage hook on all subsequent pages. Because the watermark is drawn onto the page canvas before table cells, text strings, and signature boxes are rendered, all content sits in front of the watermark, guaranteeing 100% legibility."
+        evidence="inspectionPdfGenerator.js: willDrawPage hook rendering emblem at opacity 0.07."
+      />
+
+      <FaqItem
+        category="Exports"
+        question="Can a Supervisor export student or staff data for schools outside their assigned cluster?"
+        answer="No. The export controller automatically checks the requesting supervisor's authenticated session and constrains queries to the assignedSchools array. If a supervisor attempts to supply an unassigned school identifier in the query parameters, the request is rejected with 403 Forbidden and logged as a security violation."
+        evidence="exportController.js: exportStudents and exportStaff enforce assignedSchools cluster scoping."
+      />
+
+      <FaqItem
+        category="Briefings"
+        question="What is the Municipal Inspection Summary Gazette and how is it used during Town Directorate briefings?"
+        answer="The Municipal Gazette is an executive in-app modal in the Supervisor Dashboard that aggregates unannounced physical headcount discrepancies, WASH hygiene scores, and pending remedial directives across the cluster. Supervisors can also use the 'Copy Briefing Summary' button to instantly copy a clean Markdown summary for town-level executive briefings."
+        evidence="SupervisorDashboard.jsx: Gazette modal and copy briefing summary action handler."
+      />
+
       <FaqItem
         category="Access"
         question="Why can't I see a school that is located just outside my cluster?"

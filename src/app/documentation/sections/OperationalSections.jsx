@@ -126,7 +126,11 @@ export const SchoolInspectionsSection = () => (
    ├── ACTION_REQUIRED: Remedial directives dispatched to school Head Master
    └── CLOSED: Remediation verified; inspection permanently locked from further edits
 6. NON-REPUDIABLE AUDIT LOGGING (AuditLog.js)
-   │ Records INSPECTION_CREATED / INSPECTION_UPDATED with actorId, schoolId, diff`}
+   │ Records INSPECTION_CREATED / INSPECTION_UPDATED with actorId, schoolId, diff
+7. OFFICIAL PDF DOSSIER & GAZETTE REPORTING (inspectionPdfGenerator.js)
+   ├── Renders subtle 7% opacity canonical emblem strictly BEHIND content (willDrawPage hook)
+   ├── In-App Municipal Gazette modal & "Copy Briefing Summary" for Directorate briefings
+   └── Scanned signed office copy upload (PDF <= 10MB) permanently archived`}
     </TerminalBlock>
 
     <SectionTitle>5-Point Standardized Inspection Rubric</SectionTitle>

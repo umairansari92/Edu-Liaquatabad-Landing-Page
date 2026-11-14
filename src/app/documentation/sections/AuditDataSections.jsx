@@ -247,7 +247,7 @@ export const ApiCatalogueSection = () => (
         { left: '/api/v1/academic', right: 'Academics • academicRoutes.js • Central class grades, sections, curriculum subjects.' },
         { left: '/api/v1/attendance', right: 'Operations • attendanceRoutes.js • Daily student/staff attendance, late overrides, missed day clearance & Option A late clearance requests/decisions.' },
         { left: '/api/v1/transfers', right: 'Transfers • transferRoutes.js • Town Admin transfer orders, HM relieving & joining.' },
-        { left: '/api/v1/exports', right: 'Data Exports • exportRoutes.js • Streaming CSV with fail-closed audit log handling.' },
+        { left: '/api/v1/exports', right: 'Data Exports • exportRoutes.js • Dual export subsystem: clean RFC 4180 CSV streaming (Row 1 headers, UTF-8 BOM, formula injection defense) & official formatted Excel (.xlsx via ExcelJS) with embedded TMC Liaquatabad logo, freeze panes, auto-filters & pre-flight fail-closed audit logging.' },
         { left: '/api/v1/homework', right: 'Pedagogical • homeworkRoutes.js • Daily homework diary & 7-day expiring attachments.' },
         { left: '/api/v1/holidays', right: 'Policy • holidayRoutes.js • Gazetted town holidays & emergency rain closures.' },
         { left: '/api/v1/announcements', right: 'Broadcast • announcementRoutes.js • Executive alerts & landing page bulletins.' },
@@ -263,8 +263,8 @@ export const ApiCatalogueSection = () => (
       ]}
     />
 
-    <Callout type="security" title="EXPORT FAIL-CLOSED AUDIT GUARANTEE">
-      All data export endpoints on <code>/api/v1/exports/*</code> stream CSV data directly to the client. The server attempts to persist an immutable <code>AuditLog</code> record <strong>prior</strong> to opening the response stream. If audit persistence fails, the request fails closed immediately with <code>500 Internal Server Error</code> and streams zero records.
+    <Callout type="security" title="EXPORT FAIL-CLOSED AUDIT GUARANTEE (CSV &amp; XLSX)">
+      All data export endpoints on <code>/api/v1/exports/*</code> (supporting both clean RFC 4180 CSV and official formatted Excel <code>.xlsx</code> via <code>ExcelJS</code>) enforce strict fail-closed audit logging. The server persists an immutable <code>AuditLog</code> record (<code>*_CSV_EXPORTED</code>, <code>*_XLSX_EXPORTED</code>) capturing the requesting actor ID, role, client IP, jurisdiction filters, and exported record count <strong>prior</strong> to opening the response stream. If audit persistence fails, the request fails closed immediately with <code>500 Internal Server Error</code> and streams zero records.
     </Callout>
   </div>
 );
