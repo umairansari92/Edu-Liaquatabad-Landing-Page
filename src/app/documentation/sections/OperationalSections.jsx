@@ -700,6 +700,64 @@ export const StudentManagementSection = () => (
       />
     </div>
 
+    <SectionTitle>Student Profile Professional Redesign &amp; Institutional Data Governance Policy</SectionTitle>
+    <Callout type="success" title="Institutional Record Governance Standard">
+      Student records are authoritative institutional assets maintained by the Town Municipal Corporation (TMC) Liaquatabad Education Department for official educational administration. In accordance with municipal policy, student records are strictly governed by role-scoped access control: students cannot self-mask, mark private, or alter official academic and identity records.
+    </Callout>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <InfoCard
+        title="WHAT Was Built"
+        color="emerald"
+        desc="Dedicated StudentProfilePage.jsx separated from employee service records; session-aware ProfileDispatcher in AppRoutes.jsx; canonical computerized A4 PDF dossier generator (pdfkit) with TMC Liaquatabad watermark and legal notice; clean @media print engine; deep links from student tables and directories."
+      />
+      <InfoCard
+        title="WHY It Was Built"
+        color="blue"
+        desc="Previously, students visiting /profile were rendered the civil service StaffProfilePage, displaying irrelevant employee fields (BPS grade, casual leaves, bank details), rendering privacy eye toggles, creating corrupt TeacherProfile database records, and opening employee drawers in UsersPage."
+      />
+      <InfoCard
+        title="HOW It Works"
+        color="purple"
+        desc="When a student navigates to /profile, ProfileDispatcher directs them to StudentProfilePage. If an authorized staff member (HM, Supervisor, Admin) inspects a student (/students/:id/profile), they receive complete unmasked institutional particulars within their assigned jurisdictional scope."
+      />
+      <InfoCard
+        title="SECURITY & BOUNDARY ENFORCEMENT"
+        color="red"
+        desc="PATCH /staff/:id/privacy rejects student actors and student targets with 403 Forbidden; cross-school HM inspections are rejected with 403 Forbidden; PDF export strictly validates school and town jurisdictional boundaries."
+      />
+    </div>
+
+    <ComparisonTable
+      headers={['Role / Jurisdiction', 'Student Profile Visibility & Capabilities', 'Enforced Constraints & Governance Rules']}
+      rows={[
+        {
+          left: 'Student (Owner)',
+          right: 'Inspect own authoritative personal vitals, enrollment particulars, admission history, print clean record, and download official A4 PDF dossier. • RULES: Zero privacy controls, no field hiding, cannot alter academic records.',
+        },
+        {
+          left: 'Head Master (Assigned School)',
+          right: 'Inspect complete unmasked dossier of all students enrolled in their assigned school. Export official PDF and sign certification block. • RULES: Cross-school student access strictly rejected (403 Forbidden).',
+        },
+        {
+          left: 'Supervisor (Cluster)',
+          right: 'Inspect and export student dossiers for all institutions belonging to their assigned cluster schools. • RULES: Blocked from institutions outside verified cluster assignment (403 Forbidden).',
+        },
+        {
+          left: 'Town Admin / DDO',
+          right: 'Complete administrative oversight of student enrollment records across all municipal institutions in Liaquatabad Town. • RULES: Enforced town boundary isolation against cross-town IDOR/BOLA tampering.',
+        },
+        {
+          left: 'Root Admin / Super Admin',
+          right: 'Global municipal jurisdiction across all towns and schools. Full dossier viewing, PDF generation, and tamper-evident audit logging for educational inspections.',
+        },
+        {
+          left: 'Parent / Guardian',
+          right: 'Interacts with verified child records through the dedicated Parent Portal (/dashboard). Prohibited from navigating employee dossiers.',
+        },
+      ]}
+    />
+
     <SectionTitle>Schema-First API Specifications (CVify Standard)</SectionTitle>
     <TerminalBlock title="STUDENT MANAGEMENT API CONTRACTS">
 {`# 1. Enroll New Student (Auto-Generate GR Number)
@@ -721,7 +779,28 @@ Errors: 409 B-Form / GR Number Duplicate, 400 Invalid DOB
 GET /api/v1/students/:id/id-card-pdf
 Headers: Authorization: Bearer <accessToken>
 Guard: authorizePermissions('students.view'), attachScope('SCHOOL')
-Response: 200 (application/pdf binary stream with HMAC-signed QR watermark)`}
+Response: 200 (application/pdf binary stream with HMAC-signed QR watermark)
+
+# 3. Dedicated Student Workspace Self-Profile
+GET /api/v1/students/my-profile
+Headers: Authorization: Bearer <accessToken>
+Guard: authenticate, resolveActiveDuty, authorizeScope
+Response: 200 { success: true, data: { profile: { ... }, todayClosure: { ... } } }
+
+# 4. Authoritative Student Profile Dossier by ID
+GET /api/v1/students/:id/profile
+Headers: Authorization: Bearer <accessToken>
+Guard: authenticate, resolveActiveDuty, authorizeScope
+Authorization: Student self, Assigned HM/Teacher, Assigned Cluster Supervisor, Town Admin, Root Admin
+Response: 200 { success: true, data: { studentFullName, grNumber, rollNumber, bFormNumber, class, section, school, guardian, ... } }
+Errors: 403 Cross-School Access Denied, 404 Record Not Found
+
+# 5. Computerized A4 Official Student Dossier PDF
+GET /api/v1/students/:id/pdf
+Headers: Authorization: Bearer <accessToken>
+Guard: authenticate, resolveActiveDuty, authorizeScope
+Response: 200 (application/pdf, Content-Disposition: attachment; filename="Official_Student_Record_GR_XXXX.pdf")
+Features: TMC Liaquatabad Header (#1B3E20), 6% Opacity Watermark Emblem, Nadra CRC, Academic Vitals, Verification Seal`}
     </TerminalBlock>
 
     <ReasoningCard
