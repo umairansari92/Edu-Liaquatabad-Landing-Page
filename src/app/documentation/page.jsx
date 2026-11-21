@@ -120,6 +120,8 @@ import {
   ApiCatalogueSection,
 } from './sections/AuditDataSections';
 
+import { AuditCaseStudySection } from './sections/AuditCaseStudySection';
+
 import {
   DesignConstitutionSection,
   ClientArchitectureSection,
@@ -217,8 +219,9 @@ export default function DocumentationPage() {
       category: '6. Immutable Audit & Data Vault',
       items: [
         { id: 'audit-contract', label: '10-Point Immutable Audit Contract', icon: Shield },
-        { id: 'database-models', label: 'Complete 32-Model Catalogue', icon: Database },
-        { id: 'api-catalogue', label: 'Complete 27-Route API Index', icon: Terminal },
+        { id: 'audit-lifecycle-case-study', label: 'Case Study: Audit Log, Session Lifecycle & Activity History', icon: Clock },
+        { id: 'database-models', label: 'Complete 35-Model Catalogue', icon: Database },
+        { id: 'api-catalogue', label: 'Complete 30-Route API Index', icon: Terminal },
       ],
     },
     {
@@ -260,6 +263,8 @@ export default function DocumentationPage() {
           setActiveSection('hm-operational-workflows');
         } else if (hash === 'supervisor-workflows' || hash === 'supervisor' || hash === 'supervisor-operational-workflows') {
           setActiveSection('supervisor-operational-workflows');
+        } else if (hash === 'audit-case-study' || hash === 'activity-history' || hash === 'session-lifecycle') {
+          setActiveSection('audit-lifecycle-case-study');
         }
       }
     };
@@ -711,6 +716,7 @@ export default function DocumentationPage() {
               GROUP 6: IMMUTABLE AUDIT & DATA VAULT
           ══════════════════════════════════════════════════════════════ */}
           {activeSection === 'audit-contract' && <AuditContractSection />}
+          {activeSection === 'audit-lifecycle-case-study' && <AuditCaseStudySection />}
           {activeSection === 'database-models' && <DatabaseModelsSection />}
           {activeSection === 'api-catalogue' && <ApiCatalogueSection />}
 

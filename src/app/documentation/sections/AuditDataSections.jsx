@@ -29,6 +29,19 @@ export const AuditContractSection = () => (
       subtitle="Ensuring non-repudiation, administrative accountability, and forensic integrity across all municipal operations."
     />
 
+    <div className="mb-6 p-4 rounded-xl bg-[#F2F8EF] border border-[#C9DFBC] text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="space-y-1">
+        <span className="font-bold text-[#102033] block">Deep Engineering Case Study Available</span>
+        <span className="text-[#526477]">Read the comprehensive architectural case study covering session correlation, failed sign-in attribution, Asia/Karachi day-boundary normalization, and the 116 verified assertions.</span>
+      </div>
+      <a
+        href="#audit-lifecycle-case-study"
+        className="px-3.5 py-2 rounded-lg bg-[#38662D] hover:bg-[#294D22] text-white font-bold whitespace-nowrap transition shadow-xs text-[11px] self-start sm:self-auto"
+      >
+        View Case Study →
+      </a>
+    </div>
+
     <p className="text-xs text-[#526477] leading-relaxed mb-6">
       Every administrative write, status modification, attendance entry, and examination override must generate an immutable record in the <code>AuditLog</code> collection conforming to the 10-Point Audit Contract:
     </p>
@@ -224,9 +237,9 @@ export const ApiCatalogueSection = () => (
 }`}
     </TerminalBlock>
 
-    <SectionTitle>Complete 29-Router Architecture &amp; Mounted Endpoint Index</SectionTitle>
+    <SectionTitle>Complete 30-Router Architecture &amp; Mounted Endpoint Index</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The backend exposes 29 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 28 route modules are imported and mounted directly via <code>router.use()</code>. The 29th router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 70 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
+      The backend exposes 30 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 29 route modules are imported and mounted directly via <code>router.use()</code>. The 30th router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 70 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
     </p>
     <ComparisonTable
       headers={['Mounted Base Route', 'Domain / Route File', 'Guards & Middleware Pipeline']}
@@ -260,6 +273,7 @@ export const ApiCatalogueSection = () => (
         { left: '/api/v1/timetables', right: 'Timetable • timetableRoutes.js • Institutional timetable engine & live room monitor.' },
         { left: '/api/v1/leave', right: 'Leave Governance • leaveRoutes.js • CL/EL submission, HM/Admin approval, 24-day quota, overlap defense, idempotency.' },
         { left: '/api/v1/staff-attendance', right: 'Staff Muster • staffAttendanceRoutes.js • Self-submission, HM self-attendance, 5m relaxation gate, idempotency.' },
+        { left: '/api/v1/activity', right: 'Audit Vault • activityRoutes.js • Central activity history explorer, security access logs, workplace feed, personal activity, session correlation & BSON-safe event serialization.' },
       ]}
     />
 
