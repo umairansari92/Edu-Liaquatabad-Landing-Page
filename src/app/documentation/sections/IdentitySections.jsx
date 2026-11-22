@@ -127,7 +127,7 @@ export const RolesCatalogueSection = () => (
         {
           left: '9. PARENT',
           right:
-            'Level 10 • CHILD • 4 Default Capabilities (of 39 in Registry) • Verified legal guardian. 3-step ward claim, phone OTP, physical HM verification. Multi-ward switcher, published marksheet download, attendance tracking • Status: IMPLEMENTED & TESTED (74 tests across 5 Parent suites).',
+            'Level 10 • CHILD • 4 Default Capabilities (of 39 in Registry) • Verified legal guardian. Institutional multi-level verification: candidate lookup, relationship claim routed directly to Class Teacher review, and final Head Master physical document inspection (B-Form & CNIC). Zero SMS OTP dependency. Multi-ward switcher, published marksheet download, attendance tracking • Status: IMPLEMENTED & TESTED (92 tests across 6 Parent suites).',
         },
       ]}
     />
@@ -387,11 +387,11 @@ export const RolesCatalogueSection = () => (
             <p className="mt-2"><strong>5. Key Restrictions:</strong> Cannot see any child's data until completing the 3-step verification; cannot view other families' children; cannot edit records.</p>
           </div>
           <div>
-            <p><strong>6. Required Approvals:</strong> Claiming a child requires phone OTP verification (or automatic direct routing if no phone is on paper record) followed by physical document inspection by the Head Master.</p>
+            <p><strong>6. Required Approvals:</strong> Claiming a child enters an institutional verification workflow: the designated Section Class Teacher reviews the claim, followed by physical document inspection (B-Form &amp; Guardian CNIC) and final approval by the school Head Master. Zero SMS OTP dependency.</p>
             <p className="mt-2"><strong>7. Why Restrictions Exist:</strong> Anti-stalking defense; prevents estranged relatives or unauthorized individuals from tracking a child's classroom schedule.</p>
-            <p className="mt-2"><strong>8. What To Do When Access Is Denied:</strong> If your link is marked 'PENDING_HM_APPROVAL', visit the school office with your original CNIC and child's B-Form for physical verification.</p>
+            <p className="mt-2"><strong>8. What To Do When Access Is Denied:</strong> If your claim is in review, wait for the Class Teacher recommendation and Head Master approval. If requested, visit the school office with your original CNIC and child's B-Form for physical verification.</p>
             <p className="mt-2"><strong>9. Difference from STUDENT:</strong> Parent holds family oversight authority and can switch between multiple children across different municipal schools.</p>
-            <p className="mt-2"><strong>10. Verified Evidence:</strong> <code>server/src/controllers/parentLinkController.js</code> • Verified across 74 automated tests in 5 parent security test files.</p>
+            <p className="mt-2"><strong>10. Verified Evidence:</strong> <code>server/src/controllers/parentLinkController.js</code> • Verified across 92 automated tests in 6 parent security test files.</p>
           </div>
         </div>
       </div>
