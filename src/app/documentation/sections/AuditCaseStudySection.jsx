@@ -69,8 +69,8 @@ export const AuditCaseStudySection = () => (
         <div className="text-[11px] text-[#4B7F3A]">Across 5 Core Test Suites</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
-        <div className="text-[10px] font-extrabold uppercase text-purple-700">HISTORICAL VAULT</div>
-        <div className="text-sm font-black text-[#102033]">2,331 Records Preserved</div>
+        <div className="text-[10px] font-extrabold uppercase text-purple-700">RETENTION POLICY</div>
+        <div className="text-sm font-black text-[#102033]">Permanent Retention</div>
         <div className="text-[11px] text-purple-700">Zero Engine TTL • Zero Pruning</div>
       </div>
       <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
@@ -94,8 +94,8 @@ export const AuditCaseStudySection = () => (
         <InfoCard
           icon={<Shield className="w-5 h-5" />}
           color="emerald"
-          title="Legal & Civil Service Accountability"
-          desc="Teacher transfer orders, disciplinary suspensions, examination tabulations, and student strike-offs carry statutory civil liability under Sindh Civil Servants Act. Administrative mutations require non-repudiable evidence that is forensically admissible in judicial or departmental inquiries."
+          title="Administrative & Institutional Accountability"
+          desc="Teacher transfer orders, attendance approvals, examination tabulations, and student strike-offs carry significant institutional weight under municipal civil service governance. Administrative mutations require non-repudiable evidence that is forensically auditable in administrative reviews and departmental inquiries."
         />
         <InfoCard
           icon={<Lock className="w-5 h-5" />}
@@ -164,7 +164,7 @@ export const AuditCaseStudySection = () => (
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#102033]">1. The AuditLog Data Vault</h4>
           </div>
           <p className="text-xs text-[#526477] leading-relaxed">
-            Persistent Mongoose model (<code>server/src/models/AuditLog.js</code>) capturing structured 10-point metadata: actor identity, role, client IP, action verb, target entity, before/after snapshots, session correlation UUID, and Pakistan Standard Time timestamps.
+            Persistent Mongoose model (<code>server/src/models/AuditLog.js</code>) capturing structured 10-point metadata: <code>actorId</code>, <code>actorRole</code>, <code>targetModel</code>, <code>targetId</code>, <code>ipAddress</code>, <code>userAgent</code>, <code>action</code>, <code>previousState</code>, <code>newState</code>, and <code>createdAt</code> timestamp, supplemented by session correlation and workplace context.
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export const AuditCaseStudySection = () => (
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#102033]">2. Centralized Audit Controller</h4>
           </div>
           <p className="text-xs text-[#526477] leading-relaxed">
-            REST endpoints (<code>server/src/controllers/activityHistoryController.js</code>) delivering scoped feeds: <strong>Town Explorer</strong> (operational administrative ledger), <strong>Security Log</strong> (authentication events), <strong>Workplace Activity</strong> (campus-scoped), and <strong>Personal Activity</strong> (self-service).
+            REST endpoints (<code>server/src/controllers/activityHistoryController.js</code>) mounted at <code>/api/v1/activity</code> delivering scoped feeds: <strong>Town Explorer</strong> (<code>/explorer?feedType=OPERATIONAL</code>), <strong>Security Log</strong> (<code>/explorer?feedType=SECURITY</code>), <strong>Workplace Activity</strong> (<code>/workplace</code>), and <strong>Personal Activity</strong> (<code>/me</code>).
           </p>
         </div>
 
@@ -249,15 +249,16 @@ export const AuditCaseStudySection = () => (
 └────────────────────────────────────────────┬────────────────────────────────────────────┘
                                              ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│ 4. ASYNCHRONOUS AUDIT PERSISTENCE: auditService.logEvent() / AuditLog.create()           │
-│    - Resolves 10-point audit contract: actorId, role, IP, user-agent, target            │
+│ 4. SYNCHRONOUS & FAIL-CLOSED AUDIT PERSISTENCE: await AuditLog.create(...)               │
+│    - Directly awaited in controllers/middlewares to guarantee atomic audit recording    │
+│    - Validates 10-point contract: actorId, role, IP, userAgent, targetModel, targetId   │
 │    - Injects sessionId correlation UUID & institutional transactionId (if chained)      │
-│    - Executes Mongoose pre-save hook; writes append-only record to MongoDB Atlas        │
+│    - Mongoose pre-hooks block mutations; writes append-only record to MongoDB Atlas     │
 └────────────────────────────────────────────┬────────────────────────────────────────────┘
                                              ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│ 5. QUERY & JURISDICTION ISOLATION: GET /api/v1/activity/*                               │
-│    - Role Scoping: Admin (Town), HM (Single School), Supervisor (Cluster), User (Self)   │
+│ 5. QUERY & JURISDICTION ISOLATION: /api/v1/activity/{me, workplace, explorer}           │
+│    - Scoping: Admin (/explorer), HM (/workplace), Supervisor (/workplace), User (/me)   │
 │    - Date Normalization: buildCreatedAtDateFilter maps input to Asia/Karachi boundaries  │
 │    - Feed Partitioning: feedType = OPERATIONAL (filters auth noise) vs SECURITY         │
 └────────────────────────────────────────────┬────────────────────────────────────────────┘
@@ -325,7 +326,7 @@ export const AuditCaseStudySection = () => (
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#102033]">4. Concurrent Device Limits &amp; Eviction</h4>
           </div>
           <p className="text-xs text-[#526477] leading-relaxed">
-            To prevent municipal credential sharing across unauthorized parties, the server enforces a maximum limit of 3 concurrent active sessions (<code>MAX_CONCURRENT_SESSIONS: 3</code>). When a fourth login occurs, the oldest active session is automatically evicted and marked with an audit event recording <code>SESSION_EXPIRED</code> with <code>reason: 'CONCURRENT_LIMIT_EVICTED'</code>.
+            To prevent municipal credential sharing across unauthorized parties, the server enforces a maximum limit of 5 concurrent active sessions (<code>MAX_ACTIVE_SESSIONS = 5</code>). When a sixth login occurs, the least recently used active session is automatically evicted and marked with an audit event recording <code>SESSION_EXPIRED</code> with <code>reason: 'CONCURRENT_LIMIT_EVICTED'</code>. In addition, when an administrator or user revokes an active session remotely, the server records <code>SESSION_TERMINATED</code>.
           </p>
         </div>
       </div>
@@ -366,10 +367,10 @@ export const AuditCaseStudySection = () => (
       {/* Problem 3 */}
       <ReasoningCard
         title="Challenge 3: BSON Buffer Decomposition in Activity Snapshots"
-        decision="Engineered recursive deepSanitizeSnapshot in auditService.js to convert all Mongoose ObjectIds into clean 24-character hexadecimal strings before persistence."
-        whyItWon="When capturing previousState and newState snapshots from Mongoose documents, nested ObjectId fields were serialized as raw Node.js Buffer objects (e.g. { type: 'Buffer', data: [0, 106, ...] }). When rendered on the client, the UI displayed cryptic strings like 'Buffer: 0:106 • 1:169...' instead of readable identifier strings."
-        alternativesRejected="Formatting on the frontend (rejected: brittle, leaves raw buffers in database storage); Disabling snapshots (rejected: destroys forensic auditability)."
-        tradeOffs="Minor CPU serialization overhead during snapshot creation, compensated by clean database storage and zero frontend rendering bugs."
+        decision="Engineered recursive deepSanitizeSnapshot in activityHistoryController.js to convert all Mongoose ObjectIds and Buffers into clean 24-character hexadecimal strings before network serialization."
+        whyItWon="When serializing previousState and newState snapshots from Mongoose documents, nested ObjectId fields can produce raw Node.js Buffer representations (e.g. { type: 'Buffer', data: [0, 106, ...] }). When transmitted to the client, the UI displayed cryptic strings like 'Buffer: 0:106 • 1:169...' instead of readable identifier strings."
+        alternativesRejected="Formatting on the frontend (rejected: brittle, leaks byte representation over the network); Disabling snapshots (rejected: destroys forensic auditability)."
+        tradeOffs="Minor CPU serialization traversal during API response construction, compensated by guaranteed clean data delivery and zero client-side parsing bugs."
       />
 
       {/* Problem 4 */}
@@ -453,7 +454,7 @@ export const AuditCaseStudySection = () => (
             <li><strong>Append-Only Mongoose Pre-Hooks:</strong> Pre-hooks on <code>AuditLogSchema</code> throw runtime security exceptions on <code>updateOne</code>, <code>updateMany</code>, <code>findOneAndUpdate</code>, <code>deleteOne</code>, and <code>deleteMany</code>.</li>
             <li><strong>Zero Engine TTL:</strong> No Time-To-Live indexes exist on the <code>auditlogs</code> collection; records never expire automatically.</li>
             <li><strong>Zero Automated Pruning Jobs:</strong> No cron tasks or background workers truncate or delete audit logs.</li>
-            <li><strong>Current Live Store:</strong> Exactly <strong>2,331 historical records</strong> preserved in MongoDB Atlas dating back to initial deployment on September 5, 2026.</li>
+            <li><strong>Permanent Retention Store:</strong> All historical activity records are permanently preserved in MongoDB Atlas dating back to initial platform deployment, with no automated record purging.</li>
           </ul>
         </div>
 
@@ -463,9 +464,9 @@ export const AuditCaseStudySection = () => (
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#102033]">Engine-Level Storage Boundaries</h4>
           </div>
           <ul className="text-xs text-[#526477] space-y-1.5 list-disc pl-4 leading-relaxed">
-            <li><strong>Not Hardware WORM:</strong> Application pre-hooks protect against application-level tampering, but cannot prevent direct DBA modifications on MongoDB Atlas without hardware Write-Once-Read-Many (WORM) storage.</li>
-            <li><strong>UI Statement Qualified:</strong> The UI banner was explicitly refined from claiming "permanently tamper-proof" to: <em>"Append-only activity ledger (historical records are preserved)"</em>.</li>
-            <li><strong>Total vs Displayed Count:</strong> Out of 2,331 total database records, 899 represent operational events in the default administrative ledger, while the remainder reside in specialized security and personal feeds.</li>
+            <li><strong>Application-Layer Immutability:</strong> Application pre-hooks enforce append-only constraints against application routes, but do not claim hardware Write-Once-Read-Many (WORM) storage against direct database administrator access.</li>
+            <li><strong>UI Statement Qualified:</strong> The UI banner was explicitly refined from claiming absolute immutability to: <em>"Append-only activity ledger (historical records are preserved)"</em>.</li>
+            <li><strong>Operational vs Security Feed Partitioning:</strong> The default administrative ledger displays operational events (admissions, attendance, leaves, transfers, examinations), while authentication and session lifecycle records are partitioned into the specialized Security Log to prevent operational noise.</li>
           </ul>
         </div>
       </div>
@@ -521,7 +522,7 @@ export const AuditCaseStudySection = () => (
           node --test tests/session_lifecycle_and_evidence.test.js tests/activity_ux_and_terminology.test.js tests/approver_identity_and_bson_formatter.test.js tests/activity_history_closure.test.js tests/centralised_activity_and_audit_history.test.js
         </div>
         <div className="text-[11px] text-slate-400 pt-1">
-          Total Duration: 4.48s • Exit Code: 0 • Zero unhandled rejections • 100% pure ES Module compliance
+          Total Duration: ~14.78s • Exit Code: 0 • 24 top-level test runner blocks • 114+ distinct assertions verified • 100% pure ES Module compliance
         </div>
       </div>
 
@@ -529,7 +530,7 @@ export const AuditCaseStudySection = () => (
         sourceFile="server/src/controllers/activityHistoryController.js & client/src/components/activity/"
         testSuite="All 5 Activity & Session Lifecycle Verification Suites"
         command="node --test tests/session_lifecycle_and_evidence.test.js tests/activity_ux_and_terminology.test.js tests/approver_identity_and_bson_formatter.test.js tests/activity_history_closure.test.js tests/centralised_activity_and_audit_history.test.js"
-        result="24 BLOCKS • 116 ASSERTIONS PASSED (100%)"
+        result="24 BLOCKS • 114+ ASSERTIONS PASSED (100% VERIFIED)"
       />
     </div>
 
@@ -560,7 +561,7 @@ export const AuditCaseStudySection = () => (
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#102033]">Credential Abuse Deterrence</h4>
           </div>
           <p className="text-xs text-[#526477] leading-relaxed">
-            Multi-session tracking with 3-device limits and duration calculation immediately exposed unauthorized account sharing across school campuses, enforcing institutional discipline.
+            Multi-session tracking with 5-device limits and duration calculation provides clear deterrence against unauthorized account sharing across school campuses, supporting institutional discipline.
           </p>
         </div>
 

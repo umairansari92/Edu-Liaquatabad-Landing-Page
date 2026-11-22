@@ -54,8 +54,8 @@ export const AuditContractSection = () => (
         { left: '3. ipAddress', right: 'String • Client IP extracted via trusted proxy header (X-Forwarded-For).' },
         { left: '4. userAgent', right: 'String • Client browser/device telemetry string for device correlation.' },
         { left: '5. action', right: 'String • Standardized verb (e.g. TEACHER_TRANSFER_RELIEVED, EXAM_MARK_OVERRIDE).' },
-        { left: '6. entityType', right: 'String • Target collection (e.g. TeacherProfile, Result, StudentProfile).' },
-        { left: '7. entityId', right: 'ObjectId • Direct reference to the modified database document.' },
+        { left: '6. targetModel', right: 'String • Target Mongoose model/collection (e.g. User, StudentProfile, Document, StaffAttendanceRecord).' },
+        { left: '7. targetId', right: 'Mixed (ObjectId / String) • Direct reference to the modified document or synthetic subject identifier.' },
         { left: '8. previousState', right: 'Object • Complete JSON snapshot of the document before mutation (enables rollbacks).' },
         { left: '9. newState', right: 'Object • Complete JSON snapshot of the document after mutation.' },
         { left: '10. createdAt', right: 'Date • Immutable ISO-8601 UTC timestamp stamped by MongoDB server.' },
@@ -94,13 +94,13 @@ export const AuditContractSection = () => (
           category: 'Forensic Reversal',
           question: 'How does the platform perform administrative rollbacks without violating the append-only rule?',
           answer: 'When an erroneous mutation must be reversed (e.g. an incorrect student strike-off or accidental transfer), the administrator does not delete or edit the past audit entry. Instead, the service reads previousState from the historical audit record, applies those values to the entity, and writes a NEW audit log entry with action: "ROLLBACK_APPLIED", preserving a complete, unbroken chain of custody.',
-          evidence: 'server/src/services/auditService.js:40-95 • docs/AUDIT_LOGS.md:75-120',
+          evidence: 'server/src/models/AuditLog.js:1-120 • docs/AUDIT_LOGS.md:75-120',
         },
       ]}
     />
 
     <VerificationBox
-      sourceFile="server/src/models/AuditLog.js & server/src/services/auditService.js"
+      sourceFile="server/src/models/AuditLog.js & server/src/controllers/activityHistoryController.js"
       testSuite="server/tests/audit_logging_and_tamper_resistance_suite.test.js"
       command="cd server && node tests/audit_logging_and_tamper_resistance_suite.test.js"
       result="28 / 28 PASSED (100% TAMPER RESISTANCE)"
@@ -208,7 +208,7 @@ export const ApiCatalogueSection = () => (
     <DocHeader
       title="RESTful API Architecture & Standard Envelope"
       badge="6. Immutable Audit & Data Vault"
-      subtitle="Standardized JSON response envelope, HTTP status code semantics, and 29-route mounted endpoint catalogue."
+      subtitle="Standardized JSON response envelope, HTTP status code semantics, and 30-route mounted endpoint catalogue."
     />
 
     <TerminalBlock title="STANDARD API JSON RESPONSE ENVELOPE">
@@ -239,7 +239,7 @@ export const ApiCatalogueSection = () => (
 
     <SectionTitle>Complete 30-Router Architecture &amp; Mounted Endpoint Index</SectionTitle>
     <p className="text-xs text-[#526477] leading-relaxed mb-4">
-      The backend exposes 30 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 29 route modules are imported and mounted directly via <code>router.use()</code>. The 30th router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 70 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
+      The backend exposes 31 distinct router modules on disk in <code>server/src/routes/</code>. In <code>server/src/routes/v1/index.js</code>, exactly 30 domain route modules are imported and mounted directly via <code>router.use()</code> (spanning health, identity, academic, attendance, examinations, and activity history). The 31st router (<code>mfaRoutes.js</code>) is nested inside <code>authRoutes.js</code> at line 75 (<code>router.use(&apos;/mfa&apos;, mfaRoutes)</code>) to form the sub-tree <code>/api/v1/auth/mfa/*</code>. In addition, <code>server.js</code> mounts the security honeypot decoy <code>ratTrapBaitRouter</code> at the Express application root:
     </p>
     <ComparisonTable
       headers={['Mounted Base Route', 'Domain / Route File', 'Guards & Middleware Pipeline']}
