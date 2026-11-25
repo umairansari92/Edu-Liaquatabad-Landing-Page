@@ -76,6 +76,8 @@ import { MasterBaselineSection } from './sections/MasterBaselineSection';
 import { AdminWorkflowsSection } from './sections/AdminWorkflowsSection';
 import { HmWorkflowsSection } from './sections/HmWorkflowsSection';
 import { SupervisorWorkflowsSection } from './sections/SupervisorWorkflowsSection';
+import { StudentWorkflowsSection } from './sections/StudentWorkflowsSection';
+import { ParentWorkflowsSection } from './sections/ParentWorkflowsSection';
 
 import {
   RolesCatalogueSection,
@@ -103,7 +105,6 @@ import {
   TeacherPortalSection,
   AtomicTransfersSection,
   StudentManagementSection,
-  ParentPortalSection,
   AttendanceEngineSection,
   ExaminationEngineSection,
   MarksheetsTabulationSection,
@@ -206,8 +207,9 @@ export default function DocumentationPage() {
         { id: 'teacher-rosters', label: 'Faculty Rosters & PDF Service', icon: Briefcase },
         { id: 'teacher-portal', label: 'Teacher Portal 2026 & My Classes', icon: GraduationCap },
         { id: 'atomic-transfers', label: '5-Stage Atomic Teacher Transfers', icon: ArrowRightLeft },
-        { id: 'student-management', label: 'Students, GR & Digital ID Card', icon: GraduationCap },
-        { id: 'parent-portal', label: 'Parent Portal (Waves 1, 2, 3)', icon: Users },
+        { id: 'student-management', label: 'Students, GR & Enrollment Registry (Staff)', icon: GraduationCap, keywords: 'enroll gr number bform student register admission strike off' },
+        { id: 'student-portal', label: 'Student Portal Operational Manual & Guide', icon: GraduationCap, keywords: 'student portal login activate dashboard profile pdf timetable attendance exams marksheet nazra drawing homework circulars id card cr80 qr' },
+        { id: 'parent-portal', label: 'Parent Portal Operational Manual & Verification Guide', icon: Users, keywords: 'parent guardian link child waiting queue staff assignment class teacher hm verification multi child unlink revoke casterror 7 day expiry attendance marksheet homework' },
         { id: 'attendance-engine', label: 'Smart Attendance & Timing', icon: ClipboardCheck },
         { id: 'examination-engine', label: 'Elementary Board Exam Engine', icon: Award },
         { id: 'marksheets-tabulation', label: 'Marksheet PDF & Tabulation', icon: FileText },
@@ -263,6 +265,10 @@ export default function DocumentationPage() {
           setActiveSection('hm-operational-workflows');
         } else if (hash === 'supervisor-workflows' || hash === 'supervisor' || hash === 'supervisor-operational-workflows') {
           setActiveSection('supervisor-operational-workflows');
+        } else if (hash === 'student-workflows' || hash === 'student-operational-workflows' || hash === 'student') {
+          setActiveSection('student-portal');
+        } else if (hash === 'parent-workflows' || hash === 'parent-operational-workflows' || hash === 'parent') {
+          setActiveSection('parent-portal');
         } else if (hash === 'audit-case-study' || hash === 'activity-history' || hash === 'session-lifecycle') {
           setActiveSection('audit-lifecycle-case-study');
         }
@@ -286,9 +292,14 @@ export default function DocumentationPage() {
   const filteredNavGroups = navGroups
     .map((group) => ({
       ...group,
-      items: group.items.filter((item) =>
-        item.label.toLowerCase().includes(searchQuery.toLowerCase())
-      ),
+      items: group.items.filter((item) => {
+        const normalizedQuery = searchQuery.trim().toLowerCase();
+        if (!normalizedQuery) return true;
+        return (
+          item.label.toLowerCase().includes(normalizedQuery) ||
+          (item.keywords && item.keywords.toLowerCase().includes(normalizedQuery))
+        );
+      }),
     }))
     .filter((group) => group.items.length > 0);
 
@@ -703,7 +714,12 @@ export default function DocumentationPage() {
           {activeSection === 'atomic-transfers' && <AtomicTransfersSection />}
 
           {activeSection === 'student-management' && <StudentManagementSection />}
-          {activeSection === 'parent-portal' && <ParentPortalSection />}
+          {(activeSection === 'student-portal' || activeSection === 'student-workflows' || activeSection === 'student-operational-workflows' || activeSection === 'student') && (
+            <StudentWorkflowsSection />
+          )}
+          {(activeSection === 'parent-portal' || activeSection === 'parent-workflows' || activeSection === 'parent-operational-workflows' || activeSection === 'parent') && (
+            <ParentWorkflowsSection />
+          )}
           {activeSection === 'attendance-engine' && <AttendanceEngineSection />}
 
           {activeSection === 'examination-engine' && <ExaminationEngineSection />}
