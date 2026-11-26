@@ -192,7 +192,7 @@ export default function DocumentationPage() {
         { id: 'mfa-totp', label: 'Multi-Factor Authentication (MFA) & TOTP User Guide', icon: Lock },
         { id: 'security-invariants', label: '5 Non-Negotiable Invariants', icon: AlertTriangle },
         { id: 'threat-matrix', label: 'Adversarial Threat Matrix', icon: Shield },
-        { id: 'canonical-findings', label: 'Canonical Finding Register (CF-01 to CF-10)', icon: Award },
+        { id: 'canonical-findings', label: 'Canonical Finding Register (CF-01 to CF-18)', icon: Award },
         { id: 'screen-protection', label: 'Screen Protection (Deterrence vs Attribution)', icon: Eye },
       ],
     },
@@ -352,7 +352,7 @@ export default function DocumentationPage() {
           <div className="flex items-center gap-2">
             <span className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-[#4B7F3A] border border-emerald-200">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4B7F3A] animate-pulse" />
-              <span>Staging Verified (1,436 / 1,436 Tests PASS • 55 Suites)</span>
+              <span>Staging Verified (39 Chained Suites • 93 On Disk)</span>
             </span>
 
             <a
@@ -465,8 +465,8 @@ export default function DocumentationPage() {
                 </div>
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-1">
                   <div className="text-[10px] font-extrabold uppercase text-[#526477]">AUTOMATED TESTS</div>
-                  <div className="text-sm font-black text-purple-600">1,436 PASS</div>
-                  <div className="text-xs text-[#526477]">55 Suites on Disk (100%)</div>
+                  <div className="text-sm font-black text-purple-600">39 Chained PASS</div>
+                  <div className="text-xs text-[#526477]">93 Suites on Disk</div>
                 </div>
               </div>
 

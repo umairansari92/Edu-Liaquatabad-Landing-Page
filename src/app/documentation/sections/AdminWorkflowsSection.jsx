@@ -157,35 +157,35 @@ export const AdminWorkflowsSection = () => (
           right:
             'Operates strictly within an authorized municipal town. Manages operational schools, subordinate staff (Headmasters, Supervisors, Teachers, and Support Staff), inter-school transfers, Earned Leave statutory approvals, centralized board exams, and town circulars.',
           extra:
-            'Cannot create, modify, suspend, or delete other Admins, Super Admins, or Root Admins. Account lifecycle is managed exclusively by Super Administrators.',
+            'Delegated exclusively with ADMIN (TOWN) scope. Cannot create, modify, suspend, or delete other Admins, Super Admins, or the Root Admin.',
         },
         {
-          left: 'Super Administrator',
+          left: 'Super Administrator (Sole Holder)',
           right:
-            'Exercises global administrative oversight across all municipal towns. Provisions and manages Town Admin accounts, configures global system policies, oversees town-wide academic operations, and inspects multi-town audit logs.',
+            'Strictly 1 active Super Administrator exercises global operational oversight across all municipal towns. Delegates Town Admin (ADMIN) authority, configures global policies, oversees multi-town operations, and inspects audit logs.',
           extra:
-            'Accounts must be provisioned through the canonical authority workflow. A Super Admin cannot unilaterally suspend, demote, or disable a peer Super Admin. At least one active Super Admin must always remain on the platform; Root Admin does not substitute for an active Super Admin.',
+            'Direct multi-SuperAdmin creation is permanently disabled (403 SUPER_ADMIN_DIRECT_CREATION_BLOCKED) and SUPER_ADMIN can never grant or promote ROOT_ADMIN. Succession occurs solely via atomic replica-set handover (/api/v1/admin/governance/super-admin/transfer), demoting the outgoing holder to ADMIN (TOWN) and revoking both sessions.',
         },
         {
-          left: 'Root Administrator',
+          left: 'Root Administrator (Sole Holder)',
           right:
-            'The platform emergency break-glass authority. Initialized strictly through protected server environment configuration for disaster recovery and system maintenance. Root Admin identity is safeguarded from general staff listings.',
+            'Strictly 1 active Root Administrator serves as supreme platform custodian (offline bootstrapGovernance.js / breakGlassRecovery.js). Identity is safeguarded from general staff exports and directories.',
           extra:
-            'Cannot be created, modified, or deleted via standard administrative APIs. Retains exclusive authority over protected peer Super Admin lifecycle actions (requiring verified MFA). Does not perform routine daily administrative workflows.',
+            'Cannot be provisioned or altered via ordinary APIs. Ordinary ROOT_ADMIN creation remains structurally dormant (FUTURE_ROOT_PROVISIONING_CAPABILITY disabled). Transfers solely via atomic MFA + password + single-use step-up ticket + live TOTP handover (recovery codes blocked), demoting the outgoing holder to ADMIN (TOWN).',
         },
       ]}
     />
 
-    <Callout type="security" title="Account Lifecycle Governance & Invariant Protections">
+    <Callout type="security" title="Single-Holder Custody Governance & Atomic Succession Invariants">
       <ul className="space-y-1.5 list-disc list-inside">
         <li>
-          <strong>Canonical Account Creation Workflow:</strong> Privileged administrative accounts are never created via unverified self-registration; they require formal authority grants through verified administrative channels.
+          <strong>WHAT &amp; WHY (Strictly One Holder Each):</strong> Enforced a hard architectural ceiling of <strong>1 active ROOT_ADMIN</strong> and <strong>1 active SUPER_ADMIN</strong> backed by MongoDB partial unique indexes (<code>unique_active_root_admin_role</code>, <code>unique_active_super_admin_role</code>) and <code>AuthorityCustody</code> compare-and-swap locks. This prevents split-brain executive authority, shadow elevation, and accidental zero-admin lockouts.
         </li>
         <li>
-          <strong>Peer Super Admin Protection:</strong> Under system governance rules, a Super Admin cannot unilaterally disable, demote, or suspend a peer Super Admin (enforcing the peer-protection invariant). Peer Super Admin lifecycle actions strictly require Root Admin authorization with verified Multi-Factor Authentication.
+          <strong>HOW (Atomic Handover Transaction):</strong> Custody moves strictly <code>1 → 1</code> via <code>POST /api/v1/admin/governance/root-admin/transfer</code> or <code>/super-admin/transfer</code> inside a MongoDB replica-set transaction: outgoing demotes to <code>ADMIN</code> (<code>TOWN</code>) first, incoming candidate&apos;s operational duties/workplaces conclude/relieve (<code>DUTY_STATUS.CONCLUDED</code>, <code>WORKPLACE_STATUS.RELIEVED</code>), incoming promotes second, and both accounts have <code>tokenVersion</code> incremented and <code>activeSessions</code> cleared immediately.
         </li>
         <li>
-          <strong>Last-Active Super Admin Invariant:</strong> The system strictly blocks disabling or deleting the final remaining active Super Admin. Root Admin availability does not count towards or satisfy this operational requirement.
+          <strong>PROBLEMS &amp; SECURITY SOLUTIONS:</strong> Protected against step-up ticket replay (<code>GovernanceChallenge</code> single-use + bound to <code>operation</code>, <code>actorTokenVersion</code>, and <code>successorUserId</code>), recovery-code bypass on Root succession (TOTP-only), and production duplicate drift (offline CLI <code>reconcileAdminGovernance.js</code>).
         </li>
       </ul>
     </Callout>
@@ -861,9 +861,9 @@ export const AdminWorkflowsSection = () => (
 
       <FaqItem
         category="Accounts"
-        question="Can a Super Administrator suspend or demote a peer Super Administrator?"
-        answer="No. Under platform governance invariants, a Super Admin cannot unilaterally suspend, demote, or disable a peer Super Admin. Peer Super Admin lifecycle actions strictly require Root Admin authorization with verified Multi-Factor Authentication. Furthermore, the platform prevents disabling the last active Super Admin, and Root Admin does not substitute for an active Super Admin."
-        evidence="Verified against superAdminManagementController peer protection and last-active invariant checks."
+        question="Can there be multiple active Super Administrators or can a Super Admin promote someone to Root Admin?"
+        answer="No. Under single-holder custody governance, at most one active ROOT_ADMIN and one active SUPER_ADMIN may exist on the platform at any time, backed by MongoDB partial unique indexes and AuthorityCustody locks. Direct Super Admin creation (POST /api/v1/admin/super-admins) is permanently disabled (403), and SUPER_ADMIN can never grant or promote ROOT_ADMIN. To rotate executive leadership, the active holder transfers custody atomically via Platform Admins -> Custody Handover."
+        evidence="Verified against governance_succession_security.test.js (11/11), phase2_superadmin_lifecycle_governance.test.js (22/22), and authority_transition_matrix.test.js (40/40)."
       />
 
       <FaqItem

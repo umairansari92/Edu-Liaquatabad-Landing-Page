@@ -1020,7 +1020,7 @@ export const ThreatMatrixSection = () => (
 export const CanonicalFindingRegisterSection = () => (
   <div>
     <DocHeader
-      title="Canonical Security Finding Register (CF-01 through CF-10)"
+      title="Canonical Security Finding Register (CF-01 through CF-18)"
       badge="4. Defense-in-Depth Security"
       subtitle="Complete register reconciling historical security audit reports, verified fixes, and test evidence."
     />
@@ -1075,6 +1075,10 @@ export const CanonicalFindingRegisterSection = () => (
         {
           left: 'CF-12 to CF-17 (Full-System Audit)',
           right: 'Export TEACHER/Guardian/Town BOLA closure, strict dual-duty ceiling enforcement across routers and middlewares, trusted request.ip + magic-byte buffer bounds + post-Multer sanitization/idempotency order, atomic IdempotencyRecord CAS, academic/holiday/office-terminal/public-route scoping, and role-gated frontend routing + live metrics • CRITICAL/HIGH • RESOLVED & VERIFIED (16/16 full_system_audit_security_regressions, 53/53 audit_v3, 34/34 phase2_red_team, and 40/40 client script tests)',
+        },
+        {
+          left: 'CF-18 (GOV-SUCC-01: Single-Holder Governance & Succession)',
+          right: 'Closed legacy multi-SuperAdmin creation path (POST /api/v1/admin/super-admins -> 403 SUPER_ADMIN_DIRECT_CREATION_BLOCKED), restricted /authority to ADMIN (TOWN), fixed WORKPLACE_STATUS.RELIEVED transition, and enforced max 1 active ROOT_ADMIN + max 1 active SUPER_ADMIN via MongoDB partial unique indexes, AuthorityCustody CAS lock, dormant FUTURE_ROOT_PROVISIONING_CAPABILITY, replica-set atomic handover transactions (/api/v1/admin/governance/*), step-up TOTP verification (recovery codes blocked), and dual session invalidation • CRITICAL • CODE RESOLVED & EPHEMERAL-DB VERIFIED (11/11 governance_succession_security, 22/22 phase2_superadmin_lifecycle_governance, 40/40 authority_transition_matrix; production Atlas awaits duplicate SUPER_ADMIN reconciliation via reconcileAdminGovernance.js --apply)',
         },
       ]}
     />

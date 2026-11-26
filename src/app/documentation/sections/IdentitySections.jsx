@@ -85,14 +85,14 @@ export const RolesCatalogueSection = () => (
       headers={['Role Identifier', 'Level & Scope', 'Base Capabilities', 'Permission Ceilings & Security Guards', 'Status & Evidence']}
       rows={[
         {
-          left: '1. ROOT_ADMIN',
+          left: '1. ROOT_ADMIN (Sole Holder)',
           right:
-            'Level 100 • GLOBAL • All 39 Capabilities in Registry • Platform custodian and recovery administrator. Dedicated web console (RootAdminDashboard.jsx) with maintenance mode controls and audit logs behind mandatory RFC 6238 TOTP authenticator verification. Account creation is strictly CLI-only via server/scripts/createRootAdmin.js with zero public registration routes • Status: IMPLEMENTED & TESTED (root_admin_mfa_suite: 107/107 PASS).',
+            'Level 100 • GLOBAL • All Capabilities • Strictly 1 active holder enforced via unique_active_root_admin_role + AuthorityCustody. Bootstrapped offline via server/scripts/bootstrapGovernance.js (0→1) or breakGlassRecovery.js; ordinary API provisioning permanently dormant (FUTURE_ROOT_PROVISIONING_CAPABILITY disabled). Rotates solely via atomic replica-set handover with enrolled MFA + password + single-use step-up ticket + live TOTP (no recovery codes), demoting outgoing holder to ADMIN (TOWN).',
         },
         {
-          left: '2. SUPER_ADMIN',
+          left: '2. SUPER_ADMIN (Sole Holder)',
           right:
-            'Level 90 • GLOBAL • All 39 Capabilities in Registry • Municipal Director, Town Education Officer, DDO. Operational management across all municipal schools. Cannot self-promote to ROOT_ADMIN; cannot disable last active Super Admin. Enforced by authorizeHierarchy • Status: IMPLEMENTED & TESTED (authority_model_suite: AM-07 to AM-16 PASS).',
+            'Level 90 • GLOBAL • All Capabilities • Strictly 1 active holder enforced via unique_active_super_admin_role + AuthorityCustody. Direct multi-admin creation permanently blocked (403 SUPER_ADMIN_DIRECT_CREATION_BLOCKED); can never create/promote ROOT_ADMIN. Custody transfers atomically via /api/v1/admin/governance/super-admin/transfer, demoting outgoing holder to ADMIN (TOWN) and revoking both sessions.',
         },
         {
           left: '3. ADMIN (Town Admin)',
@@ -152,7 +152,7 @@ export const RolesCatalogueSection = () => (
             <p className="mt-2"><strong>2. Who Uses It:</strong> System Architects and Platform Maintenance Engineers.</p>
             <p className="mt-2"><strong>3. What You Can Do:</strong> Run database maintenance tools, toggle stealth maintenance mode, inspect global audit logs, and recover locked administrative accounts.</p>
             <p className="mt-2"><strong>4. Reach &amp; Scope:</strong> Global (the entire platform across all schools and towns).</p>
-            <p className="mt-2"><strong>5. Key Restrictions:</strong> Cannot be registered or created via any public web form; account creation is CLI-only via secure terminal scripts (<code>createRootAdmin.js</code>).</p>
+            <p className="mt-2"><strong>5. Key Restrictions:</strong> Strictly single active holder (max 1). Cannot be registered, created, or granted via any public or ordinary API route; CLI bootstrap uses <code>bootstrapGovernance.js</code> (0→1) and transfer uses atomic handover (with TOTP step-up).</p>
           </div>
           <div>
             <p><strong>6. Required Approvals:</strong> Every login session requires a live 6-digit RFC 6238 time-based authenticator app code (MFA).</p>
@@ -181,12 +181,12 @@ export const RolesCatalogueSection = () => (
             <p className="mt-2"><strong>2. Who Uses It:</strong> The Municipal Chairman, Chief Education Officer, or Municipal Director.</p>
             <p className="mt-2"><strong>3. What You Can Do:</strong> View all municipal schools, manage Town Administrators, issue town-wide circulars and gazetted holiday declarations, and approve inter-school faculty transfers.</p>
             <p className="mt-2"><strong>4. Reach &amp; Scope:</strong> Global (all schools and facilities across the municipal education network).</p>
-            <p className="mt-2"><strong>5. Key Restrictions:</strong> Cannot grant self-promotion to ROOT_ADMIN; cannot disable their own account; cannot disable the last remaining active Super Admin.</p>
+            <p className="mt-2"><strong>5. Key Restrictions:</strong> Strictly single active holder (max 1). Can never create or promote <code>ROOT_ADMIN</code>; direct creation via <code>/api/v1/admin/super-admins</code> is disabled (403); transfers solely via atomic handover without leaving 0 active holders.</p>
           </div>
           <div>
-            <p><strong>6. Required Approvals:</strong> Inter-school transfers initiated by Town Admin require final Super Admin review before completion.</p>
-            <p className="mt-2"><strong>7. Why Restrictions Exist:</strong> Preventing self-lockout and stopping the disablement of the last active Super Admin ensures the municipality never loses administrative oversight.</p>
-            <p className="mt-2"><strong>8. What To Do When Access Is Denied:</strong> If an action fails due to last-admin protection (HTTP 400), provision a replacement Super Admin before deactivating the outgoing officer.</p>
+            <p><strong>6. Required Approvals:</strong> Custody transfer mandates fresh password + single-use operation-bound step-up ticket + confirmation phrase <code>TRANSFER SUPER ADMIN</code> (+ live TOTP if MFA enrolled).</p>
+            <p className="mt-2"><strong>7. Why Restrictions Exist:</strong> Limiting active <code>SUPER_ADMIN</code> and <code>ROOT_ADMIN</code> seats to 1 each prevents executive split-brain, shadow privilege escalation, and unrecoverable zero-admin lockouts.</p>
+            <p className="mt-2"><strong>8. What To Do When Access Is Denied:</strong> Legacy duplicate holders (if any exist before index creation) must be reconciled by the operator via offline CLI <code>node scripts/reconcileAdminGovernance.js --keep-super-admin-email &lt;email&gt; --reason &quot;...&quot; --apply</code>.</p>
             <p className="mt-2"><strong>9. Difference from ADMIN:</strong> Super Admin oversees the entire municipality across all towns; Town Admin is strictly bounded to schools within Liaquatabad Town.</p>
             <p className="mt-2"><strong>10. Verified Evidence:</strong> <code>server/src/controllers/superAdminController.js</code> • Verified in <code>tests/authority_model_suite.test.js</code> (AM-07 to AM-16 PASS).</p>
           </div>
