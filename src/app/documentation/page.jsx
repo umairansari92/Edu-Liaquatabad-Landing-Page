@@ -78,6 +78,7 @@ import { HmWorkflowsSection } from './sections/HmWorkflowsSection';
 import { SupervisorWorkflowsSection } from './sections/SupervisorWorkflowsSection';
 import { StudentWorkflowsSection } from './sections/StudentWorkflowsSection';
 import { ParentWorkflowsSection } from './sections/ParentWorkflowsSection';
+import { PeonWorkflowsSection } from './sections/PeonWorkflowsSection';
 
 import {
   RolesCatalogueSection,
@@ -210,6 +211,7 @@ export default function DocumentationPage() {
         { id: 'student-management', label: 'Students, GR & Enrollment Registry (Staff)', icon: GraduationCap, keywords: 'enroll gr number bform student register admission strike off' },
         { id: 'student-portal', label: 'Student Portal Operational Manual & Guide', icon: GraduationCap, keywords: 'student portal login activate dashboard profile pdf timetable attendance exams marksheet nazra drawing homework circulars id card cr80 qr' },
         { id: 'parent-portal', label: 'Parent Portal Operational Manual & Verification Guide', icon: Users, keywords: 'parent guardian link child waiting queue staff assignment class teacher hm verification multi child unlink revoke casterror 7 day expiry attendance marksheet homework' },
+        { id: 'peon-portal', label: 'Support Staff & Peon Portal (BPS-01–04)', icon: Users, keywords: 'peon support staff naib qasid chowkidar mali sweeper bps-01 bps-04 attendance leave circulars office terminal' },
         { id: 'attendance-engine', label: 'Smart Attendance & Timing', icon: ClipboardCheck },
         { id: 'examination-engine', label: 'Elementary Board Exam Engine', icon: Award },
         { id: 'marksheets-tabulation', label: 'Marksheet PDF & Tabulation', icon: FileText },
@@ -269,6 +271,8 @@ export default function DocumentationPage() {
           setActiveSection('student-portal');
         } else if (hash === 'parent-workflows' || hash === 'parent-operational-workflows' || hash === 'parent') {
           setActiveSection('parent-portal');
+        } else if (hash === 'peon-workflows' || hash === 'peon-operational-workflows' || hash === 'peon' || hash === 'support-staff') {
+          setActiveSection('peon-portal');
         } else if (hash === 'audit-case-study' || hash === 'activity-history' || hash === 'session-lifecycle') {
           setActiveSection('audit-lifecycle-case-study');
         }
@@ -719,6 +723,9 @@ export default function DocumentationPage() {
           )}
           {(activeSection === 'parent-portal' || activeSection === 'parent-workflows' || activeSection === 'parent-operational-workflows' || activeSection === 'parent') && (
             <ParentWorkflowsSection />
+          )}
+          {(activeSection === 'peon-portal' || activeSection === 'peon-workflows' || activeSection === 'peon-operational-workflows' || activeSection === 'peon' || activeSection === 'support-staff') && (
+            <PeonWorkflowsSection />
           )}
           {activeSection === 'attendance-engine' && <AttendanceEngineSection />}
 
