@@ -1072,6 +1072,10 @@ export const CanonicalFindingRegisterSection = () => (
           left: 'CF-11 (UX-SEC-01)',
           right: 'Header Shield icon opened directly to device termination list • LOW • RESOLVED & VERIFIED (Defaulted to Security Overview tab; remote termination controls preserved under deliberate Active Sessions tab)',
         },
+        {
+          left: 'CF-12 to CF-17 (Full-System Audit)',
+          right: 'Export TEACHER/Guardian/Town BOLA closure, strict dual-duty ceiling enforcement across routers and middlewares, trusted request.ip + magic-byte buffer bounds + post-Multer sanitization/idempotency order, atomic IdempotencyRecord CAS, academic/holiday/office-terminal/public-route scoping, and role-gated frontend routing + live metrics • CRITICAL/HIGH • RESOLVED & VERIFIED (16/16 full_system_audit_security_regressions, 53/53 audit_v3, 34/34 phase2_red_team, and 40/40 client script tests)',
+        },
       ]}
     />
   </div>

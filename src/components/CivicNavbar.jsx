@@ -90,8 +90,9 @@ export default function CivicNavbar() {
         {/* Right Actions */}
         <div className="flex items-center gap-2.5">
           {/* Search Icon */}
-          <button
-            aria-label="Search"
+          <a
+            href="#schools"
+            aria-label="Jump to School Finder Search"
             className="w-9 h-9 rounded-lg hidden md:flex items-center justify-center transition-all"
             style={{ color: '#526477' }}
             onMouseEnter={(mouseEvent) => {
@@ -104,7 +105,7 @@ export default function CivicNavbar() {
             }}
           >
             <Search className="w-4 h-4" />
-          </button>
+          </a>
 
           {/* Access Portal Button */}
           <a
